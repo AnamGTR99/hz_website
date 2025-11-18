@@ -73,6 +73,19 @@ const videoPortfolio = [
 // Master Portfolio List (combines graphics and videos)
 const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio]
 
+// --- Asset Variables for Commissions Page ---
+// 1. IMAGE PATHS
+const visualArtImg = "/assets_comission_page/visual_art.png"
+const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
+
+// 2. VIDEO HTML (from video_visuals.txt)
+const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
+
+// 3. WEB DESIGN HTML (from web_design.txt)
+const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df117d"><img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Image from Gyazo" width="600"/></a><a href="https://gyazo.com/e660702e8f799446cf3f52cbd75e7835"><img src="https://i.gyazo.com/e660702e8f799446cf3f52cbd75e7835.gif" alt="Image from Gyazo" width="600"/></a>`
+
+// --- End Asset Variables ---
+
 // PageHeader component for mobile back arrow
 function PageHeader({ title, onBack }) {
   return (
@@ -114,7 +127,7 @@ function Header({ currentPage, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            Home
+            HOME
           </button>
           <div
             className="relative"
@@ -189,7 +202,7 @@ function Header({ currentPage, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            Commissions
+            COMMISSIONS
           </button>
           <button
             onClick={() => setCurrentPage('about')}
@@ -199,7 +212,7 @@ function Header({ currentPage, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            About
+            ABOUT
           </button>
           <button
             onClick={() => setCurrentPage('contact')}
@@ -209,7 +222,7 @@ function Header({ currentPage, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            Contact
+            CONTACT
           </button>
         </nav>
       </div>
@@ -650,19 +663,30 @@ function CommissionsPage({ setCurrentPage }) {
             isOpen={openDropdown === 0}
             onToggle={() => toggleDropdown(0)}
           >
-            <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals crafted in Hugo's signature style, including:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-              <li>Digital artworks</li>
-              <li>Character-based visuals</li>
-              <li>Abstract / surreal compositions</li>
-              <li>Graphic posters</li>
-              <li>Album/EP artwork</li>
-              <li>Single covers</li>
-              <li>Merch mockups</li>
-              <li>Campaign visuals</li>
-              <li>Editorial graphics</li>
-            </ul>
-            <p className="mt-3" style={{ fontWeight: 400 }}>Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.</p>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-1">
+                <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals crafted in Hugo's signature style, including:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                  <li>Digital artworks</li>
+                  <li>Character-based visuals</li>
+                  <li>Abstract / surreal compositions</li>
+                  <li>Graphic posters</li>
+                  <li>Album/EP artwork</li>
+                  <li>Single covers</li>
+                  <li>Merch mockups</li>
+                  <li>Campaign visuals</li>
+                  <li>Editorial graphics</li>
+                </ul>
+                <p className="mt-3" style={{ fontWeight: 400 }}>Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.</p>
+              </div>
+              <div className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
+                <img 
+                  src={visualArtImg} 
+                  alt="Visual Art Example"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
           </AccordionItem>
 
           <AccordionItem
@@ -670,18 +694,28 @@ function CommissionsPage({ setCurrentPage }) {
             isOpen={openDropdown === 1}
             onToggle={() => toggleDropdown(1)}
           >
-            <p className="mb-3" style={{ fontWeight: 400 }}>High-level creative video work, including:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-              <li>Visual loops (10–30s)</li>
-              <li>Green screen edits</li>
-              <li>3D/Blender-enhanced motion visuals</li>
-              <li>Music promo visuals</li>
-              <li>Video composites and FX</li>
-              <li>Surreal edits</li>
-              <li>Motion graphics</li>
-              <li>Animated assets</li>
-            </ul>
-            <p className="mt-3" style={{ fontWeight: 400 }}>Crafted for music promotion, product launches, and brand campaigns.</p>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-1">
+                <p className="mb-3" style={{ fontWeight: 400 }}>High-level creative video work, including:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                  <li>Visual loops (10–30s)</li>
+                  <li>Green screen edits</li>
+                  <li>3D/Blender-enhanced motion visuals</li>
+                  <li>Music promo visuals</li>
+                  <li>Video composites and FX</li>
+                  <li>Surreal edits</li>
+                  <li>Motion graphics</li>
+                  <li>Animated assets</li>
+                </ul>
+                <p className="mt-3" style={{ fontWeight: 400 }}>Crafted for music promotion, product launches, and brand campaigns.</p>
+              </div>
+              <div className="w-full md:w-80 flex-shrink-0">
+                <div 
+                  className="rounded-lg overflow-hidden"
+                  dangerouslySetInnerHTML={{ __html: videoVisualsHtml }} 
+                />
+              </div>
+            </div>
           </AccordionItem>
 
           <AccordionItem
@@ -689,18 +723,29 @@ function CommissionsPage({ setCurrentPage }) {
             isOpen={openDropdown === 2}
             onToggle={() => toggleDropdown(2)}
           >
-            <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and aesthetic leadership, including:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-              <li>Creative strategy</li>
-              <li>Aesthetic development</li>
-              <li>Brand identity direction</li>
-              <li>Moodboards & visual planning</li>
-              <li>Campaign concepting</li>
-              <li>Asset review & feedback</li>
-              <li>Artistic supervision</li>
-              <li>On-call creative consulting</li>
-            </ul>
-            <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-1">
+                <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and aesthetic leadership, including:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                  <li>Creative strategy</li>
+                  <li>Aesthetic development</li>
+                  <li>Brand identity direction</li>
+                  <li>Moodboards & visual planning</li>
+                  <li>Campaign concepting</li>
+                  <li>Asset review & feedback</li>
+                  <li>Artistic supervision</li>
+                  <li>On-call creative consulting</li>
+                </ul>
+                <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
+              </div>
+              <div className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
+                <img 
+                  src={creativeDirectionImg}
+                  alt="Creative Direction Example"
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
           </AccordionItem>
 
           <AccordionItem
@@ -708,18 +753,26 @@ function CommissionsPage({ setCurrentPage }) {
             isOpen={openDropdown === 3}
             onToggle={() => toggleDropdown(3)}
           >
-            <p className="mb-3" style={{ fontWeight: 400 }}>Custom website design & digital experiences:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-              <li>Portfolio websites</li>
-              <li>Artist sites</li>
-              <li>Brand landing pages</li>
-              <li>Shopify storefronts</li>
-              <li>E-commerce design</li>
-              <li>UI/UX development</li>
-              <li>Custom-coded visuals</li>
-              <li>Advanced layouts</li>
-            </ul>
-            <p className="mt-3" style={{ fontWeight: 400 }}>Built from scratch to match your brand identity and creative direction.</p>
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-1">
+                <p className="mb-3" style={{ fontWeight: 400 }}>Custom website design & digital experiences:</p>
+                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                  <li>Portfolio websites</li>
+                  <li>Artist sites</li>
+                  <li>Brand landing pages</li>
+                  <li>Shopify storefronts</li>
+                  <li>E-commerce design</li>
+                  <li>UI/UX development</li>
+                  <li>Custom-coded visuals</li>
+                  <li>Advanced layouts</li>
+                </ul>
+                <p className="mt-3" style={{ fontWeight: 400 }}>Built from scratch to match your brand identity and creative direction.</p>
+              </div>
+              <div 
+                className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md"
+                dangerouslySetInnerHTML={{ __html: webDesignHtml }} 
+              />
+            </div>
           </AccordionItem>
 
           <AccordionItem

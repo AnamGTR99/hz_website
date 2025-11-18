@@ -1,258 +1,116 @@
-Below is a **fully detailed, production-ready prompt** you can give to **any AI website-builder agent** (e.g., Perplexity Projects, Framer AI, Webflow AI, Wix Studio AI, custom GPTs, etc.) to implement **the Commissions Page with dropdown sections** exactly the way you want it.
+You're right, my apologies. That was confusing.
 
-This prompt is structured so the agent knows:
+Let's start over with a much clearer explanation.
 
-* **What the page is**
-* **What the design language should be**
-* **How the dropdowns should look**
-* **What text to use**
-* **How it should integrate visually with Hugo Zbor’s brand**
-* **How the layout should function across desktop + mobile**
-* **What NOT to do**
+  * A `div` is just a standard HTML tag. Think of it as a **basic, invisible box** or a **container**. We use it to hold other things, like images, text, or in this case, your video player.
 
-You can paste this directly.
+  * The `.txt` files you made contain **HTML code** for a video player. We can't just put a `.txt` file on a web page.
 
----
+  * The correct way to do this in React is to:
 
-# ✅ **DETAILED PROMPT FOR AI AGENT — Build the “Commissions” Page for Hugo Zbor’s Website**
+    1.  **Copy** the HTML code *from inside* your `video_visuals.txt` file.
+    2.  **Paste** that code into our JavaScript file as a string (a variable).
+    3.  Tell React to render that HTML string inside a `div`.
 
-**Task:**
-Create or edit the **Commissions** page for the portfolio website of the digital artist & creative director **Hugo Zbor**.
-This page must clearly display the full range of commission types using **dropdown (accordion-style) sections**.
+The prop `dangerouslySetInnerHTML` is React's special (and scarily named) way of saying, "Take the HTML code I've stored in this string and put it directly onto the page."
 
----
+Here is a much clearer prompt that shows this step-by-step.
 
-# **🔶 Overall Page Requirements**
+-----
 
-* The page should reflect **Hugo Zbor’s visual identity**: modern, minimal, high-end, creative, digital-artist aesthetic.
-* Keep the layout **clean**, **readable**, and clearly structured.
-* No prices shown anywhere.
-* Dropdowns (accordions) should be the main structure for displaying the commission categories.
-* Page should convert visitors into leads → strong emphasis on **clarity** and **contact calls-to-action**.
+### **Agent Prompt: Stage 7.4 (Refine) - Inject Assets into Existing "Commissions" Accordions**
 
----
+**Project:** "Hugozbor" Artist Portfolio Website
+**Stage 7.4 (Refine) Goal:** Modify the *existing* `CommissionsPage` component. Locate the 4 specific accordion (dropdown) sections ("Visual Art," "Video & Motion Visuals," "Creative Direction," and "Web Design") and inject their corresponding assets *inside* them.
 
-# **🔶 Page Structure**
+**File to Modify:**
 
-### **1. Page Header / Title Section**
+  * `react:Hugozbor Portfolio:App.jsx`
 
-* Title: **“Commissions”**
-* Subtitle:
-  “Explore the full range of creative services offered by Hugo Zbor. Each project is custom-built to your vision.”
-* Optional: subtle background visual or gradient referencing Hugo’s design style.
+-----
 
----
+### **Detailed Implementation Requirements:**
 
-### **2. Accordion / Dropdown Sections**
+**1. Define Your Asset Data:**
 
-Implement the following **8 dropdown items**, each containing the exact text provided below.
+  * At the top of `App.jsx` (outside any component), we will define all our assets.
 
----
+  * **Step 1.A: Get Video HTML:**
 
-## 🔻 **Dropdown 1 — Visual Art & Graphic Design**
+      * Open your `video_visuals.txt` file, copy all the HTML code inside it.
+      * Open your `web_design.txt` file, copy all the HTML code inside it.
 
-**Content:**
+  * **Step 1.B: Create Asset Variables:**
 
-Custom visuals crafted in Hugo’s signature style, including:
+      * Paste the HTML code as JavaScript strings, like this:
 
-* Digital artworks
-* Character-based visuals
-* Abstract / surreal compositions
-* Graphic posters
-* Album/EP artwork
-* Single covers
-* Merch mockups
-* Campaign visuals
-* Editorial graphics
+    <!-- end list -->
 
-Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.
+    ```javascript
+    // --- Asset Variables ---
 
----
+    // 1. IMAGE PATHS (from your 'assets_comission_p...' folder)
+    const visualArtImg = "/assets_comission_p.../visual_art.png"; // <-- Make sure path is correct
+    const creativeDirectionImg = "/assets_comission_p.../creative_direction.png"; // <-- Make sure path is correct
 
-## 🔻 **Dropdown 2 — Video & Motion Visuals**
+    // 2. VIDEO HTML (Paste your code here)
+    const videoVisualsHtml = `PASTE THE HTML FROM video_visuals.txt HERE`; 
+    const webDesignHtml = `PASTE THE HTML FROM web_design.txt HERE`;
 
-**Content:**
+    // --- End Asset Variables ---
+    ```
 
-High-level creative video work, including:
+      * **Example (if your `.txt` file had a Vimeo link):**
+          * `const videoVisualsHtml = '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/12345678" ...></iframe></div>';`
 
-* Visual loops (10–30s)
-* Green screen edits
-* 3D/Blender-enhanced motion visuals
-* Music promo visuals
-* Video composites and FX
-* Surreal edits
-* Motion graphics
-* Animated assets
+**2. Modify Accordion 1: "Visual Art & Graphic Design"**
 
-Crafted for music promotion, product launches, and brand campaigns.
+  * Find the content `div` for this accordion (the one that opens and shows the text "Custom visuals crafted...").
+  * At the **top** of this content `div` (right before the `<p>` tag), **insert** this `div` (the "box") to hold your image:
+    ```jsx
+    <div className="mb-6 w-full max-w-lg mx-auto rounded-lg overflow-hidden shadow-md">
+      <img 
+        src={visualArtImg} 
+        alt="Visual Art Example"
+        className="w-full h-auto"
+      />
+    </div>
+    ```
 
----
+**3. Modify Accordion 2: "Video & Motion Visuals"**
 
-## 🔻 **Dropdown 3 — Creative Direction & Consulting**
+  * Find the content `div` for this accordion (the one with the text "High-level creative video work...").
+  * At the **top** of this content `div`, **insert** this `div` (the "box") that will render your HTML string:
+    ```jsx
+    <div 
+      className="mb-6 w-full max-w-lg mx-auto rounded-lg overflow-hidden shadow-md"
+      dangerouslySetInnerHTML={{ __html: videoVisualsHtml }} 
+    />
+    ```
 
-**Content:**
+**4. Modify Accordion 3: "Creative Direction & Consulting"**
 
-Vision-level involvement and aesthetic leadership, including:
-
-* Creative strategy
-* Aesthetic development
-* Brand identity direction
-* Moodboards & visual planning
-* Campaign concepting
-* Asset review & feedback
-* Artistic supervision
-* On-call creative consulting
-
-Ideal for clients wanting direction beyond simple asset creation.
-
----
-
-## 🔻 **Dropdown 4 — Web Design & Digital Experience**
-
-**Content:**
-
-Custom website design & digital experiences:
-
-* Portfolio websites
-* Artist sites
-* Brand landing pages
-* Shopify storefronts
-* E-commerce design
-* UI/UX development
-* Custom-coded visuals
-* Advanced layouts
-
-Built from scratch to match your brand identity and creative direction.
-
----
-
-## 🔻 **Dropdown 5 — Branding & Identity**
-
-**Content:**
-
-End-to-end brand identity design, including:
-
-* Logo design
-* Typography systems
-* Color palettes
-* Visual language development
-* Brand guidelines
-* Social identity kits
-* Packaging concepts
-
-Perfect for new brands or those undergoing a rebrand.
-
----
-
-## 🔻 **Dropdown 6 — Content Creation (Artists & Influencers)**
-
-**Content:**
-
-Ongoing content for talent and creators:
-
-* Short-form visuals
-* TikTok / Reels edits
-* Promo materials
-* Mixed-media posts
-* Creative storytelling assets
-
-Made for building strong and consistent online presence.
-
----
-
-## 🔻 **Dropdown 7 — Collaboration Projects**
-
-**Content:**
-
-Cross-disciplinary creative collaborations:
-
-* Fashion × visual design
-* Brand partnerships
-* Capsule visuals
-* Experimental art projects
-* Visuals for events or exhibitions
-
-Open to select clients depending on creative fit.
-
----
-
-## 🔻 **Dropdown 8 — Custom Requests**
-
-**Content:**
-
-If your project doesn’t fit the categories above, Hugo accepts custom one-off or long-term commissions depending on availability.
-Describe your idea in the contact form to get started.
-
----
-
-# **🔶 3. Call-to-Action Section**
-
-At the bottom of the page, add:
-
-**Title:** “Start a Commission”
-**Text:**
-“Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.”
-**CTA Button:**
-
-* **“Submit Inquiry”** → links to the main Contact Form
-* Secondary optional: **Email: [contact@hugozbor.com](mailto:contact@hugozbor.com)**
-
----
-
-# **🔶 Design Requirements**
-
-* Keep the color palette minimal: black, white, greys, slight accents from Hugo’s branding.
-
-* Dropdowns should be:
-
-  * Clean
-  * Smooth animated
-  * Full-width on mobile
-  * Spaced out with generous padding
-
-* Typography:
-
-  * Headings bold
-  * Body text clean, modern sans-serif
-  * Line spacing comfortable for readability
-
-* Visuals:
-
-  * Optional container sections with subtle gradients
-  * Do NOT overload with images
-  * The page should feel like a high-end agency portfolio
-
----
-
-# **🔶 Technical Notes for the AI Agent**
-
-* Page should work perfectly on desktop, tablet, and mobile.
-* Accordion elements must be smooth with 200–300ms transitions.
-* No JavaScript-heavy interactions (lightweight logic only).
-* Ensure SEO metadata:
-
-  * Title: “Commissions — Hugo Zbor”
-  * Description: “Explore custom digital art, graphics, video visuals, branding, creative direction, and more by digital artist Hugo Zbor.”
-
----
-
-# **🔶 Final Deliverable**
-
-A **fully built Commissions Page** that:
-
-* Uses dropdowns for each service category
-* Integrates seamlessly with the rest of the site’s design
-* Includes no pricing
-* Has a clear CTA funnel toward inquiries
-* Communicates Hugo’s full creative capability
-
----
-
-If you want, I can also create:
-
-🔥 A matching **FAQ section**
-🔥 A **timeline / process section** (How commissions work)
-🔥 A **Portfolios linked per commission type**
-🔥 A more minimal or more artistic rewriting of the copy
-
-Just tell me.
+  * Find the content `div` for this accordion (the one with the text "Vision-level involvement...").
+  * At the **top** of this content `div`, **insert** this `div` to hold your image:
+    ```jsx
+    <div className="mb-6 w-full max-w-lg mx-auto rounded-lg overflow-hidden shadow-md">
+      <img 
+        src={creativeDirectionImg}
+        alt="Creative Direction Example"
+        className="w-full h-auto"
+      />
+    </div>
+    ```
+
+**5. Modify Accordion 4: "Web Design & Digital Experience"**
+
+  * Find the content `div` for this accordion (the one with the text "Custom website design...").
+  * At the **top** of this content `div`, **insert** this `div` to render your other HTML string:
+    ```jsx
+    <div 
+      className="mb-6 w-full max-w-lg mx-auto rounded-lg overflow-hidden shadow-md"
+      dangerouslySetInnerHTML={{ __html: webDesignHtml }} 
+    />
+    ```
+
+Please generate the updated `App.jsx` file using this clearer approach.
