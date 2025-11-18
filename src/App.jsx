@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ChevronLeft, Instagram, Mail, X } from 'lucide-react'
+import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp } from 'lucide-react'
 
 // Portfolio Data Structure
 const graphicsPortfolio = [
@@ -462,32 +462,352 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
   )
 }
 
+// SectionHeader Component (for Wikipedia-style section titles)
+function SectionHeader({ title, setCurrentPage }) {
+  return (
+    <div className="flex justify-between items-center border-b border-gray-300 mt-8 pb-1">
+      <h2 className="!text-2xl !font-normal !mb-0" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{title}</h2>
+      <button 
+        onClick={() => setCurrentPage('contact')}
+        className="text-sm text-blue-600 hover:underline"
+        style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+      >
+        [edit]
+      </button>
+    </div>
+  )
+}
+
+// InfoBox Component (for sidebar images with captions)
+function InfoBox({ imageUrl, caption, altText }) {
+  return (
+    <div className="border border-gray-300 bg-gray-50 rounded-lg p-3 mt-6 text-center">
+      <img 
+        src={imageUrl} 
+        alt={altText} 
+        className="w-full h-auto" 
+      />
+      <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{caption}</p>
+    </div>
+  )
+}
+
 // About Page Component
 function AboutPage({ setCurrentPage }) {
   return (
     <>
+      {/* 1. MOBILE HEADER */}
       <PageHeader title="About" onBack={() => setCurrentPage('home')} />
+      
+      {/* 2. MAIN CONTENT WRAPPER */}
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-        <div className="bg-gray-200 rounded-lg p-8 md:p-16">
-          <p className="text-center text-xl md:text-2xl text-brandBlack" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            About page content here
-          </p>
+        <div className="flex flex-col md:flex-row md:space-x-8">
+          
+          {/* --- LEFT SIDE: MAIN TEXT (Uses 'prose') --- */}
+          <div className="w-full md:w-3/4">
+            <div className="prose prose-lg max-w-none !font-normal" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              
+              {/* Page Title */}
+              <h1 className="!text-4xl border-b border-gray-300 pb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Hugo Zbor</h1>
+              
+              {/* Intro Paragraph */}
+              <p style={{ fontWeight: 400 }}>I'm Hugo, a 21-year-old artist, editor, and web designer, based in <a href="https://en.wikipedia.org/wiki/Melbourne" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Melbourne, Australia</a>.</p>
+              <p style={{ fontWeight: 400 }}>I was born and raised in <a href="https://en.wikipedia.org/wiki/Jakarta" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Jakarta, Indonesia</a>. As a little kid, I was always interested in arts - I drew here and there, but never ever took it that seriously.</p>
+              
+              {/* --- Section 1 --- */}
+              <SectionHeader title="Introduction to Design" setCurrentPage={setCurrentPage} />
+              <p style={{ fontWeight: 400 }}>Around the fifth grade, I was borrowing my mum's laptop and I stumbled across a video of someone editing photos with <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Photoshop</a> on <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a>. At the time, you were able to do 30-day free trials, so I secretly downloaded it and kept making new emails to keep using it. I was really bad at watching tutorials, so I started learning by trying out every single tool and then just testing random things.</p>
+              
+              {/* Images in bordered boxes */}
+              <div className="flex flex-col sm:flex-row gap-4 my-4">
+                <div className="border border-gray-300 bg-gray-50 rounded-lg p-3 text-center flex-1">
+                  <img 
+                    src="/2015_05_20/IMG_1118.JPG" 
+                    alt="Hugo in the fifth grade" 
+                    className="w-full h-auto" 
+                  />
+                  <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>Hugo in the fifth grade</p>
+                </div>
+                <div className="border border-gray-300 bg-gray-50 rounded-lg p-3 text-center flex-1">
+                  <img 
+                    src="/2015_05_20/IMG_1119.JPG" 
+                    alt="Hugo using Photoshop in 2016" 
+                    className="w-full h-auto" 
+                  />
+                  <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>Hugo using Photoshop in 2016</p>
+                </div>
+              </div>
+              
+              <p style={{ fontWeight: 400 }}>For the next 5 years I would continue to learn and use <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Photoshop</a> as a hobby for fun (making memes and silly images).</p>
+              
+              {/* --- Section 2 --- */}
+              <SectionHeader title="High School and Covid Lockdown" setCurrentPage={setCurrentPage} />
+              <p style={{ fontWeight: 400, marginBottom: '1em' }}>Mid-Highschool, after COVID lockdown began, I started venturing into <a href="https://en.wikipedia.org/wiki/Screen_printing" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">screen-printing</a>. After many failures, I actually made a few graphic t-shirts. My first "order" was printing 50 tote bags for my sister's graduation year.</p>
+              <p style={{ fontWeight: 400, marginBottom: '1em' }}>After COVID lockdown, two friends and I decided to start a <a href="https://www.instagram.com/99clover" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">99Clover</a>, a clothing brand. It was initially just for our friends, but blew up locally.</p>
+              <p style={{ fontWeight: 400 }}>This was when I first started taking <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Photoshop</a> seriously.</p>
+              
+              {/* --- Section 3 --- */}
+              <SectionHeader title="Moving to Australia" setCurrentPage={setCurrentPage} />
+              <p style={{ fontWeight: 400, marginBottom: '1em' }}>I moved to <a href="https://en.wikipedia.org/wiki/Australia" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Australia</a>, in 2022, to study <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">computer science</a> and I kept running the brand (remotely) while attempting to balance it with studying. I noticed my love for design was fading and feeling like a chore. I would always rush and design quickly, because I wanted to get it out of the way.</p>
+              
+              <p style={{ fontWeight: 400, marginBottom: '1em' }}>Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
+              
+              <p style={{ fontWeight: 400 }}>In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. I am extremely grateful and I believe I am now growing - as an artist - faster than ever before.</p>
+            
+            </div>
+          </div>
+          
+          {/* --- RIGHT SIDE: SIDEBAR --- */}
+          <div className="w-full md:w-1/3 mt-6 md:mt-0">
+            
+            {/* Main Info Box */}
+            <div className="border border-gray-300 bg-gray-50 rounded-lg p-4">
+              <h3 className="text-center font-bold text-xl" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Hugo Zbor</h3>
+              <img 
+                src="/2015_05_20/IMG_1120.JPG"
+                alt="Hugo Zbor" 
+                className="w-full mt-2 border border-gray-200" 
+              />
+              <ul className="text-sm mt-4 space-y-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                <li><strong className="w-20 inline-block">Born:</strong> <a href="https://en.wikipedia.org/wiki/Jakarta" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Jakarta, Indonesia</a></li>
+                <li><strong className="w-20 inline-block">Known For:</strong> <a href="https://en.wikipedia.org/wiki/Graphic_design" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Graphic Design</a></li>
+                <li><strong className="w-20 inline-block">Fields:</strong> <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Computer science</a></li>
+                <li><strong className="w-20 inline-block">Website:</strong> <a href="https://hugozbor.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">hugozbor.com</a></li>
+              </ul>
+            </div>
+            
+            {/* Other Info Boxes */}
+            <InfoBox 
+              imageUrl="/2015_05_20/IMG_1121.JPG"
+              caption="Hugo during Covid Lockdown"
+              altText="Hugo at desk during Covid"
+            />
+            
+            <InfoBox 
+              imageUrl="/2015_05_20/IMG_1123.JPG"
+              caption="Hugo's student ID in 2023"
+              altText="Hugo Zbor's student ID"
+            />
+            
+          </div>
         </div>
       </div>
     </>
   )
 }
 
+// Accordion Component for Commissions
+function AccordionItem({ title, children, isOpen, onToggle }) {
+  return (
+    <div className="border-b border-gray-300">
+      <button
+        onClick={onToggle}
+        className="w-full flex justify-between items-center py-4 text-left hover:bg-gray-50 transition-colors duration-200"
+        style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+      >
+        <h3 className="text-lg font-bold text-brandBlack">{title}</h3>
+        {isOpen ? (
+          <ChevronUp className="size-5 text-gray-600 flex-shrink-0" />
+        ) : (
+          <ChevronDown className="size-5 text-gray-600 flex-shrink-0" />
+        )}
+      </button>
+      {isOpen && (
+        <div className="pb-4 pr-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          {children}
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Commissions Page Component
 function CommissionsPage({ setCurrentPage }) {
+  const [openDropdown, setOpenDropdown] = useState(null)
+
+  const toggleDropdown = (index) => {
+    setOpenDropdown(openDropdown === index ? null : index)
+  }
+
   return (
     <>
       <PageHeader title="Commissions" onBack={() => setCurrentPage('home')} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-        <div className="bg-gray-200 rounded-lg p-8 md:p-16">
-          <p className="text-center text-xl md:text-2xl text-brandBlack" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Commissions page content here
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            Commissions
+          </h1>
+          <p className="text-lg text-gray-700" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Explore the full range of creative services offered by Hugo Zbor. Each project is custom-built to your vision.
           </p>
+        </div>
+
+        {/* Accordion Sections */}
+        <div className="space-y-0">
+          <AccordionItem
+            title="Visual Art & Graphic Design"
+            isOpen={openDropdown === 0}
+            onToggle={() => toggleDropdown(0)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals crafted in Hugo's signature style, including:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Digital artworks</li>
+              <li>Character-based visuals</li>
+              <li>Abstract / surreal compositions</li>
+              <li>Graphic posters</li>
+              <li>Album/EP artwork</li>
+              <li>Single covers</li>
+              <li>Merch mockups</li>
+              <li>Campaign visuals</li>
+              <li>Editorial graphics</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Video & Motion Visuals"
+            isOpen={openDropdown === 1}
+            onToggle={() => toggleDropdown(1)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>High-level creative video work, including:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Visual loops (10–30s)</li>
+              <li>Green screen edits</li>
+              <li>3D/Blender-enhanced motion visuals</li>
+              <li>Music promo visuals</li>
+              <li>Video composites and FX</li>
+              <li>Surreal edits</li>
+              <li>Motion graphics</li>
+              <li>Animated assets</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Crafted for music promotion, product launches, and brand campaigns.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Creative Direction & Consulting"
+            isOpen={openDropdown === 2}
+            onToggle={() => toggleDropdown(2)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and aesthetic leadership, including:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Creative strategy</li>
+              <li>Aesthetic development</li>
+              <li>Brand identity direction</li>
+              <li>Moodboards & visual planning</li>
+              <li>Campaign concepting</li>
+              <li>Asset review & feedback</li>
+              <li>Artistic supervision</li>
+              <li>On-call creative consulting</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Web Design & Digital Experience"
+            isOpen={openDropdown === 3}
+            onToggle={() => toggleDropdown(3)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>Custom website design & digital experiences:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Portfolio websites</li>
+              <li>Artist sites</li>
+              <li>Brand landing pages</li>
+              <li>Shopify storefronts</li>
+              <li>E-commerce design</li>
+              <li>UI/UX development</li>
+              <li>Custom-coded visuals</li>
+              <li>Advanced layouts</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Built from scratch to match your brand identity and creative direction.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Branding & Identity"
+            isOpen={openDropdown === 4}
+            onToggle={() => toggleDropdown(4)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>End-to-end brand identity design, including:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Logo design</li>
+              <li>Typography systems</li>
+              <li>Color palettes</li>
+              <li>Visual language development</li>
+              <li>Brand guidelines</li>
+              <li>Social identity kits</li>
+              <li>Packaging concepts</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Perfect for new brands or those undergoing a rebrand.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Content Creation (Artists & Influencers)"
+            isOpen={openDropdown === 5}
+            onToggle={() => toggleDropdown(5)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>Ongoing content for talent and creators:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Short-form visuals</li>
+              <li>TikTok / Reels edits</li>
+              <li>Promo materials</li>
+              <li>Mixed-media posts</li>
+              <li>Creative storytelling assets</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Made for building strong and consistent online presence.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Collaboration Projects"
+            isOpen={openDropdown === 6}
+            onToggle={() => toggleDropdown(6)}
+          >
+            <p className="mb-3" style={{ fontWeight: 400 }}>Cross-disciplinary creative collaborations:</p>
+            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+              <li>Fashion × visual design</li>
+              <li>Brand partnerships</li>
+              <li>Capsule visuals</li>
+              <li>Experimental art projects</li>
+              <li>Visuals for events or exhibitions</li>
+            </ul>
+            <p className="mt-3" style={{ fontWeight: 400 }}>Open to select clients depending on creative fit.</p>
+          </AccordionItem>
+
+          <AccordionItem
+            title="Custom Requests"
+            isOpen={openDropdown === 7}
+            onToggle={() => toggleDropdown(7)}
+          >
+            <p style={{ fontWeight: 400 }}>
+              If your project doesn't fit the categories above, Hugo accepts custom one-off or long-term commissions depending on availability.
+              Describe your idea in the contact form to get started.
+            </p>
+          </AccordionItem>
+        </div>
+
+        {/* Call-to-Action Section */}
+        <div className="mt-12 mb-8 text-center">
+          <h2 className="text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            Start a Commission
+          </h2>
+          <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => setCurrentPage('contact')}
+              className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            >
+              Submit Inquiry
+            </button>
+            <a
+              href="mailto:contact@hugozbor.com"
+              className="text-gray-600 hover:text-gray-900 underline"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+            >
+              Email: contact@hugozbor.com
+            </a>
+          </div>
         </div>
       </div>
     </>

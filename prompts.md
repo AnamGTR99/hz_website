@@ -1,151 +1,258 @@
-This is a great next step, and you're right, the logic is almost identical to what we just built. We just need to make our components "smarter" so they can handle both graphics *and* videos.
+Below is a **fully detailed, production-ready prompt** you can give to **any AI website-builder agent** (e.g., Perplexity Projects, Framer AI, Webflow AI, Wix Studio AI, custom GPTs, etc.) to implement **the Commissions Page with dropdown sections** exactly the way you want it.
 
-Here is the highly detailed, "super duper standard" prompt for Stage 7.2.
+This prompt is structured so the agent knows:
 
------
+* **What the page is**
+* **What the design language should be**
+* **How the dropdowns should look**
+* **What text to use**
+* **How it should integrate visually with Hugo Zbor’s brand**
+* **How the layout should function across desktop + mobile**
+* **What NOT to do**
 
-### **Agent Prompt: Stage 7.2 - Implement "Videos" Gallery & Video Overlay**
+You can paste this directly.
 
-**Project:** "Hugozbor" Artist Portfolio Website
-**Stage 7.2 Goal:**
+---
 
-1.  Create a new data structure for video projects.
-2.  Combine the graphics and video data into one "master" portfolio.
-3.  Update the `MyWorkPage` to filter this master list.
-4.  Refactor the `WorkOverlay` component to be "polymorphic" – it must show a large image for graphics, but a fully playable embedded video for videos.
+# ✅ **DETAILED PROMPT FOR AI AGENT — Build the “Commissions” Page for Hugo Zbor’s Website**
 
-**File to Modify:**
+**Task:**
+Create or edit the **Commissions** page for the portfolio website of the digital artist & creative director **Hugo Zbor**.
+This page must clearly display the full range of commission types using **dropdown (accordion-style) sections**.
 
-  * `react:Hugozbor Portfolio:App.jsx`
+---
 
------
+# **🔶 Overall Page Requirements**
 
-### **Detailed Implementation Requirements:**
+* The page should reflect **Hugo Zbor’s visual identity**: modern, minimal, high-end, creative, digital-artist aesthetic.
+* Keep the layout **clean**, **readable**, and clearly structured.
+* No prices shown anywhere.
+* Dropdowns (accordions) should be the main structure for displaying the commission categories.
+* Page should convert visitors into leads → strong emphasis on **clarity** and **contact calls-to-action**.
 
-**1. Create the `videoPortfolio` Data Structure:**
+---
 
-  * Below your `const graphicsPortfolio = [...]`, add a new array: `const videoPortfolio = [...]`.
-  * We will use the provided YouTube link: `https://www.youtube.com/watch?v=qkFYqY3vr84`
-  * **CRITICAL:** This URL must be converted to its "embed" version: `https://www.youtube.com/embed/qkFYqY3vr84`
-  * **Data Structure:**
-      * `id`: e.g., 'video-1'
-      * `title`: e.g., 'Sample Video Project'
-      * `category`: `['videos', 'view-all']`
-      * `description`: A short description (e.g., "Music video for [Artist]..." or "Promo video for [Brand]...")
-      * `thumbnailUrl`: Use a path from your `/2015_05_20/` folder (e.g., `/2015_05_20/your-image-name-4.jpg`).
-      * `videoEmbedUrl`: The converted YouTube embed link.
-  * **Example:**
-    ```javascript
-    const videoPortfolio = [
-      {
-        id: 'video-1',
-        title: 'Sample Video Project 1',
-        category: ['videos', 'view-all'],
-        description: 'A sample description for the first video.',
-        thumbnailUrl: '/2015_05_20/your-image-name-4.jpg', // <-- UPDATE THIS
-        videoEmbedUrl: 'https://www.youtube.com/embed/qkFYqY3vr84',
-      },
-      {
-        id: 'video-2',
-        title: 'Sample Video Project 2',
-        category: ['videos', 'view-all'],
-        description: 'A sample description for the second video.',
-        thumbnailUrl: '/2015_05_20/your-image-name-5.jpg', // <-- UPDATE THIS
-        videoEmbedUrl: 'https://www.youtube.com/embed/qkFYqY3vr84',
-      },
-      // Add more as needed
-    ];
-    ```
+# **🔶 Page Structure**
 
-**2. Combine Data Sources into a Master List:**
+### **1. Page Header / Title Section**
 
-  * Below the two data arrays, create one "master" array that combines them.
-    ```javascript
-    // ... graphicsPortfolio array ...
-    // ... videoPortfolio array ...
+* Title: **“Commissions”**
+* Subtitle:
+  “Explore the full range of creative services offered by Hugo Zbor. Each project is custom-built to your vision.”
+* Optional: subtle background visual or gradient referencing Hugo’s design style.
 
-    const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio];
-    ```
+---
 
-**3. Update `MyWorkPage` to Use the Master List:**
+### **2. Accordion / Dropdown Sections**
 
-  * Find the `filteredItems` variable inside the `MyWorkPage` component.
-  * **Change:** `const filteredItems = graphicsPortfolio.filter(...)`
-  * **To:** `const filteredItems = allPortfolioItems.filter(item => item.category.includes(currentCategory));`
-      * *Reason: This now filters our master list. The grid will automatically show the correct items (graphics or videos) based on the `currentCategory` state, using their `thumbnailUrl` just as it did before.*
+Implement the following **8 dropdown items**, each containing the exact text provided below.
 
-**4. Refactor the `WorkOverlay` Component (The Main Change):**
+---
 
-  * Find the `function WorkOverlay({ ... })` component.
-  * **A. Update the LEFT SIDE (Image/Video):**
-      * Find the `div` for the "LEFT SIDE: Image":
-          * \`\`
-          * `<div className="w-full md:w-1/2 bg-gray-100">`
-      * **Replace** its content (the single `<img>` tag) with this conditional logic:
-    <!-- end list -->
-    ```jsx
-    {/*
-      This div now conditionally renders
-      EITHER a video iframe
-      OR the original image
-    */}
-    {item.videoEmbedUrl ? (
-      // 1. RENDER VIDEO
-      <div className="w-full aspect-video">
-        <iframe
-          src={item.videoEmbedUrl}
-          title={item.title}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="w-full h-full"
-        ></iframe>
-      </div>
-    ) : (
-      // 2. RENDER IMAGE (Original)
-      <img 
-        src={item.fullImageUrl} 
-        alt={item.title}
-        className="w-full h-64 md:h-full object-contain" 
-      />
-    )}
-    ```
-  * **B. Update the RIGHT SIDE (Text):**
-      * Find the `div` for the "RIGHT SIDE: Text Content":
-          * \`\`
-          * `<div className="w-full md:w-1/2 p-6 md:p-8 ...">`
-      * We need to show `by` and `date` for graphics, but `description` for videos.
-      * **Replace** the text content block with this new conditional logic:
-    <!-- end list -->
-    ```jsx
-    {/* ... inside the right side div ... */}
-    <div>
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{item.title}</h2>
-      
-      {/* --- Conditional Text --- */}
-      {item.description ? (
-        // For Videos
-        <p className="text-lg text-gray-600 mt-2">{item.description}</p>
-      ) : (
-        // For Graphics
-        <>
-          <p className="text-lg text-gray-600 mt-2">By: {item.by}</p>
-          <p className="text-sm text-gray-500 mt-1">Date: {item.date}</p>
-        </>
-      )}
-      {/* --- End Conditional Text --- */}
-      
-      {/* "Work With Hugo" Button (remains the same) */}
-      <button 
-        onClick={() => {
-          onClose(); 
-          setCurrentPage('contact');
-        }}
-        className="mt-6 px-5 py-2 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-      >
-        Work With Hugo
-      </button>
-    </div>
-    ```
+## 🔻 **Dropdown 1 — Visual Art & Graphic Design**
 
-Please generate the updated `App.jsx` file with these new features.
+**Content:**
+
+Custom visuals crafted in Hugo’s signature style, including:
+
+* Digital artworks
+* Character-based visuals
+* Abstract / surreal compositions
+* Graphic posters
+* Album/EP artwork
+* Single covers
+* Merch mockups
+* Campaign visuals
+* Editorial graphics
+
+Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.
+
+---
+
+## 🔻 **Dropdown 2 — Video & Motion Visuals**
+
+**Content:**
+
+High-level creative video work, including:
+
+* Visual loops (10–30s)
+* Green screen edits
+* 3D/Blender-enhanced motion visuals
+* Music promo visuals
+* Video composites and FX
+* Surreal edits
+* Motion graphics
+* Animated assets
+
+Crafted for music promotion, product launches, and brand campaigns.
+
+---
+
+## 🔻 **Dropdown 3 — Creative Direction & Consulting**
+
+**Content:**
+
+Vision-level involvement and aesthetic leadership, including:
+
+* Creative strategy
+* Aesthetic development
+* Brand identity direction
+* Moodboards & visual planning
+* Campaign concepting
+* Asset review & feedback
+* Artistic supervision
+* On-call creative consulting
+
+Ideal for clients wanting direction beyond simple asset creation.
+
+---
+
+## 🔻 **Dropdown 4 — Web Design & Digital Experience**
+
+**Content:**
+
+Custom website design & digital experiences:
+
+* Portfolio websites
+* Artist sites
+* Brand landing pages
+* Shopify storefronts
+* E-commerce design
+* UI/UX development
+* Custom-coded visuals
+* Advanced layouts
+
+Built from scratch to match your brand identity and creative direction.
+
+---
+
+## 🔻 **Dropdown 5 — Branding & Identity**
+
+**Content:**
+
+End-to-end brand identity design, including:
+
+* Logo design
+* Typography systems
+* Color palettes
+* Visual language development
+* Brand guidelines
+* Social identity kits
+* Packaging concepts
+
+Perfect for new brands or those undergoing a rebrand.
+
+---
+
+## 🔻 **Dropdown 6 — Content Creation (Artists & Influencers)**
+
+**Content:**
+
+Ongoing content for talent and creators:
+
+* Short-form visuals
+* TikTok / Reels edits
+* Promo materials
+* Mixed-media posts
+* Creative storytelling assets
+
+Made for building strong and consistent online presence.
+
+---
+
+## 🔻 **Dropdown 7 — Collaboration Projects**
+
+**Content:**
+
+Cross-disciplinary creative collaborations:
+
+* Fashion × visual design
+* Brand partnerships
+* Capsule visuals
+* Experimental art projects
+* Visuals for events or exhibitions
+
+Open to select clients depending on creative fit.
+
+---
+
+## 🔻 **Dropdown 8 — Custom Requests**
+
+**Content:**
+
+If your project doesn’t fit the categories above, Hugo accepts custom one-off or long-term commissions depending on availability.
+Describe your idea in the contact form to get started.
+
+---
+
+# **🔶 3. Call-to-Action Section**
+
+At the bottom of the page, add:
+
+**Title:** “Start a Commission”
+**Text:**
+“Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.”
+**CTA Button:**
+
+* **“Submit Inquiry”** → links to the main Contact Form
+* Secondary optional: **Email: [contact@hugozbor.com](mailto:contact@hugozbor.com)**
+
+---
+
+# **🔶 Design Requirements**
+
+* Keep the color palette minimal: black, white, greys, slight accents from Hugo’s branding.
+
+* Dropdowns should be:
+
+  * Clean
+  * Smooth animated
+  * Full-width on mobile
+  * Spaced out with generous padding
+
+* Typography:
+
+  * Headings bold
+  * Body text clean, modern sans-serif
+  * Line spacing comfortable for readability
+
+* Visuals:
+
+  * Optional container sections with subtle gradients
+  * Do NOT overload with images
+  * The page should feel like a high-end agency portfolio
+
+---
+
+# **🔶 Technical Notes for the AI Agent**
+
+* Page should work perfectly on desktop, tablet, and mobile.
+* Accordion elements must be smooth with 200–300ms transitions.
+* No JavaScript-heavy interactions (lightweight logic only).
+* Ensure SEO metadata:
+
+  * Title: “Commissions — Hugo Zbor”
+  * Description: “Explore custom digital art, graphics, video visuals, branding, creative direction, and more by digital artist Hugo Zbor.”
+
+---
+
+# **🔶 Final Deliverable**
+
+A **fully built Commissions Page** that:
+
+* Uses dropdowns for each service category
+* Integrates seamlessly with the rest of the site’s design
+* Includes no pricing
+* Has a clear CTA funnel toward inquiries
+* Communicates Hugo’s full creative capability
+
+---
+
+If you want, I can also create:
+
+🔥 A matching **FAQ section**
+🔥 A **timeline / process section** (How commissions work)
+🔥 A **Portfolios linked per commission type**
+🔥 A more minimal or more artistic rewriting of the copy
+
+Just tell me.
