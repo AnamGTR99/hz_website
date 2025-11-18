@@ -101,9 +101,9 @@ function PageHeader({ title, onBack }) {
   )
 }
 
-function Header({ currentPage, setCurrentPage }) {
+function Header({ currentPage, currentCategory, setCurrentPage }) {
   const [showMyWorkDropdown, setShowMyWorkDropdown] = useState(false)
-  const isMyWorkActive = currentPage === 'my-work' || currentPage.startsWith('my-work/')
+  const isMyWorkActive = currentPage === 'my-work'
 
   return (
     <header>
@@ -135,7 +135,7 @@ function Header({ currentPage, setCurrentPage }) {
             onMouseLeave={() => setShowMyWorkDropdown(false)}
           >
             <button
-              onClick={() => setCurrentPage('my-work/graphics')}
+              onClick={() => setCurrentPage('my-work', 'graphics')}
               className={
                 isMyWorkActive
                   ? 'font-bold text-lg text-[#c13333]'
@@ -149,44 +149,52 @@ function Header({ currentPage, setCurrentPage }) {
               <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[150px] z-50">
                 <button
                   onClick={() => {
-                    setCurrentPage('my-work/graphics')
+                    setCurrentPage('my-work', 'graphics')
                     setShowMyWorkDropdown(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work/graphics' ? 'text-[#c13333]' : 'text-brandBlack'
+                    currentPage === 'my-work' && currentCategory === 'graphics'
+                      ? 'text-[#c13333]'
+                      : 'text-brandBlack'
                   }`}
                 >
                   Graphics
                 </button>
                 <button
                   onClick={() => {
-                    setCurrentPage('my-work/videos')
+                    setCurrentPage('my-work', 'videos')
                     setShowMyWorkDropdown(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work/videos' ? 'text-[#c13333]' : 'text-brandBlack'
+                    currentPage === 'my-work' && currentCategory === 'videos'
+                      ? 'text-[#c13333]'
+                      : 'text-brandBlack'
                   }`}
                 >
                   Videos
                 </button>
                 <button
                   onClick={() => {
-                    setCurrentPage('my-work/websites')
+                    setCurrentPage('my-work', 'websites')
                     setShowMyWorkDropdown(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work/websites' ? 'text-[#c13333]' : 'text-brandBlack'
+                    currentPage === 'my-work' && currentCategory === 'websites'
+                      ? 'text-[#c13333]'
+                      : 'text-brandBlack'
                   }`}
                 >
                   Websites
                 </button>
                 <button
                   onClick={() => {
-                    setCurrentPage('my-work/view-all')
+                    setCurrentPage('my-work', 'view-all')
                     setShowMyWorkDropdown(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work/view-all' ? 'text-[#c13333]' : 'text-brandBlack'
+                    currentPage === 'my-work' && currentCategory === 'view-all'
+                      ? 'text-[#c13333]'
+                      : 'text-brandBlack'
                   }`}
                 >
                   View all
@@ -259,7 +267,7 @@ function MyWorkLandingPage({ setCurrentPage }) {
               Graphics
             </p>
             <button
-              onClick={() => setCurrentPage('my-work/graphics')}
+              onClick={() => setCurrentPage('my-work', 'graphics')}
               className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
             >
             </button>
@@ -271,7 +279,7 @@ function MyWorkLandingPage({ setCurrentPage }) {
               Videos
             </p>
             <button
-              onClick={() => setCurrentPage('my-work/videos')}
+              onClick={() => setCurrentPage('my-work', 'videos')}
               className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
             >
             </button>
@@ -284,7 +292,7 @@ function MyWorkLandingPage({ setCurrentPage }) {
             Websites
           </p>
           <button
-            onClick={() => setCurrentPage('my-work/websites')}
+            onClick={() => setCurrentPage('my-work', 'websites')}
             className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
           >
           </button>
@@ -394,7 +402,7 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
       {/* Sub-navigation */}
       <nav className="flex flex-col items-center md:flex-row md:justify-center md:space-x-6 space-y-2 md:space-y-0 mt-4 md:mt-8">
         <button
-          onClick={() => setCurrentPage('my-work/graphics')}
+          onClick={() => setCurrentPage('my-work', 'graphics')}
           className={
             category === 'graphics'
               ? 'font-medium text-lg text-[#c13333]'
@@ -405,7 +413,7 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
           Graphics
         </button>
         <button
-          onClick={() => setCurrentPage('my-work/videos')}
+          onClick={() => setCurrentPage('my-work', 'videos')}
           className={
             category === 'videos'
               ? 'font-medium text-lg text-[#c13333]'
@@ -416,7 +424,7 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
           Videos
         </button>
         <button
-          onClick={() => setCurrentPage('my-work/websites')}
+          onClick={() => setCurrentPage('my-work', 'websites')}
           className={
             category === 'websites'
               ? 'font-medium text-lg text-[#c13333]'
@@ -427,7 +435,7 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
           Websites
         </button>
         <button
-          onClick={() => setCurrentPage('my-work/view-all')}
+          onClick={() => setCurrentPage('my-work', 'view-all')}
           className={
             category === 'view-all'
               ? 'font-medium text-lg text-[#c13333]'
@@ -971,7 +979,7 @@ function ContactPage({ setCurrentPage }) {
             </a>
             {' '}within 1-2 business days. In the meantime, feel free to check out{' '}
             <button
-              onClick={() => setCurrentPage('my-work/view-all')}
+              onClick={() => setCurrentPage('my-work', 'view-all')}
               className="text-[#c13333] underline hover:no-underline cursor-pointer font-medium"
             >
               my latest work
@@ -1361,25 +1369,147 @@ function TermsPage({ setCurrentPage }) {
   )
 }
 
+function InfoPage({ setCurrentPage }) {
+  const handleCopy = () => {
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText('management@hugozbor.com')
+    }
+  }
+
+  return (
+    <>
+      <PageHeader title="Management & Info" onBack={() => setCurrentPage('home')} />
+      <div className="max-w-xl mx-auto px-4 md:px-0 mt-6 mb-12" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+        <div className="border border-gray-200 rounded-2xl p-8 shadow-sm bg-white text-center">
+          <p className="text-xs tracking-[0.35em] text-gray-400 mb-3">HUGOZBOR</p>
+          <h1 className="text-3xl font-bold text-brandBlack mb-6">Management & Info</h1>
+          <div className="space-y-5 text-left">
+            <div>
+              <p className="text-xs uppercase text-gray-400">Manager</p>
+              <p className="text-xl text-brandBlack">Shei</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase text-gray-400">Role</p>
+              <p className="text-brandBlack">Management &amp; Bookings</p>
+            </div>
+            <div>
+              <p className="text-xs uppercase text-gray-400">Contact</p>
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <a href="mailto:management@hugozbor.com" className="text-brandBlack underline break-all">
+                  management@hugozbor.com
+                </a>
+                <button
+                  onClick={handleCopy}
+                  className="px-3 py-1 text-xs border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+                >
+                  Copy Email
+                </button>
+              </div>
+            </div>
+          </div>
+          <p className="mt-6 text-sm text-gray-500 leading-relaxed">
+            Available for commissions, collaborations, and press inquiries. This private link acts as a digital business card—share it directly with trusted partners.
+          </p>
+        </div>
+      </div>
+    </>
+  )
+}
+
 function App() {
-  const [currentPage, setCurrentPage] = useState('home')
+  const parseUrl = () => {
+    if (typeof window === 'undefined') {
+      return { page: 'home', category: 'view-all' }
+    }
+
+    const path = window.location.pathname
+    const parts = path.split('/').filter(Boolean)
+
+    if (parts.length === 0) {
+      return { page: 'home', category: 'view-all' }
+    }
+
+    const root = parts[0].toLowerCase()
+
+    if (root === 'my-work') {
+      const subCategory = (parts[1] || 'view-all').toLowerCase()
+      return { page: 'my-work', category: subCategory }
+    }
+
+    const allowedPages = new Set(['home', 'commissions', 'about', 'contact', 'terms', 'info'])
+    if (allowedPages.has(root)) {
+      return { page: root, category: 'view-all' }
+    }
+
+    return { page: 'home', category: 'view-all' }
+  }
+
+  const initialUrlState = parseUrl()
+  const [currentPage, _setCurrentPage] = useState(initialUrlState.page)
+  const [currentCategory, _setCurrentCategory] = useState(initialUrlState.category)
+
+  const setCurrentPage = (page, category = null) => {
+    _setCurrentPage(page)
+
+    let url = '/'
+    let nextCategory = currentCategory
+
+    if (page === 'home') {
+      nextCategory = 'view-all'
+      _setCurrentCategory(nextCategory)
+    } else if (page === 'my-work') {
+      nextCategory = (category || currentCategory || 'view-all').toLowerCase()
+      _setCurrentCategory(nextCategory)
+      url = nextCategory === 'view-all' ? '/my-work' : `/my-work/${nextCategory}`
+    } else {
+      nextCategory = 'view-all'
+      _setCurrentCategory(nextCategory)
+      url = `/${page}`
+    }
+
+    if (page === 'home') {
+      url = '/'
+    }
+
+    window.history.pushState({ page, category: nextCategory }, '', url)
+    window.scrollTo(0, 0)
+  }
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const { page, category } = parseUrl()
+      _setCurrentPage(page)
+      _setCurrentCategory(page === 'my-work' ? category : 'view-all')
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Header is now ONLY shown on Home (mobile) but ALWAYS on web */}
       <div className={currentPage === 'home' ? 'block' : 'hidden md:block'}>
-        <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <Header currentPage={currentPage} currentCategory={currentCategory} setCurrentPage={setCurrentPage} />
       </div>
       <main>
         {currentPage === 'home' && <HomePage />}
-        {currentPage === 'my-work/graphics' && <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} />}
-        {currentPage === 'my-work/videos' && <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} />}
-        {currentPage === 'my-work/websites' && <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} />}
-        {currentPage === 'my-work/view-all' && <MyWorkLandingPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'my-work' && currentCategory === 'graphics' && (
+          <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} />
+        )}
+        {currentPage === 'my-work' && currentCategory === 'videos' && (
+          <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} />
+        )}
+        {currentPage === 'my-work' && currentCategory === 'websites' && (
+          <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} />
+        )}
+        {currentPage === 'my-work' && currentCategory === 'view-all' && (
+          <MyWorkLandingPage setCurrentPage={setCurrentPage} />
+        )}
         {currentPage === 'commissions' && <CommissionsPage setCurrentPage={setCurrentPage} />}
         {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} />}
         {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} />}
         {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'info' && <InfoPage setCurrentPage={setCurrentPage} />}
       </main>
       <Footer setCurrentPage={setCurrentPage} />
     </div>
