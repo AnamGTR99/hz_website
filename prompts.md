@@ -1,130 +1,117 @@
-This is the final piece of the puzzle for your "My Work" gallery.
+This is a great addition. A "Virtual Business Card" (vCard) style page is very professional and incredibly useful for networking. You can just drop the `hugozbor.com/info` link to anyone on WhatsApp or Instagram, and they get everything they need.
 
-We are going to add a third behavior to your grid:
-
-1.  **Graphics:** Click → Open Overlay (Image).
-2.  **Videos:** Click → Open Overlay (Video).
-3.  **Websites (NEW):** Click → Open **External Link** in new tab.
-
-This requires a "smart grid" that knows whether to render a `<button>` (for overlays) or an `<a>` tag (for external links) based on the item type.
-
-Here is the highly detailed prompt to implement this.
+Here is the highly detailed prompt to transform the `InfoPage` into this clean, portrait-style contact card.
 
 -----
 
-### **Agent Prompt: Stage 12 - Build "Websites" Gallery with External Links**
+### **Agent Prompt: Stage 15 - Build "Virtual Business Card" Info Page**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 12 Goal:**
-
-1.  Create a `websitePortfolio` data structure using the "Gyazo" screenshots found in `public/web_design.txt`.
-2.  Update the "My Work" grid to support **External Links**. If an item is a website, clicking it should open the URL in a new tab instead of opening the overlay.
-
-**Input Source:** `public/web_design.txt`
-
-  * **Content:** Contains "Gyazo" embedded HTML/links.
-  * **Usage:** Extract the image source URL from these embeds to use as the **thumbnail**.
+**Stage 15 Goal:** Redesign the hidden `/info` page (`InfoPage` component) to function as a personal **Virtual Business Card**.
+**Layout:** Clean, portrait format, centered content. High-quality profile photo at the top, followed by name, role, and direct action buttons (Phone, WhatsApp, Email).
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
+
+**Icons to Import:**
+
+  * From `lucide-react`, import: `Phone`, `MessageCircle` (for WhatsApp), `Mail`, `Copy`.
 
 -----
 
 ### **Detailed Implementation Requirements:**
 
-**1. Create the `websitePortfolio` Data Structure:**
+**1. Define Data:**
 
-  * Below `videoPortfolio`, create a new array: `const websitePortfolio = [...]`.
-  * **Parse `web_design.txt`:**
-      * Look for the Image URLs inside the provided text file (likely `src="..."` inside a Gyazo embed code).
-      * Create 2 entries (based on the user's description).
-  * **Structure:**
-    ```javascript
-    const websitePortfolio = [
-      {
-        id: 'web-1',
-        title: 'Website Project 1', // Placeholder title
-        category: ['websites', 'view-all'],
-        by: 'Hugo Zbor',
-        date: '2025',
-        // 1. THUMBNAIL: Use the Gyazo URL extracted from text file
-        thumbnailUrl: 'https://i.gyazo.com/YOUR_EXTRACTED_ID_1.png', 
-        // 2. EXTERNAL LINK: The URL where the user goes when clicking
-        websiteUrl: 'https://www.example.com', // Placeholder: User will edit this
-      },
-      {
-        id: 'web-2',
-        title: 'Website Project 2',
-        category: ['websites', 'view-all'],
-        by: 'Hugo Zbor',
-        date: '2025',
-        thumbnailUrl: 'https://i.gyazo.com/YOUR_EXTRACTED_ID_2.png',
-        websiteUrl: 'https://www.example.com', // Placeholder
-      },
-    ];
-    ```
+  * **Image Source:** `/Pictures/info_page.jpg`
+  * **Phone Number:** `+61 0483 879 841`
+  * **WhatsApp Link:** `https://wa.me/61483879841` (Formatted correctly without the leading '0' and with country code).
+  * **Email:** `contact@hugozbor.com`
 
-**2. Update the Master List:**
+**2. Rebuild `InfoPage` Component:**
 
-  * Update `allPortfolioItems` to include the new array:
-    ```javascript
-    const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio];
-    ```
-
-**3. Upgrade `MyWorkPage` Grid (Smart Wrapper):**
-
-  * We need to conditionally render the wrapper element. A `button` triggers the overlay; an `anchor` (`a`) triggers a new tab.
-
-  * **Find the Grid Map Loop:** Inside `MyWorkPage`.
-
-  * **Replace** the current `<button ...>` wrapper logic with this:
+  * **Replace** the existing content of `InfoPage` with this new structure:
 
     ```jsx
-    {filteredItems.map(item => {
-      // Logic: Is this a website with an external link?
-      const isExternal = !!item.websiteUrl;
+    function InfoPage() {
+      const phoneNumber = "+61 0483 879 841";
+      const email = "contact@hugozbor.com";
       
-      // Define common classes for hover effects
-      const cardClasses = "relative group bg-gray-100 rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 block";
+      const copyToClipboard = (text) => {
+        navigator.clipboard.writeText(text);
+        alert("Copied to clipboard!");
+      };
 
-      return isExternal ? (
-        // OPTION A: External Link (For Websites)
-        <a
-          key={item.id}
-          href={item.websiteUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cardClasses}
-        >
-          <img 
-            src={item.thumbnailUrl} 
-            alt={item.title} 
-            className="w-full h-64 md:h-72 object-cover"
-          />
-          {/* Optional: Add a small "External Link" icon overlay on hover if desired, 
-              or keep it clean as requested. */}
-        </a>
-      ) : (
-        // OPTION B: Overlay Button (For Graphics/Videos)
-        <button
-          key={item.id}
-          onClick={() => setSelectedItem(item)}
-          className={cardClasses}
-        >
-          <img 
-            src={item.thumbnailUrl} 
-            alt={item.title} 
-            className="w-full h-64 md:h-72 object-cover"
-          />
-        </button>
+      return (
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+          {/* CARD CONTAINER */}
+          <div className="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            
+            {/* 1. PROFILE IMAGE (Full width top or large circle) */}
+            <div className="w-full aspect-square relative">
+               <img 
+                 src="/Pictures/info_page.jpg" 
+                 alt="Hugo Zbor" 
+                 className="w-full h-full object-cover"
+               />
+            </div>
+
+            {/* 2. DETAILS SECTION */}
+            <div className="p-8 text-center">
+              <h1 className="text-2xl font-bold text-gray-900">Hugo Zbor</h1>
+              <p className="text-sm text-gray-500 uppercase tracking-widest mt-1 mb-6">
+                Creative Director
+              </p>
+
+              {/* 3. ACTION BUTTONS (Stacked) */}
+              <div className="space-y-3">
+                
+                {/* PHONE BUTTON */}
+                <a 
+                  href="tel:+61483879841"
+                  className="flex items-center justify-center w-full py-3 px-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+                >
+                  <Phone className="size-5 mr-2" />
+                  <span className="font-medium">Call Me</span>
+                </a>
+
+                {/* WHATSAPP BUTTON (Green-ish) */}
+                <a 
+                  href="https://wa.me/61483879841"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-full py-3 px-4 bg-[#25D366] text-white rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  <MessageCircle className="size-5 mr-2" />
+                  <span className="font-medium">WhatsApp</span>
+                </a>
+
+                {/* EMAIL BUTTON (Copy Action) */}
+                <button 
+                  onClick={() => copyToClipboard(email)}
+                  className="flex items-center justify-center w-full py-3 px-4 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
+                >
+                  <Mail className="size-5 mr-2" />
+                  <span className="font-medium">Copy Email</span>
+                </button>
+
+              </div>
+              
+              {/* Footer Note */}
+              <p className="text-xs text-gray-400 mt-8">
+                Melbourne, Australia<br/>
+                © Hugo Zbor 2025
+              </p>
+            </div>
+          </div>
+        </div>
       );
-    })}
+    }
     ```
 
-**4. Output:**
+**3. Styling Notes:**
 
-  * Generate the full updated `App.jsx` file.
-  * Ensure the `websitePortfolio` is populated with the Gyazo links from the text file and correctly integrated into the master list.
+  * Ensure the image uses `object-cover` so it looks professional regardless of the file's aspect ratio.
+  * The WhatsApp button uses the brand color `#25D366` to be instantly recognizable.
+  * The page itself should be centered in the viewport (`min-h-screen flex items-center`) so it looks good on both mobile phones and desktop screens.
 
------
-
-**Note to Agent:** The visual style (grid size, hover effects, image aspect ratio) must remain **identical** between the buttons and the links. The user should not see a visual difference until they click.
+Please generate the updated `App.jsx` file with this new `InfoPage`.

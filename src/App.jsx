@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp } from 'lucide-react'
+import React, { useState, useEffect, useMemo } from 'react'
+import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy } from 'lucide-react'
 
 // Portfolio Data Structure
 const graphicsPortfolio = [
@@ -223,6 +223,14 @@ const websitePortfolio = [
 
 // Master Portfolio List (combines graphics and videos)
 const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio]
+const shuffleArray = (array) => {
+  const newArray = [...array]
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+  }
+  return newArray
+}
 
 // --- Asset Variables for Commissions Page ---
 // 1. IMAGE PATHS
@@ -231,6 +239,7 @@ const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
+const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 
 // 3. WEB DESIGN HTML (from web_design.txt)
 const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df117d"><img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Image from Gyazo" width="600"/></a><a href="https://gyazo.com/e660702e8f799446cf3f52cbd75e7835"><img src="https://i.gyazo.com/e660702e8f799446cf3f52cbd75e7835.gif" alt="Image from Gyazo" width="600"/></a>`
@@ -391,13 +400,44 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
 
 function HomePage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-      {/* Content Box */}
-      <div className="bg-gray-200 rounded-lg p-8 md:p-16">
-        {/* Text */}
-        <p className="text-center text-xl md:text-2xl text-brandBlack">
-          Home page content here
-        </p>
+    <div className="max-w-6xl mx-auto px-4 md:px-8 mt-12 md:mt-20 mb-20">
+      {/* 1. MAIN HEADLINE (Top) */}
+      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16">
+        Creating Next Level <br className="hidden md:block" />
+        Digital Products
+      </h1>
+
+      {/* 2. SPLIT CONTENT SECTION (Below) */}
+      <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
+        {/* LEFT COL: The Graphic (Video/GIF) */}
+        <div className="w-full md:w-1/2 mb-8 md:mb-0">
+          <div
+            className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm grayscale hover:grayscale-0 transition-all duration-500"
+            dangerouslySetInnerHTML={{ __html: homeHeroVisual }}
+          />
+        </div>
+
+        {/* RIGHT COL: Text Content */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4">
+          {/* Bold Side Title */}
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
+            Hugozbor for <br />
+            Omnee World
+          </h2>
+
+          {/* Description Paragraph */}
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-md mb-8">
+            Hugo Zbor is a multidisciplinary digital artist combining creativity with data-driven strategies to craft unforgettable online experiences. His team helps you elevate your brand and achieve your digital goals.
+          </p>
+
+          {/* "See More" Link */}
+          <a
+            href="/my-work/view-all"
+            className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
+          >
+            See More
+          </a>
+        </div>
       </div>
     </div>
   )
@@ -505,10 +545,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
             
             {/* Conditional Text - Only for Graphics */}
             {!item.videoEmbedUrl && (
-              <>
-                <p className="text-lg text-gray-600 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>By: {item.by}</p>
-                <p className="text-sm text-gray-500 mt-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Date: {item.date}</p>
-              </>
+              <p className="text-sm text-gray-600 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Date: {item.date}</p>
             )}
             
             {/* Work With Hugo Button */}
@@ -539,8 +576,12 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
     'view-all': 'View all'
   }
 
-  // Filter items based on current category
-  const filteredItems = allPortfolioItems.filter(item => item.category.includes(category))
+  const displayedItems = useMemo(() => {
+    if (category !== 'view-all') {
+      return allPortfolioItems.filter(item => item.category.includes(category))
+    }
+    return shuffleArray(allPortfolioItems)
+  }, [category])
 
   return (
     <>
@@ -596,15 +637,17 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
 
       {/* Gallery Grid */}
       <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8 ${category === 'websites' ? 'justify-items-center' : ''}`}>
-        {filteredItems.map(item => {
+        {displayedItems.map(item => {
           const isExternal = !!item.websiteUrl
-          const cardClasses = `group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 ${isExternal ? 'w-full max-w-2xl sm:max-w-3xl' : ''}`
+          const isVideo = item.category.includes('videos')
+          const isWebsite = item.category.includes('websites')
+          const shouldCenterWebsite = category === 'websites' || (category === 'view-all' && isWebsite)
+          const cardClasses = [
+            'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0',
+            isWebsite && shouldCenterWebsite ? 'w-full max-w-2xl sm:max-w-3xl mx-auto' : '',
+          ].join(' ').trim()
           const imageClasses = `w-full object-cover block ${
-            item.videoEmbedUrl
-              ? 'aspect-video'
-              : isExternal
-                ? 'aspect-[16/9]'
-                : 'h-80 md:h-96'
+            isVideo ? 'aspect-video' : isWebsite ? 'aspect-[16/9]' : 'h-80 md:h-96'
           }`
 
           return isExternal ? (
@@ -636,7 +679,7 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
           )
         })}
         {/* Show a message if no items match the filter */}
-        {filteredItems.length === 0 && (
+        {displayedItems.length === 0 && (
           <p className="sm:col-span-2 lg:col-span-3 text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             No projects found in this category.
           </p>
@@ -1141,19 +1184,20 @@ function ContactPage({ setCurrentPage }) {
     // Success View
     return (
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-        <div className="text-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          <h1 className="text-3xl md:text-4xl font-bold text-brandBlack mb-4">
+        <div className="text-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          <h1 className="text-3xl md:text-4xl text-brandBlack mb-4" style={{ fontWeight: 400 }}>
             Thank You! Your inquiry has been submitted.
           </h1>
-          <p className="text-lg md:text-xl text-brandBlack mb-4">
+          <p className="text-lg md:text-xl text-brandBlack mb-4" style={{ fontWeight: 400 }}>
             I've received your message and will review your project details. You can expect an email from{' '}
-            <a href="mailto:contact@hugozbor.com" className="text-[#c13333] hover:underline">
+            <a href="mailto:contact@hugozbor.com" className="text-[#c13333] hover:underline" style={{ fontWeight: 400 }}>
               contact@hugozbor.com
             </a>
             {' '}within 1-2 business days. In the meantime, feel free to check out{' '}
             <button
               onClick={() => setCurrentPage('my-work', 'view-all')}
-              className="text-[#c13333] underline hover:no-underline cursor-pointer font-medium"
+              className="text-[#c13333] underline hover:no-underline cursor-pointer"
+              style={{ fontWeight: 400 }}
             >
               my latest work
             </button>
@@ -1170,16 +1214,16 @@ function ContactPage({ setCurrentPage }) {
       <PageHeader title="Contact" onBack={() => setCurrentPage('home')} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
       {/* Header Text */}
-      <p className="text-lg md:text-xl text-brandBlack mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <p className="text-lg md:text-xl text-brandBlack mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
         Have a project in mind or just want to say hi? I'd love to hear about it. Fill out the form below and I'll get back to you within 1-2 business days.
       </p>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+      <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
         {/* Row 1: Name & Email */}
         <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
           <div className="flex-1">
-            <label className="block text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               Full Name *
             </label>
             <input
@@ -1187,11 +1231,11 @@ function ContactPage({ setCurrentPage }) {
               name="name"
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
             />
           </div>
           <div className="flex-1">
-            <label className="block text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               Email *
             </label>
             <input
@@ -1199,18 +1243,18 @@ function ContactPage({ setCurrentPage }) {
               name="email"
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
             />
           </div>
         </div>
 
         {/* Row 2: Service Checkboxes */}
         <div>
-          <label className="block text-brandBlack font-medium mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             What service(s) are you looking for?*
           </label>
           <div className="flex flex-col space-y-2">
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input 
                 type="checkbox" 
                 name="service_graphics" 
@@ -1219,9 +1263,9 @@ function ContactPage({ setCurrentPage }) {
                 onChange={handleServiceChange}
                 className="mr-2" 
               />
-              <span className="text-brandBlack">Graphics (Poster, Cover Art, Flyer, etc)</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Graphics (Poster, Cover Art, Flyer, etc)</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input 
                 type="checkbox" 
                 name="service_video" 
@@ -1230,9 +1274,9 @@ function ContactPage({ setCurrentPage }) {
                 onChange={handleServiceChange}
                 className="mr-2" 
               />
-              <span className="text-brandBlack">Video Editing / Motion Graphics</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video Editing / Motion Graphics</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input 
                 type="checkbox" 
                 name="service_webdesign" 
@@ -1241,9 +1285,9 @@ function ContactPage({ setCurrentPage }) {
                 onChange={handleServiceChange}
                 className="mr-2" 
               />
-              <span className="text-brandBlack">Webdesign</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Webdesign</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input 
                 type="checkbox" 
                 name="service_creative_direction" 
@@ -1252,9 +1296,9 @@ function ContactPage({ setCurrentPage }) {
                 onChange={handleServiceChange}
                 className="mr-2" 
               />
-              <span className="text-brandBlack">Creative Direction / Strategy</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Strategy</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input 
                 type="checkbox" 
                 name="service_full_project" 
@@ -1263,9 +1307,9 @@ function ContactPage({ setCurrentPage }) {
                 onChange={handleServiceChange}
                 className="mr-2" 
               />
-              <span className="text-brandBlack">Bit of Everything (Full-Service Project)</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Bit of Everything (Full-Service Project)</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input 
                 type="checkbox" 
                 name="service_not_sure" 
@@ -1274,14 +1318,14 @@ function ContactPage({ setCurrentPage }) {
                 onChange={handleServiceChange}
                 className="mr-2" 
               />
-              <span className="text-brandBlack">Not Sure Yet</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not Sure Yet</span>
             </label>
           </div>
         </div>
 
         {/* Row 3: Text Area */}
         <div>
-          <label className="block text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             Tell me more about your project*
           </label>
           <textarea
@@ -1290,13 +1334,13 @@ function ContactPage({ setCurrentPage }) {
             rows={6}
             placeholder={detailsPlaceholder}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-vertical"
-            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
           />
         </div>
 
         {/* Row 4: Budget */}
         <div>
-          <label className="block text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             What's your estimated budget?*
           </label>
           <input
@@ -1305,27 +1349,27 @@ function ContactPage({ setCurrentPage }) {
             required
             placeholder="e.g. $750 - $1500 USD etc"
             className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
           />
         </div>
 
         {/* Row 5: Timeline */}
         <div>
-          <label className="block text-brandBlack font-medium mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             Ideal Project Timeline?*
           </label>
           <div className="flex flex-col space-y-2">
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input type="checkbox" name="timeline" value="Urgent (< 2 weeks)" className="mr-2" />
-              <span className="text-brandBlack">Urgent (&lt; 2 weeks)</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Urgent (&lt; 2 weeks)</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input type="checkbox" name="timeline" value="Standard (2-3 weeks)" className="mr-2" />
-              <span className="text-brandBlack">Standard (2-3 weeks)</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Standard (2-3 weeks)</span>
             </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               <input type="checkbox" name="timeline" value="Flexible (1-2 months)" className="mr-2" />
-              <span className="text-brandBlack">Flexible (1-2 months)</span>
+              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Flexible (1-2 months)</span>
             </label>
           </div>
         </div>
@@ -1333,8 +1377,8 @@ function ContactPage({ setCurrentPage }) {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full md:w-auto px-8 py-3 bg-white border border-gray-300 rounded-lg text-brandBlack font-medium hover:bg-[#c13333] hover:text-white transition-colors"
-          style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          className="w-full md:w-auto px-8 py-3 bg-white border border-gray-300 rounded-lg text-brandBlack hover:bg-[#c13333] hover:text-white transition-colors"
+          style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
         >
           Submit Project Inquiry
         </button>
@@ -1543,78 +1587,119 @@ function TermsPage({ setCurrentPage }) {
 }
 
 function InfoPage({ setCurrentPage }) {
-  const handleCopy = () => {
+  const phoneNumber = "+61 483 879 841"
+  const email = "contact@hugozbor.com"
+  
+  const copyToClipboard = (text) => {
     if (navigator?.clipboard) {
-      navigator.clipboard.writeText('management@hugozbor.com')
+      navigator.clipboard.writeText(text)
+      alert("Copied to clipboard!")
     }
   }
 
   return (
-    <>
-      <PageHeader title="Management & Info" onBack={() => setCurrentPage('home')} />
-      <div className="max-w-xl mx-auto px-4 md:px-0 mt-6 mb-12" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-        <div className="border border-gray-200 rounded-2xl p-8 shadow-sm bg-white text-center">
-          <p className="text-xs tracking-[0.35em] text-gray-400 mb-3">HUGOZBOR</p>
-          <h1 className="text-3xl font-bold text-brandBlack mb-6">Management & Info</h1>
-          <div className="space-y-5 text-left">
-            <div>
-              <p className="text-xs uppercase text-gray-400">Manager</p>
-              <p className="text-xl text-brandBlack">Shei</p>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      {/* CARD CONTAINER */}
+      <div className="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        
+        {/* 1. PROFILE IMAGE (Full width top or large circle) */}
+        <div className="w-full aspect-square relative overflow-hidden">
+           <img 
+             src="/Pictures/info_page_2.png" 
+             alt="Shei" 
+             className="w-full h-full object-cover object-left"
+           />
+        </div>
+
+        {/* 2. DETAILS SECTION */}
+        <div className="p-8 text-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <h1 className="text-2xl font-bold text-gray-900" style={{ fontWeight: 700 }}>Shei</h1>
+          <p className="text-sm text-gray-500 uppercase tracking-widest mt-1 mb-6" style={{ fontWeight: 400 }}>
+            Talent Manager
+          </p>
+
+          {/* 3. ACTION BUTTONS (Stacked) */}
+          <div className="space-y-3">
+            
+            {/* PHONE BUTTON */}
+            <div className="flex items-center justify-center gap-3">
+              <a 
+                href="tel:+61483879841"
+                className="flex items-center justify-center w-12 h-12 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+              >
+                <Phone className="size-5" />
+              </a>
+              <span className="text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                {phoneNumber}
+              </span>
             </div>
-            <div>
-              <p className="text-xs uppercase text-gray-400">Role</p>
-              <p className="text-brandBlack">Management &amp; Bookings</p>
+
+            {/* WHATSAPP BUTTON (Green-ish) */}
+            <a 
+              href="https://api.whatsapp.com/send?phone=61483879841"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-full py-3 px-4 bg-[#25D366] text-white rounded-lg hover:opacity-90 transition-opacity"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 500 }}
+            >
+              <MessageCircle className="size-5 mr-2" />
+              <span>WhatsApp</span>
+            </a>
+
+            {/* EMAIL BUTTON (Copy Action) */}
+            <div className="flex items-center justify-center gap-3">
+              <button 
+                onClick={() => copyToClipboard(email)}
+                className="flex items-center justify-center w-12 h-12 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+              >
+                <Mail className="size-5" />
+              </button>
+              <span className="text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                {email}
+              </span>
             </div>
-            <div>
-              <p className="text-xs uppercase text-gray-400">Contact</p>
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <a href="mailto:management@hugozbor.com" className="text-brandBlack underline break-all">
-                  management@hugozbor.com
-                </a>
-                <button
-                  onClick={handleCopy}
-                  className="px-3 py-1 text-xs border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                >
-                  Copy Email
-                </button>
-              </div>
-            </div>
+
           </div>
-          <p className="mt-6 text-sm text-gray-500 leading-relaxed">
-            Available for commissions, collaborations, and press inquiries. This private link acts as a digital business card—share it directly with trusted partners.
+          
+          {/* Footer Note */}
+          <p className="text-xs text-gray-400 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Melbourne, Australia<br/>
+            © Hugozbor 2025
           </p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
 function App() {
   const parseUrl = () => {
     if (typeof window === 'undefined') {
-      return { page: 'home', category: 'view-all' }
+      return { page: 'home', category: 'landing' }
     }
 
     const path = window.location.pathname
     const parts = path.split('/').filter(Boolean)
 
     if (parts.length === 0) {
-      return { page: 'home', category: 'view-all' }
+      return { page: 'home', category: 'landing' }
     }
 
     const root = parts[0].toLowerCase()
 
     if (root === 'my-work') {
-      const subCategory = (parts[1] || 'view-all').toLowerCase()
+      const subCategory = (parts[1] || 'landing').toLowerCase()
       return { page: 'my-work', category: subCategory }
     }
 
     const allowedPages = new Set(['home', 'commissions', 'about', 'contact', 'terms', 'info'])
     if (allowedPages.has(root)) {
-      return { page: root, category: 'view-all' }
+      return { page: root, category: 'landing' }
     }
 
-    return { page: 'home', category: 'view-all' }
+    return { page: 'home', category: 'landing' }
   }
 
   const initialUrlState = parseUrl()
@@ -1628,14 +1713,20 @@ function App() {
     let nextCategory = currentCategory
 
     if (page === 'home') {
-      nextCategory = 'view-all'
+      nextCategory = 'landing'
       _setCurrentCategory(nextCategory)
     } else if (page === 'my-work') {
-      nextCategory = (category || currentCategory || 'view-all').toLowerCase()
+      nextCategory = (category || currentCategory || 'landing').toLowerCase()
       _setCurrentCategory(nextCategory)
-      url = nextCategory === 'view-all' ? '/my-work' : `/my-work/${nextCategory}`
+      if (nextCategory === 'landing') {
+        url = '/my-work'
+      } else if (nextCategory === 'view-all') {
+        url = '/my-work/view-all'
+      } else {
+        url = `/my-work/${nextCategory}`
+      }
     } else {
-      nextCategory = 'view-all'
+      nextCategory = 'landing'
       _setCurrentCategory(nextCategory)
       url = `/${page}`
     }
@@ -1652,7 +1743,7 @@ function App() {
     const handlePopState = () => {
       const { page, category } = parseUrl()
       _setCurrentPage(page)
-      _setCurrentCategory(page === 'my-work' ? category : 'view-all')
+      _setCurrentCategory(page === 'my-work' ? category : 'landing')
     }
 
     window.addEventListener('popstate', handlePopState)
@@ -1676,6 +1767,9 @@ function App() {
           <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} />
         )}
         {currentPage === 'my-work' && currentCategory === 'view-all' && (
+          <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} />
+        )}
+        {currentPage === 'my-work' && currentCategory === 'landing' && (
           <MyWorkLandingPage setCurrentPage={setCurrentPage} />
         )}
         {currentPage === 'commissions' && <CommissionsPage setCurrentPage={setCurrentPage} />}
