@@ -5,48 +5,129 @@ import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp } from 'lucide-
 const graphicsPortfolio = [
   {
     id: 'graphic-1',
-    title: 'Project Title 1',
+    title: 'Project 1',
     category: ['graphics', 'view-all'],
-    date: 'October 2025',
-    by: 'Client Name Here',
-    thumbnailUrl: '/2015_05_20/IMG_1118.JPG',
-    fullImageUrl: '/2015_05_20/IMG_1118.JPG',
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work8.jpg',
+    fullImageUrl: '/Pictures/work8.jpg',
   },
   {
     id: 'graphic-2',
-    title: 'Project Title 2',
+    title: 'Project 2',
     category: ['graphics', 'view-all'],
-    date: 'September 2025',
-    by: 'Self-Initiated',
-    thumbnailUrl: '/2015_05_20/IMG_1119.JPG',
-    fullImageUrl: '/2015_05_20/IMG_1119.JPG',
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/Mock Medium.jpeg',
+    fullImageUrl: '/Pictures/Mock Medium.jpeg',
   },
   {
     id: 'graphic-3',
-    title: 'Project Title 3',
+    title: 'Project 3',
     category: ['graphics', 'view-all'],
-    date: 'August 2025',
-    by: 'Another Client',
-    thumbnailUrl: '/2015_05_20/IMG_1120.JPG',
-    fullImageUrl: '/2015_05_20/IMG_1120.JPG',
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work3.jpg',
+    fullImageUrl: '/Pictures/work3.jpg',
   },
   {
     id: 'graphic-4',
-    title: 'Project Title 4',
+    title: 'Project 4',
     category: ['graphics', 'view-all'],
-    date: 'July 2025',
-    by: 'Client Name Here',
-    thumbnailUrl: '/2015_05_20/IMG_1121.JPG',
-    fullImageUrl: '/2015_05_20/IMG_1121.JPG',
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/1.jpg',
+    fullImageUrl: '/Pictures/1.jpg',
   },
   {
     id: 'graphic-5',
-    title: 'Project Title 5',
+    title: 'Project 5',
     category: ['graphics', 'view-all'],
-    date: 'June 2025',
-    by: 'Self-Initiated',
-    thumbnailUrl: '/2015_05_20/IMG_1123.JPG',
-    fullImageUrl: '/2015_05_20/IMG_1123.JPG',
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work12.jpg',
+    fullImageUrl: '/Pictures/work12.jpg',
+  },
+  {
+    id: 'graphic-6',
+    title: 'Project 6',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/Full V3.jpg',
+    fullImageUrl: '/Pictures/Full V3.jpg',
+  },
+  {
+    id: 'graphic-7',
+    title: 'Project 7',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work5.jpg',
+    fullImageUrl: '/Pictures/work5.jpg',
+  },
+  {
+    id: 'graphic-8',
+    title: 'Project 8',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work2.jpg',
+    fullImageUrl: '/Pictures/work2.jpg',
+  },
+  {
+    id: 'graphic-9',
+    title: 'Project 9',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/final v2.jpg',
+    fullImageUrl: '/Pictures/final v2.jpg',
+  },
+  {
+    id: 'graphic-10',
+    title: 'Project 10',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work11.jpg',
+    fullImageUrl: '/Pictures/work11.jpg',
+  },
+  {
+    id: 'graphic-11',
+    title: 'Project 11',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work4.jpg',
+    fullImageUrl: '/Pictures/work4.jpg',
+  },
+  {
+    id: 'graphic-12',
+    title: 'Project 12',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/2.jpg',
+    fullImageUrl: '/Pictures/2.jpg',
+  },
+  {
+    id: 'graphic-13',
+    title: 'Project 13',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work7.jpg',
+    fullImageUrl: '/Pictures/work7.jpg',
+  },
+  {
+    id: 'graphic-14',
+    title: 'Project 14',
+    category: ['graphics', 'view-all'],
+    date: '2025',
+    by: 'Hugo Zbor',
+    thumbnailUrl: '/Pictures/work9.jpg',
+    fullImageUrl: '/Pictures/work9.jpg',
   },
 ]
 
@@ -54,24 +135,94 @@ const graphicsPortfolio = [
 const videoPortfolio = [
   {
     id: 'video-1',
-    title: 'Sample Video Project 1',
+    title: 'Character Customisation',
     category: ['videos', 'view-all'],
-    description: 'A sample description for the first video.',
-    thumbnailUrl: '/2015_05_20/IMG_1118.JPG',
-    videoEmbedUrl: 'https://www.youtube.com/embed/qkFYqY3vr84',
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/7uS8SP67Exg',
   },
   {
     id: 'video-2',
-    title: 'Sample Video Project 2',
+    title: 'Brainwash',
     category: ['videos', 'view-all'],
-    description: 'A sample description for the second video.',
-    thumbnailUrl: '/2015_05_20/IMG_1119.JPG',
-    videoEmbedUrl: 'https://www.youtube.com/embed/qkFYqY3vr84',
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/trcAZwylfcQ',
+  },
+  {
+    id: 'video-3',
+    title: 'Hugozbor for Omnee World',
+    category: ['videos', 'view-all'],
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/eTzvPmUzJ6E',
+  },
+  {
+    id: 'video-4',
+    title: 'Hugozbor for LOVENANGELS',
+    category: ['videos', 'view-all'],
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/Qziv5xrXTgc',
+  },
+  {
+    id: 'video-5',
+    title: 'Hugozbor for LOVENANGELS',
+    category: ['videos', 'view-all'],
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/FB_9wrmHPvE/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/FB_9wrmHPvE',
+  },
+  {
+    id: 'video-6',
+    title: 'Hugozbor for 99Clover U.S.S Promo',
+    category: ['videos', 'view-all'],
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/GLyH_Vveiik',
+  },
+  {
+    id: 'video-7',
+    title: 'Runway Visuals',
+    category: ['videos', 'view-all'],
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/yeudVooMwSM',
+  },
+  {
+    id: 'video-8',
+    title: 'DS Intro by Hugozbor',
+    category: ['videos', 'view-all'],
+    description: '',
+    thumbnailUrl: 'https://img.youtube.com/vi/dJgwioZ2I4E/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/dJgwioZ2I4E',
+  },
+]
+
+// Website Portfolio Data Structure
+const websitePortfolio = [
+  {
+    id: 'web-1',
+    title: 'Website Project 1',
+    category: ['websites', 'view-all'],
+    by: 'Hugo Zbor',
+    date: '2025',
+    thumbnailUrl: 'https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif',
+    websiteUrl: 'https://www.ryansimarchive.com/',
+  },
+  {
+    id: 'web-2',
+    title: 'Website Project 2',
+    category: ['websites', 'view-all'],
+    by: 'Hugo Zbor',
+    date: '2025',
+    thumbnailUrl: 'https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif',
+    websiteUrl: 'https://hz-archive.vercel.app/',
   },
 ]
 
 // Master Portfolio List (combines graphics and videos)
-const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio]
+const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio]
 
 // --- Asset Variables for Commissions Page ---
 // 1. IMAGE PATHS
@@ -350,14 +501,10 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
         {/* RIGHT SIDE: Text Content */}
         <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
+            <h2 className="text-2xl md:text-3xl font-normal text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
             
-            {/* Conditional Text */}
-            {item.description ? (
-              // For Videos
-              <p className="text-lg text-gray-600 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.description}</p>
-            ) : (
-              // For Graphics
+            {/* Conditional Text - Only for Graphics */}
+            {!item.videoEmbedUrl && (
               <>
                 <p className="text-lg text-gray-600 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>By: {item.by}</p>
                 <p className="text-sm text-gray-500 mt-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Date: {item.date}</p>
@@ -370,7 +517,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                 onClose()
                 setCurrentPage('contact')
               }}
-              className="mt-6 px-5 py-2 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+              className="mt-6 px-5 py-2 bg-[#c13333] text-white rounded-md hover:bg-red-700 transition-colors"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
             >
               Work With Hugo
@@ -448,20 +595,46 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
       </nav>
 
       {/* Gallery Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-8">
-        {filteredItems.map(item => (
-          <button
-            key={item.id}
-            onClick={() => setSelectedItem(item)}
-            className="group bg-gray-100 overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105"
-          >
-            <img 
-              src={item.thumbnailUrl} 
-              alt={item.title} 
-              className="w-full h-64 md:h-72 object-cover"
-            />
-          </button>
-        ))}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8 ${category === 'websites' ? 'justify-items-center' : ''}`}>
+        {filteredItems.map(item => {
+          const isExternal = !!item.websiteUrl
+          const cardClasses = `group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 ${isExternal ? 'w-full max-w-2xl sm:max-w-3xl' : ''}`
+          const imageClasses = `w-full object-cover block ${
+            item.videoEmbedUrl
+              ? 'aspect-video'
+              : isExternal
+                ? 'aspect-[16/9]'
+                : 'h-80 md:h-96'
+          }`
+
+          return isExternal ? (
+            <a
+              key={item.id}
+              href={item.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cardClasses}
+            >
+              <img 
+                src={item.thumbnailUrl} 
+                alt={item.title} 
+                className={imageClasses}
+              />
+            </a>
+          ) : (
+            <button
+              key={item.id}
+              onClick={() => setSelectedItem(item)}
+              className={cardClasses}
+            >
+              <img 
+                src={item.thumbnailUrl} 
+                alt={item.title} 
+                className={imageClasses}
+              />
+            </button>
+          )
+        })}
         {/* Show a message if no items match the filter */}
         {filteredItems.length === 0 && (
           <p className="sm:col-span-2 lg:col-span-3 text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>

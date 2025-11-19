@@ -1,29 +1,29 @@
-Yes, I have read the `issue.md` report. It completely validates why the previous approach failed. Trying to force a full architectural refactor (switching to React Router) on a massive 1,400-line file inside an AI coding environment is a recipe for disaster. It touches too many lines at once.
+This is the final piece of the puzzle for your "My Work" gallery.
 
-The good news is: **Yes, there is a way to get URLs (Routing) without refactoring your whole app.**
+We are going to add a third behavior to your grid:
 
-We can use a **"State-URL Sync"** approach.
+1.  **Graphics:** Click → Open Overlay (Image).
+2.  **Videos:** Click → Open Overlay (Video).
+3.  **Websites (NEW):** Click → Open **External Link** in new tab.
 
-### The Concept: "The URL Follows the State"
+This requires a "smart grid" that knows whether to render a `<button>` (for overlays) or an `<a>` tag (for external links) based on the item type.
 
-Instead of ripping out your existing `currentPage` state engine and replacing it with React Router, we will simply **bolt a synchronizer onto it**.
-
-1.  **When the page loads:** We check the browser bar. If it says `/contact`, we force the state to `contact`.
-2.  **When you click a button:** We update the state (as usual), but we *also* silently push the new URL to the browser history.
-3.  **When you click "Back":** We detect that event and revert the state to match.
-
-This gives you 99% of the benefits of routing (shareable links, back button support, SEO friendly URLs) with about **5% of the code changes**.
-
-Here is the prompt to implement this "Low-Impact" routing.
+Here is the highly detailed prompt to implement this.
 
 -----
 
-### **Agent Prompt: Stage 9 (Alternative) - Implement "State-URL Sync" Routing**
+### **Agent Prompt: Stage 12 - Build "Websites" Gallery with External Links**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Goal:** Implement URL routing (deep linking, back button support) **WITHOUT** refactoring the codebase to `react-router-dom`. We will use a custom `useEffect` hook to sync the existing `currentPage` and `currentCategory` states with the browser's `window.history`.
+**Stage 12 Goal:**
 
-**Constraint:** Do NOT change the component structure. Do NOT install `react-router-dom`. Keep all conditionals (e.g., `{currentPage === 'home' && ...}`) exactly as they are.
+1.  Create a `websitePortfolio` data structure using the "Gyazo" screenshots found in `public/web_design.txt`.
+2.  Update the "My Work" grid to support **External Links**. If an item is a website, clicking it should open the URL in a new tab instead of opening the overlay.
+
+**Input Source:** `public/web_design.txt`
+
+  * **Content:** Contains "Gyazo" embedded HTML/links.
+  * **Usage:** Extract the image source URL from these embeds to use as the **thumbnail**.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -31,98 +31,100 @@ Here is the prompt to implement this "Low-Impact" routing.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Create the `useUrlSync` Hook (The Engine):**
+**1. Create the `websitePortfolio` Data Structure:**
 
-  * At the top of `App.jsx` (inside the `App` component), add a `useEffect` hook that handles the synchronization.
-
-  * **Logic needed inside `App` component:**
-
+  * Below `videoPortfolio`, create a new array: `const websitePortfolio = [...]`.
+  * **Parse `web_design.txt`:**
+      * Look for the Image URLs inside the provided text file (likely `src="..."` inside a Gyazo embed code).
+      * Create 2 entries (based on the user's description).
+  * **Structure:**
     ```javascript
-    // 1. Define the logic to parse the current URL
-    const parseUrl = () => {
-      const path = window.location.pathname;
-      const parts = path.split('/').filter(Boolean); // Remove empty strings
-      
-      // Handle Root
-      if (parts.length === 0) return { page: 'home', category: 'graphics' };
-      
-      // Handle Pages
-      const page = parts[0];
-      const category = parts[1] || 'view-all'; // Default sub-category
-      
-      // Map URL slugs to your State ID strings if they differ
-      // e.g. 'my-work' is good. 'info' is good.
-      return { page, category };
-    };
-
-    // 2. Initialize State from URL (Replace your existing useState lines)
-    const initialUrlState = parseUrl();
-    const [currentPage, _setCurrentPage] = useState(initialUrlState.page);
-    const [currentCategory, _setCurrentCategory] = useState(initialUrlState.category);
-
-    // 3. Create a smart "setCurrentPage" wrapper
-    // This replaces the raw setState. It updates State AND URL.
-    const setCurrentPage = (page, category = null) => {
-      _setCurrentPage(page);
-      
-      let url = '/';
-      if (page !== 'home') {
-        url = `/${page}`;
-        
-        // Handle My Work Sub-categories
-        if (page === 'my-work') {
-            // If a specific category is requested, use it. Otherwise keep current.
-            const newCategory = category || 'view-all'; 
-            _setCurrentCategory(newCategory);
-            if (newCategory !== 'view-all') {
-                url = `/my-work/${newCategory}`;
-            }
-        }
-      }
-      
-      // Push to browser history (Change URL without reload)
-      window.history.pushState({ page, category }, '', url);
-      
-      // Scroll to top on nav change
-      window.scrollTo(0, 0);
-    };
-
-    // 4. Handle Browser "Back" Button
-    useEffect(() => {
-      const handlePopState = () => {
-        const { page, category } = parseUrl();
-        _setCurrentPage(page);
-        _setCurrentCategory(category);
-      };
-      
-      window.addEventListener('popstate', handlePopState);
-      return () => window.removeEventListener('popstate', handlePopState);
-    }, []);
+    const websitePortfolio = [
+      {
+        id: 'web-1',
+        title: 'Website Project 1', // Placeholder title
+        category: ['websites', 'view-all'],
+        by: 'Hugo Zbor',
+        date: '2025',
+        // 1. THUMBNAIL: Use the Gyazo URL extracted from text file
+        thumbnailUrl: 'https://i.gyazo.com/YOUR_EXTRACTED_ID_1.png', 
+        // 2. EXTERNAL LINK: The URL where the user goes when clicking
+        websiteUrl: 'https://www.example.com', // Placeholder: User will edit this
+      },
+      {
+        id: 'web-2',
+        title: 'Website Project 2',
+        category: ['websites', 'view-all'],
+        by: 'Hugo Zbor',
+        date: '2025',
+        thumbnailUrl: 'https://i.gyazo.com/YOUR_EXTRACTED_ID_2.png',
+        websiteUrl: 'https://www.example.com', // Placeholder
+      },
+    ];
     ```
 
-**2. Update "My Work" Logic:**
+**2. Update the Master List:**
 
-  * **Fix Category Switching:**
-      * Currently, your dropdown/filter buttons inside `MyWorkPage` likely call `setCurrentCategory` directly.
-      * **Change:** They should now call the new `setCurrentPage('my-work', 'videos')` wrapper so the URL updates too.
-      * Pass the smart `setCurrentPage` function down to `MyWorkPage`.
-      * Inside `MyWorkPage`, update the category buttons:
-          * `onClick={() => setCurrentPage('my-work', 'graphics')}`
-          * `onClick={() => setCurrentPage('my-work', 'videos')}`
+  * Update `allPortfolioItems` to include the new array:
+    ```javascript
+    const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio];
+    ```
 
-**3. Implement the Hidden `/info` Page:**
+**3. Upgrade `MyWorkPage` Grid (Smart Wrapper):**
 
-  * Add the logic to render the `InfoPage` based on the state.
-  * Find the main rendering block (inside `<main>`).
-  * Add the conditional check:
+  * We need to conditionally render the wrapper element. A `button` triggers the overlay; an `anchor` (`a`) triggers a new tab.
+
+  * **Find the Grid Map Loop:** Inside `MyWorkPage`.
+
+  * **Replace** the current `<button ...>` wrapper logic with this:
+
     ```jsx
-    {currentPage === 'info' && <InfoPage />}
+    {filteredItems.map(item => {
+      // Logic: Is this a website with an external link?
+      const isExternal = !!item.websiteUrl;
+      
+      // Define common classes for hover effects
+      const cardClasses = "relative group bg-gray-100 rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 block";
+
+      return isExternal ? (
+        // OPTION A: External Link (For Websites)
+        <a
+          key={item.id}
+          href={item.websiteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cardClasses}
+        >
+          <img 
+            src={item.thumbnailUrl} 
+            alt={item.title} 
+            className="w-full h-64 md:h-72 object-cover"
+          />
+          {/* Optional: Add a small "External Link" icon overlay on hover if desired, 
+              or keep it clean as requested. */}
+        </a>
+      ) : (
+        // OPTION B: Overlay Button (For Graphics/Videos)
+        <button
+          key={item.id}
+          onClick={() => setSelectedItem(item)}
+          className={cardClasses}
+        >
+          <img 
+            src={item.thumbnailUrl} 
+            alt={item.title} 
+            className="w-full h-64 md:h-72 object-cover"
+          />
+        </button>
+      );
+    })}
     ```
-  * *Note:* Since we initialized state from the URL in step 1, if the user visits `hugozbor.com/info`, the state will start as `'info'` and this will render automatically.
 
-**4. Verify Navigation Links:**
+**4. Output:**
 
-  * Ensure your `Header`, `Footer`, `ContactPage`, etc., are all using the smart `setCurrentPage` function we defined in Step 1.
-  * This ensures that clicking "About" changes the URL to `/about` and clicking "Terms" changes it to `/terms`.
+  * Generate the full updated `App.jsx` file.
+  * Ensure the `websitePortfolio` is populated with the Gyazo links from the text file and correctly integrated into the master list.
 
-Please apply these changes to `App.jsx`. This adds full URL routing functionality while preserving 95% of the existing codebase structure.
+-----
+
+**Note to Agent:** The visual style (grid size, hover effects, image aspect ratio) must remain **identical** between the buttons and the links. The user should not see a visual difference until they click.
