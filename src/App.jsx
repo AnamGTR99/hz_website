@@ -306,7 +306,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             </button>
             {/* Dropdown Menu */}
             {showMyWorkDropdown && (
-              <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[150px] z-50">
+              <div className="absolute top-full left-0 pt-4 -mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[150px] z-50">
                 <button
                   onClick={() => {
                     setCurrentPage('my-work', 'graphics')

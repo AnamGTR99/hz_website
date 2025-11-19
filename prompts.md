@@ -1,117 +1,47 @@
-This is a great addition. A "Virtual Business Card" (vCard) style page is very professional and incredibly useful for networking. You can just drop the `hugozbor.com/info` link to anyone on WhatsApp or Instagram, and they get everything they need.
+This is a classic "hover tunnel" issue.
 
-Here is the highly detailed prompt to transform the `InfoPage` into this clean, portrait-style contact card.
+The problem is usually a tiny invisible gap between the "My Work" text and the dropdown box itself. When your mouse crosses that 1-pixel gap, the browser thinks you've left the menu, so it closes the dropdown before you can catch it.
 
------
+We fix this by adding an invisible "bridge" so your mouse never technically leaves the hover area.
 
-### **Agent Prompt: Stage 15 - Build "Virtual Business Card" Info Page**
+Here is the prompt to fix it permanently.
+
+***
+
+### **Agent Prompt: Fix "My Work" Dropdown Hover Issue**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 15 Goal:** Redesign the hidden `/info` page (`InfoPage` component) to function as a personal **Virtual Business Card**.
-**Layout:** Clean, portrait format, centered content. High-quality profile photo at the top, followed by name, role, and direct action buttons (Phone, WhatsApp, Email).
+**Goal:** Fix the UX bug where the "My Work" dropdown menu closes too quickly when the user attempts to move their cursor from the navigation link into the dropdown menu.
+
+**Technical Solution:**
+1.  Increase the invisible hit area connecting the button and the dropdown.
+2.  Add a small delay/transition to the visibility toggle (optional but recommended).
+3.  Ensure the dropdown `div` physically overlaps or touches the button `div` (using negative margins or padding-top on the dropdown container).
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
-**Icons to Import:**
-
-  * From `lucide-react`, import: `Phone`, `MessageCircle` (for WhatsApp), `Mail`, `Copy`.
-
------
+---
 
 ### **Detailed Implementation Requirements:**
 
-**1. Define Data:**
+**1. Locate the `ConditionalHeader` or `Header` Component:**
+* Find the "My Work" navigation item wrapper: `<div className="relative group ...">`
 
-  * **Image Source:** `/Pictures/info_page.jpg`
-  * **Phone Number:** `+61 0483 879 841`
-  * **WhatsApp Link:** `https://wa.me/61483879841` (Formatted correctly without the leading '0' and with country code).
-  * **Email:** `contact@hugozbor.com`
+**2. Add the Invisible Bridge:**
+* Inside the dropdown container `div` (the one with `absolute top-full ...`), add a pseudo-element or padding to bridge the gap.
+* **Current (likely):** `className="absolute top-full left-0 mt-2 ..."`
+* **Change to:** `className="absolute top-full left-0 pt-4 -mt-2 ..."`
+    * *Explanation:*
+        * `pt-4` (Padding Top 1rem): Adds an invisible "safe zone" at the top of the dropdown box.
+        * `-mt-2` (Negative Margin Top): Pulls the box up slightly so the padding overlaps the button area.
+    * *Result:* The actual visible white box starts lower, but the *interactive area* starts right at the button's edge.
 
-**2. Rebuild `InfoPage` Component:**
+**3. Ensure `group-hover` is robust:**
+* Make sure the parent container (`relative group`) wraps **both** the Button and the Dropdown `div` tightly.
 
-  * **Replace** the existing content of `InfoPage` with this new structure:
+**4. Output:**
+* Update the `Header` component code to implement this padding/margin fix.
 
-    ```jsx
-    function InfoPage() {
-      const phoneNumber = "+61 0483 879 841";
-      const email = "contact@hugozbor.com";
-      
-      const copyToClipboard = (text) => {
-        navigator.clipboard.writeText(text);
-        alert("Copied to clipboard!");
-      };
+---
 
-      return (
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-          {/* CARD CONTAINER */}
-          <div className="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-            
-            {/* 1. PROFILE IMAGE (Full width top or large circle) */}
-            <div className="w-full aspect-square relative">
-               <img 
-                 src="/Pictures/info_page.jpg" 
-                 alt="Hugo Zbor" 
-                 className="w-full h-full object-cover"
-               />
-            </div>
-
-            {/* 2. DETAILS SECTION */}
-            <div className="p-8 text-center">
-              <h1 className="text-2xl font-bold text-gray-900">Hugo Zbor</h1>
-              <p className="text-sm text-gray-500 uppercase tracking-widest mt-1 mb-6">
-                Creative Director
-              </p>
-
-              {/* 3. ACTION BUTTONS (Stacked) */}
-              <div className="space-y-3">
-                
-                {/* PHONE BUTTON */}
-                <a 
-                  href="tel:+61483879841"
-                  className="flex items-center justify-center w-full py-3 px-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-                >
-                  <Phone className="size-5 mr-2" />
-                  <span className="font-medium">Call Me</span>
-                </a>
-
-                {/* WHATSAPP BUTTON (Green-ish) */}
-                <a 
-                  href="https://wa.me/61483879841"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-full py-3 px-4 bg-[#25D366] text-white rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  <MessageCircle className="size-5 mr-2" />
-                  <span className="font-medium">WhatsApp</span>
-                </a>
-
-                {/* EMAIL BUTTON (Copy Action) */}
-                <button 
-                  onClick={() => copyToClipboard(email)}
-                  className="flex items-center justify-center w-full py-3 px-4 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
-                >
-                  <Mail className="size-5 mr-2" />
-                  <span className="font-medium">Copy Email</span>
-                </button>
-
-              </div>
-              
-              {/* Footer Note */}
-              <p className="text-xs text-gray-400 mt-8">
-                Melbourne, Australia<br/>
-                © Hugo Zbor 2025
-              </p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    ```
-
-**3. Styling Notes:**
-
-  * Ensure the image uses `object-cover` so it looks professional regardless of the file's aspect ratio.
-  * The WhatsApp button uses the brand color `#25D366` to be instantly recognizable.
-  * The page itself should be centered in the viewport (`min-h-screen flex items-center`) so it looks good on both mobile phones and desktop screens.
-
-Please generate the updated `App.jsx` file with this new `InfoPage`.
+**Note to Agent:** Do not change the visual position of the white box; just extend its invisible interactive area upwards so the mouse never "leaves" the group.
