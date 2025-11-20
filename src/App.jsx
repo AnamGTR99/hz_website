@@ -203,16 +203,16 @@ const videoPortfolio = [
 const websitePortfolio = [
   {
     id: 'web-1',
-    title: 'Website Project 1',
+    title: 'ryansimarchive.com',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '2025',
     thumbnailUrl: 'https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif',
-    websiteUrl: 'https://www.ryansimarchive.com/',
+    websiteUrl: 'https://ryansimarchive.com',
   },
   {
     id: 'web-2',
-    title: 'Website Project 2',
+    title: 'hz-archive.vercel.app',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '2025',
@@ -561,14 +561,14 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
         <div className="w-full md:w-1/2 bg-gray-100">
           {item.videoEmbedUrl ? (
             // RENDER VIDEO
-            <div className="w-full aspect-video">
+            <div className="w-full h-full p-4 md:p-8 flex items-center justify-center">
               <iframe
                 src={item.videoEmbedUrl}
                 title={item.title}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                className="w-full h-full"
+                className="w-full aspect-video rounded-lg shadow-lg"
               ></iframe>
             </div>
           ) : (
@@ -626,6 +626,11 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
     return shuffleArray(allPortfolioItems)
   }, [category])
 
+  const isWebsiteTab = category === 'websites'
+  const websiteLayout = "flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8"
+  const standardLayout = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 px-4 md:px-0 mt-8"
+  const containerClass = isWebsiteTab ? websiteLayout : standardLayout
+
   return (
     <>
       <PageHeader title="My work" onBack={() => setCurrentPage('home')} isActive={currentPage === 'my-work'} />
@@ -678,52 +683,100 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
         </button>
       </nav>
 
-      {/* Gallery Grid */}
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8 ${category === 'websites' ? 'justify-items-center' : ''}`}>
+      {/* Gallery */}
+      <div className={containerClass}>
         {displayedItems.map(item => {
           const isExternal = !!item.websiteUrl
           const isVideo = item.category.includes('videos')
           const isWebsite = item.category.includes('websites')
-          const shouldCenterWebsite = category === 'websites' || (category === 'view-all' && isWebsite)
-          const cardClasses = [
-            'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0',
-            isWebsite && shouldCenterWebsite ? 'w-full max-w-2xl sm:max-w-3xl mx-auto' : '',
-          ].join(' ').trim()
-          const imageClasses = `w-full object-cover block ${
-            isVideo ? 'aspect-video' : isWebsite ? 'aspect-[16/9]' : 'h-80 md:h-96'
-          }`
+          const externalCardClasses = 'group block w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300'
+          const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 rounded-lg w-full break-inside-avoid mb-6'
 
-          return isExternal ? (
-            <a
-              key={item.id}
-              href={item.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cardClasses}
-            >
-              <img 
-                src={item.thumbnailUrl} 
-                alt={item.title} 
-                className={imageClasses}
-              />
-            </a>
-          ) : (
+          let imageStyles = "w-full rounded-lg shadow-sm block"
+          if (item.category.includes('graphics')) {
+            imageStyles += " h-auto object-contain"
+          } else if (item.category.includes('videos')) {
+            imageStyles += " aspect-[5/4] object-cover"
+          } else if (item.category.includes('websites')) {
+            imageStyles += " aspect-video object-cover"
+          }
+
+          if (isExternal && isWebsiteTab) {
+            return (
+              <a
+                key={item.id}
+                href={item.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={externalCardClasses}
+              >
+                <img 
+                  src={item.thumbnailUrl} 
+                  alt={item.title} 
+                  className="w-full aspect-video object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide truncate">
+                    {item.title}
+                  </h3>
+                </div>
+              </a>
+            )
+          } else if (isExternal) {
+            const cardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 rounded-lg w-full break-inside-avoid mb-6'
+            let imageStyles = "w-full rounded-lg shadow-sm block"
+            if (item.category.includes('graphics')) {
+              imageStyles += " h-auto object-contain"
+            } else if (item.category.includes('videos')) {
+              imageStyles += " aspect-[5/4] object-cover"
+            } else if (item.category.includes('websites')) {
+              imageStyles += " aspect-video object-cover"
+            }
+
+            return (
+              <a
+                key={item.id}
+                href={item.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cardClasses}
+              >
+                <img 
+                  src={item.thumbnailUrl} 
+                  alt={item.title} 
+                  className={imageStyles}
+                />
+                <div className="mt-3 text-left">
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+                    {item.title}
+                  </h3>
+                </div>
+              </a>
+            )
+          }
+
+          return (
             <button
               key={item.id}
               onClick={() => setSelectedItem(item)}
-              className={cardClasses}
+              className={internalCardClasses}
             >
               <img 
                 src={item.thumbnailUrl} 
                 alt={item.title} 
-                className={imageClasses}
+                className={imageStyles}
               />
+              <div className="mt-3 text-left">
+                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+                  {item.title}
+                </h3>
+              </div>
             </button>
           )
         })}
         {/* Show a message if no items match the filter */}
         {displayedItems.length === 0 && (
-          <p className="sm:col-span-2 lg:col-span-3 text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <p className="text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             No projects found in this category.
           </p>
         )}
@@ -1139,14 +1192,14 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
         </div>
 
         {/* Call-to-Action Section */}
-        <div className="mt-12 mb-8 text-center">
+        <div className="mt-16 mb-20 text-center">
           <h2 className="text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             Start a Commission
           </h2>
-          <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex justify-center">
             <button
               onClick={() => setCurrentPage('contact')}
               className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
@@ -1154,13 +1207,6 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
             >
               Submit Inquiry
             </button>
-            <a
-              href="mailto:contact@hugozbor.com"
-              className="text-gray-600 hover:text-gray-900 underline"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-            >
-              Email: contact@hugozbor.com
-            </a>
           </div>
         </div>
       </div>
