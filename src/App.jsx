@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy } from 'lucide-react'
+import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu } from 'lucide-react'
 
 // Portfolio Data Structure
 const graphicsPortfolio = [
@@ -247,40 +247,62 @@ const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df11
 // --- End Asset Variables ---
 
 // PageHeader component for mobile back arrow
-function PageHeader({ title, onBack }) {
+function PageHeader({ title, onBack, showBack = true, isActive = false }) {
   return (
     <div className="md:hidden flex items-center justify-center p-4 relative border-b border-gray-200">
-      <button 
-        onClick={onBack} 
-        className="absolute left-4"
-      >
-        <ChevronLeft className="size-6 text-gray-700" />
-      </button>
-      <h2 className="text-xl font-bold text-brandBlack" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{title}</h2>
+      {showBack && (
+        <button 
+          onClick={onBack} 
+          className="absolute left-4"
+        >
+          <ChevronLeft className="size-6 text-gray-700" />
+        </button>
+      )}
+      <h2 className={`text-xl font-bold uppercase`} style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: isActive ? '#c13333' : '#1a1a1a' }}>{title}</h2>
     </div>
   )
 }
 
 function Header({ currentPage, currentCategory, setCurrentPage }) {
   const [showMyWorkDropdown, setShowMyWorkDropdown] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const isMyWorkActive = currentPage === 'my-work'
 
   return (
-    <header>
-      <div className="max-w-4xl mx-auto px-3 md:px-0 flex flex-col items-center pt-6 pb-3 md:pt-8 md:pb-4">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+      <div className="max-w-4xl mx-auto px-4 py-3 md:px-0 flex flex-row md:flex-col items-center justify-between md:justify-center md:pt-8 md:pb-4">
+        {/* Mobile Hamburger Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden flex items-center justify-center"
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? (
+            <X className="size-6 text-gray-700" />
+          ) : (
+            <Menu className="size-6 text-gray-700" />
+          )}
+        </button>
+
         {/* Logo */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center md:items-center">
           <img 
             src="/logo.png" 
             alt="Hugo Zbor Logo" 
-            className="h-12 w-auto md:h-16"
+            className="h-10 w-auto md:h-16"
           />
         </div>
 
-        {/* Navigation */}
-        <nav className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-8 mt-4 relative">
+        {/* Spacer for mobile to center logo (invisible on desktop) */}
+        <div className="md:hidden w-6"></div>
+
+        {/* Navigation - Mobile menu (toggled) or Desktop (always visible) */}
+        <nav className={`${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-8 mt-4 md:mt-4 absolute md:relative top-full md:top-auto left-0 md:left-auto w-full md:w-auto bg-white md:bg-transparent border-t md:border-0 border-gray-200 md:border-0 py-4 md:py-0 px-4 md:px-0 shadow-md md:shadow-none`}>
           <button
-            onClick={() => setCurrentPage('home')}
+            onClick={() => {
+              setCurrentPage('home')
+              setIsMobileMenuOpen(false)
+            }}
             className={
               currentPage === 'home'
                 ? 'font-bold text-lg text-[#c13333]'
@@ -295,7 +317,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             onMouseLeave={() => setShowMyWorkDropdown(false)}
           >
             <button
-              onClick={() => setCurrentPage('my-work', 'graphics')}
+              onClick={() => {
+                setCurrentPage('my-work', 'graphics')
+                setIsMobileMenuOpen(false)
+              }}
               className={
                 isMyWorkActive
                   ? 'font-bold text-lg text-[#c13333]'
@@ -311,6 +336,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'graphics')
                     setShowMyWorkDropdown(false)
+                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'graphics'
@@ -324,6 +350,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'videos')
                     setShowMyWorkDropdown(false)
+                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'videos'
@@ -337,6 +364,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'websites')
                     setShowMyWorkDropdown(false)
+                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'websites'
@@ -350,6 +378,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'view-all')
                     setShowMyWorkDropdown(false)
+                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'view-all'
@@ -363,7 +392,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             )}
           </div>
           <button
-            onClick={() => setCurrentPage('commissions')}
+            onClick={() => {
+              setCurrentPage('commissions')
+              setIsMobileMenuOpen(false)
+            }}
             className={
               currentPage === 'commissions'
                 ? 'font-bold text-lg text-[#c13333]'
@@ -373,7 +405,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             COMMISSIONS
           </button>
           <button
-            onClick={() => setCurrentPage('about')}
+            onClick={() => {
+              setCurrentPage('about')
+              setIsMobileMenuOpen(false)
+            }}
             className={
               currentPage === 'about'
                 ? 'font-bold text-lg text-[#c13333]'
@@ -383,7 +418,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             ABOUT
           </button>
           <button
-            onClick={() => setCurrentPage('contact')}
+            onClick={() => {
+              setCurrentPage('contact')
+              setIsMobileMenuOpen(false)
+            }}
             className={
               currentPage === 'contact'
                 ? 'font-bold text-lg text-[#c13333]'
@@ -398,9 +436,13 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
   )
 }
 
-function HomePage() {
+function HomePage({ setCurrentPage, currentPage }) {
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-8 mt-12 md:mt-20 mb-20">
+    <>
+      {/* Mobile-only Page Title */}
+      <PageHeader title="HOME" showBack={false} isActive={currentPage === 'home'} />
+      
+      <div className="max-w-6xl mx-auto px-4 md:px-8 mt-6 md:mt-20 mb-20">
       {/* 1. MAIN HEADLINE (Top) */}
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16">
         Creating Next Level <br className="hidden md:block" />
@@ -439,15 +481,16 @@ function HomePage() {
           </a>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
 // My Work Landing Page - Three boxes layout (no subheadings)
-function MyWorkLandingPage({ setCurrentPage }) {
+function MyWorkLandingPage({ setCurrentPage, currentPage }) {
   return (
     <>
-      <PageHeader title="My work" onBack={() => setCurrentPage('home')} />
+      <PageHeader title="My work" onBack={() => setCurrentPage('home')} isActive={currentPage === 'my-work'} />
       <div className="max-w-7xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
       <div className="flex flex-col items-center gap-8 md:gap-12">
         {/* Top Row: Graphics and Videos */}
@@ -567,7 +610,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
 }
 
 // Category pages with sub-navigation
-function MyWorkCategoryPage({ category, setCurrentPage }) {
+function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
   const [selectedItem, setSelectedItem] = useState(null)
   const categoryNames = {
     'graphics': 'Graphics',
@@ -585,53 +628,53 @@ function MyWorkCategoryPage({ category, setCurrentPage }) {
 
   return (
     <>
-      <PageHeader title="My work" onBack={() => setCurrentPage('home')} />
+      <PageHeader title="My work" onBack={() => setCurrentPage('home')} isActive={currentPage === 'my-work'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0">
       {/* Sub-navigation */}
-      <nav className="flex flex-col items-center md:flex-row md:justify-center md:space-x-6 space-y-2 md:space-y-0 mt-4 md:mt-8">
+      <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
         <button
           onClick={() => setCurrentPage('my-work', 'graphics')}
           className={
             category === 'graphics'
-              ? 'font-medium text-lg text-[#c13333]'
-              : 'font-medium text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
         >
-          Graphics
+          GRAPHICS
         </button>
         <button
           onClick={() => setCurrentPage('my-work', 'videos')}
           className={
             category === 'videos'
-              ? 'font-medium text-lg text-[#c13333]'
-              : 'font-medium text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
         >
-          Videos
+          VIDEOS
         </button>
         <button
           onClick={() => setCurrentPage('my-work', 'websites')}
           className={
             category === 'websites'
-              ? 'font-medium text-lg text-[#c13333]'
-              : 'font-medium text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
         >
-          Websites
+          WEBSITES
         </button>
         <button
           onClick={() => setCurrentPage('my-work', 'view-all')}
           className={
             category === 'view-all'
-              ? 'font-medium text-lg text-[#c13333]'
-              : 'font-medium text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
         >
-          View all
+          VIEW ALL
         </button>
       </nav>
 
@@ -730,107 +773,141 @@ function InfoBox({ imageUrl, caption, altText }) {
 }
 
 // About Page Component
-function AboutPage({ setCurrentPage }) {
+function AboutPage({ setCurrentPage, currentPage }) {
+  // Wiki Styles
+  const styles = {
+    link: "text-[#c13333] hover:underline cursor-pointer",
+    header: "font-serif text-2xl border-b border-[#a2a9b1] pb-1 mb-4 mt-8 flex justify-between items-end",
+    infoboxCell: "py-1 px-2 align-top text-sm border-b border-gray-100 last:border-0",
+    infoboxLabel: "font-bold w-24", // Fixed width label for alignment
+  };
+
   return (
-    <>
-      {/* 1. MOBILE HEADER */}
-      <PageHeader title="About" onBack={() => setCurrentPage('home')} />
-      
-      {/* 2. MAIN CONTENT WRAPPER */}
-      <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-        <div className="flex flex-col md:flex-row md:space-x-8">
+    <div className="bg-white min-h-screen pb-20 text-[#202122] font-sans font-normal text-[15px] leading-[1.6]">
+      {/* 1. Mobile Navigation Header */}
+      <PageHeader title="About" onBack={() => setCurrentPage('home')} isActive={currentPage === 'about'} />
+
+      <div className="max-w-6xl mx-auto px-4 md:px-6 mt-6">
+        
+        {/* 2. Page Title */}
+        <h1 className="font-serif text-3xl md:text-4xl border-b border-[#a2a9b1] pb-1 mb-1 italic">
+          Hugo Zbor
+        </h1>
+        <div className="text-sm text-gray-500 mb-6">From Wikipedia, the free encyclopedia</div>
+
+        {/* Intro Text - Mobile Only (appears above photo) */}
+        <p className="mb-4 md:hidden font-normal">
+          Hugo Zbor (born Jakarta, Indonesia) is a 21-year-old <span className={styles.link}>artist</span>, <span className={styles.link}>editor</span>, and <span className={styles.link}>web designer</span> based in <span className={styles.link}>Melbourne, Australia</span>.
+        </p>
+
+        {/* 3. Main Layout Container (Flex Column on Mobile, Row on Desktop) */}
+        <div className="flex flex-col md:flex-row md:gap-8 items-start">
           
-          {/* --- LEFT SIDE: MAIN TEXT (Uses 'prose') --- */}
-          <div className="w-full md:w-3/4">
-            <div className="prose prose-lg max-w-none !font-normal" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          {/* --- COLUMN A: INFOBOX (Profile) --- */}
+          {/* ORDER-1: Shows first on mobile. ORDER-2: Shows second (right) on desktop */}
+          <div className="w-full md:w-72 shrink-0 order-1 md:order-2 mb-6 md:mb-0">
+            <div className="border border-[#a2a9b1] bg-[#f8f9fa] p-1 text-sm shadow-sm">
+              <div className="bg-[#b0c4de] p-2 text-center font-bold font-serif text-lg mb-1">Hugo Zbor</div>
               
-              {/* Page Title */}
-              <h1 className="!text-4xl border-b border-gray-300 pb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Hugo Zbor</h1>
+              <img src="/2015_05_20/IMG_1120.JPG" alt="Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
               
-              {/* Intro Paragraph */}
-              <p style={{ fontWeight: 400 }}>I'm Hugo, a 21-year-old artist, editor, and web designer, based in <a href="https://en.wikipedia.org/wiki/Melbourne" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Melbourne, Australia</a>.</p>
-              <p style={{ fontWeight: 400 }}>I was born and raised in <a href="https://en.wikipedia.org/wiki/Jakarta" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Jakarta, Indonesia</a>. As a little kid, I was always interested in arts - I drew here and there, but never ever took it that seriously.</p>
-              
-              {/* --- Section 1 --- */}
-              <SectionHeader title="Introduction to Design" setCurrentPage={setCurrentPage} />
-              <p style={{ fontWeight: 400 }}>Around the fifth grade, I was borrowing my mum's laptop and I stumbled across a video of someone editing photos with <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Photoshop</a> on <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">YouTube</a>. At the time, you were able to do 30-day free trials, so I secretly downloaded it and kept making new emails to keep using it. I was really bad at watching tutorials, so I started learning by trying out every single tool and then just testing random things.</p>
-              
-              {/* Images in bordered boxes */}
-              <div className="flex flex-col sm:flex-row gap-4 my-4">
-                <div className="border border-gray-300 bg-gray-50 rounded-lg p-3 text-center flex-1">
-                  <img 
-                    src="/2015_05_20/IMG_1118.JPG" 
-                    alt="Hugo in the fifth grade" 
-                    className="w-full h-auto" 
-                  />
-                  <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>Hugo in the fifth grade</p>
-                </div>
-                <div className="border border-gray-300 bg-gray-50 rounded-lg p-3 text-center flex-1">
-                  <img 
-                    src="/2015_05_20/IMG_1119.JPG" 
-                    alt="Hugo using Photoshop in 2016" 
-                    className="w-full h-auto" 
-                  />
-                  <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>Hugo using Photoshop in 2016</p>
-                </div>
-              </div>
-              
-              <p style={{ fontWeight: 400 }}>For the next 5 years I would continue to learn and use <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Photoshop</a> as a hobby for fun (making memes and silly images).</p>
-              
-              {/* --- Section 2 --- */}
-              <SectionHeader title="High School and Covid Lockdown" setCurrentPage={setCurrentPage} />
-              <p style={{ fontWeight: 400, marginBottom: '1em' }}>Mid-Highschool, after COVID lockdown began, I started venturing into <a href="https://en.wikipedia.org/wiki/Screen_printing" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">screen-printing</a>. After many failures, I actually made a few graphic t-shirts. My first "order" was printing 50 tote bags for my sister's graduation year.</p>
-              <p style={{ fontWeight: 400, marginBottom: '1em' }}>After COVID lockdown, two friends and I decided to start a <a href="https://www.instagram.com/99clover" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">99Clover</a>, a clothing brand. It was initially just for our friends, but blew up locally.</p>
-              <p style={{ fontWeight: 400 }}>This was when I first started taking <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Photoshop</a> seriously.</p>
-              
-              {/* --- Section 3 --- */}
-              <SectionHeader title="Moving to Australia" setCurrentPage={setCurrentPage} />
-              <p style={{ fontWeight: 400, marginBottom: '1em' }}>I moved to <a href="https://en.wikipedia.org/wiki/Australia" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Australia</a>, in 2022, to study <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">computer science</a> and I kept running the brand (remotely) while attempting to balance it with studying. I noticed my love for design was fading and feeling like a chore. I would always rush and design quickly, because I wanted to get it out of the way.</p>
-              
-              <p style={{ fontWeight: 400, marginBottom: '1em' }}>Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
-              
-              <p style={{ fontWeight: 400 }}>In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. I am extremely grateful and I believe I am now growing - as an artist - faster than ever before.</p>
-            
+              <table className="w-full text-left border-collapse">
+                <tbody>
+                  <tr>
+                    <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Born</td>
+                    <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/Jakarta" target="_blank" rel="noopener noreferrer" className={styles.link}>Jakarta, Indonesia</a></td>
+                  </tr>
+                  <tr>
+                    <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Nationality</td>
+                    <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/Indonesians" target="_blank" rel="noopener noreferrer" className={styles.link}>Indonesian</a></td>
+                  </tr>
+                  <tr>
+                    <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Education</td>
+                    <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/University_of_Melbourne" target="_blank" rel="noopener noreferrer" className={styles.link}>University of Melbourne</a></td>
+                  </tr>
+                  <tr>
+                    <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Known for</td>
+                    <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/Graphic_design" target="_blank" rel="noopener noreferrer" className={styles.link}>Graphic Design</a>, <a href="https://en.wikipedia.org/wiki/Web_design" target="_blank" rel="noopener noreferrer" className={styles.link}>Web Design</a></td>
+                  </tr>
+                  <tr>
+                    <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Website</td>
+                    <td className={styles.infoboxCell}><a href="https://hugozbor.com" target="_blank" rel="noopener noreferrer" className={styles.link}>hugozbor.com</a></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          
-          {/* --- RIGHT SIDE: SIDEBAR --- */}
-          <div className="w-full md:w-1/3 mt-6 md:mt-0">
+
+          {/* --- COLUMN B: MAIN ARTICLE --- */}
+          {/* ORDER-2: Shows second on mobile. ORDER-1: Shows first (left) on desktop */}
+          <div className="w-full md:flex-1 order-2 md:order-1 min-w-0"> 
+            {/* min-w-0 prevents flex items from overflowing container */}
             
-            {/* Main Info Box */}
-            <div className="border border-gray-300 bg-gray-50 rounded-lg p-4">
-              <h3 className="text-center font-bold text-xl" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Hugo Zbor</h3>
-              <img 
-                src="/2015_05_20/IMG_1120.JPG"
-                alt="Hugo Zbor" 
-                className="w-full mt-2 border border-gray-200" 
-              />
-              <ul className="text-sm mt-4 space-y-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                <li><strong className="w-20 inline-block">Born:</strong> <a href="https://en.wikipedia.org/wiki/Jakarta" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Jakarta, Indonesia</a></li>
-                <li><strong className="w-20 inline-block">Known For:</strong> <a href="https://en.wikipedia.org/wiki/Graphic_design" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Graphic Design</a></li>
-                <li><strong className="w-20 inline-block">Fields:</strong> <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Computer science</a></li>
-                <li><strong className="w-20 inline-block">Website:</strong> <a href="https://hugozbor.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">hugozbor.com</a></li>
+            {/* Intro Text - Desktop Only */}
+            <p className="mb-4 hidden md:block font-normal">
+              Hugo Zbor (born Jakarta, Indonesia) is a 21-year-old <span className={styles.link}>artist</span>, <span className={styles.link}>editor</span>, and <span className={styles.link}>web designer</span> based in <span className={styles.link}>Melbourne, Australia</span>.
+            </p>
+
+            {/* Table of Contents */}
+            <div className="border border-[#a2a9b1] bg-[#f8f9fa] p-3 mb-6 rounded-sm inline-block w-full sm:w-auto sm:min-w-[250px]">
+              <div className="font-bold text-center mb-2 text-sm">Contents</div>
+              <ul className="text-sm list-decimal list-inside space-y-1 text-[#c13333]">
+                <li><a href="#design" className="hover:underline">Introduction to Design</a></li>
+                <li><a href="#lockdown" className="hover:underline">High School and Covid Lockdown</a></li>
+                <li><a href="#australia" className="hover:underline">Moving to Australia</a></li>
               </ul>
             </div>
+
+            {/* SECTION 1 */}
+            <div id="design" className={styles.header}>
+              <h2>Introduction to Design</h2>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[edit]</span>
+            </div>
             
-            {/* Other Info Boxes */}
-            <InfoBox 
-              imageUrl="/2015_05_20/IMG_1121.JPG"
-              caption="Hugo during Covid Lockdown"
-              altText="Hugo at desk during Covid"
-            />
+            {/* Image: Stacks on mobile (w-full), floats on desktop */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 w-full sm:w-[280px] sm:float-right sm:ml-4">
+               <img src="/2015_05_20/IMG_1118.JPG" alt="Fifth Grade" className="w-full h-auto mb-1"/>
+               <div className="p-1 text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
+            </div>
             
-            <InfoBox 
-              imageUrl="/2015_05_20/IMG_1123.JPG"
-              caption="Hugo's student ID in 2023"
-              altText="Hugo Zbor's student ID"
-            />
+            <p className="mb-4 font-normal">Around the fifth grade, I was borrowing my mum's laptop and I stumbled across a video of someone editing photos with <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> on <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className={styles.link}>YouTube</a>. At the time, you were able to do 30-day free trials, so I secretly downloaded it and kept making new emails to keep using it. I was really bad at watching tutorials, so I started learning by trying out every single tool and then just testing random things.</p>
             
+            <p className="mb-4 font-normal">For the next 5 years I would continue to learn and use <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> as a hobby for fun (making memes and silly images).</p>
+
+            {/* SECTION 2 */}
+            <div id="lockdown" className={styles.header}>
+              <h2>High School and Covid Lockdown</h2>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[edit]</span>
+            </div>
+            
+            {/* Image Pair: Stacks vertical on mobile, horizontal on desktop */}
+            <div className="flex flex-col sm:flex-row gap-2 mb-4 border border-[#c8ccd1] bg-[#f8f9fa] p-1">
+               <img src="/2015_05_20/IMG_1119.JPG" alt="Hugo using Photoshop in 2016" className="w-full sm:w-1/2 h-auto object-cover"/>
+               <img src="/2015_05_20/IMG_1121.JPG" alt="Hugo during Covid Lockdown" className="w-full sm:w-1/2 h-auto object-cover"/>
+            </div>
+            
+            <p className="mb-4 font-normal">Mid-Highschool, after COVID lockdown began, I started venturing into <a href="https://en.wikipedia.org/wiki/Screen_printing" target="_blank" rel="noopener noreferrer" className={styles.link}>screen-printing</a>. After many failures, I actually made a few graphic t-shirts. My first "order" was printing 50 tote bags for my sister's graduation year.</p>
+            
+            <p className="mb-4 font-normal">After COVID lockdown, two friends and I decided to start a <a href="https://www.instagram.com/99clover" target="_blank" rel="noopener noreferrer" className={styles.link}>99Clover</a>, a clothing brand. It was initially just for our friends, but blew up locally.</p>
+            
+            <p className="mb-4 font-normal">This was when I first started taking <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> seriously.</p>
+
+            {/* SECTION 3 */}
+            <div id="australia" className={styles.header}>
+              <h2>Moving to Australia</h2>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[edit]</span>
+            </div>
+            <p className="mb-4 font-normal">I moved to <a href="https://en.wikipedia.org/wiki/Australia" target="_blank" rel="noopener noreferrer" className={styles.link}>Australia</a>, in 2022, to study <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a> and I kept running the brand (remotely) while attempting to balance it with studying. I noticed my love for design was fading and feeling like a chore. I would always rush and design quickly, because I wanted to get it out of the way.</p>
+            
+            <p className="mb-4 font-normal">Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className={styles.link}>music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
+            
+            <p className="mb-4 font-normal">In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className={styles.link}>@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. I am extremely grateful and I believe I am now growing - as an artist - faster than ever before.</p>
+
           </div>
         </div>
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
 // Accordion Component for Commissions
@@ -859,7 +936,7 @@ function AccordionItem({ title, children, isOpen, onToggle }) {
 }
 
 // Commissions Page Component
-function CommissionsPage({ setCurrentPage }) {
+function CommissionsPage({ setCurrentPage, currentPage }) {
   const [openDropdown, setOpenDropdown] = useState(null)
 
   const toggleDropdown = (index) => {
@@ -868,7 +945,7 @@ function CommissionsPage({ setCurrentPage }) {
 
   return (
     <>
-      <PageHeader title="Commissions" onBack={() => setCurrentPage('home')} />
+      <PageHeader title="Commissions" onBack={() => setCurrentPage('home')} isActive={currentPage === 'commissions'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         {/* Page Header */}
         <div className="mb-8">
@@ -1092,7 +1169,7 @@ function CommissionsPage({ setCurrentPage }) {
 }
 
 // Contact Page Component
-function ContactPage({ setCurrentPage }) {
+function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [services, setServices] = useState({
     graphics: false,
@@ -1211,7 +1288,7 @@ function ContactPage({ setCurrentPage }) {
   // Form View
   return (
     <>
-      <PageHeader title="Contact" onBack={() => setCurrentPage('home')} />
+      <PageHeader title="Contact" onBack={() => setCurrentPage('home')} isActive={currentPage === 'contact'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
       {/* Header Text */}
       <p className="text-lg md:text-xl text-brandBlack mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
@@ -1433,10 +1510,10 @@ function Footer({ setCurrentPage }) {
 }
 
 // Terms & Conditions Page Component
-function TermsPage({ setCurrentPage }) {
+function TermsPage({ setCurrentPage, currentPage }) {
   return (
     <>
-      <PageHeader title="Terms & Conditions" onBack={() => setCurrentPage('home')} />
+      <PageHeader title="Terms & Conditions" onBack={() => setCurrentPage('home')} isActive={currentPage === 'terms'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         <div className="bg-gray-100 rounded-lg p-8 md:p-12">
           <div className="prose max-w-none" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
@@ -1751,31 +1828,31 @@ function App() {
   }, [])
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className={currentPage === 'home' ? 'block' : 'hidden md:block'}>
-        <Header currentPage={currentPage} currentCategory={currentCategory} setCurrentPage={setCurrentPage} />
-      </div>
-      <main>
-        {currentPage === 'home' && <HomePage />}
+    <div className="bg-white min-h-screen flex flex-col">
+      {/* Header is now Global and Sticky */}
+      <Header currentPage={currentPage} currentCategory={currentCategory} setCurrentPage={setCurrentPage} />
+      
+      <main className="flex-grow">
+        {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         {currentPage === 'my-work' && currentCategory === 'graphics' && (
-          <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} />
+          <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
         {currentPage === 'my-work' && currentCategory === 'videos' && (
-          <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} />
+          <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
         {currentPage === 'my-work' && currentCategory === 'websites' && (
-          <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} />
+          <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
         {currentPage === 'my-work' && currentCategory === 'view-all' && (
-          <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} />
+          <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
         {currentPage === 'my-work' && currentCategory === 'landing' && (
-          <MyWorkLandingPage setCurrentPage={setCurrentPage} />
+          <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
-        {currentPage === 'commissions' && <CommissionsPage setCurrentPage={setCurrentPage} />}
-        {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} />}
-        {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} />}
-        {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} />}
+        {currentPage === 'commissions' && <CommissionsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+        {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+        {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+        {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         {currentPage === 'info' && <InfoPage setCurrentPage={setCurrentPage} />}
       </main>
       <Footer setCurrentPage={setCurrentPage} />
