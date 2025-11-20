@@ -454,7 +454,7 @@ function HomePage({ setCurrentPage, currentPage }) {
         {/* LEFT COL: The Graphic (Video/GIF) */}
         <div className="w-full md:w-1/2 mb-8 md:mb-0">
           <div
-            className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm grayscale hover:grayscale-0 transition-all duration-500 pointer-events-none"
             dangerouslySetInnerHTML={{ __html: homeHeroVisual }}
           />
         </div>
@@ -610,7 +610,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
 }
 
 // Category pages with sub-navigation
-function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
+function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItemId }) {
   const [selectedItem, setSelectedItem] = useState(null)
   const categoryNames = {
     'graphics': 'Graphics',
@@ -625,6 +625,17 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
     }
     return shuffleArray(allPortfolioItems)
   }, [category])
+
+  useEffect(() => {
+    if (currentItemId) {
+      const targetItem = allPortfolioItems.find(item => item.id === currentItemId)
+      if (targetItem) {
+        setSelectedItem(targetItem)
+      }
+    } else {
+      setSelectedItem(null)
+    }
+  }, [currentItemId])
 
   const isWebsiteTab = category === 'websites'
   const websiteLayout = "flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8"
@@ -758,7 +769,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
           return (
             <button
               key={item.id}
-              onClick={() => setSelectedItem(item)}
+              onClick={() => setCurrentPage('my-work', category, item.id)}
               className={internalCardClasses}
             >
               <img 
@@ -787,7 +798,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage }) {
       {selectedItem && (
         <WorkOverlay 
           item={selectedItem} 
-          onClose={() => setSelectedItem(null)}
+          onClose={() => setCurrentPage('my-work', category, null)}
           setCurrentPage={setCurrentPage} 
         />
       )}
@@ -1741,48 +1752,44 @@ function InfoPage({ setCurrentPage }) {
             Talent Manager
           </p>
 
-          {/* 3. ACTION BUTTONS (Stacked) */}
-          <div className="space-y-3">
+          {/* 3. ACTION BUTTONS (Stacked & Aligned) */}
+          <div className="w-full space-y-3 mt-6">
             
-            {/* PHONE BUTTON */}
-            <div className="flex items-center justify-center gap-3">
-              <a 
-                href="tel:+61483879841"
-                className="flex items-center justify-center w-12 h-12 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
-                style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-              >
-                <Phone className="size-5" />
-              </a>
-              <span className="text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                {phoneNumber}
-              </span>
-            </div>
-
-            {/* WHATSAPP BUTTON (Green-ish) */}
+            {/* PHONE ROW (Display + Call Action) */}
             <a 
-              href="https://api.whatsapp.com/send?phone=61483879841"
+              href="tel:+61483879841"
+              className="flex items-center justify-start w-full p-3 bg-white border border-gray-200 rounded-xl shadow-sm hover:bg-gray-50 transition-colors group"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            >
+              <div className="bg-gray-900 text-white p-2 rounded-md group-hover:scale-105 transition-transform">
+                <Phone className="size-5" />
+              </div>
+              <span className="ml-3 font-medium text-gray-900">{phoneNumber}</span>
+            </a>
+            
+            {/* WHATSAPP BUTTON (Green) */}
+            <a 
+              href="https://wa.me/61483879841"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-full py-3 px-4 bg-[#25D366] text-white rounded-lg hover:opacity-90 transition-opacity"
+              className="flex items-center justify-start w-full p-3 bg-[#25D366] text-white rounded-xl shadow-sm hover:opacity-90 transition-opacity"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 500 }}
             >
-              <MessageCircle className="size-5 mr-2" />
-              <span>WhatsApp</span>
+              <MessageCircle className="size-6" />
+              <span className="ml-3 font-bold">WhatsApp</span>
             </a>
-
+            
             {/* EMAIL BUTTON (Copy Action) */}
-            <div className="flex items-center justify-center gap-3">
-              <button 
-                onClick={() => copyToClipboard(email)}
-                className="flex items-center justify-center w-12 h-12 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 transition-colors"
-                style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-              >
-                <Mail className="size-5" />
-              </button>
-              <span className="text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                {email}
-              </span>
-            </div>
+            <button 
+              onClick={() => copyToClipboard(email)}
+              className="flex items-center justify-start w-full p-3 bg-gray-100 border border-gray-200 rounded-xl hover:bg-gray-200 transition-colors"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            >
+              <div className="text-gray-600">
+                <Mail className="size-6" />
+              </div>
+              <span className="ml-3 font-medium text-gray-700">{email}</span>
+            </button>
 
           </div>
           
@@ -1800,47 +1807,53 @@ function InfoPage({ setCurrentPage }) {
 function App() {
   const parseUrl = () => {
     if (typeof window === 'undefined') {
-      return { page: 'home', category: 'landing' }
+      return { page: 'home', category: 'landing', itemId: null }
     }
 
     const path = window.location.pathname
     const parts = path.split('/').filter(Boolean)
 
     if (parts.length === 0) {
-      return { page: 'home', category: 'landing' }
+      return { page: 'home', category: 'landing', itemId: null }
     }
 
     const root = parts[0].toLowerCase()
 
     if (root === 'my-work') {
       const subCategory = (parts[1] || 'landing').toLowerCase()
-      return { page: 'my-work', category: subCategory }
+      const itemId = parts[2] || null
+      return { page: 'my-work', category: subCategory, itemId }
     }
 
     const allowedPages = new Set(['home', 'commissions', 'about', 'contact', 'terms', 'info'])
     if (allowedPages.has(root)) {
-      return { page: root, category: 'landing' }
+      return { page: root, category: 'landing', itemId: null }
     }
 
-    return { page: 'home', category: 'landing' }
+    return { page: 'home', category: 'landing', itemId: null }
   }
 
   const initialUrlState = parseUrl()
   const [currentPage, _setCurrentPage] = useState(initialUrlState.page)
   const [currentCategory, _setCurrentCategory] = useState(initialUrlState.category)
+  const [currentItemId, _setCurrentItemId] = useState(initialUrlState.itemId)
 
-  const setCurrentPage = (page, category = null) => {
+  const setCurrentPage = (page, category = null, itemId = null) => {
     _setCurrentPage(page)
 
     let url = '/'
     let nextCategory = currentCategory
+    let nextItemId = itemId || null
 
     if (page === 'home') {
       nextCategory = 'landing'
       _setCurrentCategory(nextCategory)
+      _setCurrentItemId(null)
     } else if (page === 'my-work') {
       nextCategory = (category || currentCategory || 'landing').toLowerCase()
       _setCurrentCategory(nextCategory)
+      nextItemId = itemId || null
+      _setCurrentItemId(nextItemId)
       if (nextCategory === 'landing') {
         url = '/my-work'
       } else if (nextCategory === 'view-all') {
@@ -1848,9 +1861,13 @@ function App() {
       } else {
         url = `/my-work/${nextCategory}`
       }
+      if (nextItemId) {
+        url += `/${nextItemId}`
+      }
     } else {
       nextCategory = 'landing'
       _setCurrentCategory(nextCategory)
+      _setCurrentItemId(null)
       url = `/${page}`
     }
 
@@ -1858,15 +1875,18 @@ function App() {
       url = '/'
     }
 
-    window.history.pushState({ page, category: nextCategory }, '', url)
-    window.scrollTo(0, 0)
+    window.history.pushState({ page, category: nextCategory, itemId: nextItemId }, '', url)
+    if (!nextItemId) {
+      window.scrollTo(0, 0)
+    }
   }
 
   useEffect(() => {
     const handlePopState = () => {
-      const { page, category } = parseUrl()
+      const { page, category, itemId } = parseUrl()
       _setCurrentPage(page)
       _setCurrentCategory(page === 'my-work' ? category : 'landing')
+      _setCurrentItemId(page === 'my-work' ? itemId : null)
     }
 
     window.addEventListener('popstate', handlePopState)
@@ -1881,16 +1901,16 @@ function App() {
       <main className="flex-grow">
         {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         {currentPage === 'my-work' && currentCategory === 'graphics' && (
-          <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} />
+          <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
         )}
         {currentPage === 'my-work' && currentCategory === 'videos' && (
-          <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} />
+          <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
         )}
         {currentPage === 'my-work' && currentCategory === 'websites' && (
-          <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} />
+          <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
         )}
         {currentPage === 'my-work' && currentCategory === 'view-all' && (
-          <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} />
+          <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
         )}
         {currentPage === 'my-work' && currentCategory === 'landing' && (
           <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />

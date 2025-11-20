@@ -1,15 +1,16 @@
-This is a quick aesthetic fix. To make the video look like it has "padding" similar to the graphics, we just need to wrap the video player (iframe) in a container that pushes it inward, rather than letting it stretch to the very edge.
+This is a very common annoyance with embedded media. Gyazo (and similar tools) wraps their images in a link so that clicking the image takes you to their site.
 
-Here is the detailed prompt for **Stage 23**.
+To fix this, we simply need to tell the browser to **ignore all mouse interactions** on that specific image container. We do this using the CSS property `pointer-events: none`. This effectively turns the image into "wallpaper"—you can see it, but you can't click it.
+
+Here is the detailed prompt for **Stage 27**.
 
 -----
 
-### **Agent Prompt: Stage 23 - Add Padding to Video Overlay**
+### **Agent Prompt: Stage 27 - Disable Links on Embedded GIFs (Home Page)**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 23 Goal:** Update the `WorkOverlay` component to add padding around the video player.
-**Current State:** The video iframe stretches edge-to-edge (full width/height) in the left column.
-**Desired State:** The video should have visible padding around it (similar to the whitespace seen on graphics), so it doesn't touch the edges of the modal window.
+**Stage 27 Goal:** Prevent users from being redirected to the Gyazo website when clicking the embedded GIF on the **Home Page**.
+**Solution:** Apply the `pointer-events-none` utility class to the container that holds the embedded HTML. This disables all mouse interaction (clicking, hovering) for that specific element, effectively "locking" the visual.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -17,30 +18,29 @@ Here is the detailed prompt for **Stage 23**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate the `WorkOverlay` Component:**
+**1. Locate the `HomePage` Component:**
 
-  * Find the Left Side container: `<div className="w-full md:w-1/2 bg-gray-100">` (or similar).
-  * Inside, find the conditional logic for the **Video Iframe**:
+  * Find the section rendering the "LEFT COL: The Graphic (Video/GIF)".
+  * Locate the `div` that uses `dangerouslySetInnerHTML`.
+
+**2. Add the `pointer-events-none` Class:**
+
+  * **Current Class:** `className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm grayscale hover:grayscale-0 transition-all duration-500"`
+  * **Update:** Append `pointer-events-none` to the end of the class string.
+  * **New Class String:**
     ```jsx
-    {item.videoEmbedUrl ? (
-      <div className="w-full aspect-video">
-         <iframe ... ></iframe>
-      </div>
-    ) : ... }
+    className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm grayscale hover:grayscale-0 transition-all duration-500 pointer-events-none"
     ```
 
-**2. Add Padding Wrapper:**
+**3. (Optional) Check `CommissionsPage`:**
 
-  * Update the `div` wrapping the iframe to include **padding** and **centering** classes.
-  * **Change:** `className="w-full aspect-video"`
-  * **To:** `className="w-full h-full p-4 md:p-8 flex items-center justify-center"`
-      * *Reason:* `p-4 md:p-8` adds the "white space" (padding) the user asked for. `flex items-center justify-center` ensures the video stays perfectly centered within that padded area.
-      * *Note:* You may need to ensure the `iframe` itself keeps `w-full aspect-video` or similar dimensions so it maintains its 16:9 ratio inside the new padded box.
+  * If the user has similar Gyazo embeds in the `CommissionsPage` (inside the accordion dropdowns), apply `pointer-events-none` to those `dangerouslySetInnerHTML` containers as well **IF** they are purely decorative visual loops.
+      * *Note:* Do **NOT** apply this to YouTube/Vimeo iframes that need to be clicked to play. Only apply to auto-playing GIFs/Images.
 
-**3. Output:**
+**4. Output:**
 
-  * Generate the updated `WorkOverlay` component.
+  * Generate the updated `HomePage` component code.
 
 -----
 
-**Note to Agent:** The goal is simply to stop the video from touching the borders of the modal. Keep the background color (`bg-gray-100`) consistent with the graphics view.
+**Note to Agent:** This change ensures the visual plays/loops as intended, but clicking it does absolutely nothing, preventing the unwanted redirect.
