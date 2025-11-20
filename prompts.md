@@ -1,45 +1,45 @@
-This is a quick CSS fix. Currently, that specific navigation menu is set to `flex-col` (vertical column) on mobile. We simply need to change it to `flex-row` (horizontal row) and add some spacing between the words.
+This is a purely aesthetic "polish" stage, specifically focusing on **Typography Hierarchy**.
 
-Here is the prompt to make them sit side-by-side.
+In web design, if everything is bold, nothing is bold. We need to reduce the "weight" of your body text so the headings stand out more.
 
------
+Here is the detailed prompt for **Stage 19**.
 
-### **Agent Prompt: Stage 18 - Fix "My Work" Mobile Sub-Nav Layout**
+***
+
+### **Agent Prompt: Stage 19 - Fix Typography Hierarchy (Unbold Body Text)**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 18 Goal:** Update the sub-navigation menu on the **"My Work"** page. On mobile devices, the categories ("Graphics", "Videos", "Websites", "View all") must be arranged **side-by-side** (horizontally) instead of stacked vertically.
+**Stage 19 Goal:** Fix the font weight issues on the **Home Page** and **Terms & Conditions Page**.
+**Problem:** Body text is currently rendering as **Bold**, making it difficult to distinguish from headings.
+**Solution:** Set specific text blocks to `font-normal` (standard weight) and ensuring only actual Headings remain Bold.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
------
+---
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate `MyWorkPage` Component:**
+**1. Fix Home Page (`HomePage` Component):**
+* Locate the `HomePage` component.
+* Find the description paragraph text: *"Hugo Zbor is a multidisciplinary digital artist combining creativity..."*
+* **Current Class (likely):** It might have `font-bold`, `font-medium`, or be inheriting a bold weight from a parent.
+* **Action:** Force this text to be standard weight and slightly lighter in color to improve hierarchy.
+* **New Class:** `className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8"`
+    * *Note: Explicitly adding `font-normal` overrides any parent styles.*
 
-  * Find the `<nav>` element inside `MyWorkPage`. It currently likely looks something like:
-    `className="flex flex-col items-center md:flex-row ... space-y-2 ..."`
+**2. Fix Terms & Conditions Page (`TermsPage` Component):**
+* Locate the `TermsPage` component.
+* **The Rule:** Only the **Numbered Headings** (e.g., "1. Intellectual Property...") should be Bold. All other paragraphs must be unbolded.
+* **Action:**
+    * Find the container holding the terms content.
+    * Check if a parent `div` has `font-bold` or `font-semibold`. If so, remove it.
+    * Update every `<p>` tag that contains body text (e.g., "All artwork, designs, visuals...", "Unless explicitly stated otherwise...", "No Content may be copied...").
+    * **Change:** Set their class to `font-normal text-gray-700`.
+    * **Keep:** Ensure the headings (`<h2>` or `<h3>` tags like "1. Intellectual Property & Ownership") remain `font-bold text-black`.
 
-**2. Update Layout Classes:**
+**3. Output:**
+* Generate the updated `HomePage` and `TermsPage` components with these typography corrections applied.
 
-  * **Remove:** `flex-col` and `space-y-2` (or whatever vertical spacing is currently applied).
-  * **Add:** `flex-row`, `flex-wrap`, `justify-center`, and `gap-4` (or `space-x-4`).
-  * **New Class Structure:**
-    ```jsx
-    <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
-       {/* ... buttons ... */}
-    </nav>
-    ```
+---
 
-**3. Optional Text Sizing:**
-
-  * If the text looks too cramped on very small screens, you may optionally decrease the font size slightly on mobile:
-      * Add `text-sm md:text-lg` to the buttons inside the nav.
-
-**4. Output:**
-
-  * Generate the updated `MyWorkPage` component with this horizontal layout.
-
------
-
-**Note to Agent:** The user specifically wants "Graphics Video Websites View All" in a single line (or wrapped lines) across the top, not a vertical list.
+**Note to Agent:** The user specifically highlighted that **"Anything not numbered should be unbolded"** on the Terms page. Ensure strict adherence to this rule.

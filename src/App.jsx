@@ -468,7 +468,7 @@ function HomePage({ setCurrentPage, currentPage }) {
           </h2>
 
           {/* Description Paragraph */}
-          <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-md mb-8">
+          <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
             Hugo Zbor is a multidisciplinary digital artist combining creativity with data-driven strategies to craft unforgettable online experiences. His team helps you elevate your brand and achieve your digital goals.
           </p>
 
@@ -1516,12 +1516,12 @@ function TermsPage({ setCurrentPage, currentPage }) {
       <PageHeader title="Terms & Conditions" onBack={() => setCurrentPage('home')} isActive={currentPage === 'terms'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         <div className="bg-gray-100 rounded-lg p-8 md:p-12">
-          <div className="prose max-w-none" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          <div className="prose max-w-none font-normal text-gray-700" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             <h1 className="text-3xl font-bold text-brandBlack mb-2">Terms & Conditions — HUGOZBOR</h1>
             
             <p className="text-sm text-gray-600 mb-6">Last updated: 16th November 2025</p>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               Welcome to the official website of HUGOZBOR ("Hugo", "we", "our", "the Artist").
               By accessing or using this website, you agree to the following Terms & Conditions.
               If you do not agree, please discontinue use of the site.
@@ -1529,95 +1529,95 @@ function TermsPage({ setCurrentPage, currentPage }) {
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">1. Intellectual Property & Ownership</h2>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               All artwork, designs, visuals, graphics, videos, animations, website content, branding, logos, and all related creative material displayed on this website (collectively, the "Content") are the exclusive property of HUGOZBOR.
             </p>
             
-            <p className="text-brandBlack mb-4">Unless explicitly stated otherwise:</p>
+            <p className="font-normal text-gray-700 mb-4">Unless explicitly stated otherwise:</p>
             
-            <p className="text-brandBlack mb-4">All Content is owned, created, and copyrighted by HUGOZBOR.</p>
+            <p className="font-normal text-gray-700 mb-4">All Content is owned, created, and copyrighted by HUGOZBOR.</p>
             
-            <p className="text-brandBlack mb-4">All rights are reserved.</p>
+            <p className="font-normal text-gray-700 mb-4">All rights are reserved.</p>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               No Content may be copied, reproduced, edited, redistributed, resold, showcased commercially, or used for training datasets, AI models, or promotional material without written permission from Hugo.
             </p>
             
-            <p className="text-brandBlack mb-6">Unauthorized use may result in legal action.</p>
+            <p className="font-normal text-gray-700 mb-6">Unauthorized use may result in legal action.</p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">2. Usage Rights for Commissioned Work</h2>
             
-            <p className="text-brandBlack mb-4">When a client commissions Hugo for a project:</p>
+            <p className="font-normal text-gray-700 mb-4">When a client commissions Hugo for a project:</p>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               The client receives a license to use the final delivered artwork only for the agreed purpose (e.g., social media promotion, album artwork, brand visuals, website usage).
             </p>
             
-            <p className="text-brandBlack mb-4">Ownership is not transferred unless explicitly negotiated in writing.</p>
+            <p className="font-normal text-gray-700 mb-4">Ownership is not transferred unless explicitly negotiated in writing.</p>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               Raw project files (PSD, Blender files, project files, layers, etc.) are not included unless separately purchased.
             </p>
             
-            <p className="text-brandBlack mb-2">Hugo retains:</p>
+            <p className="font-normal text-gray-700 mb-2">Hugo retains:</p>
             
-            <ul className="list-disc list-inside text-brandBlack mb-4 ml-4">
+            <ul className="list-disc list-inside font-normal text-gray-700 mb-4 ml-4">
               <li>Artistic copyright</li>
               <li>Portfolio rights</li>
               <li>Rights to showcase the project publicly</li>
             </ul>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               No client may resell, redistribute, mint NFTs, or sublicense the artwork unless paid and approved in writing.
             </p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">3. Pricing, Payments & Deposits</h2>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               All project quotes are provided based on project complexity, timeline, and deliverables.
             </p>
             
-            <p className="text-brandBlack mb-4">A deposit may be required before work begins. Deposits are non-refundable.</p>
+            <p className="font-normal text-gray-700 mb-4">A deposit may be required before work begins. Deposits are non-refundable.</p>
             
-            <p className="text-brandBlack mb-4">Work will not begin until payment terms are agreed on.</p>
+            <p className="font-normal text-gray-700 mb-4">Work will not begin until payment terms are agreed on.</p>
             
-            <p className="text-brandBlack mb-4">Projects requiring urgent turnaround may incur a rush fee.</p>
+            <p className="font-normal text-gray-700 mb-4">Projects requiring urgent turnaround may incur a rush fee.</p>
             
-            <p className="text-brandBlack mb-6">Final files are delivered only after full payment is completed.</p>
+            <p className="font-normal text-gray-700 mb-6">Final files are delivered only after full payment is completed.</p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">4. Revisions</h2>
             
-            <p className="text-brandBlack mb-4">Unless otherwise stated:</p>
+            <p className="font-normal text-gray-700 mb-4">Unless otherwise stated:</p>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               Projects include a set number of revisions defined in the project agreement.
             </p>
             
-            <p className="text-brandBlack mb-4">Additional revisions or scope changes may incur extra charges.</p>
+            <p className="font-normal text-gray-700 mb-4">Additional revisions or scope changes may incur extra charges.</p>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               Once a project is approved and delivered, further modifications are treated as a new project.
             </p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">5. Refund Policy</h2>
             
-            <p className="text-brandBlack mb-4">Due to the nature of creative work:</p>
+            <p className="font-normal text-gray-700 mb-4">Due to the nature of creative work:</p>
             
-            <p className="text-brandBlack mb-4">All payments are final.</p>
+            <p className="font-normal text-gray-700 mb-4">All payments are final.</p>
             
-            <p className="text-brandBlack mb-4">No refunds are provided once work has begun.</p>
+            <p className="font-normal text-gray-700 mb-4">No refunds are provided once work has begun.</p>
             
-            <p className="text-brandBlack mb-4">Deposits are non-refundable.</p>
+            <p className="font-normal text-gray-700 mb-4">Deposits are non-refundable.</p>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               If Hugo is unable to complete a project for any reason, a partial refund may be considered at Hugo's discretion.
             </p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">6. Website Usage</h2>
             
-            <p className="text-brandBlack mb-4">You agree not to:</p>
+            <p className="font-normal text-gray-700 mb-4">You agree not to:</p>
             
-            <ul className="list-disc list-inside text-brandBlack mb-6 ml-4">
+            <ul className="list-disc list-inside font-normal text-gray-700 mb-6 ml-4">
               <li>Copy or scrape any Content</li>
               <li>Reproduce or modify the site or its assets</li>
               <li>Use the website for illegal purposes</li>
@@ -1626,26 +1626,26 @@ function TermsPage({ setCurrentPage, currentPage }) {
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">7. Privacy</h2>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               Any information provided via contact forms, emails, or inquiries will be used solely for communication and project-related purposes.
               We do not sell or share personal information with third parties.
             </p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">8. External Links</h2>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               This website may include links to external websites.
               We are not responsible for the content, policies, or security of third-party sites.
             </p>
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">9. Liability</h2>
             
-            <p className="text-brandBlack mb-4">
+            <p className="font-normal text-gray-700 mb-4">
               All Content on this site is provided for general informational/portfolio purposes.
             </p>
-            <p className="text-brandBlack mb-2">Hugo is not liable for:</p>
+            <p className="font-normal text-gray-700 mb-2">Hugo is not liable for:</p>
             
-            <ul className="list-disc list-inside text-brandBlack mb-6 ml-4">
+            <ul className="list-disc list-inside font-normal text-gray-700 mb-6 ml-4">
               <li>Damages from website access</li>
               <li>Client misuse of artwork</li>
               <li>Losses stemming from external platforms or third-party tools</li>
@@ -1653,7 +1653,7 @@ function TermsPage({ setCurrentPage, currentPage }) {
             
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">10. Modifications to Terms</h2>
             
-            <p className="text-brandBlack mb-6">
+            <p className="font-normal text-gray-700 mb-6">
               Hugo may update these Terms & Conditions at any time. Updated terms will be posted on this page with a revised "Last Updated" date.
             </p>
           </div>
