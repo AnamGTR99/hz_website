@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu } from 'lucide-react'
+import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu } from 'lucide-react'
 
 // Portfolio Data Structure
 const graphicsPortfolio = [
@@ -261,18 +261,10 @@ const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df11
 // --- End Asset Variables ---
 
 // PageHeader component for mobile back arrow
-function PageHeader({ title, onBack, showBack = true, isActive = false }) {
+function PageHeader({ title, isActive = false }) {
   return (
-    <div className="md:hidden flex items-center justify-center p-4 relative border-b border-gray-200">
-      {showBack && (
-        <button 
-          onClick={onBack} 
-          className="absolute left-4"
-        >
-          <ChevronLeft className="size-6 text-gray-700" />
-        </button>
-      )}
-      <h2 className={`text-xl font-bold uppercase`} style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: isActive ? '#c13333' : '#1a1a1a' }}>{title}</h2>
+    <div className="md:hidden flex items-center justify-center p-4 border-b border-gray-200 bg-white relative">
+      <h2 className="text-xl font-bold text-gray-900 uppercase tracking-wide" style={{ fontFamily: 'Helvetica, Arial, sans-serif', color: isActive ? '#c13333' : '#1a1a1a' }}>{title}</h2>
     </div>
   )
 }
@@ -504,7 +496,7 @@ function HomePage({ setCurrentPage, currentPage }) {
 function MyWorkLandingPage({ setCurrentPage, currentPage }) {
   return (
     <>
-      <PageHeader title="My work" onBack={() => setCurrentPage('home')} isActive={currentPage === 'my-work'} />
+      <PageHeader title="My work" isActive={currentPage === 'my-work'} />
       <div className="max-w-7xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
       <div className="flex flex-col items-center gap-8 md:gap-12">
         {/* Top Row: Graphics and Videos */}
@@ -668,7 +660,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
 
   return (
     <>
-      <PageHeader title="My work" onBack={() => setCurrentPage('home')} isActive={currentPage === 'my-work'} />
+      <PageHeader title="My work" isActive={currentPage === 'my-work'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0">
       {/* Sub-navigation */}
       <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
@@ -873,7 +865,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
   return (
     <div className="bg-white min-h-screen pb-20 text-[#202122] font-sans font-normal text-[15px] leading-[1.6]">
       {/* 1. Mobile Navigation Header */}
-      <PageHeader title="About" onBack={() => setCurrentPage('home')} isActive={currentPage === 'about'} />
+      <PageHeader title="About" isActive={currentPage === 'about'} />
 
       <div className="max-w-6xl mx-auto px-4 md:px-6 mt-6">
         
@@ -1033,7 +1025,7 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
 
   return (
     <>
-      <PageHeader title="Commissions" onBack={() => setCurrentPage('home')} isActive={currentPage === 'commissions'} />
+      <PageHeader title="Commissions" isActive={currentPage === 'commissions'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         {/* Page Header */}
         <div className="mb-8">
@@ -1054,11 +1046,10 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals crafted in Hugo's signature style, including:</p>
+                <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals in Hugo's signature style, including:</p>
                 <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
                   <li>Digital artworks</li>
                   <li>Character-based visuals</li>
-                  <li>Abstract / surreal compositions</li>
                   <li>Graphic posters</li>
                   <li>Album/EP artwork</li>
                   <li>Single covers</li>
@@ -1092,7 +1083,6 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
                   <li>3D/Blender-enhanced motion visuals</li>
                   <li>Music promo visuals</li>
                   <li>Video composites and FX</li>
-                  <li>Surreal edits</li>
                   <li>Motion graphics</li>
                   <li>Animated assets</li>
                 </ul>
@@ -1114,7 +1104,7 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and aesthetic leadership, including:</p>
+                <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and leadership, including:</p>
                 <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
                   <li>Creative strategy</li>
                   <li>Aesthetic development</li>
@@ -1122,7 +1112,6 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
                   <li>Moodboards & visual planning</li>
                   <li>Campaign concepting</li>
                   <li>Asset review & feedback</li>
-                  <li>Artistic supervision</li>
                   <li>On-call creative consulting</li>
                 </ul>
                 <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
@@ -1172,7 +1161,6 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
             <p className="mb-3" style={{ fontWeight: 400 }}>End-to-end brand identity design, including:</p>
             <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
               <li>Logo design</li>
-              <li>Typography systems</li>
               <li>Color palettes</li>
               <li>Visual language development</li>
               <li>Brand guidelines</li>
@@ -1369,7 +1357,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
   // Form View
   return (
     <>
-      <PageHeader title="Contact" onBack={() => setCurrentPage('home')} isActive={currentPage === 'contact'} />
+      <PageHeader title="Contact" isActive={currentPage === 'contact'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
       {/* Header Text */}
       <p className="text-lg md:text-xl text-brandBlack mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
@@ -1594,7 +1582,7 @@ function Footer({ setCurrentPage }) {
 function TermsPage({ setCurrentPage, currentPage }) {
   return (
     <>
-      <PageHeader title="Terms & Conditions" onBack={() => setCurrentPage('home')} isActive={currentPage === 'terms'} />
+      <PageHeader title="Terms & Conditions" isActive={currentPage === 'terms'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         <div className="bg-gray-100 rounded-lg p-8 md:p-12">
           <div className="prose max-w-none font-normal text-gray-700" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
