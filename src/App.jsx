@@ -675,7 +675,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
 
   const isWebsiteTab = category === 'websites'
   const websiteLayout = "flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8"
-  const standardLayout = "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 px-4 md:px-0 mt-8"
+  const standardLayout = "columns-3 gap-2 md:gap-6 space-y-2 md:space-y-6 px-2 md:px-0 mt-4 md:mt-8"
   const containerClass = isWebsiteTab ? websiteLayout : standardLayout
 
   return (
@@ -737,7 +737,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           const isVideo = item.category.includes('videos')
           const isWebsite = item.category.includes('websites')
           const externalCardClasses = 'group block w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300'
-          const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-6 rounded-lg w-full break-inside-avoid mb-6'
+          const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-1 md:p-6 rounded-lg w-full break-inside-avoid mb-6'
 
           let imageStyles = "w-full rounded-lg shadow-sm block"
           if (item.category.includes('graphics')) {
@@ -763,10 +763,10 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   className="w-full aspect-video object-cover"
                 />
                 <div className="p-4">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide truncate">
+                  <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight truncate">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1 font-medium">
+                  <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
                     {item.date}
                   </p>
                 </div>
@@ -797,10 +797,10 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   className={imageStyles}
                 />
                 <div className="mt-3 text-left">
-                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+                  <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1 font-medium">
+                  <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
                     {item.date}
                   </p>
                 </div>
@@ -820,10 +820,10 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                 className={imageStyles}
               />
               <div className="mt-3 text-left">
-                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+                <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-xs text-gray-500 mt-1 font-medium">
+                <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
                   {item.date}
                 </p>
               </div>

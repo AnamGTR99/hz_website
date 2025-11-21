@@ -1,125 +1,49 @@
-This stage involves a massive data update and some specific UI tuning to match your new requirements.
+Yes, it is absolutely possible. This is a common "Instagram Grid" style layout (3 across).
 
-We need to update the `graphicsPortfolio` array with the specific metadata from your text file, increase the whitespace (padding) in the grid cards, and ensure the Overlay displays the new Description field.
+**However, a warning:** To fit 3 columns on a phone screen, the items will have to be much smaller (like thumbnails).
+To make this look good and "not broken," we **MUST** reduce the padding (whitespace) and text size on mobile, otherwise, the padding will take up all the space and the images will look like tiny dots.
 
-Here is the highly detailed prompt for **Stage 30**.
+Here is the detailed prompt to switch the mobile view to a dense 3-column grid while keeping the desktop view spacious.
 
------
+***
 
-### **Agent Prompt: Stage 30 - Update Graphics Data, Grid Padding & Overlay Details**
+### **Agent Prompt: Stage 31 - Switch Mobile Gallery to 3-Column Grid**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 30 Goal:**
-
-1.  **Data Injection:** Update the `graphicsPortfolio` array with real Titles, Dates, and Descriptions based on the provided list.
-2.  **Grid Refinement:** Increase the padding inside the Graphic Grid Cards (so content isn't tight to the edges) and display the **Date** below the Title.
-3.  **Overlay Update:** Add the **Date** and **Description** fields to the Overlay modal.
+**Stage 31 Goal:** Change the **Mobile** layout of the "My Work" gallery (Graphics & Videos) from 1 column to **3 columns**.
+**Constraint:** Adjust padding and text sizing on mobile to ensure the 3-column grid looks clean and legible without breaking the layout.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
------
+---
 
-### **Part 1: Update `graphicsPortfolio` Data**
+### **Detailed Implementation Requirements:**
 
-**Instructions:**
+**1. Modify the Layout Variable (`MyWorkPage`):**
+* Locate the `standardLayout` variable definition (created in Stage 21).
+* **Current:** `columns-1 sm:columns-2 lg:columns-3 gap-6 ...`
+* **Change to:** `columns-3 gap-2 md:gap-6 space-y-2 md:space-y-6 px-2 md:px-0 mt-4 md:mt-8`
+    * *Explanation:*
+        * `columns-3`: Forces 3 columns immediately on mobile (and up).
+        * `gap-2`: Reduces the gap between items on mobile so they fit better. `md:gap-6` restores the big gap on desktop.
+        * `space-y-2`: Matches the vertical spacing to the horizontal gap.
+        * `px-2`: Reduces side margins on mobile to maximize screen width.
 
-  * Locate the `graphicsPortfolio` array.
-  * Update **every item** to include the new `date` and `description` properties, and ensure the `title` matches the "Real name" provided below.
-  * **Map the data exactly as follows:**
+**2. Adjust Item Padding (Critical for 3-Col):**
+* Find the item wrapper container (the `<button>` or `<a>` tag inside the map loop).
+* **Current:** `p-6` (Added in Stage 30).
+* **Change to:** `p-1 md:p-6`
+    * *Explanation:* On mobile (`p-1`), we remove most of the whitespace so the image can be as big as possible within its small column. On desktop (`md:p-6`), we keep the spacious "art gallery" look.
 
-<!-- end list -->
+**3. Adjust Text Sizing for Mobile:**
+* Find the **Title** (`h3`) and **Date** (`p`) inside the item wrapper.
+* **Title:** Change `text-sm` to `text-[10px] md:text-sm leading-tight`.
+* **Date:** Change `text-xs` to `text-[9px] md:text-xs`.
+    * *Explanation:* Standard text is too big for a 3-column mobile grid. We scale it down to "caption" size for phone screens.
 
-1.  **ID: `graphic-12`**
-      * Title: "Wallet Flyer for aformunseen"
-      * Date: "14th September 2025"
-      * Description: "Comission for aformunseen"
-2.  **ID: `graphic-6`**
-      * Title: "Nintendo Mii Album Cover"
-      * Date: "12th June 2025"
-      * Description: "Album cover variation using Nintendo MII"
-3.  **ID: `graphic-7`**
-      * Title: "99Clover poster"
-      * Date: "21st June 2025"
-      * Description: "Graphic poster for 99Clover"
-4.  **ID: `graphic-1`**
-      * Title: "COLLECTOR"
-      * Date: "7th June 2025"
-      * Description: "Trading Card Graphics with CSGO taste"
-5.  **ID: `graphic-10`**
-      * Title: "Hugo's DJ Set"
-      * Date: "11th July 2025"
-      * Description: "A graphic for a personal project"
-6.  **ID: `graphic-5`**
-      * Title: "Hugo's Room"
-      * Date: "14th May 2025"
-      * Description: "3 month long personal project for @brutalimagery"
-7.  **ID: `graphic-14`**
-      * Title: "CD Album Cover"
-      * Date: "27th May 2025"
-      * Description: "CD Album Cover variation for comissions"
-8.  **ID: `graphic-11`**
-      * Title: "BWR2025"
-      * Date: "4th June 2025"
-      * Description: "Cover graphic for @brutalimagery"
-9.  **ID: `graphic-3`**
-      * Title: "Let it rip"
-      * Date: "20th April 2025"
-      * Description: "Bey Blade personal project"
-10. **ID: `graphic-2`**
-      * Title: "99Clover magazine cover"
-      * Date: "9th September 2025"
-      * Description: "Japanese style magazine cover for 99Clover"
-11. **ID: `graphic-13`**
-      * Title: "Character Select"
-      * Date: "21st June 2025"
-      * Description: "In-game clothing select graphic for 99Clover"
-12. **ID: `graphic-8`**
-      * Title: "VOL \#99 TIME CAPSULE"
-      * Date: "3rd July 2025"
-      * Description: "Part of the 'TIME CAPSULE' Collection of 99Clover"
-13. **ID: `graphic-4`**
-      * Title: "aformunseen"
-      * Date: "14th September 2025"
-      * Description: "Passport flyer done for @aformunseen"
-14. **ID: `graphic-9`**
-      * Title: "Magazine cover for CASHMIIER Habits"
-      * Date: "7th July 2025"
-      * Description: "Japanese magainze flyer done for @CASHMIIERHABITS"
+**4. Output:**
+* Generate the updated `MyWorkPage` component code.
 
------
+---
 
-### **Part 2: Update Grid Layout (`MyWorkPage`)**
-
-**Instructions:**
-
-1.  **Increase Padding:** Find the item wrapper (the `<button>` or card container) inside the `.map()` loop.
-      * Change the padding class from `p-3` (or `p-4`) to **`p-6`**.
-      * *Reason:* The user stated the boxes look "too tight". `p-6` adds more breathing room around the image and text.
-2.  **Add Date to Grid:**
-      * Below the existing Title (`h3`), insert the date.
-      * Code:
-    <!-- end list -->
-    ```jsx
-    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
-      {item.title}
-    </h3>
-    {/* NEW: Date Display */}
-    <p className="text-xs text-gray-500 mt-1 font-medium">
-      {item.date}
-    </p>
-    ```
-
------
-
-### **Part 3: Update Overlay UI (`WorkOverlay`)**
-
-**Instructions:**
-
-1.  **Re-add Date:** Inside the "RIGHT SIDE: Text Content" div, below the Title (`h2`), add the date back in.
-      * Code: `<p className="text-sm text-gray-500 mt-1 mb-4">{item.date}</p>`
-2.  **Add Description:** Below the date, add the description paragraph.
-      * Code: `<p className="text-base text-gray-800 leading-relaxed mb-6">{item.description}</p>`
-3.  **Layout Check:** Ensure these text elements sit *above* the Action Buttons (Instagram/CTA).
-
-**Output:**
-Generate the updated `graphicsPortfolio` array, `MyWorkPage` component, and `WorkOverlay` component.
+**Note to Agent:** Do **not** change the `websiteLayout` variable. The "Websites" tab should remain large and centered as requested in Stage 21. This change only applies to the `standardLayout` (Graphics/Videos).
