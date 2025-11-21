@@ -268,6 +268,7 @@ const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
+const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
 
 // 3. WEB DESIGN HTML (from web_design.txt)
 const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df117d"><img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Image from Gyazo" width="600"/></a><a href="https://gyazo.com/e660702e8f799446cf3f52cbd75e7835"><img src="https://i.gyazo.com/e660702e8f799446cf3f52cbd75e7835.gif" alt="Image from Gyazo" width="600"/></a>`
@@ -474,7 +475,7 @@ function HomePage({ setCurrentPage, currentPage }) {
         {/* LEFT COL: The Graphic (Video/GIF) */}
         <div className="w-full md:w-1/2 mb-8 md:mb-0">
           <div
-            className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm grayscale hover:grayscale-0 transition-all duration-500 pointer-events-none"
+            className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
             dangerouslySetInnerHTML={{ __html: homeHeroVisual }}
           />
         </div>
@@ -493,14 +494,61 @@ function HomePage({ setCurrentPage, currentPage }) {
           </p>
 
           {/* "See More" Link */}
-          <a
-            href="/my-work/view-all"
+          <button
+            onClick={() => setCurrentPage('my-work', 'view-all')}
             className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
           >
             See More
-          </a>
+          </button>
         </div>
       </div>
+
+      {/* ================= SECTION 2: LOVENANGELS ================= */}
+      <div className="mt-16 md:mt-24">
+        
+        {/* 1. SECTION HEADLINE (Aligned Right) */}
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16 text-right">
+          A Collective of <br className="hidden md:block" />
+          Visionaries
+        </h1>
+
+        {/* 2. SPLIT CONTENT (Text Left, Graphic Right) */}
+        <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
+          
+          {/* LEFT COL: Text Content (Order 2 on Mobile, Order 1 on Desktop) */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-1">
+            
+            {/* Bold Side Title */}
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
+              Hugozbor For <br />
+              Lovenangels
+            </h2>
+
+            {/* Description */}
+            <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
+              Hugo Zbor also leads a collective of multi-disciplinary creators, ranging from 3D visual experts to high-quality rendering specialists. We combine diverse talents to build comprehensive, high-fidelity digital worlds.
+            </p>
+
+            {/* "See More" Link */}
+            <button 
+              onClick={() => setCurrentPage('my-work')}
+              className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
+            >
+              See More
+            </button>
+          </div>
+
+          {/* RIGHT COL: The Graphic (Order 1 on Mobile, Order 2 on Desktop) */}
+          <div className="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-2">
+            <div 
+              className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
+              dangerouslySetInnerHTML={{ __html: homeHeroVisual2 }}
+            />
+          </div>
+
+        </div>
+      </div>
+
       </div>
     </>
   )
