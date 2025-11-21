@@ -5,129 +5,143 @@ import { ChevronLeft, Instagram, Mail, X, ChevronDown, ChevronUp, Phone, Message
 const graphicsPortfolio = [
   {
     id: 'graphic-1',
-    title: 'Project 1',
+    title: 'COLLECTOR',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work8.jpg',
     fullImageUrl: '/Pictures/work8.jpg',
+    instagramLink: 'https://www.instagram.com/p/DKj-UbtvXRs/?img_index=1',
   },
   {
     id: 'graphic-2',
-    title: 'Project 2',
+    title: '99Clover magazine cover',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/Mock Medium.jpeg',
     fullImageUrl: '/Pictures/Mock Medium.jpeg',
+    instagramLink: 'https://www.instagram.com/p/DOYcmlRDxsE/?img_index=1',
   },
   {
     id: 'graphic-3',
-    title: 'Project 3',
+    title: 'Let it rip',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work3.jpg',
     fullImageUrl: '/Pictures/work3.jpg',
+    instagramLink: 'https://www.instagram.com/p/DIqaE6BvY-X/?img_index=1',
   },
   {
     id: 'graphic-4',
-    title: 'Project 4',
+    title: 'aformunseen',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/1.jpg',
     fullImageUrl: '/Pictures/1.jpg',
+    instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
   },
   {
     id: 'graphic-5',
-    title: 'Project 5',
+    title: 'Hugo\'s Room',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work12.jpg',
     fullImageUrl: '/Pictures/work12.jpg',
+    instagramLink: 'https://www.instagram.com/p/DJoZGzYPjXQ/?img_index=1',
   },
   {
     id: 'graphic-6',
-    title: 'Project 6',
+    title: 'Nintendo Mii Album Cover',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/Full V3.jpg',
     fullImageUrl: '/Pictures/Full V3.jpg',
+    instagramLink: 'https://www.instagram.com/p/DKzMRiaPc9E/?img_index=1',
   },
   {
     id: 'graphic-7',
-    title: 'Project 7',
+    title: '99Clover poster',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work5.jpg',
     fullImageUrl: '/Pictures/work5.jpg',
+    instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=1',
   },
   {
     id: 'graphic-8',
-    title: 'Project 8',
+    title: 'VOL #99 TIME CAPSULE',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work2.jpg',
     fullImageUrl: '/Pictures/work2.jpg',
+    instagramLink: 'https://www.instagram.com/p/DLpJzJDys0D/?img_index=1',
   },
   {
     id: 'graphic-9',
-    title: 'Project 9',
+    title: 'Magazine cover for CASHMIIER Habits',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/final v2.jpg',
     fullImageUrl: '/Pictures/final v2.jpg',
+    instagramLink: 'https://www.instagram.com/hugozbor/',
   },
   {
     id: 'graphic-10',
-    title: 'Project 10',
+    title: 'Hugo\'s DJ Set',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work11.jpg',
     fullImageUrl: '/Pictures/work11.jpg',
+    instagramLink: 'https://www.instagram.com/p/DL7o7ADvyvs/?img_index=1',
   },
   {
     id: 'graphic-11',
-    title: 'Project 11',
+    title: 'BWR2025',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work4.jpg',
     fullImageUrl: '/Pictures/work4.jpg',
+    instagramLink: 'https://www.instagram.com/p/DKeiNEWP1cG/?img_index=1',
   },
   {
     id: 'graphic-12',
-    title: 'Project 12',
+    title: 'Wallet Flyer for aformunseen',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/2.jpg',
     fullImageUrl: '/Pictures/2.jpg',
+    instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
   },
   {
     id: 'graphic-13',
-    title: 'Project 13',
+    title: 'Character Select',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work7.jpg',
     fullImageUrl: '/Pictures/work7.jpg',
+    instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=5',
   },
   {
     id: 'graphic-14',
-    title: 'Project 14',
+    title: 'CD Album Cover',
     category: ['graphics', 'view-all'],
     date: '2025',
     by: 'Hugo Zbor',
     thumbnailUrl: '/Pictures/work9.jpg',
     fullImageUrl: '/Pictures/work9.jpg',
+    instagramLink: 'https://www.instagram.com/p/DHs6JdzvYLm/?img_index=1',
   },
 ]
 
@@ -586,22 +600,32 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
           <div>
             <h2 className="text-2xl md:text-3xl font-normal text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
             
-            {/* Conditional Text - Only for Graphics */}
-            {!item.videoEmbedUrl && (
-              <p className="text-sm text-gray-600 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>Date: {item.date}</p>
-            )}
-            
-            {/* Work With Hugo Button */}
-            <button 
-              onClick={() => {
-                onClose()
-                setCurrentPage('contact')
-              }}
-              className="mt-6 px-5 py-2 bg-[#c13333] text-white rounded-md hover:bg-red-700 transition-colors"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-            >
-              Work With Hugo
-            </button>
+            {/* Action Bar - Split Layout */}
+            <div className="mt-8 flex items-center justify-between">
+              {/* Left Item (Instagram Button) */}
+              {item.instagramLink && (
+                <a 
+                  href={item.instagramLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-gray-100 text-gray-600 rounded-full hover:bg-pink-100 hover:text-pink-600 transition-colors"
+                  title="View on Instagram"
+                >
+                  <Instagram className="size-8" />
+                </a>
+              )}
+              
+              {/* Right Item (CTA Button) */}
+              <button 
+                onClick={() => {
+                  onClose(); 
+                  setCurrentPage('contact'); 
+                }}
+                className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors text-lg"
+              >
+                Work With Hugo
+              </button>
+            </div>
           </div>
         </div>
       </div>
