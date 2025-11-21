@@ -1,17 +1,17 @@
-The issue in the screenshot happens because the "Float" from the previous section (Covid Lockdown) hasn't finished yet, so the "Moving to Australia" section is trying to squeeze up next to it.
+This works almost exactly the same way as the Analytics integration. We just need to install the specific package for "Speed Insights" and drop the component next to the Analytics one.
 
-In web design, whenever you use `float`, you must "Clear" it before starting a new section, otherwise, elements stack on top of each other like Tetris blocks gone wrong.
-
-Here is the detailed prompt to fix this by adding a `clear-both` utility and ensuring the image size is consistent.
+Here is the detailed prompt for **Stage 39**.
 
 -----
 
-### **Agent Prompt: Stage 37 - Fix "Moving to Australia" Layout (Clear Floats)**
+### **Agent Prompt: Stage 39 - Integrate Vercel Speed Insights**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 37 Goal:** Fix the broken layout in the "Moving to Australia" section of the `AboutPage`.
-**Problem:** The previous section's floated elements are not "clearing", causing the "Moving to Australia" header and content to overlap or squeeze incorrectly.
-**Solution:** Apply `clear-both` to the section header to force it onto a new line. Also, ensure the image size matches the compact style of the first section.
+**Stage 39 Goal:** Integrate the Vercel Speed Insights SDK into the application to track performance metrics (Core Web Vitals).
+
+**Dependency Required:**
+
+  * Run command: `npm install @vercel/speed-insights`
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -19,42 +19,40 @@ Here is the detailed prompt to fix this by adding a `clear-both` utility and ens
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update "Moving to Australia" Section Header:**
+**1. Import the Speed Insights Component:**
 
-  * Locate the header `div` for this section (`id="australia"`).
-  * **Add Class:** `clear-both`.
-  * **Code:**
-    ```jsx
-    <div id="australia" className={`${styles.header} clear-both pt-4`}> 
-      {/* Added clear-both and pt-4 for spacing */}
-      <h2>Moving to Australia</h2>
-      {/* ... edit button ... */}
-    </div>
+  * At the very top of `App.jsx` (with the other imports), add:
+    ```javascript
+    import { SpeedInsights } from "@vercel/speed-insights/react";
     ```
+      * *Note: Ensure you import from `/react`, not `/next`, as this is a Vite application.*
 
-**2. Resize the Image Container:**
+**2. Add to Render Tree:**
 
-  * Locate the floated image container for "Student ID".
-  * **Current Class:** Likely `w-1/2 md:w-[220px]`.
-  * **Change to:** `w-32 md:w-48` (Matches the size we set for the "Intro" section in Stage 36).
-  * **Full Class String:**
+  * Locate the main `App` component's `return` statement.
+  * Place the `<SpeedInsights />` component **inside** the main wrapper `div`, right next to the `<Analytics />` component you added previously.
+  * **Code Structure:**
     ```jsx
-    <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
-       <img 
-         src="/Pictures/your-image-name-5.jpg" 
-         alt="Student ID" 
-         className="w-full h-auto mb-1"
-       />
-       <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-         Hugo's student ID in 2023
-       </div>
-    </div>
+    function App() {
+      // ... existing hooks ...
+
+      return (
+        <div className="bg-white min-h-screen flex flex-col">
+          {/* ... Header, Main, Footer ... */}
+          
+          {/* Vercel Tracking Components */}
+          <Analytics />
+          <SpeedInsights />
+        </div>
+      );
+    }
     ```
 
 **3. Output:**
 
-  * Generate the updated `AboutPage` component.
+  * Run the installation command.
+  * Generate the updated `App.jsx` file.
 
 -----
 
-**Note to Agent:** The `clear-both` class is the critical fix here. It acts as a "barrier" that ensures this section starts on a fresh horizontal line, below any images from the previous section.
+**Note to Agent:** Keep the import clean and place the component at the root level of the JSX to ensure it captures metrics for the whole session.
