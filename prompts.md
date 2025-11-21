@@ -1,18 +1,17 @@
-This is a quick fix. I added the grayscale effect earlier as a stylistic choice common in agency portfolios, but we can easily strip it out to show the full color of your visuals.
+The issue in the screenshot happens because the "Float" from the previous section (Covid Lockdown) hasn't finished yet, so the "Moving to Australia" section is trying to squeeze up next to it.
 
-We will also tighten the vertical spacing between the two sections.
+In web design, whenever you use `float`, you must "Clear" it before starting a new section, otherwise, elements stack on top of each other like Tetris blocks gone wrong.
 
-Here is the detailed prompt for **Stage 33**.
+Here is the detailed prompt to fix this by adding a `clear-both` utility and ensuring the image size is consistent.
 
 -----
 
-### **Agent Prompt: Stage 33 - Home Page Refinements (Spacing & Color)**
+### **Agent Prompt: Stage 37 - Fix "Moving to Australia" Layout (Clear Floats)**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 33 Goal:**
-
-1.  **Remove Grayscale:** Disable the black-and-white filter on the Home Page visuals. They should always be in full color.
-2.  **Tighten Spacing:** Reduce the vertical gap between the first section ("Omnee World") and the second section ("Lovenangels").
+**Stage 37 Goal:** Fix the broken layout in the "Moving to Australia" section of the `AboutPage`.
+**Problem:** The previous section's floated elements are not "clearing", causing the "Moving to Australia" header and content to overlap or squeeze incorrectly.
+**Solution:** Apply `clear-both` to the section header to force it onto a new line. Also, ensure the image size matches the compact style of the first section.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -20,37 +19,42 @@ Here is the detailed prompt for **Stage 33**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update `HomePage` Section Spacing:**
+**1. Update "Moving to Australia" Section Header:**
 
-  * Locate the wrapper `div` for **Section 2** (Lovenangels).
-  * **Current Class:** `className="mt-32 md:mt-48"`
-  * **Change to:** `className="mt-16 md:mt-24"`
-      * *Reason:* This cuts the whitespace roughly in half, bringing the sections closer together while keeping enough room for the layout to breathe.
-
-**2. Remove Grayscale Filter (Visual 1 - Top):**
-
-  * Locate the `div` rendering `homeHeroVisual` (Section 1).
-  * **Current Class:** `... shadow-sm grayscale hover:grayscale-0 transition-all ...`
-  * **Action:** Remove `grayscale` and `hover:grayscale-0`.
-  * **New Class:**
+  * Locate the header `div` for this section (`id="australia"`).
+  * **Add Class:** `clear-both`.
+  * **Code:**
     ```jsx
-    className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
+    <div id="australia" className={`${styles.header} clear-both pt-4`}> 
+      {/* Added clear-both and pt-4 for spacing */}
+      <h2>Moving to Australia</h2>
+      {/* ... edit button ... */}
+    </div>
     ```
 
-**3. Remove Grayscale Filter (Visual 2 - Bottom):**
+**2. Resize the Image Container:**
 
-  * Locate the `div` rendering `homeHeroVisual2` (Section 2).
-  * **Current Class:** `... shadow-sm grayscale hover:grayscale-0 transition-all ...`
-  * **Action:** Remove `grayscale` and `hover:grayscale-0`.
-  * **New Class:**
+  * Locate the floated image container for "Student ID".
+  * **Current Class:** Likely `w-1/2 md:w-[220px]`.
+  * **Change to:** `w-32 md:w-48` (Matches the size we set for the "Intro" section in Stage 36).
+  * **Full Class String:**
     ```jsx
-    className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
+    <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
+       <img 
+         src="/Pictures/your-image-name-5.jpg" 
+         alt="Student ID" 
+         className="w-full h-auto mb-1"
+       />
+       <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+         Hugo's student ID in 2023
+       </div>
+    </div>
     ```
 
-**4. Output:**
+**3. Output:**
 
-  * Generate the updated `HomePage` component code.
+  * Generate the updated `AboutPage` component.
 
 -----
 
-**Note to Agent:** Keep `pointer-events-none` intact. Only remove the color filters and adjust the top margin of the second section.
+**Note to Agent:** The `clear-both` class is the critical fix here. It acts as a "barrier" that ensures this section starts on a fresh horizontal line, below any images from the previous section.

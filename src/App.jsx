@@ -1018,13 +1018,13 @@ function AboutPage({ setCurrentPage, currentPage }) {
             {/* SECTION 1 */}
             <div id="design" className={styles.header}>
               <h2>Introduction to Design</h2>
-              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[edit]</span>
+              <span className="text-xs text-[#0645ad] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
             
-            {/* Image: Stacks on mobile (w-full), floats on desktop */}
-            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 w-full sm:w-[280px] sm:float-right sm:ml-4">
+            {/* Image: Floated right on all screens, smaller on mobile */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 float-right ml-3 w-24 md:w-48">
                <img src="/2015_05_20/IMG_1118.JPG" alt="Fifth Grade" className="w-full h-auto mb-1"/>
-               <div className="p-1 text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
+               <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
             </div>
             
             <p className="mb-4 font-normal">Around the fifth grade, I was borrowing my mum's laptop and I stumbled across a video of someone editing photos with <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> on <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className={styles.link}>YouTube</a>. At the time, you were able to do 30-day free trials, so I secretly downloaded it and kept making new emails to keep using it. I was really bad at watching tutorials, so I started learning by trying out every single tool and then just testing random things.</p>
@@ -1034,13 +1034,21 @@ function AboutPage({ setCurrentPage, currentPage }) {
             {/* SECTION 2 */}
             <div id="lockdown" className={styles.header}>
               <h2>High School and Covid Lockdown</h2>
-              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[edit]</span>
+              <span className="text-xs text-[#0645ad] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
-            
-            {/* Image Pair: Stacks vertical on mobile, horizontal on desktop */}
-            <div className="flex flex-col sm:flex-row gap-2 mb-4 border border-[#c8ccd1] bg-[#f8f9fa] p-1">
-               <img src="/2015_05_20/IMG_1119.JPG" alt="Hugo using Photoshop in 2016" className="w-full sm:w-1/2 h-auto object-cover"/>
-               <img src="/2015_05_20/IMG_1121.JPG" alt="Hugo during Covid Lockdown" className="w-full sm:w-1/2 h-auto object-cover"/>
+
+            {/* FLOATED IMAGE CONTAINER */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-1/2 md:w-[220px]">
+               {/* Image */}
+               <img 
+                 src="/2015_05_20/IMG_1121.JPG"
+                 alt="Hugo during Covid" 
+                 className="w-full h-auto mb-1"
+               />
+               {/* Caption */}
+               <div className="p-1 text-[11px] md:text-xs text-gray-600 leading-tight">
+                 Hugo during <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" target="_blank" rel="noopener noreferrer" className={styles.link}>Covid Lockdown</a>
+               </div>
             </div>
             
             <p className="mb-4 font-normal">Mid-Highschool, after COVID lockdown began, I started venturing into <a href="https://en.wikipedia.org/wiki/Screen_printing" target="_blank" rel="noopener noreferrer" className={styles.link}>screen-printing</a>. After many failures, I actually made a few graphic t-shirts. My first "order" was printing 50 tote bags for my sister's graduation year.</p>
@@ -1050,10 +1058,25 @@ function AboutPage({ setCurrentPage, currentPage }) {
             <p className="mb-4 font-normal">This was when I first started taking <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> seriously.</p>
 
             {/* SECTION 3 */}
-            <div id="australia" className={styles.header}>
+            <div id="australia" className={`${styles.header} clear-both pt-4`}>
               <h2>Moving to Australia</h2>
-              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[edit]</span>
+              <span className="text-xs text-[#0645ad] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
+
+            {/* FLOATED IMAGE CONTAINER */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
+               {/* Image */}
+               <img 
+                 src="/2015_05_20/IMG_1123.JPG"
+                 alt="Student ID" 
+                 className="w-full h-auto mb-1"
+               />
+               {/* Caption */}
+               <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                 Hugo's student ID in 2023
+               </div>
+            </div>
+
             <p className="mb-4 font-normal">I moved to <a href="https://en.wikipedia.org/wiki/Australia" target="_blank" rel="noopener noreferrer" className={styles.link}>Australia</a>, in 2022, to study <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a> and I kept running the brand (remotely) while attempting to balance it with studying. I noticed my love for design was fading and feeling like a chore. I would always rush and design quickly, because I wanted to get it out of the way.</p>
             
             <p className="mb-4 font-normal">Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className={styles.link}>music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
