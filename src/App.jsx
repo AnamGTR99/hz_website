@@ -7,8 +7,9 @@ const graphicsPortfolio = [
     id: 'graphic-1',
     title: 'COLLECTOR',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '7th June 2025',
     by: 'Hugo Zbor',
+    description: 'Trading Card Graphics with CSGO taste',
     thumbnailUrl: '/Pictures/work8.jpg',
     fullImageUrl: '/Pictures/work8.jpg',
     instagramLink: 'https://www.instagram.com/p/DKj-UbtvXRs/?img_index=1',
@@ -17,8 +18,9 @@ const graphicsPortfolio = [
     id: 'graphic-2',
     title: '99Clover magazine cover',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '9th September 2025',
     by: 'Hugo Zbor',
+    description: 'Japanese style magazine cover for 99Clover',
     thumbnailUrl: '/Pictures/Mock Medium.jpeg',
     fullImageUrl: '/Pictures/Mock Medium.jpeg',
     instagramLink: 'https://www.instagram.com/p/DOYcmlRDxsE/?img_index=1',
@@ -27,8 +29,9 @@ const graphicsPortfolio = [
     id: 'graphic-3',
     title: 'Let it rip',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '20th April 2025',
     by: 'Hugo Zbor',
+    description: 'Bey Blade personal project',
     thumbnailUrl: '/Pictures/work3.jpg',
     fullImageUrl: '/Pictures/work3.jpg',
     instagramLink: 'https://www.instagram.com/p/DIqaE6BvY-X/?img_index=1',
@@ -37,8 +40,9 @@ const graphicsPortfolio = [
     id: 'graphic-4',
     title: 'aformunseen',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '14th September 2025',
     by: 'Hugo Zbor',
+    description: 'Passport flyer done for @aformunseen',
     thumbnailUrl: '/Pictures/1.jpg',
     fullImageUrl: '/Pictures/1.jpg',
     instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
@@ -47,8 +51,9 @@ const graphicsPortfolio = [
     id: 'graphic-5',
     title: 'Hugo\'s Room',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '14th May 2025',
     by: 'Hugo Zbor',
+    description: '3 month long personal project for @brutalimagery',
     thumbnailUrl: '/Pictures/work12.jpg',
     fullImageUrl: '/Pictures/work12.jpg',
     instagramLink: 'https://www.instagram.com/p/DJoZGzYPjXQ/?img_index=1',
@@ -57,8 +62,9 @@ const graphicsPortfolio = [
     id: 'graphic-6',
     title: 'Nintendo Mii Album Cover',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '12th June 2025',
     by: 'Hugo Zbor',
+    description: 'Album cover variation using Nintendo MII',
     thumbnailUrl: '/Pictures/Full V3.jpg',
     fullImageUrl: '/Pictures/Full V3.jpg',
     instagramLink: 'https://www.instagram.com/p/DKzMRiaPc9E/?img_index=1',
@@ -67,8 +73,9 @@ const graphicsPortfolio = [
     id: 'graphic-7',
     title: '99Clover poster',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '21st June 2025',
     by: 'Hugo Zbor',
+    description: 'Graphic poster for 99Clover',
     thumbnailUrl: '/Pictures/work5.jpg',
     fullImageUrl: '/Pictures/work5.jpg',
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=1',
@@ -77,8 +84,9 @@ const graphicsPortfolio = [
     id: 'graphic-8',
     title: 'VOL #99 TIME CAPSULE',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '3rd July 2025',
     by: 'Hugo Zbor',
+    description: 'Part of the \'TIME CAPSULE\' Collection of 99Clover',
     thumbnailUrl: '/Pictures/work2.jpg',
     fullImageUrl: '/Pictures/work2.jpg',
     instagramLink: 'https://www.instagram.com/p/DLpJzJDys0D/?img_index=1',
@@ -87,8 +95,9 @@ const graphicsPortfolio = [
     id: 'graphic-9',
     title: 'Magazine cover for CASHMIIER Habits',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '7th July 2025',
     by: 'Hugo Zbor',
+    description: 'Japanese magainze flyer done for @CASHMIIERHABITS',
     thumbnailUrl: '/Pictures/final v2.jpg',
     fullImageUrl: '/Pictures/final v2.jpg',
     instagramLink: 'https://www.instagram.com/hugozbor/',
@@ -97,8 +106,9 @@ const graphicsPortfolio = [
     id: 'graphic-10',
     title: 'Hugo\'s DJ Set',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '11th July 2025',
     by: 'Hugo Zbor',
+    description: 'A graphic for a personal project',
     thumbnailUrl: '/Pictures/work11.jpg',
     fullImageUrl: '/Pictures/work11.jpg',
     instagramLink: 'https://www.instagram.com/p/DL7o7ADvyvs/?img_index=1',
@@ -107,8 +117,9 @@ const graphicsPortfolio = [
     id: 'graphic-11',
     title: 'BWR2025',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '4th June 2025',
     by: 'Hugo Zbor',
+    description: 'Cover graphic for @brutalimagery',
     thumbnailUrl: '/Pictures/work4.jpg',
     fullImageUrl: '/Pictures/work4.jpg',
     instagramLink: 'https://www.instagram.com/p/DKeiNEWP1cG/?img_index=1',
@@ -117,8 +128,9 @@ const graphicsPortfolio = [
     id: 'graphic-12',
     title: 'Wallet Flyer for aformunseen',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '14th September 2025',
     by: 'Hugo Zbor',
+    description: 'Comission for aformunseen',
     thumbnailUrl: '/Pictures/2.jpg',
     fullImageUrl: '/Pictures/2.jpg',
     instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
@@ -127,8 +139,9 @@ const graphicsPortfolio = [
     id: 'graphic-13',
     title: 'Character Select',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '21st June 2025',
     by: 'Hugo Zbor',
+    description: 'In-game clothing select graphic for 99Clover',
     thumbnailUrl: '/Pictures/work7.jpg',
     fullImageUrl: '/Pictures/work7.jpg',
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=5',
@@ -137,8 +150,9 @@ const graphicsPortfolio = [
     id: 'graphic-14',
     title: 'CD Album Cover',
     category: ['graphics', 'view-all'],
-    date: '2025',
+    date: '27th May 2025',
     by: 'Hugo Zbor',
+    description: 'CD Album Cover variation for comissions',
     thumbnailUrl: '/Pictures/work9.jpg',
     fullImageUrl: '/Pictures/work9.jpg',
     instagramLink: 'https://www.instagram.com/p/DHs6JdzvYLm/?img_index=1',
@@ -592,6 +606,12 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
           <div>
             <h2 className="text-2xl md:text-3xl font-normal text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
             
+            {/* Date */}
+            <p className="text-sm text-gray-500 mt-1 mb-4">{item.date}</p>
+            
+            {/* Description */}
+            <p className="text-base text-gray-800 leading-relaxed mb-6">{item.description}</p>
+            
             {/* Action Bar - Split Layout */}
             <div className="mt-8 flex items-center justify-between">
               {/* Left Item (Instagram Button) */}
@@ -717,7 +737,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           const isVideo = item.category.includes('videos')
           const isWebsite = item.category.includes('websites')
           const externalCardClasses = 'group block w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300'
-          const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 rounded-lg w-full break-inside-avoid mb-6'
+          const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-6 rounded-lg w-full break-inside-avoid mb-6'
 
           let imageStyles = "w-full rounded-lg shadow-sm block"
           if (item.category.includes('graphics')) {
@@ -746,6 +766,9 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide truncate">
                     {item.title}
                   </h3>
+                  <p className="text-xs text-gray-500 mt-1 font-medium">
+                    {item.date}
+                  </p>
                 </div>
               </a>
             )
@@ -777,6 +800,9 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
                     {item.title}
                   </h3>
+                  <p className="text-xs text-gray-500 mt-1 font-medium">
+                    {item.date}
+                  </p>
                 </div>
               </a>
             )
@@ -797,6 +823,9 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                 <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
                   {item.title}
                 </h3>
+                <p className="text-xs text-gray-500 mt-1 font-medium">
+                  {item.date}
+                </p>
               </div>
             </button>
           )
