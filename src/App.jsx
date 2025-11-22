@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe } from 'lucide-react'
+import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check } from 'lucide-react'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
@@ -14,44 +14,44 @@ const parseDateString = (dateStr) => {
 const graphicsPortfolio = [
   {
     id: 'graphic-1',
-    title: 'COLLECTOR',
+    title: '"COLLECTOR" GRAPHIC FOR 99CLOVER',
     category: ['graphics', 'view-all'],
     date: '07 JUN 2025',
     by: 'Hugo Zbor',
-    description: 'Trading Card Graphics with CSGO taste',
+    description: 'Personal project and graphic for @99CLOVER\'s "Time Capsule" Collection. All assets for the cards were made from scratch.',
     thumbnailUrl: '/Pictures/work8.jpg',
     fullImageUrl: '/Pictures/work8.jpg',
     instagramLink: 'https://www.instagram.com/p/DKj-UbtvXRs/?img_index=1',
   },
   {
     id: 'graphic-2',
-    title: '99Clover magazine cover',
+    title: 'MAGAZINE PAGE SPREAD FOR 99CLOVER',
     category: ['graphics', 'view-all'],
     date: '09 SEP 2025',
     by: 'Hugo Zbor',
-    description: 'Japanese style magazine cover for 99Clover',
+    description: 'Japanese fashion magazine product catalog work for @99CLOVER',
     thumbnailUrl: '/Pictures/Mock Medium.jpeg',
     fullImageUrl: '/Pictures/Mock Medium.jpeg',
     instagramLink: 'https://www.instagram.com/p/DOYcmlRDxsE/?img_index=1',
   },
   {
     id: 'graphic-3',
-    title: 'Let it rip',
+    title: '"LET IT RIP"',
     category: ['graphics', 'view-all'],
     date: '20 APR 2025',
     by: 'Hugo Zbor',
-    description: 'Bey Blade personal project',
+    description: 'Personal project, remaking classic beyblade packaging from scratch.',
     thumbnailUrl: '/Pictures/work3.jpg',
     fullImageUrl: '/Pictures/work3.jpg',
     instagramLink: 'https://www.instagram.com/p/DIqaE6BvY-X/?img_index=1',
   },
   {
     id: 'graphic-aformunseen-combined',
-    title: 'aformunseen Campaign',
+    title: 'PASSPORT FLYER FOR AFORMUNSEEN',
     category: ['graphics', 'view-all'],
     date: '14 SEP 2025',
     by: 'Hugo Zbor',
-    description: 'Full campaign visuals including passport flyer and wallet flyer for @aformunseen.',
+    description: 'Custom, ready to print (300 DPI) flyers for @AFORMUNSEEN \'s Amsterdam Fashion Week 2025 Booth',
     slides: [
       '/Pictures/1.jpg', // passport flyer
       '/Pictures/2.jpg'  // wallet flyer
@@ -61,99 +61,99 @@ const graphicsPortfolio = [
   },
   {
     id: 'graphic-5',
-    title: 'Hugo\'s Room',
+    title: '"INSIDER"',
     category: ['graphics', 'view-all'],
     date: '14 MAY 2025',
     by: 'Hugo Zbor',
-    description: '3 month long personal project for @brutalimagery',
+    description: '1 month personal side project. 264 layers in photoshop',
     thumbnailUrl: '/Pictures/work12.jpg',
     fullImageUrl: '/Pictures/work12.jpg',
     instagramLink: 'https://www.instagram.com/p/DJoZGzYPjXQ/?img_index=1',
   },
   {
     id: 'graphic-6',
-    title: 'Nintendo Mii Album Cover',
+    title: 'NINTENDO INSPIRED COVER ART',
     category: ['graphics', 'view-all'],
     date: '12 JUN 2025',
     by: 'Hugo Zbor',
-    description: 'Album cover variation using Nintendo MII',
+    description: 'Nintendo Mii Poster / Album Cover Concept',
     thumbnailUrl: '/Pictures/Full V3.jpg',
     fullImageUrl: '/Pictures/Full V3.jpg',
     instagramLink: 'https://www.instagram.com/p/DKzMRiaPc9E/?img_index=1',
   },
   {
     id: 'graphic-7',
-    title: '99Clover poster',
+    title: 'MAGAZINE COVER',
     category: ['graphics', 'view-all'],
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
-    description: 'Graphic poster for 99Clover',
+    description: 'Japanese Magazine inspired cover page for @99CLOVER Lookbook',
     thumbnailUrl: '/Pictures/work5.jpg',
     fullImageUrl: '/Pictures/work5.jpg',
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=1',
   },
   {
     id: 'graphic-8',
-    title: 'VOL #99 TIME CAPSULE',
+    title: 'POSTER FOR 99CLOVER',
     category: ['graphics', 'view-all'],
     date: '03 JUL 2025',
     by: 'Hugo Zbor',
-    description: 'Part of the \'TIME CAPSULE\' Collection of 99Clover',
+    description: 'Tekken Inspired graphic for @99CLOVER \'s "Time Capsule" Collection',
     thumbnailUrl: '/Pictures/work2.jpg',
     fullImageUrl: '/Pictures/work2.jpg',
     instagramLink: 'https://www.instagram.com/p/DLpJzJDys0D/?img_index=1',
   },
   {
     id: 'graphic-9',
-    title: 'Magazine cover for CASHMIIER Habits',
+    title: 'MAGAZINE PAGE SPREAD FOR CASHMIIER HABITS',
     category: ['graphics', 'view-all'],
     date: '07 JUL 2025',
     by: 'Hugo Zbor',
-    description: 'Japanese magainze flyer done for @CASHMIIERHABITS',
+    description: 'Japanese fashion magazine product catalog work for @CASHMIIERHABITS',
     thumbnailUrl: '/Pictures/final v2.jpg',
     fullImageUrl: '/Pictures/final v2.jpg',
     instagramLink: 'https://www.instagram.com/hugozbor/',
   },
   {
     id: 'graphic-10',
-    title: 'Hugo\'s DJ Set',
+    title: '"HARDWARE"',
     category: ['graphics', 'view-all'],
     date: '11 JUL 2025',
     by: 'Hugo Zbor',
-    description: 'A graphic for a personal project',
+    description: <>Graphic for my personal project <a href="https://www.instagram.com/brutalimagery" target="_blank" rel="noopener noreferrer" className="font-bold hover:underline">@brutalimagery</a></>,
     thumbnailUrl: '/Pictures/work11.jpg',
     fullImageUrl: '/Pictures/work11.jpg',
     instagramLink: 'https://www.instagram.com/p/DL7o7ADvyvs/?img_index=1',
   },
   {
     id: 'graphic-11',
-    title: 'BWR2025',
+    title: '"BRUTAL WORLD RECORDS"',
     category: ['graphics', 'view-all'],
     date: '04 JUN 2025',
     by: 'Hugo Zbor',
-    description: 'Cover graphic for @brutalimagery',
+    description: 'Remake of the iconic world record book in the style of @brutalimagery',
     thumbnailUrl: '/Pictures/work4.jpg',
     fullImageUrl: '/Pictures/work4.jpg',
     instagramLink: 'https://www.instagram.com/p/DKeiNEWP1cG/?img_index=1',
   },
   {
     id: 'graphic-13',
-    title: 'Character Select',
+    title: 'GRAPHIC FOR 99CLOVER',
     category: ['graphics', 'view-all'],
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
-    description: 'In-game clothing select graphic for 99Clover',
+    description: 'In-game clothing selection screen for @99CLOVER',
     thumbnailUrl: '/Pictures/work7.jpg',
     fullImageUrl: '/Pictures/work7.jpg',
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=5',
   },
   {
     id: 'graphic-14',
-    title: 'CD Album Cover',
+    title: 'VIDEO GAME CD COVER ART CONCEPT',
     category: ['graphics', 'view-all'],
     date: '27 MAY 2025',
     by: 'Hugo Zbor',
-    description: 'CD Album Cover variation for comissions',
+    description: 'Inspired by PS2 CD Covers',
     thumbnailUrl: '/Pictures/work9.jpg',
     fullImageUrl: '/Pictures/work9.jpg',
     instagramLink: 'https://www.instagram.com/p/DHs6JdzvYLm/?img_index=1',
@@ -738,6 +738,15 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
 // WorkOverlay Component (Modal)
 function WorkOverlay({ item, onClose, setCurrentPage }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [isCopied, setIsCopied] = useState(false)
+
+  const handleCopyUrl = (url) => {
+    if (!url) return;
+    navigator.clipboard.writeText(url).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
 
   return (
     <div 
@@ -826,7 +835,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
             <p className="text-sm text-gray-500 mt-1 mb-4">{item.date}</p>
             
             {/* Description */}
-            <p className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</p>
+            <div className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</div>
             
             {/* Action Bar - Responsive Layout */}
             <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:justify-between mt-6">
@@ -840,34 +849,54 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                     href={item.instagramLink} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-100 text-gray-600 rounded-full hover:bg-pink-100 hover:text-pink-600 transition-colors"
-                    title="View on Instagram"
+                    className="flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors w-full md:w-auto"
                   >
-                    <Instagram className="size-8" />
+                    <Instagram className="size-5" />
+                    <span className="font-medium">View on Instagram</span>
                   </a>
                 )}
 
-                {/* B. Website Button (NEW) */}
+                {/* B. Website Button with Copy */}
                 {item.websiteUrl && (
-                  <a 
-                    href={item.websiteUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors w-full md:w-auto justify-center"
-                  >
-                    <Globe className="size-5" />
-                    <span className="font-medium">View Website</span>
-                  </a>
+                  <div className="flex gap-2 w-full md:w-auto">
+                    {/* View Website Button */}
+                    <a 
+                      href={item.websiteUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex-grow flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                    >
+                      <Globe className="size-5" />
+                      <span className="font-medium">View Website</span>
+                    </a>
+
+                    {/* Copy Button (Square) */}
+                    <button
+                      onClick={() => handleCopyUrl(item.websiteUrl)}
+                      className="flex-none w-12 md:w-10 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center justify-center"
+                      title="Copy Link"
+                    >
+                      {isCopied ? (
+                        <Check className="size-5 text-green-600" />
+                      ) : (
+                        <img 
+                          src="/copy_favicon.jpeg" 
+                          alt="Copy" 
+                          className="w-5 h-5 object-contain"
+                        />
+                      )}
+                    </button>
+                  </div>
                 )}
               </div>
 
-              {/* RIGHT: CTA (Keep Existing) */}
+              {/* RIGHT: CTA */}
               <button 
                 onClick={() => {
                   onClose(); 
                   setCurrentPage('contact'); 
                 }}
-                className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors text-lg w-full md:w-auto"
+                className="px-6 py-3 md:py-2 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors w-full md:w-auto"
               >
                 Work With Hugo
               </button>
@@ -1013,7 +1042,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           onClick={() => setCurrentPage('my-work', 'graphics')}
           className={
             category === 'graphics'
-              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              ? 'font-bold text-sm md:text-lg text-[#c13333]'
               : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
@@ -1024,7 +1053,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           onClick={() => setCurrentPage('my-work', 'videos')}
           className={
             category === 'videos'
-              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              ? 'font-bold text-sm md:text-lg text-[#c13333]'
               : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
@@ -1035,7 +1064,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           onClick={() => setCurrentPage('my-work', 'websites')}
           className={
             category === 'websites'
-              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              ? 'font-bold text-sm md:text-lg text-[#c13333]'
               : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
@@ -1046,7 +1075,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           onClick={() => setCurrentPage('my-work', 'view-all')}
           className={
             category === 'view-all'
-              ? 'font-medium text-sm md:text-lg text-[#c13333]'
+              ? 'font-bold text-sm md:text-lg text-[#c13333]'
               : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
           }
           style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
