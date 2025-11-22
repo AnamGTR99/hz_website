@@ -1,67 +1,51 @@
-This is a quick addition. Since the `lucide-react` library doesn't always include specific brand logos like TikTok in every version, we will create a small custom Icon component using the official TikTok SVG path to ensure it renders perfectly.
+This is a clear design update. We are shifting the Desktop Overlay layout to match the "Stacked" Mobile layout (so buttons take up two rows instead of squeezing onto one), and we are updating the specific color in the About section.
 
-Here is the detailed prompt for **Stage 73**.
+Here is the detailed prompt for **Stage 74**.
 
------
+***
 
-### **Agent Prompt: Stage 73 - Add TikTok Icon to Footer**
+### **Agent Prompt: Stage 74 - Update Overlay Layout & About Page Color**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 73 Goal:** Add a clickable **TikTok** icon to the global Footer, alongside the existing Instagram and Email icons.
-**Link:** `https://www.tiktok.com/@hugozbor`
+**Stage 74 Goal:**
+1.  **About Page:** Update the background color of the Infobox Header ("Hugo Zbor") to a specific red tone.
+2.  **Overlay UI:** Change the button layout on **Desktop** to match the **Mobile** layout.
+    * **Current Desktop:** Side-by-side (Row).
+    * **New Desktop:** Stacked (Column). Row 1: [External Link] + [Copy]. Row 2: [Work With Hugo].
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
------
+---
 
 ### **Detailed Implementation Requirements:**
 
-**1. Create `TikTokIcon` Component:**
+**1. Update About Page Color:**
+* Locate the `AboutPage` component.
+* Find the **Infobox** container (Right Column).
+* Look for the header div: `div className="bg-[#b0c4de] ..."`
+* **Change Background:** Replace `bg-[#b0c4de]` with **`bg-[#ddb3b3]`**.
 
-  * Define this small helper component at the top of `App.jsx` (or with other icons) to ensure the logo renders correctly without needing external dependencies.
-    ```jsx
-    const TikTokIcon = ({ className }) => (
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        className={className}
-      >
-        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-      </svg>
-    );
-    ```
+**2. Refactor `WorkOverlay` Layout (Force Stacked):**
+* Locate the "Action Bar" container at the bottom of the `WorkOverlay` component.
+* **Current Classes:** `flex flex-col md:flex-row items-stretch md:items-center gap-3 md:justify-between mt-6`
+* **Change to:** `flex flex-col gap-3 mt-6`
+    * *Explanation:* We are removing `md:flex-row` and `md:justify-between`. This forces the container to be a vertical column on **ALL** screen sizes.
 
-**2. Update `Footer` Component:**
+**3. Verify Button Widths:**
+* **Left Group (Instagram/Web + Copy):**
+    * Ensure the wrapping `div` has `w-full`.
+    * Ensure the main button (Instagram/Web) has `flex-grow` or `w-full` so it stretches to fill the space next to the copy button.
+* **Right Group (Work With Hugo):**
+    * Ensure the CTA button has `w-full`.
+    * Remove any `md:w-auto` classes that restricted its width on desktop. It should now be full width on desktop too.
 
-  * Locate the `Footer` component.
-  * Find the `div` containing the social icons (`Instagram`, `Mail`).
-  * **Insert the TikTok Link:** Place it between Instagram and Email (or after Instagram).
-    ```jsx
-    {/* TikTok Link */}
-    <a 
-      href="https://www.tiktok.com/@hugozbor" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="text-gray-500 hover:text-gray-900 transition-colors"
-      aria-label="Visit Hugo Zbor on TikTok"
-    >
-      <TikTokIcon className="size-6" />
-    </a>
-    ```
+**4. Visual Result:**
+* **Row 1:** [ View on Instagram/Website (Long) ] [ Copy Icon (Square) ]
+* **Row 2:** [ Work With Hugo (Full Width Red Bar) ]
 
-**3. Spacing Check:**
+**5. Output:**
+* Generate the updated `AboutPage` (color change) and `WorkOverlay` (layout change) components.
 
-  * Ensure the parent container (`flex flex-row space-x-6` or similar) handles the spacing automatically so the icons are evenly distributed.
+---
 
-**4. Output:**
-
-  * Generate the updated `Footer` component code including the new custom icon definition.
-
------
-
-**Note to Agent:** Use the SVG provided to guarantee the icon matches the visual weight of the existing Lucide icons.
+**Note to Agent:** The key is removing the `md:` responsive prefixes that were forcing the row layout on desktop. We want the "Mobile Stack" everywhere.

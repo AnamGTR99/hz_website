@@ -855,15 +855,15 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
             {/* Description */}
             <div className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</div>
             
-            {/* Action Bar - Responsive Layout */}
-            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:justify-between mt-6">
+            {/* Action Bar - Stacked Layout */}
+            <div className="flex flex-col gap-3 mt-6">
               
               {/* LEFT: External Link (Instagram OR Website) */}
               <div className="flex gap-4">
                 
                 {/* A. Instagram Button with Share (for Graphics/Videos) */}
                 {item.instagramLink && (
-                  <div className="flex gap-2 w-full md:w-auto">
+                  <div className="flex gap-2 w-full">
                     <a 
                       href={item.instagramLink} 
                       target="_blank" 
@@ -897,7 +897,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
 
                 {/* B. Website Button with Copy */}
                 {item.websiteUrl && (
-                  <div className="flex gap-2 w-full md:w-auto">
+                  <div className="flex gap-2 w-full">
                     {/* View Website Button */}
                     <a 
                       href={item.websiteUrl} 
@@ -954,7 +954,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                   onClose(); 
                   setCurrentPage('contact'); 
                 }}
-                className="px-6 py-3 md:py-2 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors w-full md:w-auto"
+                className="px-6 py-3 md:py-2 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors w-full"
               >
                 Work With Hugo
               </button>
@@ -1251,7 +1251,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
           {/* ORDER-1: Shows first on mobile. ORDER-2: Shows second (right) on desktop */}
           <div className="w-full md:w-72 shrink-0 order-1 md:order-2 mb-6 md:mb-0">
             <div className="border border-[#a2a9b1] bg-[#f8f9fa] p-1 text-sm shadow-sm">
-              <div className="bg-[#b0c4de] p-2 text-center font-bold font-serif text-lg mb-1">Hugo Zbor</div>
+              <div className="bg-[#ddb3b3] p-2 text-center font-bold font-serif text-lg mb-1">Hugo Zbor</div>
               
               <img src="/2015_05_20/IMG_1120.JPG" alt="Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
               
