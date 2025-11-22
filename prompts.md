@@ -1,17 +1,14 @@
-This is a clear design update. We are shifting the Desktop Overlay layout to match the "Stacked" Mobile layout (so buttons take up two rows instead of squeezing onto one), and we are updating the specific color in the About section.
+This is a very quick text update. Since the Graphics and Videos share the same "Instagram Button" logic in the overlay, changing the text in one place will instantly update it for both categories.
 
-Here is the detailed prompt for **Stage 74**.
+Here is the detailed prompt for **Stage 75**.
 
 ***
 
-### **Agent Prompt: Stage 74 - Update Overlay Layout & About Page Color**
+### **Agent Prompt: Stage 75 - Update Overlay Button Text**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 74 Goal:**
-1.  **About Page:** Update the background color of the Infobox Header ("Hugo Zbor") to a specific red tone.
-2.  **Overlay UI:** Change the button layout on **Desktop** to match the **Mobile** layout.
-    * **Current Desktop:** Side-by-side (Row).
-    * **New Desktop:** Stacked (Column). Row 1: [External Link] + [Copy]. Row 2: [Work With Hugo].
+**Stage 75 Goal:** Update the text label on the external link button for Graphics and Videos.
+**Change:** Replace the text **"View on Instagram"** with **"View Post"**.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -19,33 +16,18 @@ Here is the detailed prompt for **Stage 74**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update About Page Color:**
-* Locate the `AboutPage` component.
-* Find the **Infobox** container (Right Column).
-* Look for the header div: `div className="bg-[#b0c4de] ..."`
-* **Change Background:** Replace `bg-[#b0c4de]` with **`bg-[#ddb3b3]`**.
+**1. Locate `WorkOverlay` Component:**
+* Find the "Action Bar" section at the bottom of the overlay.
 
-**2. Refactor `WorkOverlay` Layout (Force Stacked):**
-* Locate the "Action Bar" container at the bottom of the `WorkOverlay` component.
-* **Current Classes:** `flex flex-col md:flex-row items-stretch md:items-center gap-3 md:justify-between mt-6`
-* **Change to:** `flex flex-col gap-3 mt-6`
-    * *Explanation:* We are removing `md:flex-row` and `md:justify-between`. This forces the container to be a vertical column on **ALL** screen sizes.
+**2. Update Button Label:**
+* Look for the conditional block checking for `item.instagramLink`.
+* Find the `<span>` element containing the button text.
+* **Current:** `<span>View on Instagram</span>`
+* **Change to:** `<span>View Post</span>`
 
-**3. Verify Button Widths:**
-* **Left Group (Instagram/Web + Copy):**
-    * Ensure the wrapping `div` has `w-full`.
-    * Ensure the main button (Instagram/Web) has `flex-grow` or `w-full` so it stretches to fill the space next to the copy button.
-* **Right Group (Work With Hugo):**
-    * Ensure the CTA button has `w-full`.
-    * Remove any `md:w-auto` classes that restricted its width on desktop. It should now be full width on desktop too.
-
-**4. Visual Result:**
-* **Row 1:** [ View on Instagram/Website (Long) ] [ Copy Icon (Square) ]
-* **Row 2:** [ Work With Hugo (Full Width Red Bar) ]
-
-**5. Output:**
-* Generate the updated `AboutPage` (color change) and `WorkOverlay` (layout change) components.
+**3. Output:**
+* Generate the updated `WorkOverlay` component code.
 
 ---
 
-**Note to Agent:** The key is removing the `md:` responsive prefixes that were forcing the row layout on desktop. We want the "Mobile Stack" everywhere.
+**Note to Agent:** Do **not** change the "View Website" button text. This change applies only to the Instagram link button.

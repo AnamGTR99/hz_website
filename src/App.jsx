@@ -871,7 +871,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                       className="flex-grow flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
                     >
                       <Instagram className="size-5" />
-                      <span className="font-medium">View on Instagram</span>
+                      <span className="font-medium">View Post</span>
                     </a>
 
                     {/* Share Button (Copy Deep Link) - Only for Graphics/Videos */}
