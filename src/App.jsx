@@ -297,6 +297,22 @@ const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df11
 // IMPORTANT: Defined AFTER all portfolio arrays to ensure up-to-date data
 const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio]
 
+// TikTokIcon component
+const TikTokIcon = ({ className }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
 // GridCarousel component for items with multiple images
 function GridCarousel({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -1906,6 +1922,17 @@ function Footer({ setCurrentPage }) {
             className="text-gray-500 hover:text-gray-900 transition-colors"
           >
             <Instagram className="size-6" />
+          </a>
+          
+          {/* TikTok Link */}
+          <a 
+            href="https://www.tiktok.com/@hugozbor" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-500 hover:text-gray-900 transition-colors"
+            aria-label="Visit Hugo Zbor on TikTok"
+          >
+            <TikTokIcon className="size-6" />
           </a>
           
           {/* Email Link */}
