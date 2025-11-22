@@ -1,7 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu } from 'lucide-react'
+import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe } from 'lucide-react'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+
+// Date parsing helper function
+const parseDateString = (dateStr) => {
+  if (!dateStr) return new Date(0); // Fallback for missing dates
+  
+  // 1. Remove ordinal suffixes (st, nd, rd, th) from the day
+  // Example: "14th September 2025" -> "14 September 2025"
+  const cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/, '$1');
+  
+  // 2. Convert to standard Date object
+  return new Date(cleanDate);
+};
 
 // Portfolio Data Structure
 const graphicsPortfolio = [
@@ -39,14 +51,17 @@ const graphicsPortfolio = [
     instagramLink: 'https://www.instagram.com/p/DIqaE6BvY-X/?img_index=1',
   },
   {
-    id: 'graphic-4',
-    title: 'aformunseen',
+    id: 'graphic-aformunseen-combined',
+    title: 'aformunseen Campaign',
     category: ['graphics', 'view-all'],
     date: '14th September 2025',
     by: 'Hugo Zbor',
-    description: 'Passport flyer done for @aformunseen',
+    description: 'Full campaign visuals including passport flyer and wallet flyer for @aformunseen.',
+    slides: [
+      '/Pictures/1.jpg', // passport flyer
+      '/Pictures/2.jpg'  // wallet flyer
+    ],
     thumbnailUrl: '/Pictures/1.jpg',
-    fullImageUrl: '/Pictures/1.jpg',
     instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
   },
   {
@@ -127,17 +142,6 @@ const graphicsPortfolio = [
     instagramLink: 'https://www.instagram.com/p/DKeiNEWP1cG/?img_index=1',
   },
   {
-    id: 'graphic-12',
-    title: 'Wallet Flyer for aformunseen',
-    category: ['graphics', 'view-all'],
-    date: '14th September 2025',
-    by: 'Hugo Zbor',
-    description: 'Comission for aformunseen',
-    thumbnailUrl: '/Pictures/2.jpg',
-    fullImageUrl: '/Pictures/2.jpg',
-    instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
-  },
-  {
     id: 'graphic-13',
     title: 'Character Select',
     category: ['graphics', 'view-all'],
@@ -161,73 +165,82 @@ const graphicsPortfolio = [
   },
 ]
 
+// Sort Graphics: Newest (b) to Oldest (a)
+graphicsPortfolio.sort((a, b) => {
+  return parseDateString(b.date) - parseDateString(a.date);
+});
+
 // Video Portfolio Data Structure
 const videoPortfolio = [
   {
-    id: 'video-1',
-    title: 'Character Customisation',
-    category: ['videos', 'view-all'],
+    id: 'video-brainwash',
+    title: 'BRAINWASH',
+    date: '18th November 2025',
     description: '',
-    thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/7uS8SP67Exg',
-  },
-  {
-    id: 'video-2',
-    title: 'Brainwash',
     category: ['videos', 'view-all'],
-    description: '',
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/trcAZwylfcQ',
+    videoEmbedUrl: 'https://www.youtube.com/embed/trcAZwylfcQ?modestbranding=1&rel=0&iv_load_policy=3&color=white',
   },
   {
-    id: 'video-3',
-    title: 'Hugozbor for Omnee World',
-    category: ['videos', 'view-all'],
+    id: 'video-character',
+    title: 'CHARACTER CUSTOMISATION',
+    date: '17th August 2025',
     description: '',
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/7uS8SP67Exg?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+  },
+  {
+    id: 'video-omnee',
+    title: 'HUGOZBOR for OMNEE WORLD',
+    date: '24th October 2025',
+    description: '',
+    category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/eTzvPmUzJ6E',
+    videoEmbedUrl: 'https://www.youtube.com/embed/eTzvPmUzJ6E?modestbranding=1&rel=0&iv_load_policy=3&color=white',
   },
   {
-    id: 'video-4',
-    title: 'Hugozbor for LOVENANGELS',
-    category: ['videos', 'view-all'],
+    id: 'video-lovenangels',
+    title: 'HUGOZBOR for LOVENANGELS',
+    date: '25th October 2025',
     description: '',
+    category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/Qziv5xrXTgc',
+    videoEmbedUrl: 'https://www.youtube.com/embed/Qziv5xrXTgc?modestbranding=1&rel=0&iv_load_policy=3&color=white',
   },
   {
-    id: 'video-5',
-    title: 'Hugozbor for LOVENANGELS',
-    category: ['videos', 'view-all'],
-    description: '',
-    thumbnailUrl: 'https://img.youtube.com/vi/FB_9wrmHPvE/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/FB_9wrmHPvE',
-  },
-  {
-    id: 'video-6',
+    id: 'video-99clover',
     title: 'Hugozbor for 99Clover U.S.S Promo',
-    category: ['videos', 'view-all'],
+    date: '4th November 2025',
     description: '',
+    category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/GLyH_Vveiik',
+    videoEmbedUrl: 'https://www.youtube.com/embed/GLyH_Vveiik?modestbranding=1&rel=0&iv_load_policy=3&color=white',
   },
   {
-    id: 'video-7',
-    title: 'Runway Visuals',
-    category: ['videos', 'view-all'],
+    id: 'video-ds',
+    title: 'DS Intro',
+    date: '3rd December 2024',
     description: '',
-    thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/yeudVooMwSM',
-  },
-  {
-    id: 'video-8',
-    title: 'DS Intro by Hugozbor',
     category: ['videos', 'view-all'],
-    description: '',
     thumbnailUrl: 'https://img.youtube.com/vi/dJgwioZ2I4E/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/dJgwioZ2I4E',
+    videoEmbedUrl: 'https://www.youtube.com/embed/dJgwioZ2I4E?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+  },
+  {
+    id: 'video-runway',
+    title: 'RUNWAY Visuals',
+    date: '12th September 2025',
+    description: '',
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/yeudVooMwSM?modestbranding=1&rel=0&iv_load_policy=3&color=white',
   },
 ]
+
+// Sort Videos: Newest (b) to Oldest (a)
+videoPortfolio.sort((a, b) => {
+  return parseDateString(b.date) - parseDateString(a.date);
+});
 
 // Website Portfolio Data Structure
 const websitePortfolio = [
@@ -239,6 +252,7 @@ const websitePortfolio = [
     date: '2025',
     thumbnailUrl: 'https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif',
     websiteUrl: 'https://ryansimarchive.com',
+    embedHtml: `<img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Ryan Sim Archive" style="width:100%; height:auto;" />`,
   },
   {
     id: 'web-2',
@@ -248,6 +262,7 @@ const websitePortfolio = [
     date: '2025',
     thumbnailUrl: 'https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif',
     websiteUrl: 'https://hz-archive.vercel.app/',
+    embedHtml: `<img src="https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif" alt="HZ Archive" style="width:100%; height:auto;" />`,
   },
 ]
 
@@ -264,18 +279,54 @@ const shuffleArray = (array) => {
 
 // --- Asset Variables for Commissions Page ---
 // 1. IMAGE PATHS
-const visualArtImg = "/assets_comission_page/visual_art.png"
+const visualArtImg = "/Pictures/work2.jpg"
 const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
+const homeHeroVisualMiddle = `<img src="/last_home_page.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" />`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
 
 // 3. WEB DESIGN HTML (from web_design.txt)
 const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df117d"><img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Image from Gyazo" width="600"/></a><a href="https://gyazo.com/e660702e8f799446cf3f52cbd75e7835"><img src="https://i.gyazo.com/e660702e8f799446cf3f52cbd75e7835.gif" alt="Image from Gyazo" width="600"/></a>`
 
 // --- End Asset Variables ---
+
+// GridCarousel component for items with multiple images
+function GridCarousel({ images }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }, 3000) // Auto-switch every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <img 
+        src={images[currentIndex]} 
+        alt="Carousel Slide"
+        className="w-full h-auto object-contain rounded-lg select-none"
+      />
+      {images.length > 1 && (
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+          {images.map((_, index) => (
+            <div
+              key={index}
+              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                index === currentIndex ? 'bg-white' : 'bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 // PageHeader component for mobile back arrow
 function PageHeader({ title, isActive = false }) {
@@ -292,7 +343,8 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
   const isMyWorkActive = currentPage === 'my-work'
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-100 w-full transition-all duration-300">
+      {/* Top Bar (Row 1) */}
       <div className="max-w-4xl mx-auto px-4 py-3 md:px-0 flex flex-row md:flex-col items-center justify-between md:justify-center md:pt-8 md:pb-4">
         {/* Mobile Hamburger Menu Button */}
         <button
@@ -319,13 +371,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
         {/* Spacer for mobile to center logo (invisible on desktop) */}
         <div className="md:hidden w-6"></div>
 
-        {/* Navigation - Mobile menu (toggled) or Desktop (always visible) */}
-        <nav className={`${isMobileMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-8 mt-4 md:mt-4 absolute md:relative top-full md:top-auto left-0 md:left-auto w-full md:w-auto bg-white md:bg-transparent border-t md:border-0 border-gray-200 md:border-0 py-4 md:py-0 px-4 md:px-0 shadow-md md:shadow-none`}>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex flex-row items-center space-x-8 mt-4">
           <button
-            onClick={() => {
-              setCurrentPage('home')
-              setIsMobileMenuOpen(false)
-            }}
+            onClick={() => setCurrentPage('home')}
             className={
               currentPage === 'home'
                 ? 'font-bold text-lg text-[#c13333]'
@@ -340,10 +389,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             onMouseLeave={() => setShowMyWorkDropdown(false)}
           >
             <button
-              onClick={() => {
-                setCurrentPage('my-work', 'graphics')
-                setIsMobileMenuOpen(false)
-              }}
+              onClick={() => setCurrentPage('my-work', 'graphics')}
               className={
                 isMyWorkActive
                   ? 'font-bold text-lg text-[#c13333]'
@@ -359,7 +405,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'graphics')
                     setShowMyWorkDropdown(false)
-                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'graphics'
@@ -373,7 +418,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'videos')
                     setShowMyWorkDropdown(false)
-                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'videos'
@@ -387,7 +431,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'websites')
                     setShowMyWorkDropdown(false)
-                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'websites'
@@ -401,7 +444,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                   onClick={() => {
                     setCurrentPage('my-work', 'view-all')
                     setShowMyWorkDropdown(false)
-                    setIsMobileMenuOpen(false)
                   }}
                   className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
                     currentPage === 'my-work' && currentCategory === 'view-all'
@@ -414,6 +456,68 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
               </div>
             )}
           </div>
+          <button
+            onClick={() => setCurrentPage('commissions')}
+            className={
+              currentPage === 'commissions'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            COMMISSIONS
+          </button>
+          <button
+            onClick={() => setCurrentPage('about')}
+            className={
+              currentPage === 'about'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            ABOUT
+          </button>
+          <button
+            onClick={() => setCurrentPage('contact')}
+            className={
+              currentPage === 'contact'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            CONTACT
+          </button>
+        </nav>
+      </div>
+
+      {/* Mobile Menu (Row 2 - Sticky Expandable) */}
+      {isMobileMenuOpen && (
+        <div className="w-full bg-white border-t border-gray-100 flex flex-col items-center py-4 space-y-4 shadow-lg md:hidden">
+          <button
+            onClick={() => {
+              setCurrentPage('home')
+              setIsMobileMenuOpen(false)
+            }}
+            className={
+              currentPage === 'home'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            HOME
+          </button>
+          <button
+            onClick={() => {
+              setCurrentPage('my-work', 'graphics')
+              setIsMobileMenuOpen(false)
+            }}
+            className={
+              isMyWorkActive
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            MY WORK
+          </button>
           <button
             onClick={() => {
               setCurrentPage('commissions')
@@ -453,8 +557,8 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
           >
             CONTACT
           </button>
-        </nav>
-      </div>
+        </div>
+      )}
     </header>
   )
 }
@@ -466,90 +570,112 @@ function HomePage({ setCurrentPage, currentPage }) {
       <PageHeader title="HOME" showBack={false} isActive={currentPage === 'home'} />
       
       <div className="max-w-6xl mx-auto px-4 md:px-8 mt-6 md:mt-20 mb-20">
-      {/* 1. MAIN HEADLINE (Top) */}
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16">
-        Creating Next Level <br className="hidden md:block" />
-        Digital Products
-      </h1>
-
-      {/* 2. SPLIT CONTENT SECTION (Below) */}
-      <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
-        {/* LEFT COL: The Graphic (Video/GIF) */}
-        <div className="w-full md:w-1/2 mb-8 md:mb-0">
-          <div
-            className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
-            dangerouslySetInnerHTML={{ __html: homeHeroVisual }}
-          />
-        </div>
-
-        {/* RIGHT COL: Text Content */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4">
-          {/* Bold Side Title */}
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
-            Hugozbor for <br />
-            Omnee World
-          </h2>
-
-          {/* Description Paragraph */}
-          <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
-            Hugo Zbor is a multidisciplinary digital artist combining creativity with data-driven strategies to craft unforgettable online experiences. His team helps you elevate your brand and achieve your digital goals.
-          </p>
-
-          {/* "See More" Link */}
-          <button
-            onClick={() => setCurrentPage('my-work', 'view-all')}
-            className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
-          >
-            See More
-          </button>
-        </div>
-      </div>
-
-      {/* ================= SECTION 2: LOVENANGELS ================= */}
-      <div className="mt-16 md:mt-24">
         
-        {/* 1. SECTION HEADLINE (Aligned Right) */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16 text-right">
-          A Collective of <br className="hidden md:block" />
-          Visionaries
+        {/* ================= SECTION 1: OMNEE WORLD (Graphic Left, Text Right) ================= */}
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16">
+          Creating Next Level <br className="hidden md:block" />
+          Digital Products
         </h1>
 
-        {/* 2. SPLIT CONTENT (Text Left, Graphic Right) */}
         <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
-          
-          {/* LEFT COL: Text Content (Order 2 on Mobile, Order 1 on Desktop) */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-1">
-            
-            {/* Bold Side Title */}
+          {/* GRAPHIC COL (Left on Desktop, Top on Mobile) */}
+          <div className="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-1">
+            <div
+              className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
+              dangerouslySetInnerHTML={{ __html: homeHeroVisual }}
+            />
+          </div>
+
+          {/* TEXT COL (Right on Desktop, Bottom on Mobile) */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-2">
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
-              Hugozbor For <br />
-              Lovenangels
+              Hugozbor for <br />
+              Omnee World
             </h2>
-
-            {/* Description */}
             <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
-              Hugo Zbor also leads a collective of multi-disciplinary creators, ranging from 3D visual experts to high-quality rendering specialists. We combine diverse talents to build comprehensive, high-fidelity digital worlds.
+              Hugo Zbor is an artist combining creativity with strategy to craft unforgettable online experiences. He helps elevate brands and define their digital presence.
             </p>
-
-            {/* "See More" Link */}
-            <button 
-              onClick={() => setCurrentPage('my-work')}
+            <button
+              onClick={() => setCurrentPage('my-work', 'view-all')}
               className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
             >
               See More
             </button>
           </div>
-
-          {/* RIGHT COL: The Graphic (Order 1 on Mobile, Order 2 on Desktop) */}
-          <div className="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-2">
-            <div 
-              className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
-              dangerouslySetInnerHTML={{ __html: homeHeroVisual2 }}
-            />
-          </div>
-
         </div>
-      </div>
+
+        {/* ================= SECTION 2: RAW FOOTAGE (Text Left, Graphic Right) ================= */}
+        <div className="mt-12 md:mt-20">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16 text-center">
+            Raw Footage To <br className="hidden md:block" />
+            Real-Life
+          </h1>
+
+          <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
+            
+            {/* TEXT COL (Left on Desktop, Bottom on Mobile) */}
+            <div className="w-full md:w-5/12 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-1">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
+                Hugozbor For <br />
+                Matte Black Dept
+              </h2>
+              <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
+                We pride ourselves on flexibility. Whether you have rough raw footage or just a fleeting idea, we can take it and transform it into your exact vision. No constraints, just creative problem solving to get the look you need.
+              </p>
+              <button
+                onClick={() => setCurrentPage('my-work')}
+                className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
+              >
+                See More
+              </button>
+            </div>
+
+            {/* GRAPHIC COL (Right on Desktop, Top on Mobile) */}
+            <div className="w-full md:w-7/12 mb-8 md:mb-0 order-1 md:order-2">
+              <div 
+                className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
+                dangerouslySetInnerHTML={{ __html: homeHeroVisualMiddle }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ================= SECTION 3: LOVENANGELS (Graphic Left, Text Right) ================= */}
+        <div className="mt-12 md:mt-20">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16 text-right">
+            A Collective of <br className="hidden md:block" />
+            Visionaries
+          </h1>
+
+          <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
+            
+            {/* GRAPHIC COL (Left on Desktop, Top on Mobile) */}
+            <div className="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-1">
+              <div 
+                className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
+                dangerouslySetInnerHTML={{ __html: homeHeroVisual2 }}
+              />
+            </div>
+
+            {/* TEXT COL (Right on Desktop, Bottom on Mobile) */}
+            <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-2">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
+                Hugozbor For <br />
+                Lovenangels
+              </h2>
+              <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
+                Hugo works with a network of diverse artists, ranging from 3D visual experts to high-quality rendering specialists. Together, they combine talents to build comprehensive, high-fidelity digital worlds.
+              </p>
+              <button 
+                onClick={() => setCurrentPage('my-work')}
+                className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
+              >
+                See More
+              </button>
+            </div>
+
+          </div>
+        </div>
 
       </div>
     </>
@@ -609,6 +735,8 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
 
 // WorkOverlay Component (Modal)
 function WorkOverlay({ item, onClose, setCurrentPage }) {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+
   return (
     <div 
       className="fixed inset-0 bg-white/30 z-50 flex items-center justify-center p-4"
@@ -641,43 +769,97 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                 className="w-full aspect-video rounded-lg shadow-lg"
               ></iframe>
             </div>
-          ) : (
-            // RENDER IMAGE (Original)
-            <img 
-              src={item.fullImageUrl} 
-              alt={item.title}
-              className="w-full h-64 md:h-full object-contain"
+          ) : item.embedHtml ? (
+            // RENDER HTML EMBED (For Websites/Gyazo)
+            <div 
+              className="w-full h-full flex items-center justify-center bg-gray-50 p-4 md:p-8 pointer-events-none"
+              dangerouslySetInnerHTML={{ __html: item.embedHtml }}
             />
+          ) : (
+            // RENDER IMAGE (with carousel support)
+            <div className="relative w-full h-64 md:h-full">
+              <img 
+                src={item.slides ? item.slides[currentSlideIndex] : item.fullImageUrl} 
+                alt={item.title}
+                className="w-full h-full object-contain"
+              />
+              {/* Navigation arrows for multiple images */}
+              {item.slides && item.slides.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + item.slides.length) % item.slides.length)}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+                  <button
+                    onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % item.slides.length)}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+                  {/* Slide indicators */}
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1">
+                    {item.slides.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                          index === currentSlideIndex ? 'bg-white' : 'bg-white/50'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           )}
         </div>
         
         {/* RIGHT SIDE: Text Content */}
         <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
           <div>
-            <h2 className="text-2xl md:text-3xl font-normal text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
             
             {/* Date */}
             <p className="text-sm text-gray-500 mt-1 mb-4">{item.date}</p>
             
             {/* Description */}
-            <p className="text-base text-gray-800 leading-relaxed mb-6">{item.description}</p>
+            <p className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</p>
             
             {/* Action Bar - Split Layout */}
             <div className="mt-8 flex items-center justify-between">
-              {/* Left Item (Instagram Button) */}
-              {item.instagramLink && (
-                <a 
-                  href={item.instagramLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="p-3 bg-gray-100 text-gray-600 rounded-full hover:bg-pink-100 hover:text-pink-600 transition-colors"
-                  title="View on Instagram"
-                >
-                  <Instagram className="size-8" />
-                </a>
-              )}
               
-              {/* Right Item (CTA Button) */}
+              {/* LEFT: External Link (Instagram OR Website) */}
+              <div className="flex gap-4">
+                
+                {/* A. Instagram Button */}
+                {item.instagramLink && (
+                  <a 
+                    href={item.instagramLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-100 text-gray-600 rounded-full hover:bg-pink-100 hover:text-pink-600 transition-colors"
+                    title="View on Instagram"
+                  >
+                    <Instagram className="size-8" />
+                  </a>
+                )}
+
+                {/* B. Website Button (NEW) */}
+                {item.websiteUrl && (
+                  <a 
+                    href={item.websiteUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                  >
+                    <Globe className="size-5" />
+                    <span className="font-medium">View Website</span>
+                  </a>
+                )}
+              </div>
+
+              {/* RIGHT: CTA (Keep Existing) */}
               <button 
                 onClick={() => {
                   onClose(); 
@@ -698,6 +880,97 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
 // Category pages with sub-navigation
 function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItemId }) {
   const [selectedItem, setSelectedItem] = useState(null)
+
+  // Helper function to distribute items into columns for left-to-right flow
+  const distributeItems = (items, columnCount) => {
+    const columns = Array.from({ length: columnCount }, () => []);
+    items.forEach((item, index) => {
+      columns[index % columnCount].push(item);
+    });
+    return columns;
+  };
+
+  // Render masonry grid with specified column count
+  const renderMasonryGrid = (columnCount) => {
+    const columns = distributeItems(displayedItems, columnCount);
+    
+    return (
+      <div className="flex gap-4 md:gap-6">
+        {columns.map((columnItems, columnIndex) => (
+          <div key={columnIndex} className="flex-1 flex flex-col gap-4 md:gap-6">
+            {columnItems.map(item => {
+              const isExternal = !!item.websiteUrl
+              const isVideo = item.category.includes('videos')
+              const isWebsite = item.category.includes('websites')
+              const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-2 md:p-6 rounded-lg w-full'
+
+              let imageStyles = "w-full rounded-lg shadow-sm block"
+              if (item.category.includes('graphics')) {
+                imageStyles += " h-auto object-contain"
+              } else if (item.category.includes('videos')) {
+                imageStyles += " aspect-[5/4] object-cover"
+              } else if (item.category.includes('websites')) {
+                imageStyles += " aspect-video object-cover"
+              }
+
+              if (isExternal) {
+                const cardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 rounded-lg w-full'
+                return (
+                  <a
+                    key={item.id}
+                    href={item.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cardClasses}
+                  >
+                    <img 
+                      src={item.thumbnailUrl} 
+                      alt={item.title} 
+                      className={imageStyles}
+                    />
+                    <div className="mt-3 text-left">
+                      <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
+                        {item.date}
+                      </p>
+                    </div>
+                  </a>
+                )
+              }
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setCurrentPage('my-work', category, item.id)}
+                  className={internalCardClasses}
+                >
+                  {item.slides && item.slides.length > 1 ? (
+                    <GridCarousel images={item.slides} />
+                  ) : (
+                    <img 
+                      src={item.thumbnailUrl} 
+                      alt={item.title} 
+                      className={imageStyles}
+                    />
+                  )}
+                  <div className="mt-3 text-left">
+                    <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
+                      {item.date}
+                    </p>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    );
+  };
   const categoryNames = {
     'graphics': 'Graphics',
     'videos': 'Videos',
@@ -725,7 +998,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
 
   const isWebsiteTab = category === 'websites'
   const websiteLayout = "flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8"
-  const standardLayout = "columns-3 gap-2 md:gap-6 space-y-2 md:space-y-6 px-2 md:px-0 mt-4 md:mt-8"
+  const standardLayout = "columns-2 gap-3 md:columns-2 lg:columns-3 md:gap-6 space-y-3 md:space-y-6 px-2 md:px-0 mt-4 md:mt-8"
   const containerClass = isWebsiteTab ? websiteLayout : standardLayout
 
   return (
@@ -781,36 +1054,22 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
       </nav>
 
       {/* Gallery */}
-      <div className={containerClass}>
-        {displayedItems.map(item => {
-          const isExternal = !!item.websiteUrl
-          const isVideo = item.category.includes('videos')
-          const isWebsite = item.category.includes('websites')
-          const externalCardClasses = 'group block w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300'
-          const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-1 md:p-6 rounded-lg w-full break-inside-avoid mb-6'
+      {/* CASE A: WEBSITES (Now using Overlay instead of direct links) */}
+      {category === 'websites' ? (
+        <div className="flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8">
+          {displayedItems.map(item => {
+            const wrapperClass = "group w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 block p-4"
 
-          let imageStyles = "w-full rounded-lg shadow-sm block"
-          if (item.category.includes('graphics')) {
-            imageStyles += " h-auto object-contain"
-          } else if (item.category.includes('videos')) {
-            imageStyles += " aspect-[5/4] object-cover"
-          } else if (item.category.includes('websites')) {
-            imageStyles += " aspect-video object-cover"
-          }
-
-          if (isExternal && isWebsiteTab) {
             return (
-              <a
+              <button
                 key={item.id}
-                href={item.websiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={externalCardClasses}
+                onClick={() => setCurrentPage('my-work', category, item.id)}
+                className={wrapperClass}
               >
                 <img 
                   src={item.thumbnailUrl} 
                   alt={item.title} 
-                  className="w-full aspect-video object-cover"
+                  className="w-full h-auto shadow-sm rounded-md"
                 />
                 <div className="p-4">
                   <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight truncate">
@@ -820,73 +1079,37 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                     {item.date}
                   </p>
                 </div>
-              </a>
+              </button>
             )
-          } else if (isExternal) {
-            const cardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 rounded-lg w-full break-inside-avoid mb-6'
-            let imageStyles = "w-full rounded-lg shadow-sm block"
-            if (item.category.includes('graphics')) {
-              imageStyles += " h-auto object-contain"
-            } else if (item.category.includes('videos')) {
-              imageStyles += " aspect-[5/4] object-cover"
-            } else if (item.category.includes('websites')) {
-              imageStyles += " aspect-video object-cover"
-            }
+          })}
+          {/* Show a message if no items match the filter */}
+          {displayedItems.length === 0 && (
+            <p className="text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              No projects found in this category.
+            </p>
+          )}
+        </div>
+      ) : (
+        /* CASE B: GRAPHICS/VIDEOS (New L-R Masonry) */
+        <>
+          {/* Mobile View (2 Columns) */}
+          <div className="block md:hidden mt-4 px-2">
+            {renderMasonryGrid(2)}
+          </div>
 
-            return (
-              <a
-                key={item.id}
-                href={item.websiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cardClasses}
-              >
-                <img 
-                  src={item.thumbnailUrl} 
-                  alt={item.title} 
-                  className={imageStyles}
-                />
-                <div className="mt-3 text-left">
-                  <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
-                    {item.date}
-                  </p>
-                </div>
-              </a>
-            )
-          }
+          {/* Desktop View (3 Columns) */}
+          <div className="hidden md:block mt-8 px-0">
+            {renderMasonryGrid(3)}
+          </div>
 
-          return (
-            <button
-              key={item.id}
-              onClick={() => setCurrentPage('my-work', category, item.id)}
-              className={internalCardClasses}
-            >
-              <img 
-                src={item.thumbnailUrl} 
-                alt={item.title} 
-                className={imageStyles}
-              />
-              <div className="mt-3 text-left">
-                <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
-                  {item.title}
-                </h3>
-                <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
-                  {item.date}
-                </p>
-              </div>
-            </button>
-          )
-        })}
-        {/* Show a message if no items match the filter */}
-        {displayedItems.length === 0 && (
-          <p className="text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            No projects found in this category.
-          </p>
-        )}
-      </div>
+          {/* Show a message if no items match the filter */}
+          {displayedItems.length === 0 && (
+            <p className="text-center text-gray-500 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              No projects found in this category.
+            </p>
+          )}
+        </>
+      )}
       </div>
 
       {/* Overlay */}
@@ -949,10 +1172,9 @@ function AboutPage({ setCurrentPage, currentPage }) {
       <div className="max-w-6xl mx-auto px-4 md:px-6 mt-6">
         
         {/* 2. Page Title */}
-        <h1 className="font-serif text-3xl md:text-4xl border-b border-[#a2a9b1] pb-1 mb-1 italic">
+        <h1 className="font-sans font-bold uppercase tracking-wide text-3xl md:text-4xl border-b border-[#a2a9b1] pb-1 mb-4">
           Hugo Zbor
         </h1>
-        <div className="text-sm text-gray-500 mb-6">From Wikipedia, the free encyclopedia</div>
 
         {/* Intro Text - Mobile Only (appears above photo) */}
         <p className="mb-4 md:hidden font-normal">
@@ -1020,7 +1242,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
             {/* SECTION 1 */}
             <div id="design" className={styles.header}>
               <h2>Introduction to Design</h2>
-              <span className="text-xs text-[#0645ad] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
             
             {/* Image: Floated right on all screens, smaller on mobile */}
@@ -1036,7 +1258,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
             {/* SECTION 2 */}
             <div id="lockdown" className={styles.header}>
               <h2>High School and Covid Lockdown</h2>
-              <span className="text-xs text-[#0645ad] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
 
             {/* FLOATED IMAGE CONTAINER */}
@@ -1062,7 +1284,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
             {/* SECTION 3 */}
             <div id="australia" className={`${styles.header} clear-both pt-4`}>
               <h2>Moving to Australia</h2>
-              <span className="text-xs text-[#0645ad] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
 
             {/* FLOATED IMAGE CONTAINER */}
@@ -1118,11 +1340,15 @@ function AccordionItem({ title, children, isOpen, onToggle }) {
 }
 
 // Commissions Page Component
-function CommissionsPage({ setCurrentPage, currentPage }) {
-  const [openDropdown, setOpenDropdown] = useState(null)
-
-  const toggleDropdown = (index) => {
-    setOpenDropdown(openDropdown === index ? null : index)
+function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
+  const handleToggle = (sectionId) => {
+    if (activeSection === sectionId) {
+      // If clicking the open section, close it
+      setCurrentPage('commissions', null)
+    } else {
+      // Open the clicked section
+      setCurrentPage('commissions', sectionId)
+    }
   }
 
   return (
@@ -1134,7 +1360,7 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
           <h1 className="text-4xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             Commissions
           </h1>
-          <p className="text-lg text-gray-700" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             Explore the full range of creative services offered by Hugo Zbor. Each project is custom-built to your vision.
           </p>
         </div>
@@ -1143,8 +1369,8 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
         <div className="space-y-0">
           <AccordionItem
             title="Visual Art & Graphic Design"
-            isOpen={openDropdown === 0}
-            onToggle={() => toggleDropdown(0)}
+            isOpen={activeSection === 'visual-art'}
+            onToggle={() => handleToggle('visual-art')}
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
@@ -1173,8 +1399,8 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
 
           <AccordionItem
             title="Video & Motion Visuals"
-            isOpen={openDropdown === 1}
-            onToggle={() => toggleDropdown(1)}
+            isOpen={activeSection === 'video-motion'}
+            onToggle={() => handleToggle('video-motion')}
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
@@ -1188,7 +1414,7 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
                   <li>Motion graphics</li>
                   <li>Animated assets</li>
                 </ul>
-                <p className="mt-3" style={{ fontWeight: 400 }}>Crafted for music promotion, product launches, and brand campaigns.</p>
+                <p className="mt-3" style={{ fontWeight: 400 }}>Designed for music promotion, product launches, and brand campaigns.</p>
               </div>
               <div className="w-full md:w-80 flex-shrink-0">
                 <div 
@@ -1201,8 +1427,8 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
 
           <AccordionItem
             title="Creative Direction & Consulting"
-            isOpen={openDropdown === 2}
-            onToggle={() => toggleDropdown(2)}
+            isOpen={activeSection === 'creative-direction'}
+            onToggle={() => handleToggle('creative-direction')}
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
@@ -1230,8 +1456,8 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
 
           <AccordionItem
             title="Web Design & Digital Experience"
-            isOpen={openDropdown === 3}
-            onToggle={() => toggleDropdown(3)}
+            isOpen={activeSection === 'web-design'}
+            onToggle={() => handleToggle('web-design')}
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
@@ -1242,7 +1468,6 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
                   <li>Brand landing pages</li>
                   <li>Shopify storefronts</li>
                   <li>E-commerce design</li>
-                  <li>UI/UX development</li>
                   <li>Custom-coded visuals</li>
                   <li>Advanced layouts</li>
                 </ul>
@@ -1256,26 +1481,9 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
           </AccordionItem>
 
           <AccordionItem
-            title="Branding & Identity"
-            isOpen={openDropdown === 4}
-            onToggle={() => toggleDropdown(4)}
-          >
-            <p className="mb-3" style={{ fontWeight: 400 }}>End-to-end brand identity design, including:</p>
-            <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-              <li>Logo design</li>
-              <li>Color palettes</li>
-              <li>Visual language development</li>
-              <li>Brand guidelines</li>
-              <li>Social identity kits</li>
-              <li>Packaging concepts</li>
-            </ul>
-            <p className="mt-3" style={{ fontWeight: 400 }}>Perfect for new brands or those undergoing a rebrand.</p>
-          </AccordionItem>
-
-          <AccordionItem
             title="Content Creation (Artists & Influencers)"
-            isOpen={openDropdown === 5}
-            onToggle={() => toggleDropdown(5)}
+            isOpen={activeSection === 'content-creation'}
+            onToggle={() => handleToggle('content-creation')}
           >
             <p className="mb-3" style={{ fontWeight: 400 }}>Ongoing content for talent and creators:</p>
             <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
@@ -1290,8 +1498,8 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
 
           <AccordionItem
             title="Collaboration Projects"
-            isOpen={openDropdown === 6}
-            onToggle={() => toggleDropdown(6)}
+            isOpen={activeSection === 'collaboration'}
+            onToggle={() => handleToggle('collaboration')}
           >
             <p className="mb-3" style={{ fontWeight: 400 }}>Cross-disciplinary creative collaborations:</p>
             <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
@@ -1306,8 +1514,8 @@ function CommissionsPage({ setCurrentPage, currentPage }) {
 
           <AccordionItem
             title="Custom Requests"
-            isOpen={openDropdown === 7}
-            onToggle={() => toggleDropdown(7)}
+            isOpen={activeSection === 'custom'}
+            onToggle={() => handleToggle('custom')}
           >
             <p style={{ fontWeight: 400 }}>
               If your project doesn't fit the categories above, Hugo accepts custom one-off or long-term commissions depending on availability.
@@ -1462,7 +1670,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
       <PageHeader title="Contact" isActive={currentPage === 'contact'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
       {/* Header Text */}
-      <p className="text-lg md:text-xl text-brandBlack mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+      <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
         Have a project in mind or just want to say hi? I'd love to hear about it. Fill out the form below and I'll get back to you within 1-2 business days.
       </p>
 
@@ -1939,7 +2147,12 @@ function App() {
       return { page: 'my-work', category: subCategory, itemId }
     }
 
-    const allowedPages = new Set(['home', 'commissions', 'about', 'contact', 'terms', 'info'])
+    if (root === 'commissions') {
+      const subCategory = parts[1] || null // For commissions, null means all sections closed
+      return { page: 'commissions', category: subCategory, itemId: null }
+    }
+
+    const allowedPages = new Set(['home', 'about', 'contact', 'terms', 'info'])
     if (allowedPages.has(root)) {
       return { page: root, category: 'landing', itemId: null }
     }
@@ -1977,6 +2190,15 @@ function App() {
       }
       if (nextItemId) {
         url += `/${nextItemId}`
+      }
+    } else if (page === 'commissions') {
+      nextCategory = category // For commissions, category can be null (all closed) or a section ID
+      _setCurrentCategory(nextCategory)
+      _setCurrentItemId(null)
+      if (nextCategory) {
+        url = `/commissions/${nextCategory}`
+      } else {
+        url = '/commissions'
       }
     } else {
       nextCategory = 'landing'
@@ -2029,7 +2251,13 @@ function App() {
         {currentPage === 'my-work' && currentCategory === 'landing' && (
           <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
-        {currentPage === 'commissions' && <CommissionsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+        {currentPage === 'commissions' && (
+          <CommissionsPage 
+            activeSection={currentCategory} 
+            setCurrentPage={setCurrentPage} 
+            currentPage={currentPage} 
+          />
+        )}
         {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
