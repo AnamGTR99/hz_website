@@ -285,7 +285,7 @@ const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
-const homeHeroVisualMiddle = `<img src="/last_home_page.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" />`
+const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
 
 // 3. WEB DESIGN HTML (from web_design.txt)
