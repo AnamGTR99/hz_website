@@ -592,9 +592,8 @@ function HomePage({ setCurrentPage, currentPage }) {
 
           {/* TEXT COL (Right on Desktop, Bottom on Mobile) */}
           <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-2">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
-              Hugozbor for <br />
-              Omnee World
+            <h2 className="text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap">
+              Hugozbor for Omnee World
             </h2>
             <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
               Hugo Zbor is an artist combining creativity with strategy to craft unforgettable online experiences. He helps elevate brands and define their digital presence.
@@ -619,9 +618,8 @@ function HomePage({ setCurrentPage, currentPage }) {
             
             {/* TEXT COL (Left on Desktop, Bottom on Mobile) */}
             <div className="w-full md:w-5/12 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-1">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
-                Hugozbor For <br />
-                Matte Black Dept
+              <h2 className="text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap">
+                Hugozbor For Matte Black Dept
               </h2>
               <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
                 We pride ourselves on flexibility. Whether you have rough raw footage or just a fleeting idea, we can take it and transform it into your exact vision. No constraints, just creative problem solving to get the look you need.
@@ -663,9 +661,8 @@ function HomePage({ setCurrentPage, currentPage }) {
 
             {/* TEXT COL (Right on Desktop, Bottom on Mobile) */}
             <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-2">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase mb-6 leading-snug">
-                Hugozbor For <br />
-                Lovenangels
+              <h2 className="text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap">
+                Hugozbor For Lovenangels
               </h2>
               <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
                 Hugo works with a network of diverse artists, ranging from 3D visual experts to high-quality rendering specialists. Together, they combine talents to build comprehensive, high-fidelity digital worlds.
@@ -741,6 +738,9 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
 function WorkOverlay({ item, onClose, setCurrentPage }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [isCopied, setIsCopied] = useState(false)
+
+  // Generate deep link for sharing Graphics and Videos
+  const shareableLink = `${window.location.origin}/my-work/${item.category[0]}/${item.id}`;
 
   const handleCopyUrl = (url) => {
     if (!url) return;
@@ -845,17 +845,38 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
               {/* LEFT: External Link (Instagram OR Website) */}
               <div className="flex gap-4">
                 
-                {/* A. Instagram Button */}
+                {/* A. Instagram Button with Share (for Graphics/Videos) */}
                 {item.instagramLink && (
-                  <a 
-                    href={item.instagramLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors w-full md:w-auto"
-                  >
-                    <Instagram className="size-5" />
-                    <span className="font-medium">View on Instagram</span>
-                  </a>
+                  <div className="flex gap-2 w-full md:w-auto">
+                    <a 
+                      href={item.instagramLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex-grow flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                    >
+                      <Instagram className="size-5" />
+                      <span className="font-medium">View on Instagram</span>
+                    </a>
+
+                    {/* Share Button (Copy Deep Link) - Only for Graphics/Videos */}
+                    {!item.websiteUrl && (
+                      <button
+                        onClick={() => handleCopyUrl(shareableLink)}
+                        className="flex-none w-12 md:w-10 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center justify-center"
+                        title="Copy Link to Project"
+                      >
+                        {isCopied ? (
+                          <Check className="size-5 text-green-600" />
+                        ) : (
+                          <img 
+                            src="/copy_favicon.jpeg" 
+                            alt="Copy" 
+                            className="w-5 h-5 object-contain"
+                          />
+                        )}
+                      </button>
+                    )}
+                  </div>
                 )}
 
                 {/* B. Website Button with Copy */}
@@ -889,6 +910,25 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                       )}
                     </button>
                   </div>
+                )}
+
+                {/* C. Share Button (for Graphics/Videos without Instagram) */}
+                {!item.instagramLink && !item.websiteUrl && (
+                  <button
+                    onClick={() => handleCopyUrl(shareableLink)}
+                    className="flex-none w-12 md:w-10 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center justify-center"
+                    title="Copy Link to Project"
+                  >
+                    {isCopied ? (
+                      <Check className="size-5 text-green-600" />
+                    ) : (
+                      <img 
+                        src="/copy_favicon.jpeg" 
+                        alt="Copy" 
+                        className="w-5 h-5 object-contain"
+                      />
+                    )}
+                  </button>
                 )}
               </div>
 

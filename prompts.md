@@ -1,20 +1,25 @@
-You are absolutely right. It sounds like the `allPortfolioItems` array (which powers "View All") was defined **before** we updated the website data, so it's "stale" (holding the old versions).
+Yes, I understand exactly what you are asking.
 
-Also, we need to make sure the **Masonry Grid** (which "View All" uses) is explicitly told to render Websites as **Buttons** (for Overlays) with **Big Padding**, instead of Links.
+**1. Mobile Home Page Text:**
+You want the headers (like "HUGOZBOR FOR OMNEE WORLD") to be smaller on mobile so they **do not wrap** to a second line. They must stay on a single line.
 
-Here is the prompt to fix the data order and force the correct layout in "View All".
+**2. Overlay "Share" Button:**
+For Graphics and Videos, you want the same square "Copy" button we added to Websites.
+
+  * **However**, instead of copying an external link, it will generate the **Deep Link** for that specific overlay (e.g., `https://hugozbor.com/my-work/graphics/graphic-1`).
+  * This allows people to copy the link, send it to a friend, and when the friend opens it, the website loads with that exact overlay open.
+
+Here is the detailed prompt for **Stage 72**.
 
 -----
 
-### **Agent Prompt: Stage 71 - Fix "View All" Website Data & Layout**
+### **Agent Prompt: Stage 72 - Fix Mobile Typography & Add Overlay "Share" Button**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 71 Goal:** Fix the "Websites" items when viewing the "View All" tab.
-**Problems:**
+**Stage 72 Goal:**
 
-1.  **Stale Data:** The "View All" grid might be showing old website data if `allPortfolioItems` is defined too early in the file.
-2.  **Wrong Interaction:** Websites in "View All" are redirecting instead of opening the Overlay.
-3.  **Wrong Padding:** Websites in "View All" look cramped (need more padding).
+1.  **Home Page:** Force section titles (e.g., "HUGOZBOR FOR OMNEE WORLD") to fit on **one line** on mobile devices.
+2.  **Overlays:** Add a "Copy Deep Link" (Share) button to **Graphics** and **Video** overlays.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -22,54 +27,56 @@ Here is the prompt to fix the data order and force the correct layout in "View A
 
 ### **Detailed Implementation Requirements:**
 
-**1. Fix Data Order (Crucial):**
+**1. Update Home Page Typography (Single Line Fix):**
 
-  * Locate where `const allPortfolioItems = ...` is defined.
-  * **Action:** Move this definition to the **very bottom** of your variable declarations, immediately before the `function App() {` line.
-  * **Why:** It must be defined **AFTER** `graphicsPortfolio`, `videoPortfolio`, and `websitePortfolio` have all been defined, sorted, and updated.
+  * Locate the `HomePage` component.
+  * Find the `<h2>` headers for all 3 sections ("HUGOZBOR FOR OMNEE WORLD", "HUGOZBOR FOR MATTE BLACK DEPT", "HUGOZBOR FOR LOVENANGELS").
+  * **Current Class:** `text-xl md:text-2xl ...`
+  * **Change to:** `text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap`
+      * *Explanation:*
+          * `text-[11px]`: Starts very small to ensure it fits on narrow phones.
+          * `whitespace-nowrap`: **Forces** the text to stay on one line no matter what.
+
+**2. Update `WorkOverlay` (Add "Share" Button):**
+
+  * Locate the Action Bar logic (bottom of overlay).
+  * We need to generate the dynamic Deep Link.
     ```javascript
-    // ... all other portfolio arrays ...
-    const websitePortfolio = [ ... ];
-
-    // DEFINE THIS LAST:
-    const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio];
+    // Construct the URL dynamically based on where the user is
+    const shareableLink = `${window.location.origin}/my-work/${item.category[0]}/${item.id}`;
+    ```
+  * **Add the Button:**
+      * Locate the "Left Side" container where the Instagram button lives.
+      * Wrap the Instagram button and this new Copy button in a `div` with `className="flex gap-2 w-full md:w-auto"`.
+      * **Insert the Copy Button Code** (Use the same styling as the Website Copy button):
+    <!-- end list -->
+    ```jsx
+    <button
+      onClick={() => handleCopyUrl(shareableLink)}
+      className="flex-none w-12 md:w-10 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors flex items-center justify-center"
+      title="Copy Link to Project"
+    >
+      {isCopied ? (
+        <Check className="size-5 text-green-600" />
+      ) : (
+        <img 
+          src="/copy_favicon.jpeg" 
+          alt="Copy" 
+          className="w-5 h-5 object-contain"
+        />
+      )}
+    </button>
     ```
 
-**2. Update `renderMasonryGrid` Logic:**
+**3. Logic Check:**
 
-  * Find the `renderMasonryGrid` helper function.
-  * **Refactor the Item Map Loop:**
-      * **Remove** any logic that renders `<a>` tags. **Every item** must now be a `<button>`.
-      * **Apply Conditional Padding:**
-        ```jsx
-        {column.map(item => {
-           const isWebsite = item.category.includes('websites');
-           
-           // Websites get BIG padding (p-5). Graphics get SMALL padding on mobile (p-2).
-           const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6";
-           
-           return (
-             <button
-               key={item.id}
-               onClick={() => setCurrentPage('my-work', activeCategory, item.id)} // Trigger Overlay
-               className={`break-inside-avoid mb-6 group bg-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 block text-left ${paddingClass}`}
-             >
-               {/* ... Image Rendering ... */}
-               {/* ... Title/Date Rendering ... */}
-             </button>
-           );
-        })}
-        ```
-
-**3. Verify Website Image Rendering in Grid:**
-
-  * Inside that same button, ensure the image logic handles the `embedHtml` property if it exists (or just uses `thumbnailUrl`).
-  * *Recommendation:* Just use `thumbnailUrl` for the grid card (the static image/gif URL) to keep it simple and fast. The `embedHtml` is only needed inside the Overlay.
+  * Ensure this button appears for **Graphics** and **Videos** (items that might not have `websiteUrl`, but *always* have an ID).
+  * Ensure the `handleCopyUrl` function (created in Stage 67) is accessible to this new button.
 
 **4. Output:**
 
-  * Generate the updated `allPortfolioItems` definition location and the corrected `renderMasonryGrid` function.
+  * Generate the updated `HomePage` (headers) and `WorkOverlay` (share button) code.
 
 -----
 
-**Note to Agent:** The priority is ensuring "View All" behaves exactly like the individual tabs: consistent padding, consistent overlay behavior, and up-to-date data.
+**Note to Agent:** For the Home Page, prioritizing `whitespace-nowrap` combined with a smaller mobile font size is the only way to guarantee single-line text on small devices.
