@@ -1,42 +1,31 @@
-This is a simple asset swap. We will replace the local GIF path with the new Gyazo embed code you provided.
+This is the final piece for Stage 65. We will add this specific video update to the list so the agent handles all of them in one go.
 
-Just like with the other Gyazo embeds, we will include the `pointer-events-none` class on the container to ensure the link is disabled and the user isn't redirected when they click it.
+Here is the addendum prompt for **Stage 65 (Refined)**.
 
-Here is the detailed prompt for **Stage 62**.
+***
 
------
-
-### **Agent Prompt: Stage 62 - Update "Raw Footage" Section Visual**
+### **Agent Prompt: Stage 65 (Refined) - Update "Character Customisation" Video Data**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 62 Goal:** Update the visual asset for the **middle section** ("Raw Footage to Real-Life") of the Home Page.
-**Change:** Replace the current local GIF with the specific Gyazo embed code provided.
+**Stage 65 Goal:** Update the metadata for the "Character Customisation" video within the `videoPortfolio` array.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
------
+---
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update `homeHeroVisualMiddle` Variable:**
+**1. Update `videoPortfolio` Data:**
+* Locate the `videoPortfolio` array.
+* Find the object with **ID:** `video-character`.
+* **Update the properties to:**
+    * **Title:** `"HUGO ZBOR'S UNDERGROUND"`
+    * **Description:** `"Character customisation video Inspired by Tony Hawk's Underground"`
+    * **Add Property:** `instagramLink: 'https://www.instagram.com/p/DNdOXwlPiFE/'`
 
-  * Locate the definition of `const homeHeroVisualMiddle = ...` at the top of `App.jsx`.
-  * **Replace** the string content with the following code:
-    ```javascript
-    const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`;
-    ```
-      * *Note:* I added `style="width: 100%; height: auto;"` to ensure the image remains responsive and doesn't break the layout at its full 1152px width.
+**2. Output:**
+* Include this update in the `videoPortfolio` array regeneration along with the other videos from the previous prompt.
 
-**2. Verify Container Class:**
+---
 
-  * Locate the `div` in the **Section 2** (Middle) render block that uses `dangerouslySetInnerHTML={{ __html: homeHeroVisualMiddle }}`.
-  * **Check:** Ensure it still has the class **`pointer-events-none`**.
-      * *Reason:* This is critical. The Gyazo code contains an `<a href...>` tag. If `pointer-events-none` is missing, clicking the image will navigate the user away from the website.
-
-**3. Output:**
-
-  * Generate the updated `homeHeroVisualMiddle` variable definition.
-
------
-
-**Note to Agent:** The goal is to swap the asset source while maintaining the responsive behavior and disabled interaction state.
+**Note to Agent:** Ensure the `instagramLink` is added correctly so the icon button appears in the overlay.

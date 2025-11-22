@@ -5,14 +5,9 @@ import { SpeedInsights } from "@vercel/speed-insights/react"
 
 // Date parsing helper function
 const parseDateString = (dateStr) => {
-  if (!dateStr) return new Date(0); // Fallback for missing dates
-  
-  // 1. Remove ordinal suffixes (st, nd, rd, th) from the day
-  // Example: "14th September 2025" -> "14 September 2025"
-  const cleanDate = dateStr.replace(/(\d+)(st|nd|rd|th)/, '$1');
-  
-  // 2. Convert to standard Date object
-  return new Date(cleanDate);
+  if (!dateStr) return new Date(0);
+  // New format "14 SEP 2025" parses natively in JS Date
+  return new Date(dateStr);
 };
 
 // Portfolio Data Structure
@@ -21,7 +16,7 @@ const graphicsPortfolio = [
     id: 'graphic-1',
     title: 'COLLECTOR',
     category: ['graphics', 'view-all'],
-    date: '7th June 2025',
+    date: '07 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Trading Card Graphics with CSGO taste',
     thumbnailUrl: '/Pictures/work8.jpg',
@@ -32,7 +27,7 @@ const graphicsPortfolio = [
     id: 'graphic-2',
     title: '99Clover magazine cover',
     category: ['graphics', 'view-all'],
-    date: '9th September 2025',
+    date: '09 SEP 2025',
     by: 'Hugo Zbor',
     description: 'Japanese style magazine cover for 99Clover',
     thumbnailUrl: '/Pictures/Mock Medium.jpeg',
@@ -43,7 +38,7 @@ const graphicsPortfolio = [
     id: 'graphic-3',
     title: 'Let it rip',
     category: ['graphics', 'view-all'],
-    date: '20th April 2025',
+    date: '20 APR 2025',
     by: 'Hugo Zbor',
     description: 'Bey Blade personal project',
     thumbnailUrl: '/Pictures/work3.jpg',
@@ -54,7 +49,7 @@ const graphicsPortfolio = [
     id: 'graphic-aformunseen-combined',
     title: 'aformunseen Campaign',
     category: ['graphics', 'view-all'],
-    date: '14th September 2025',
+    date: '14 SEP 2025',
     by: 'Hugo Zbor',
     description: 'Full campaign visuals including passport flyer and wallet flyer for @aformunseen.',
     slides: [
@@ -68,7 +63,7 @@ const graphicsPortfolio = [
     id: 'graphic-5',
     title: 'Hugo\'s Room',
     category: ['graphics', 'view-all'],
-    date: '14th May 2025',
+    date: '14 MAY 2025',
     by: 'Hugo Zbor',
     description: '3 month long personal project for @brutalimagery',
     thumbnailUrl: '/Pictures/work12.jpg',
@@ -79,7 +74,7 @@ const graphicsPortfolio = [
     id: 'graphic-6',
     title: 'Nintendo Mii Album Cover',
     category: ['graphics', 'view-all'],
-    date: '12th June 2025',
+    date: '12 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Album cover variation using Nintendo MII',
     thumbnailUrl: '/Pictures/Full V3.jpg',
@@ -90,7 +85,7 @@ const graphicsPortfolio = [
     id: 'graphic-7',
     title: '99Clover poster',
     category: ['graphics', 'view-all'],
-    date: '21st June 2025',
+    date: '21 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Graphic poster for 99Clover',
     thumbnailUrl: '/Pictures/work5.jpg',
@@ -101,7 +96,7 @@ const graphicsPortfolio = [
     id: 'graphic-8',
     title: 'VOL #99 TIME CAPSULE',
     category: ['graphics', 'view-all'],
-    date: '3rd July 2025',
+    date: '03 JUL 2025',
     by: 'Hugo Zbor',
     description: 'Part of the \'TIME CAPSULE\' Collection of 99Clover',
     thumbnailUrl: '/Pictures/work2.jpg',
@@ -112,7 +107,7 @@ const graphicsPortfolio = [
     id: 'graphic-9',
     title: 'Magazine cover for CASHMIIER Habits',
     category: ['graphics', 'view-all'],
-    date: '7th July 2025',
+    date: '07 JUL 2025',
     by: 'Hugo Zbor',
     description: 'Japanese magainze flyer done for @CASHMIIERHABITS',
     thumbnailUrl: '/Pictures/final v2.jpg',
@@ -123,7 +118,7 @@ const graphicsPortfolio = [
     id: 'graphic-10',
     title: 'Hugo\'s DJ Set',
     category: ['graphics', 'view-all'],
-    date: '11th July 2025',
+    date: '11 JUL 2025',
     by: 'Hugo Zbor',
     description: 'A graphic for a personal project',
     thumbnailUrl: '/Pictures/work11.jpg',
@@ -134,7 +129,7 @@ const graphicsPortfolio = [
     id: 'graphic-11',
     title: 'BWR2025',
     category: ['graphics', 'view-all'],
-    date: '4th June 2025',
+    date: '04 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Cover graphic for @brutalimagery',
     thumbnailUrl: '/Pictures/work4.jpg',
@@ -145,7 +140,7 @@ const graphicsPortfolio = [
     id: 'graphic-13',
     title: 'Character Select',
     category: ['graphics', 'view-all'],
-    date: '21st June 2025',
+    date: '21 JUN 2025',
     by: 'Hugo Zbor',
     description: 'In-game clothing select graphic for 99Clover',
     thumbnailUrl: '/Pictures/work7.jpg',
@@ -156,7 +151,7 @@ const graphicsPortfolio = [
     id: 'graphic-14',
     title: 'CD Album Cover',
     category: ['graphics', 'view-all'],
-    date: '27th May 2025',
+    date: '27 MAY 2025',
     by: 'Hugo Zbor',
     description: 'CD Album Cover variation for comissions',
     thumbnailUrl: '/Pictures/work9.jpg',
@@ -174,66 +169,73 @@ graphicsPortfolio.sort((a, b) => {
 const videoPortfolio = [
   {
     id: 'video-brainwash',
-    title: 'BRAINWASH',
-    date: '18th November 2025',
-    description: '',
+    title: 'MORNING ROUTINE',
+    date: '18 NOV 2025',
+    description: 'Experimental video inspired by early 2000s TV shows',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/trcAZwylfcQ?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DRJ2US5D11L/',
   },
   {
     id: 'video-character',
-    title: 'CHARACTER CUSTOMISATION',
-    date: '17th August 2025',
-    description: '',
+    title: 'HUGO ZBOR\'S UNDERGROUND',
+    date: '17 AUG 2025',
+    description: 'Character customisation video Inspired by Tony Hawk\'s Underground',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/7uS8SP67Exg?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DNdOXwlPiFE/',
   },
   {
     id: 'video-omnee',
-    title: 'HUGOZBOR for OMNEE WORLD',
-    date: '24th October 2025',
-    description: '',
+    title: 'COMMERCIAL FOR OMNEEWORLD',
+    date: '24 OCT 2025',
+    description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/eTzvPmUzJ6E?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DQKmaH9kvvZ/',
   },
   {
     id: 'video-lovenangels',
-    title: 'HUGOZBOR for LOVENANGELS',
-    date: '25th October 2025',
-    description: '',
+    title: 'VISUALS FOR LOVENANGELS',
+    date: '25 OCT 2025',
+    description: 'Photos shot by client, 3D Assets made by in-house 3D artist, everything assembled by Hugo Zbor',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/Qziv5xrXTgc?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DQNWnMBk9Kp/?img_index=1',
   },
   {
     id: 'video-99clover',
-    title: 'Hugozbor for 99Clover U.S.S Promo',
-    date: '4th November 2025',
-    description: '',
+    title: 'COMMERCIAL FOR 99CLOVER',
+    date: '04 NOV 2025',
+    description: 'Greenscreen video, shot by @99CLOVER and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/GLyH_Vveiik?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DQognlkkkwi/',
   },
   {
     id: 'video-ds',
-    title: 'DS Intro',
-    date: '3rd December 2024',
-    description: '',
+    title: 'INTRO VISUALS FOR 99CLOVER',
+    date: '03 DEC 2024',
+    description: 'Intro Inspired by Nintendo DS, made from scratch',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/dJgwioZ2I4E/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/dJgwioZ2I4E?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
   },
   {
     id: 'video-runway',
-    title: 'RUNWAY Visuals',
-    date: '12th September 2025',
-    description: '',
+    title: 'STAGE VISUALS FOR 99CLOVER',
+    date: '12 SEP 2025',
+    description: 'Looping visuals for @99CLOVER \'s Runway',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/yeudVooMwSM?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
   },
 ]
 
@@ -256,7 +258,7 @@ const websitePortfolio = [
   },
   {
     id: 'web-2',
-    title: 'hz-archive.vercel.app',
+    title: 'HUGOZBOR (OLD) PORTFOLIO WEBSITE',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '2025',
@@ -816,7 +818,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
         </div>
         
         {/* RIGHT SIDE: Text Content */}
-        <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
+        <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-center">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
             
@@ -826,8 +828,8 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
             {/* Description */}
             <p className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</p>
             
-            {/* Action Bar - Split Layout */}
-            <div className="mt-8 flex items-center justify-between">
+            {/* Action Bar - Responsive Layout */}
+            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 md:justify-between mt-6">
               
               {/* LEFT: External Link (Instagram OR Website) */}
               <div className="flex gap-4">
@@ -851,7 +853,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                     href={item.websiteUrl} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors w-full md:w-auto justify-center"
                   >
                     <Globe className="size-5" />
                     <span className="font-medium">View Website</span>
@@ -865,7 +867,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                   onClose(); 
                   setCurrentPage('contact'); 
                 }}
-                className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors text-lg"
+                className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors text-lg w-full md:w-auto"
               >
                 Work With Hugo
               </button>
