@@ -268,8 +268,6 @@ const websitePortfolio = [
   },
 ]
 
-// Master Portfolio List (combines graphics and videos)
-const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio]
 const shuffleArray = (array) => {
   const newArray = [...array]
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -294,6 +292,10 @@ const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b0728426
 const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df117d"><img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Image from Gyazo" width="600"/></a><a href="https://gyazo.com/e660702e8f799446cf3f52cbd75e7835"><img src="https://i.gyazo.com/e660702e8f799446cf3f52cbd75e7835.gif" alt="Image from Gyazo" width="600"/></a>`
 
 // --- End Asset Variables ---
+
+// Master Portfolio List (combines graphics, videos, and websites)
+// IMPORTANT: Defined AFTER all portfolio arrays to ensure up-to-date data
+const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio]
 
 // GridCarousel component for items with multiple images
 function GridCarousel({ images }) {
@@ -930,10 +932,11 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
         {columns.map((columnItems, columnIndex) => (
           <div key={columnIndex} className="flex-1 flex flex-col gap-4 md:gap-6">
             {columnItems.map(item => {
-              const isExternal = !!item.websiteUrl
-              const isVideo = item.category.includes('videos')
               const isWebsite = item.category.includes('websites')
-              const internalCardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-2 md:p-6 rounded-lg w-full'
+              
+              // Conditional padding: Websites get more breathing room (p-5), Graphics/Videos get smaller padding on mobile (p-2)
+              const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6"
+              const cardClasses = `break-inside-avoid mb-6 group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 rounded-lg w-full text-left ${paddingClass}`
 
               let imageStyles = "w-full rounded-lg shadow-sm block"
               if (item.category.includes('graphics')) {
@@ -944,38 +947,11 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                 imageStyles += " aspect-video object-cover"
               }
 
-              if (isExternal) {
-                const cardClasses = 'group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 p-0 rounded-lg w-full'
-                return (
-                  <a
-                    key={item.id}
-                    href={item.websiteUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cardClasses}
-                  >
-                    <img 
-                      src={item.thumbnailUrl} 
-                      alt={item.title} 
-                      className={imageStyles}
-                    />
-                    <div className="mt-3 text-left">
-                      <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
-                        {item.title}
-                      </h3>
-                      <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
-                        {item.date}
-                      </p>
-                    </div>
-                  </a>
-                )
-              }
-
               return (
                 <button
                   key={item.id}
                   onClick={() => setCurrentPage('my-work', category, item.id)}
-                  className={internalCardClasses}
+                  className={cardClasses}
                 >
                   {item.slides && item.slides.length > 1 ? (
                     <GridCarousel images={item.slides} />

@@ -1,14 +1,20 @@
-This is a quick styling fix. We just need to add the `font-bold` utility class to the active state logic in the "My Work" sub-navigation menu.
+You are absolutely right. It sounds like the `allPortfolioItems` array (which powers "View All") was defined **before** we updated the website data, so it's "stale" (holding the old versions).
 
-Here is the detailed prompt for **Stage 69**.
+Also, we need to make sure the **Masonry Grid** (which "View All" uses) is explicitly told to render Websites as **Buttons** (for Overlays) with **Big Padding**, instead of Links.
+
+Here is the prompt to fix the data order and force the correct layout in "View All".
 
 -----
 
-### **Agent Prompt: Stage 69 - Bold Active Category in "My Work"**
+### **Agent Prompt: Stage 71 - Fix "View All" Website Data & Layout**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 69 Goal:** Update the "My Work" sub-navigation menu so that the **currently active category** (e.g., "GRAPHICS") is **Bold** (`font-bold`) in addition to being Red.
-**Scope:** This applies to both Mobile and Desktop views.
+**Stage 71 Goal:** Fix the "Websites" items when viewing the "View All" tab.
+**Problems:**
+
+1.  **Stale Data:** The "View All" grid might be showing old website data if `allPortfolioItems` is defined too early in the file.
+2.  **Wrong Interaction:** Websites in "View All" are redirecting instead of opening the Overlay.
+3.  **Wrong Padding:** Websites in "View All" look cramped (need more padding).
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -16,34 +22,54 @@ Here is the detailed prompt for **Stage 69**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate `MyWorkPage` Sub-Navigation:**
+**1. Fix Data Order (Crucial):**
 
-  * Find the `<nav>` element inside the `MyWorkPage` component.
-  * Look for the loop that renders the category buttons ("Graphics", "Videos", "Websites", "View all").
+  * Locate where `const allPortfolioItems = ...` is defined.
+  * **Action:** Move this definition to the **very bottom** of your variable declarations, immediately before the `function App() {` line.
+  * **Why:** It must be defined **AFTER** `graphicsPortfolio`, `videoPortfolio`, and `websitePortfolio` have all been defined, sorted, and updated.
+    ```javascript
+    // ... all other portfolio arrays ...
+    const websitePortfolio = [ ... ];
 
-**2. Update Active Class Logic:**
-
-  * Find the conditional styling for the buttons.
-  * **Current Logic:** Likely something like:
-    `activeCategory === 'graphics' ? 'text-red-600 ...' : 'text-gray-900 ...'`
-  * **Required Change:** Add `font-bold` to the active string.
-  * **New Logic:**
-    ```jsx
-    className={`... ${
-      activeCategory === 'category-name' 
-        ? 'text-[#c13333] font-bold'  // <-- ADD font-bold HERE
-        : 'text-gray-900 font-medium hover:text-[#c13333] transition-colors'
-    }`}
+    // DEFINE THIS LAST:
+    const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio];
     ```
 
-**3. Apply to All Categories:**
+**2. Update `renderMasonryGrid` Logic:**
 
-  * Ensure this change is applied to all 4 buttons: Graphics, Videos, Websites, and View All.
+  * Find the `renderMasonryGrid` helper function.
+  * **Refactor the Item Map Loop:**
+      * **Remove** any logic that renders `<a>` tags. **Every item** must now be a `<button>`.
+      * **Apply Conditional Padding:**
+        ```jsx
+        {column.map(item => {
+           const isWebsite = item.category.includes('websites');
+           
+           // Websites get BIG padding (p-5). Graphics get SMALL padding on mobile (p-2).
+           const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6";
+           
+           return (
+             <button
+               key={item.id}
+               onClick={() => setCurrentPage('my-work', activeCategory, item.id)} // Trigger Overlay
+               className={`break-inside-avoid mb-6 group bg-gray-100 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 block text-left ${paddingClass}`}
+             >
+               {/* ... Image Rendering ... */}
+               {/* ... Title/Date Rendering ... */}
+             </button>
+           );
+        })}
+        ```
+
+**3. Verify Website Image Rendering in Grid:**
+
+  * Inside that same button, ensure the image logic handles the `embedHtml` property if it exists (or just uses `thumbnailUrl`).
+  * *Recommendation:* Just use `thumbnailUrl` for the grid card (the static image/gif URL) to keep it simple and fast. The `embedHtml` is only needed inside the Overlay.
 
 **4. Output:**
 
-  * Generate the updated `MyWorkPage` component code.
+  * Generate the updated `allPortfolioItems` definition location and the corrected `renderMasonryGrid` function.
 
 -----
 
-**Note to Agent:** The goal is visual hierarchy. The active tab must clearly stand out with the same bold weight as the main "HUGO ZBOR" logo/header text.
+**Note to Agent:** The priority is ensuring "View All" behaves exactly like the individual tabs: consistent padding, consistent overlay behavior, and up-to-date data.
