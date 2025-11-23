@@ -284,6 +284,7 @@ const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
+const homeHeroBanner = `<a href="https://gyazo.com/92221226a8285f62b88f68bfc67323e7"><img src="https://i.gyazo.com/92221226a8285f62b88f68bfc67323e7.gif" alt="Hugo Zbor Banner" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
@@ -585,117 +586,103 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
 
 function HomePage({ setCurrentPage, currentPage }) {
   return (
-    <>
-      {/* Mobile-only Page Title */}
-      <PageHeader title="HOME" showBack={false} isActive={currentPage === 'home'} />
+    <div className="w-full mb-20">
       
-      <div className="max-w-6xl mx-auto px-4 md:px-8 mt-6 md:mt-20 mb-20">
-        
-        {/* ================= SECTION 1: OMNEE WORLD (Graphic Left, Text Right) ================= */}
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16">
-          Creating Next Level <br className="hidden md:block" />
-          Digital Products
-        </h1>
+      {/* --- 1. HERO BANNER (Full Width) --- */}
+      <div 
+        className="w-full mb-16 md:mb-24 pointer-events-none"
+        dangerouslySetInnerHTML={{ __html: homeHeroBanner }}
+      />
 
-        <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
-          {/* GRAPHIC COL (Left on Desktop, Top on Mobile) */}
-          <div className="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-1">
-            <div
-              className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
-              dangerouslySetInnerHTML={{ __html: homeHeroVisual }}
-            />
+      <div className="max-w-6xl mx-auto px-4 md:px-8">
+
+        {/* --- 2. HIGH-IMPACT SECTION (Split Layout) --- */}
+        <div className="mb-24 md:mb-32">
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-center mb-12 leading-tight">
+            Creating High-Impact Visual Experiences
+          </h1>
+          
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+            {/* Image Left */}
+            <div className="w-full md:w-1/2">
+               <div 
+                 className="w-full pointer-events-none"
+                 dangerouslySetInnerHTML={{ __html: homeHeroVisual }} // iPod Image
+               />
+            </div>
+            
+            {/* Text Right */}
+            <div className="w-full md:w-1/2">
+              <h3 className="text-sm font-bold uppercase tracking-widest mb-4">The Foundation of Hugo Zbor</h3>
+              <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6">
+                Hugo's process is built on a decade of dedication to digital creation. What began as self-taught experimentation in digital arts, evolved into managing the design, creative direction, and visual branding for many campaigns and brands. I design with both creative instinct and a practical understanding of visual strategy and application.
+              </p>
+              <button
+                onClick={() => setCurrentPage('about')}
+                className="text-xs font-bold uppercase border-b border-black pb-1 hover:text-gray-600 transition-colors"
+              >
+                Learn more about me
+              </button>
+            </div>
           </div>
+        </div>
 
-          {/* TEXT COL (Right on Desktop, Bottom on Mobile) */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-2">
-            <h2 className="text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap">
-              Hugozbor for Omnee World
-            </h2>
-            <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
-              Hugo Zbor is an artist combining creativity with strategy to craft unforgettable online experiences. He helps elevate brands and define their digital presence.
+        {/* --- 3. UPGRADE CREATIVES SECTION (Stacked Layout) --- */}
+        <div className="mb-24 md:mb-32">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase mb-8 text-left">
+            Upgrade Your Creatives
+          </h2>
+          
+          {/* Full Width Image */}
+          <div 
+            className="w-full mb-8 pointer-events-none"
+            dangerouslySetInnerHTML={{ __html: homeHeroVisualMiddle }} // 3-Panel Image
+          />
+          
+          {/* Text Below */}
+          <div className="max-w-3xl">
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Creative Trajectory</h3>
+            <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6">
+              Whether you have rough raw footage or Hollywood greenscreen studio, I can help build the world you're envisioning. My focus is on transforming your initial concept into a seamless and professionally executed final digital asset.
             </p>
             <button
-              onClick={() => setCurrentPage('my-work', 'view-all')}
-              className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
+              onClick={() => setCurrentPage('commissions')}
+              className="text-xs font-bold uppercase border-b border-black pb-1 hover:text-gray-600 transition-colors"
             >
-              See More
+              Explore Commission Options
             </button>
           </div>
         </div>
 
-        {/* ================= SECTION 2: RAW FOOTAGE (Text Left, Graphic Right) ================= */}
-        <div className="mt-12 md:mt-20">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16 text-center">
-            Raw Footage To <br className="hidden md:block" />
-            Real-Life
-          </h1>
-
-          <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
-            
-            {/* TEXT COL (Left on Desktop, Bottom on Mobile) */}
-            <div className="w-full md:w-5/12 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-1">
-              <h2 className="text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap">
-                Hugozbor For Matte Black Dept
-              </h2>
-              <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
-                We pride ourselves on flexibility. Whether you have rough raw footage or just a fleeting idea, we can take it and transform it into your exact vision. No constraints, just creative problem solving to get the look you need.
-              </p>
-              <button
-                onClick={() => setCurrentPage('my-work')}
-                className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
-              >
-                See More
-              </button>
-            </div>
-
-            {/* GRAPHIC COL (Right on Desktop, Top on Mobile) */}
-            <div className="w-full md:w-7/12 mb-8 md:mb-0 order-1 md:order-2">
-              <div 
-                className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
-                dangerouslySetInnerHTML={{ __html: homeHeroVisualMiddle }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* ================= SECTION 3: LOVENANGELS (Graphic Left, Text Right) ================= */}
-        <div className="mt-12 md:mt-20">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 uppercase leading-none tracking-tight mb-12 md:mb-16 text-right">
-            A Collective of <br className="hidden md:block" />
-            Visionaries
-          </h1>
-
-          <div className="flex flex-col md:flex-row items-start md:space-x-12 lg:space-x-20">
-            
-            {/* GRAPHIC COL (Left on Desktop, Top on Mobile) */}
-            <div className="w-full md:w-1/2 mb-8 md:mb-0 order-1 md:order-1">
-              <div 
-                className="w-full rounded-none md:rounded-sm overflow-hidden shadow-sm transition-all duration-500 pointer-events-none"
-                dangerouslySetInnerHTML={{ __html: homeHeroVisual2 }}
-              />
-            </div>
-
-            {/* TEXT COL (Right on Desktop, Bottom on Mobile) */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center pt-2 md:pt-4 order-2 md:order-2">
-              <h2 className="text-[11px] xs:text-xs sm:text-sm md:text-2xl font-bold text-gray-900 uppercase mb-4 md:mb-6 leading-snug whitespace-nowrap">
-                Hugozbor For Lovenangels
-              </h2>
-              <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed max-w-md mb-8">
-                Hugo works with a network of diverse artists, ranging from 3D visual experts to high-quality rendering specialists. Together, they combine talents to build comprehensive, high-fidelity digital worlds.
-              </p>
-              <button 
-                onClick={() => setCurrentPage('my-work')}
-                className="text-xs font-bold uppercase tracking-widest text-black border-b border-black pb-1 self-start hover:text-gray-600 hover:border-gray-600 transition-colors"
-              >
-                See More
-              </button>
-            </div>
-
+        {/* --- 4. LATEST PROJECTS SECTION (Stacked Layout) --- */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase mb-8 text-left">
+            Latest Projects
+          </h2>
+          
+          {/* Full Width Image */}
+          <div 
+            className="w-full mb-8 pointer-events-none"
+            dangerouslySetInnerHTML={{ __html: homeHeroVisual2 }} // Crane Image
+          />
+          
+          {/* Text Below */}
+          <div className="max-w-3xl">
+            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Creative Trajectory</h3>
+            <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6">
+              Since launching the Instagram account @hugozbor in early 2025, work has been met with incredible support, connecting me with influential designers. I am currently in a phase of rapid growth, where I focus on maintaining a high standard of output.
+            </p>
+            <button
+              onClick={() => setCurrentPage('my-work', 'view-all')}
+              className="text-xs font-bold uppercase border-b border-black pb-1 hover:text-gray-600 transition-colors"
+            >
+              VIEW MORE OF MY WORK
+            </button>
           </div>
         </div>
 
       </div>
-    </>
+    </div>
   )
 }
 
