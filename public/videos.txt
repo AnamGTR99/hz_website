@@ -22,3 +22,6 @@ Name: "Runway Visuals"
 
 Name: "DS Into by Hugozbor" 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dJgwioZ2I4E?si=JmnZiahZvbZ0YmH2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Name: GYAZO for homepage, lovenaangels
+<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" width="584"/></a>
