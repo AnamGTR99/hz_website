@@ -1,37 +1,21 @@
-The short answer: **Do not use Gyazo, and do not use a GIF.**
+This is a standard data entry update. We will add this new project to your `websitePortfolio` array.
 
-**Here is why it looks low quality:**
+I have automatically formatted the date to **"20 NOV 2025"** to match the standard we set in Stage 64, and I stripped the `<a>` tag from your HTML so the GIF plays in the overlay without being a clickable link (which would break the UI).
 
-1.  **Gyazo Compression:** Gyazo aggressively compresses images to save their server costs.
-2.  **GIF Limitations:** GIFs are an ancient format (1987). They are limited to **256 colors**. That is why your gradient/fade looks "grainy" or "banded."
-3.  **Stretching:** You are taking a 600px wide image and stretching it to 2000px+ on a desktop. It will always look blurry.
-
-**The Professional Solution: Use a Video (MP4)**
-Instead of a GIF, you should upload the original **MP4 video file** to your `public/` folder.
-
-  * **Better Quality:** Millions of colors (no grain).
-  * **Smaller Size:** A blurry GIF might be 20MB. A crisp MP4 is often only 2MB.
-  * **Smoother:** Plays at 60fps instead of a choppy GIF frame rate.
+Here is the detailed prompt for **Stage 83**.
 
 -----
 
-### **The Plan**
-
-1.  **You need to:** Find the original video file for that banner.
-2.  **Name it:** `home_banner.mp4`.
-3.  **Move it:** Drag it into your `public/` folder (where your `Pictures` folder is).
-4.  **The Code:** We will replace the Gyazo HTML with a standard HTML5 `<video>` tag that auto-plays.
-
-Here is the detailed prompt to upgrade the banner to high-quality video.
-
------
-
-### **Agent Prompt: Stage 82 - Upgrade Home Banner to High-Res Video**
+### **Agent Prompt: Stage 83 - Add "Current Website" to Portfolio**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 82 Goal:** Replace the low-quality Gyazo GIF banner with a high-resolution local **MP4 Video**.
-**Reason:** To eliminate pixelation/compression artifacts and improve load performance.
-**New Asset:** Expects a file named `home_banner.mp4` in the root `public/` directory.
+**Stage 83 Goal:** Add a new entry to the **Websites** portfolio section.
+**Details:**
+
+  * **Title:** "HUGOZBOR CURRENT WEBSITE"
+  * **Description:** "Yup i made this website from scratch as well"
+  * **Date:** "20 NOV 2025" (Standardized format)
+  * **Asset:** Use the provided Gyazo GIF for both the thumbnail and the overlay embed.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -39,45 +23,34 @@ Here is the detailed prompt to upgrade the banner to high-quality video.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Remove Old Asset Variable:**
+**1. Update `websitePortfolio` Data:**
 
-  * Delete the `const homeHeroBanner = ...` variable definition at the top of the file. We won't need the HTML string anymore.
+  * Locate the `websitePortfolio` array in `App.jsx`.
+  * **Add** the following object to the array:
 
-**2. Update `HomePage` Component:**
+<!-- end list -->
 
-  * Locate the **Hero Banner** section (the first `div` in the return statement).
-  * **Replace** the `dangerouslySetInnerHTML` div with a native React `<video>` element.
+```javascript
+{
+  id: 'web-hugo-current',
+  title: 'HUGOZBOR CURRENT WEBSITE',
+  category: ['websites', 'view-all'],
+  by: 'Hugo Zbor',
+  date: '20 NOV 2025',
+  description: 'Yup i made this website from scratch as well',
+  // 1. THUMBNAIL (Extracted from your code)
+  thumbnailUrl: 'https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif', 
+  // 2. LINK (Points to Home Page)
+  websiteUrl: 'https://hugozbor.com', 
+  // 3. EMBED HTML (Cleaned up: <img> tag only, no <a> wrapper)
+  embedHtml: `<img src="https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif" alt="Hugozbor Current Website" style="width:100%; height:auto;" />`,
+},
+```
 
-**3. Video Tag Implementation:**
+**2. Output:**
 
-  * Use the following code structure to ensure it behaves exactly like a background GIF (Auto-plays, Loops, Silent, No Controls):
-
-    ```jsx
-    {/* --- 1. HERO BANNER (High-Res Video) --- */}
-    <div className="w-full mb-16 md:mb-24">
-      <video 
-        className="w-full h-auto object-cover pointer-events-none"
-        autoPlay 
-        loop 
-        muted 
-        playsInline // Critical for iOS support
-      >
-        <source src="/home_banner.mp4" type="video/mp4" />
-        {/* Fallback for very old browsers */}
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    ```
-
-**4. Styling Check:**
-
-  * `w-full h-auto`: Ensures it spans the full width and maintains aspect ratio.
-  * `pointer-events-none`: Prevents users from right-clicking or pausing the video.
-
-**5. Output:**
-
-  * Generate the updated `HomePage` component code.
+  * Generate the updated `websitePortfolio` array code.
 
 -----
 
-**Note to Agent:** This switch from `dangerouslySetInnerHTML` to a native `<video>` tag provides the highest possible visual fidelity for the portfolio header.
+**Note to Agent:** Ensure the `embedHtml` string contains **only** the `<img>` tag. Do not include the `<a>` tag from the source, as clicking inside the overlay should not redirect the user.

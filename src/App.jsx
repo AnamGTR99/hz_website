@@ -266,6 +266,17 @@ const websitePortfolio = [
     websiteUrl: 'https://hz-archive.vercel.app/',
     embedHtml: `<img src="https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif" alt="HZ Archive" style="width:100%; height:auto;" />`,
   },
+  {
+    id: 'web-hugo-current',
+    title: 'HUGOZBOR CURRENT WEBSITE',
+    category: ['websites', 'view-all'],
+    by: 'Hugo Zbor',
+    date: '20 NOV 2025',
+    description: 'Yup i made this website from scratch as well',
+    thumbnailUrl: 'https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif',
+    websiteUrl: 'https://hugozbor.com',
+    embedHtml: `<img src="https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif" alt="Hugozbor Current Website" style="width:100%; height:auto;" />`,
+  },
 ]
 
 const shuffleArray = (array) => {
