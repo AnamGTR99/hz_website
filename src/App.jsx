@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check } from 'lucide-react'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
@@ -595,6 +595,46 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
 }
 
 function HomePage({ setCurrentPage, currentPage }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // 1. Force attributes directly on the DOM (bypasses React prop filtering)
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.setAttribute("muted", "true");
+    video.muted = true; // JS property must also be set
+
+    // 2. Define Play Function
+    const attemptPlay = () => {
+      video.play().catch((err) => {
+        console.log("Autoplay blocked, waiting for interaction:", err);
+      });
+    };
+
+    // 3. Try playing immediately
+    attemptPlay();
+
+    // 4. Fallback: Try playing on the very first user interaction (touch/click)
+    // This fixes issues in "Low Power Mode" on iPhones
+    const onInteraction = () => {
+      attemptPlay();
+      // Remove listeners after first attempt
+      window.removeEventListener("touchstart", onInteraction);
+      window.removeEventListener("click", onInteraction);
+    };
+
+    window.addEventListener("touchstart", onInteraction, { once: true });
+    window.addEventListener("click", onInteraction, { once: true });
+
+    return () => {
+      window.removeEventListener("touchstart", onInteraction);
+      window.removeEventListener("click", onInteraction);
+    };
+  }, []);
+
   return (
     <div className="w-full mb-20">
       {/* Mobile-only Page Title */}
@@ -602,15 +642,17 @@ function HomePage({ setCurrentPage, currentPage }) {
       
       {/* --- 1. HERO BANNER (High-Res Video) --- */}
       <div className="w-full mb-16 md:mb-24">
-        <video 
+        <video
+          ref={videoRef}
           className="w-full h-auto object-cover pointer-events-none"
-          autoPlay 
-          loop 
-          muted 
-          playsInline
+          src="/home_banner.mp4"
+          type="video/mp4"
+          autoPlay
+          loop
+          muted={true}
+          playsInline={true}
+          preload="auto"
         >
-          <source src="/home_banner.mp4" type="video/mp4" />
-          {/* Fallback for very old browsers */}
           Your browser does not support the video tag.
         </video>
       </div>
@@ -1377,6 +1419,8 @@ function AboutPage({ setCurrentPage, currentPage }) {
             <p className="mb-4 font-normal">Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className={styles.link}>music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
             
             <p className="mb-4 font-normal">In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className={styles.link}>@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. I am extremely grateful and I believe I am now growing - as an artist - faster than ever before.</p>
+            
+            <p className="mb-4 font-normal">In November 2025, I decided to actually get a <span className={styles.link}>manager</span> to help scale and grow my account and brand as an artist to new heights. His name is <b>Shei</b> (<a href="https://www.instagram.com/sheivault" target="_blank" rel="noopener noreferrer" className={styles.link}>@sheivault</a> on Instagram) and he was the first person I met at uni 3 years ago, on the very first day.</p>
 
           </div>
         </div>

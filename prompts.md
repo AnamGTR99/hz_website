@@ -1,22 +1,14 @@
-This is a smart, high-value feature. It makes the form feel personalized and ensures you get exactly the data you need without asking for unnecessary details.
+This is the "Nuclear Option" for mobile video. It is the most robust way to guarantee video playback on iPhones, iPads, and Android devices, handling everything from Safari's strict policies to Low Power Mode blocking.
 
-We will move the "Communication Method" to the very top. When the user clicks a choice, the input field next to "Name" will instantly transform to match that choice.
-
-Here is the detailed prompt for **Stage 85**.
+Here is the redesigned, highly detailed prompt for **Stage 88**.
 
 -----
 
-### **Agent Prompt: Stage 85 - Implement Dynamic Contact Form Inputs**
+### **Agent Prompt: Stage 88 - Ultimate Mobile Video Autoplay Fix**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 85 Goal:** Refactor the `ContactForm` to be dynamic.
-**New Logic:**
-
-1.  **Step 1 (Top):** Ask "Preferred Communication Method?" first.
-2.  **Step 2 (Dynamic Field):** Change the second input field (next to "Full Name") based on the selection:
-      * If **Email**: Ask for "Email Address" (`type="email"`).
-      * If **Instagram**: Ask for "Instagram Handle" (`type="text"`, placeholder="@username").
-      * If **Messages**: Ask for "Phone Number" (`type="tel"`, placeholder="+61...").
+**Stage 88 Goal:** Implement a bulletproof solution to force the Home Page video banner to auto-play on all mobile devices (especially iOS/Safari).
+**Method:** Use a combination of HTML attributes, direct DOM manipulation via `setAttribute`, and user-interaction fallbacks to bypass browser autoplay blocks.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -24,88 +16,83 @@ Here is the detailed prompt for **Stage 85**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update `ContactForm` State:**
+**1. Import Hooks:**
 
-  * Add state to track the selected method. Default to 'email'.
+  * Ensure `useRef` and `useEffect` are imported from `'react'`.
+
+**2. Update `HomePage` Component:**
+
+  * **Add Ref:** Create a ref: `const videoRef = useRef(null);`
+
+  * **Add "Bulletproof" Effect:** Add this specific `useEffect` hook. It attempts to play immediately, and if that fails, it sets up a one-time listener to play on the first user touch.
+
     ```javascript
-    const [contactMethod, setContactMethod] = useState('email');
+    useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      // 1. Force attributes directly on the DOM (bypasses React prop filtering)
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+      video.setAttribute("muted", "true");
+      video.muted = true; // JS property must also be set
+
+      // 2. Define Play Function
+      const attemptPlay = () => {
+        video.play().catch((err) => {
+          console.log("Autoplay blocked, waiting for interaction:", err);
+        });
+      };
+
+      // 3. Try playing immediately
+      attemptPlay();
+
+      // 4. Fallback: Try playing on the very first user interaction (touch/click)
+      // This fixes issues in "Low Power Mode" on iPhones
+      const onInteraction = () => {
+        attemptPlay();
+        // Remove listeners after first attempt
+        window.removeEventListener("touchstart", onInteraction);
+        window.removeEventListener("click", onInteraction);
+      };
+
+      window.addEventListener("touchstart", onInteraction, { once: true });
+      window.addEventListener("click", onInteraction, { once: true });
+
+      return () => {
+        window.removeEventListener("touchstart", onInteraction);
+        window.removeEventListener("click", onInteraction);
+      };
+    }, []);
     ```
 
-**2. Insert Method Selector (At the Top):**
+**3. Update the `<video>` Tag:**
 
-  * Inside the `<form>`, before the Name/Contact row, insert the selector.
-  * **Design:** A flex row of 3 radio-style labels.
+  * Replace the existing video tag with this exact configuration. Note the redundant attributes—this is intentional for maximum compatibility.
+
     ```jsx
-    <div className="mb-6">
-      <label className="block text-sm font-bold text-gray-900 mb-2">
-        Preferred Communication Method? *
-      </label>
-      <div className="flex flex-wrap gap-4">
-        {['email', 'instagram', 'messages'].map((method) => (
-          <label key={method} className="flex items-center cursor-pointer">
-            <input
-              type="radio"
-              name="contact_method_selection"
-              value={method}
-              checked={contactMethod === method}
-              onChange={() => setContactMethod(method)}
-              className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300"
-            />
-            <span className="ml-2 text-gray-700 capitalize">
-              {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
-            </span>
-          </label>
-        ))}
-      </div>
-    </div>
+    <video
+      ref={videoRef}
+      className="w-full h-auto object-cover pointer-events-none"
+      src="/home_banner.mp4"
+      type="video/mp4"
+      autoPlay
+      loop
+      muted={true}        // React Prop
+      muted="muted"       // HTML Attribute redundancy
+      playsInline={true}  // React Prop
+      playsinline="true"  // HTML Attribute redundancy
+      webkit-playsinline="true" // iOS Legacy
+      preload="auto"      // Performance
+    >
+      Your browser does not support the video tag.
+    </video>
     ```
 
-**3. Implement Dynamic Input Logic:**
+**4. Output:**
 
-  * **Calculate Props:** Before the return statement, determine the label, type, and placeholder.
-    ```javascript
-    let contactLabel = "Email Address *";
-    let contactType = "email";
-    let contactName = "email"; // Key for Formspree
-    let contactPlaceholder = "example@email.com";
-
-    if (contactMethod === 'instagram') {
-      contactLabel = "Instagram Handle *";
-      contactType = "text";
-      contactName = "instagram_handle";
-      contactPlaceholder = "@yourusername";
-    } else if (contactMethod === 'messages') {
-      contactLabel = "Phone Number *";
-      contactType = "tel";
-      contactName = "phone_number";
-      contactPlaceholder = "+61 400 000 000";
-    }
-    ```
-
-**4. Update the Grid Row:**
-
-  * Locate the row containing "Full Name" and the old "Email" field.
-  * **Keep:** "Full Name" as is.
-  * **Replace:** The second field with the dynamic variables.
-    ```jsx
-    <div className="flex-1">
-      <label className="block text-sm font-bold text-gray-900 mb-1">
-        {contactLabel}
-      </label>
-      <input
-        type={contactType}
-        name={contactName}
-        placeholder={contactPlaceholder}
-        required
-        className="w-full p-2 border border-gray-300 rounded-md focus:ring-[#c13333] focus:border-[#c13333]"
-      />
-    </div>
-    ```
-
-**5. Output:**
-
-  * Generate the updated `ContactForm` component.
+  * Generate the updated `HomePage` component code with this logic included.
 
 -----
 
-**Note to Agent:** Ensure the `name` attribute on the input field changes dynamically (`email` vs `instagram_handle` vs `phone_number`). This ensures Formspree labels the data correctly in the email notification.
+**Note to Agent:** This specific combination of `setAttribute` in `useEffect` and the interaction fallback listeners is required to bypass strict autoplay policies on modern iOS versions. Do not simplify this logic.
