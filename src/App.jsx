@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check } from 'lucide-react'
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
@@ -295,6 +295,25 @@ const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
+// --- RAW HTML VIDEO FOR iOS AUTOPLAY (Critical) ---
+const homeBannerVideoHtml = `
+  <video 
+    class="home-banner-video w-full h-auto object-cover pointer-events-none"
+    autoplay
+    loop
+    muted
+    muted="muted"
+    playsinline
+    playsinline="true"
+    webkit-playsinline
+    preload="auto"
+    style="width:100%; height:auto;"
+  >
+    <source src="/home_banner.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+`;
+
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
@@ -601,43 +620,37 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
 }
 
 function HomePage({ setCurrentPage, currentPage }) {
-  const videoRef = useRef(null);
-
   useEffect(() => {
-    const video = videoRef.current;
+    const video = document.querySelector(".home-banner-video");
     if (!video) return;
 
-    // 1. Force attributes directly on the DOM (bypasses React prop filtering)
+    // Reinforce attributes in case Safari strips them
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
     video.setAttribute("muted", "true");
-    video.muted = true; // JS property must also be set
+    video.muted = true;
 
-    // 2. Define Play Function
-    const attemptPlay = () => {
-      video.play().catch((err) => {
-        console.log("Autoplay blocked, waiting for interaction:", err);
+    // Try immediate autoplay
+    const tryPlay = () => {
+      video.play().catch(() => {
+        // Safari may still block autoplay – fallback below.
       });
     };
 
-    // 3. Try playing immediately
-    attemptPlay();
+    tryPlay();
 
-    // 4. Fallback: Try playing on the very first user interaction (touch/click)
-    // This fixes issues in "Low Power Mode" on iPhones
-    const onInteraction = () => {
-      attemptPlay();
-      // Remove listeners after first attempt
-      window.removeEventListener("touchstart", onInteraction);
-      window.removeEventListener("click", onInteraction);
-    };
+    // Fallback: retry play on first user interaction
+    const events = ["touchstart", "click"];
+    const handleOnce = () => tryPlay();
 
-    window.addEventListener("touchstart", onInteraction, { once: true });
-    window.addEventListener("click", onInteraction, { once: true });
+    events.forEach(event =>
+      window.addEventListener(event, handleOnce, { once: true })
+    );
 
     return () => {
-      window.removeEventListener("touchstart", onInteraction);
-      window.removeEventListener("click", onInteraction);
+      events.forEach(event =>
+        window.removeEventListener(event, handleOnce)
+      );
     };
   }, []);
 
@@ -646,22 +659,11 @@ function HomePage({ setCurrentPage, currentPage }) {
       {/* Mobile-only Page Title */}
       <PageHeader title="HOME" isActive={currentPage === 'home'} />
       
-      {/* --- 1. HERO BANNER (High-Res Video) --- */}
-      <div className="w-full mb-16 md:mb-24">
-        <video
-          ref={videoRef}
-          className="w-full h-auto object-cover pointer-events-none"
-          src="/home_banner.mp4"
-          type="video/mp4"
-          autoPlay
-          loop
-          muted={true}
-          playsInline={true}
-          preload="auto"
-        >
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {/* --- 1. HERO BANNER (Raw HTML Injection) --- */}
+      <div
+        className="w-full mb-16 md:mb-24 pointer-events-none"
+        dangerouslySetInnerHTML={{ __html: homeBannerVideoHtml }}
+      />
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
 
