@@ -1,40 +1,46 @@
-This is a quick layout reversion. In Stage 77, we constrained it to prevent it from getting too tall, but now that you have the specific banner GIF, you want it to span the full width of the browser window (edge-to-edge).
+You are absolutely right. When we redesigned the Home Page with the full-width banner, we accidentally overwrote the line of code that renders the "HOME" title on mobile.
 
-We simply need to remove the `max-w-7xl` and `padding` constraints we added earlier.
+Because the `PageHeader` component already has `md:hidden` built into it (from our previous work), we can simply add it back to the top of the Home Page, and it will automatically appear on mobile and stay hidden on desktop.
 
-Here is the detailed prompt for **Stage 80**.
+Here is the detailed prompt for **Stage 81**.
 
-***
+-----
 
-### **Agent Prompt: Stage 80 - Make Home Banner Full-Width**
+### **Agent Prompt: Stage 81 - Restore "HOME" Title on Mobile**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 80 Goal:** Update the **Home Page Hero Banner** to span the **entire width** of the screen (edge-to-edge).
-**Change:** Remove the width constraints (`max-w-7xl`, padding, margins) that were added in Stage 77.
+**Stage 81 Goal:** Restore the "HOME" page title to the mobile view of the Home Page.
+**Problem:** The `<PageHeader />` component was accidentally removed during the banner redesign, causing the "HOME" title to disappear from mobile screens.
+**Solution:** Re-insert the `PageHeader` component at the very top of the `HomePage` return statement.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
----
+-----
 
 ### **Detailed Implementation Requirements:**
 
 **1. Locate `HomePage` Component:**
-* Find the first `div` inside the `return` statement (the one rendering `homeHeroBanner`).
 
-**2. Remove Constraints:**
-* **Current Class:** `w-full max-w-7xl mx-auto px-4 md:px-8 ... mt-4 ...`
-* **Change to:** `w-full mb-16 md:mb-24 pointer-events-none`
-    * *Explanation:*
-        * `w-full`: Forces 100% viewport width.
-        * **Removed:** `max-w-7xl` (No limit).
-        * **Removed:** `mx-auto` (Centering not needed if full width).
-        * **Removed:** `px-4` / `md:px-8` (No side padding).
-        * **Removed:** `mt-4` / `md:mt-8` (Attach directly to the header, or keep a small margin if preferred, but usually banners touch the nav).
-        * **Removed:** `rounded-lg` (if present), as full-width banners usually have square edges.
+  * Find the start of the `return` statement inside `HomePage`.
 
-**3. Output:**
-* Generate the updated `HomePage` component code.
+**2. Insert `PageHeader`:**
 
----
+  * **Insert** the following line as the **first child** inside the main wrapper `div` (before the Banner).
+    ```jsx
+    {/* Mobile-only Page Title */}
+    <PageHeader title="HOME" showBack={false} />
+    ```
 
-**Note to Agent:** The result should be a banner that touches the left and right edges of the browser window, with no white space on the sides.
+**3. Adjust Banner Spacing (Optional but Recommended):**
+
+  * Locate the Banner container `div` immediately below the new header.
+  * **Current:** `className="w-full mb-16 ..."`
+  * **Update:** You might not need to change anything if standard flow applies, but ensuring `mt-0` on the banner is good so it sits flush against the "HOME" header on mobile.
+
+**4. Output:**
+
+  * Generate the updated `HomePage` component code.
+
+-----
+
+**Note to Agent:** The `PageHeader` component is already defined to be `md:hidden`, so adding this line will correctly show "HOME" on mobile only, exactly as it was before.

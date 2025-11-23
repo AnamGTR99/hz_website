@@ -587,6 +587,8 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
 function HomePage({ setCurrentPage, currentPage }) {
   return (
     <div className="w-full mb-20">
+      {/* Mobile-only Page Title */}
+      <PageHeader title="HOME" isActive={currentPage === 'home'} />
       
       {/* --- 1. HERO BANNER (Full Width) --- */}
       <div 
