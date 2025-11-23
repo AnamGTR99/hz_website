@@ -314,6 +314,8 @@ const homeBannerVideoHtml = `
   </video>
 `;
 
+const homeBannerGifHtml = `<img src="https://i.gyazo.com/92221226a8285f62b88f68bfc67323e7.gif" alt="Hugo Zbor Banner" style="width: 100%; height: auto;" />`;
+
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
@@ -659,11 +661,22 @@ function HomePage({ setCurrentPage, currentPage }) {
       {/* Mobile-only Page Title */}
       <PageHeader title="HOME" isActive={currentPage === 'home'} />
       
-      {/* --- 1. HERO BANNER (Raw HTML Injection) --- */}
-      <div
-        className="w-full mb-16 md:mb-24 pointer-events-none"
-        dangerouslySetInnerHTML={{ __html: homeBannerVideoHtml }}
-      />
+      {/* --- 1. HERO BANNER --- */}
+      <div className="w-full mb-16 md:mb-24">
+        
+        {/* A. MOBILE VERSION (GIF) - Visible only on mobile */}
+        <div 
+          className="block md:hidden w-full pointer-events-none"
+          dangerouslySetInnerHTML={{ __html: homeBannerGifHtml }}
+        />
+
+        {/* B. DESKTOP VERSION (VIDEO) - Hidden on mobile */}
+        <div 
+          className="hidden md:block w-full pointer-events-none"
+          dangerouslySetInnerHTML={{ __html: homeBannerVideoHtml }}
+        />
+        
+      </div>
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
 
