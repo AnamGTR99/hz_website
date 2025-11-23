@@ -1,20 +1,16 @@
-This is a quick swap back to a high-quality direct image source. Since this is a direct GIF link from Gyazo Teams, the quality should be much sharper than the standard embedded version.
+This is the common "Aspect Ratio" fight. If an image is forced to `width="600"` (like in the embed code) but the phone screen is only 390px wide, browsers sometimes try to compensate by stretching the height if we aren't explicit.
 
-We will strip the `<a>` tag to prevent clicking and set the width to 100% so it fills the phone screen perfectly.
+We will fix this by forcing the CSS to ignore the `width="600"` attribute and instead obey **"Width: 100% of Screen"** and **"Height: Automatic"** (to keep the shape correct).
 
-Here is the detailed prompt for **Stage 93**.
+Here is the detailed prompt for **Stage 95**.
 
 -----
 
-### **Agent Prompt: Stage 93 - Update Mobile Banner to High-Res Gyazo GIF**
+### **Agent Prompt: Stage 95 - Fix Mobile Banner Distortion (Gyazo)**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 93 Goal:** Replace the Mobile-Only Home Banner with the specific high-quality Gyazo GIF provided.
-**Details:**
-
-1.  Replace the Giphy iframe code with the new Gyazo Image source.
-2.  **Clean Up:** Remove the `<a>` wrapper so it isn't a link.
-3.  **Styling:** Use `width: 100%; height: auto;` to ensure it displays at maximum resolution width on mobile screens.
+**Stage 95 Goal:** Update the **Mobile-Only** Home Page banner to use the new public Gyazo GIF link, ensuring it scales perfectly without stretching or distortion.
+**New Asset:** `https://t.gyazo.com/teams/hugozbor/7e3c4b75f021c68f45bf75a2b1c99960.gif`
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -25,16 +21,25 @@ Here is the detailed prompt for **Stage 93**.
 **1. Update `homeBannerGifHtml` Variable:**
 
   * Locate the `const homeBannerGifHtml = ...` definition at the top of `App.jsx`.
-  * **Replace** the existing content with this code:
+
+  * **Replace** the entire string with the code below.
+
+  * **Crucial Changes:**
+
+    1.  **Source:** Updated to the new Gyazo Team link.
+    2.  **No `<a>` Tag:** Removed to prevent clicking.
+    3.  **CSS Reset:** Removed `width="600"`. Added `style="width: 100%; height: auto; display: block;"`. This forces the browser to calculate the height based on the screen width, preventing the "stretched" look.
+
+    <!-- end list -->
+
     ```javascript
-    const homeBannerGifHtml = `<img src="https://t.gyazo.com/teams/hugozbor/7e3c4b75f021c68f45bf75a2b1c99960.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: auto;" />`;
+    const homeBannerGifHtml = `<img src="https://t.gyazo.com/teams/hugozbor/7e3c4b75f021c68f45bf75a2b1c99960.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: auto; display: block;" />`;
     ```
 
 **2. Verify Container:**
 
-  * Ensure the mobile container in `HomePage` still has `pointer-events-none`.
-      * `className="block md:hidden w-full pointer-events-none ..."`
-      * *Reason:* This ensures the user cannot drag, save, or click the GIF, keeping the experience app-like.
+  * Ensure the mobile container in `HomePage` is still:
+    `className="block md:hidden w-full pointer-events-none"`
 
 **3. Output:**
 
@@ -42,4 +47,4 @@ Here is the detailed prompt for **Stage 93**.
 
 -----
 
-**Note to Agent:** Do not include the `<a href...>` tag from the source. Only use the `<img>` tag to keep the user on the website.
+**Note to Agent:** The key to fixing the "weird stretching" is `height: auto`. This tells the browser to ignore any previous height constraints and respect the image's natural shape.
