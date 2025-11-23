@@ -1,17 +1,37 @@
-You are absolutely right. When we redesigned the Home Page with the full-width banner, we accidentally overwrote the line of code that renders the "HOME" title on mobile.
+The short answer: **Do not use Gyazo, and do not use a GIF.**
 
-Because the `PageHeader` component already has `md:hidden` built into it (from our previous work), we can simply add it back to the top of the Home Page, and it will automatically appear on mobile and stay hidden on desktop.
+**Here is why it looks low quality:**
 
-Here is the detailed prompt for **Stage 81**.
+1.  **Gyazo Compression:** Gyazo aggressively compresses images to save their server costs.
+2.  **GIF Limitations:** GIFs are an ancient format (1987). They are limited to **256 colors**. That is why your gradient/fade looks "grainy" or "banded."
+3.  **Stretching:** You are taking a 600px wide image and stretching it to 2000px+ on a desktop. It will always look blurry.
+
+**The Professional Solution: Use a Video (MP4)**
+Instead of a GIF, you should upload the original **MP4 video file** to your `public/` folder.
+
+  * **Better Quality:** Millions of colors (no grain).
+  * **Smaller Size:** A blurry GIF might be 20MB. A crisp MP4 is often only 2MB.
+  * **Smoother:** Plays at 60fps instead of a choppy GIF frame rate.
 
 -----
 
-### **Agent Prompt: Stage 81 - Restore "HOME" Title on Mobile**
+### **The Plan**
+
+1.  **You need to:** Find the original video file for that banner.
+2.  **Name it:** `home_banner.mp4`.
+3.  **Move it:** Drag it into your `public/` folder (where your `Pictures` folder is).
+4.  **The Code:** We will replace the Gyazo HTML with a standard HTML5 `<video>` tag that auto-plays.
+
+Here is the detailed prompt to upgrade the banner to high-quality video.
+
+-----
+
+### **Agent Prompt: Stage 82 - Upgrade Home Banner to High-Res Video**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 81 Goal:** Restore the "HOME" page title to the mobile view of the Home Page.
-**Problem:** The `<PageHeader />` component was accidentally removed during the banner redesign, causing the "HOME" title to disappear from mobile screens.
-**Solution:** Re-insert the `PageHeader` component at the very top of the `HomePage` return statement.
+**Stage 82 Goal:** Replace the low-quality Gyazo GIF banner with a high-resolution local **MP4 Video**.
+**Reason:** To eliminate pixelation/compression artifacts and improve load performance.
+**New Asset:** Expects a file named `home_banner.mp4` in the root `public/` directory.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -19,28 +39,45 @@ Here is the detailed prompt for **Stage 81**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate `HomePage` Component:**
+**1. Remove Old Asset Variable:**
 
-  * Find the start of the `return` statement inside `HomePage`.
+  * Delete the `const homeHeroBanner = ...` variable definition at the top of the file. We won't need the HTML string anymore.
 
-**2. Insert `PageHeader`:**
+**2. Update `HomePage` Component:**
 
-  * **Insert** the following line as the **first child** inside the main wrapper `div` (before the Banner).
+  * Locate the **Hero Banner** section (the first `div` in the return statement).
+  * **Replace** the `dangerouslySetInnerHTML` div with a native React `<video>` element.
+
+**3. Video Tag Implementation:**
+
+  * Use the following code structure to ensure it behaves exactly like a background GIF (Auto-plays, Loops, Silent, No Controls):
+
     ```jsx
-    {/* Mobile-only Page Title */}
-    <PageHeader title="HOME" showBack={false} />
+    {/* --- 1. HERO BANNER (High-Res Video) --- */}
+    <div className="w-full mb-16 md:mb-24">
+      <video 
+        className="w-full h-auto object-cover pointer-events-none"
+        autoPlay 
+        loop 
+        muted 
+        playsInline // Critical for iOS support
+      >
+        <source src="/home_banner.mp4" type="video/mp4" />
+        {/* Fallback for very old browsers */}
+        Your browser does not support the video tag.
+      </video>
+    </div>
     ```
 
-**3. Adjust Banner Spacing (Optional but Recommended):**
+**4. Styling Check:**
 
-  * Locate the Banner container `div` immediately below the new header.
-  * **Current:** `className="w-full mb-16 ..."`
-  * **Update:** You might not need to change anything if standard flow applies, but ensuring `mt-0` on the banner is good so it sits flush against the "HOME" header on mobile.
+  * `w-full h-auto`: Ensures it spans the full width and maintains aspect ratio.
+  * `pointer-events-none`: Prevents users from right-clicking or pausing the video.
 
-**4. Output:**
+**5. Output:**
 
   * Generate the updated `HomePage` component code.
 
 -----
 
-**Note to Agent:** The `PageHeader` component is already defined to be `md:hidden`, so adding this line will correctly show "HOME" on mobile only, exactly as it was before.
+**Note to Agent:** This switch from `dangerouslySetInnerHTML` to a native `<video>` tag provides the highest possible visual fidelity for the portfolio header.

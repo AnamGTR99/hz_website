@@ -284,7 +284,6 @@ const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 
 // 2. VIDEO HTML (from video_visuals.txt)
 const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
-const homeHeroBanner = `<a href="https://gyazo.com/92221226a8285f62b88f68bfc67323e7"><img src="https://i.gyazo.com/92221226a8285f62b88f68bfc67323e7.gif" alt="Hugo Zbor Banner" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
@@ -590,11 +589,20 @@ function HomePage({ setCurrentPage, currentPage }) {
       {/* Mobile-only Page Title */}
       <PageHeader title="HOME" isActive={currentPage === 'home'} />
       
-      {/* --- 1. HERO BANNER (Full Width) --- */}
-      <div 
-        className="w-full mb-16 md:mb-24 pointer-events-none"
-        dangerouslySetInnerHTML={{ __html: homeHeroBanner }}
-      />
+      {/* --- 1. HERO BANNER (High-Res Video) --- */}
+      <div className="w-full mb-16 md:mb-24">
+        <video 
+          className="w-full h-auto object-cover pointer-events-none"
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+        >
+          <source src="/home_banner.mp4" type="video/mp4" />
+          {/* Fallback for very old browsers */}
+          Your browser does not support the video tag.
+        </video>
+      </div>
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
 
