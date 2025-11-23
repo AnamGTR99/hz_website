@@ -1621,6 +1621,7 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
 // Contact Page Component
 function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [contactMethod, setContactMethod] = useState('email')
   const [services, setServices] = useState({
     graphics: false,
     video: false,
@@ -1747,7 +1748,31 @@ function ContactPage({ setCurrentPage, currentPage }) {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-        {/* Row 1: Name & Email */}
+        {/* Row 0: Preferred Communication Method */}
+        <div className="mb-6">
+          <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Preferred Communication Method? *
+          </label>
+          <div className="flex flex-wrap gap-4">
+            {['email', 'instagram', 'messages'].map((method) => (
+              <label key={method} className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="radio"
+                  name="contact_method_selection"
+                  value={method}
+                  checked={contactMethod === method}
+                  onChange={() => setContactMethod(method)}
+                  className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                />
+                <span className="text-brandBlack capitalize" style={{ fontWeight: 400 }}>
+                  {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 1: Name & Contact */}
         <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
           <div className="flex-1">
             <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
@@ -1762,16 +1787,40 @@ function ContactPage({ setCurrentPage, currentPage }) {
             />
           </div>
           <div className="flex-1">
-            <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Email *
-            </label>
-            <input
-              type="email"
-              name="email"
-              required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-            />
+            {(() => {
+              let contactLabel = "Email Address *";
+              let contactType = "email";
+              let contactName = "email";
+              let contactPlaceholder = "example@email.com";
+
+              if (contactMethod === 'instagram') {
+                contactLabel = "Instagram Handle *";
+                contactType = "text";
+                contactName = "instagram_handle";
+                contactPlaceholder = "@yourusername";
+              } else if (contactMethod === 'messages') {
+                contactLabel = "Phone Number *";
+                contactType = "tel";
+                contactName = "phone_number";
+                contactPlaceholder = "+61 400 000 000";
+              }
+
+              return (
+                <>
+                  <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                    {contactLabel}
+                  </label>
+                  <input
+                    type={contactType}
+                    name={contactName}
+                    placeholder={contactPlaceholder}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                    style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+                  />
+                </>
+              );
+            })()}
           </div>
         </div>
 

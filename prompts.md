@@ -1,21 +1,22 @@
-This is a standard data entry update. We will add this new project to your `websitePortfolio` array.
+This is a smart, high-value feature. It makes the form feel personalized and ensures you get exactly the data you need without asking for unnecessary details.
 
-I have automatically formatted the date to **"20 NOV 2025"** to match the standard we set in Stage 64, and I stripped the `<a>` tag from your HTML so the GIF plays in the overlay without being a clickable link (which would break the UI).
+We will move the "Communication Method" to the very top. When the user clicks a choice, the input field next to "Name" will instantly transform to match that choice.
 
-Here is the detailed prompt for **Stage 83**.
+Here is the detailed prompt for **Stage 85**.
 
 -----
 
-### **Agent Prompt: Stage 83 - Add "Current Website" to Portfolio**
+### **Agent Prompt: Stage 85 - Implement Dynamic Contact Form Inputs**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 83 Goal:** Add a new entry to the **Websites** portfolio section.
-**Details:**
+**Stage 85 Goal:** Refactor the `ContactForm` to be dynamic.
+**New Logic:**
 
-  * **Title:** "HUGOZBOR CURRENT WEBSITE"
-  * **Description:** "Yup i made this website from scratch as well"
-  * **Date:** "20 NOV 2025" (Standardized format)
-  * **Asset:** Use the provided Gyazo GIF for both the thumbnail and the overlay embed.
+1.  **Step 1 (Top):** Ask "Preferred Communication Method?" first.
+2.  **Step 2 (Dynamic Field):** Change the second input field (next to "Full Name") based on the selection:
+      * If **Email**: Ask for "Email Address" (`type="email"`).
+      * If **Instagram**: Ask for "Instagram Handle" (`type="text"`, placeholder="@username").
+      * If **Messages**: Ask for "Phone Number" (`type="tel"`, placeholder="+61...").
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -23,34 +24,88 @@ Here is the detailed prompt for **Stage 83**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update `websitePortfolio` Data:**
+**1. Update `ContactForm` State:**
 
-  * Locate the `websitePortfolio` array in `App.jsx`.
-  * **Add** the following object to the array:
+  * Add state to track the selected method. Default to 'email'.
+    ```javascript
+    const [contactMethod, setContactMethod] = useState('email');
+    ```
 
-<!-- end list -->
+**2. Insert Method Selector (At the Top):**
 
-```javascript
-{
-  id: 'web-hugo-current',
-  title: 'HUGOZBOR CURRENT WEBSITE',
-  category: ['websites', 'view-all'],
-  by: 'Hugo Zbor',
-  date: '20 NOV 2025',
-  description: 'Yup i made this website from scratch as well',
-  // 1. THUMBNAIL (Extracted from your code)
-  thumbnailUrl: 'https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif', 
-  // 2. LINK (Points to Home Page)
-  websiteUrl: 'https://hugozbor.com', 
-  // 3. EMBED HTML (Cleaned up: <img> tag only, no <a> wrapper)
-  embedHtml: `<img src="https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif" alt="Hugozbor Current Website" style="width:100%; height:auto;" />`,
-},
-```
+  * Inside the `<form>`, before the Name/Contact row, insert the selector.
+  * **Design:** A flex row of 3 radio-style labels.
+    ```jsx
+    <div className="mb-6">
+      <label className="block text-sm font-bold text-gray-900 mb-2">
+        Preferred Communication Method? *
+      </label>
+      <div className="flex flex-wrap gap-4">
+        {['email', 'instagram', 'messages'].map((method) => (
+          <label key={method} className="flex items-center cursor-pointer">
+            <input
+              type="radio"
+              name="contact_method_selection"
+              value={method}
+              checked={contactMethod === method}
+              onChange={() => setContactMethod(method)}
+              className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300"
+            />
+            <span className="ml-2 text-gray-700 capitalize">
+              {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+    ```
 
-**2. Output:**
+**3. Implement Dynamic Input Logic:**
 
-  * Generate the updated `websitePortfolio` array code.
+  * **Calculate Props:** Before the return statement, determine the label, type, and placeholder.
+    ```javascript
+    let contactLabel = "Email Address *";
+    let contactType = "email";
+    let contactName = "email"; // Key for Formspree
+    let contactPlaceholder = "example@email.com";
+
+    if (contactMethod === 'instagram') {
+      contactLabel = "Instagram Handle *";
+      contactType = "text";
+      contactName = "instagram_handle";
+      contactPlaceholder = "@yourusername";
+    } else if (contactMethod === 'messages') {
+      contactLabel = "Phone Number *";
+      contactType = "tel";
+      contactName = "phone_number";
+      contactPlaceholder = "+61 400 000 000";
+    }
+    ```
+
+**4. Update the Grid Row:**
+
+  * Locate the row containing "Full Name" and the old "Email" field.
+  * **Keep:** "Full Name" as is.
+  * **Replace:** The second field with the dynamic variables.
+    ```jsx
+    <div className="flex-1">
+      <label className="block text-sm font-bold text-gray-900 mb-1">
+        {contactLabel}
+      </label>
+      <input
+        type={contactType}
+        name={contactName}
+        placeholder={contactPlaceholder}
+        required
+        className="w-full p-2 border border-gray-300 rounded-md focus:ring-[#c13333] focus:border-[#c13333]"
+      />
+    </div>
+    ```
+
+**5. Output:**
+
+  * Generate the updated `ContactForm` component.
 
 -----
 
-**Note to Agent:** Ensure the `embedHtml` string contains **only** the `<img>` tag. Do not include the `<a>` tag from the source, as clicking inside the overlay should not redirect the user.
+**Note to Agent:** Ensure the `name` attribute on the input field changes dynamically (`email` vs `instagram_handle` vs `phone_number`). This ensures Formspree labels the data correctly in the email notification.
