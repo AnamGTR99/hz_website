@@ -391,13 +391,19 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
         </button>
 
         {/* Logo */}
-        <div className="flex flex-col items-center md:items-center">
+        <button 
+          onClick={() => {
+            setCurrentPage('home');
+            setIsMobileMenuOpen(false);
+          }}
+          className="flex flex-col items-center cursor-pointer hover:opacity-80 transition-opacity"
+        >
           <img 
             src="/logo.png" 
             alt="Hugo Zbor Logo" 
             className="h-10 w-auto md:h-16"
           />
-        </div>
+        </button>
 
         {/* Spacer for mobile to center logo (invisible on desktop) */}
         <div className="md:hidden w-6"></div>
