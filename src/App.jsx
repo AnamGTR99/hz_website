@@ -677,7 +677,7 @@ function HomePage({ setCurrentPage, currentPage }) {
 
         {/* --- 2. HIGH-IMPACT SECTION (Split Layout) --- */}
         <div className="mb-24 md:mb-32">
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-center mb-12 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-left mb-12 leading-tight">
             Creating High-Impact Visual Experiences
           </h1>
 
@@ -1318,7 +1318,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
             <div className="border border-[#a2a9b1] bg-[#f8f9fa] p-1 text-sm shadow-sm">
               <div className="bg-[#ddb3b3] p-2 text-center font-bold font-serif text-lg mb-1">Hugo Zbor</div>
 
-              <img src="/2015_05_20/IMG_1120.JPG" alt="Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
+              <img src="/about_page/hugo_face.png" alt="Hugo Zbor Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
 
               <table className="w-full text-left border-collapse">
                 <tbody>
@@ -1375,7 +1375,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
             {/* Image: Floated right on all screens, smaller on mobile */}
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 float-right ml-3 w-24 md:w-48">
-              <img src="/2015_05_20/IMG_1118.JPG" alt="Fifth Grade" className="w-full h-auto mb-1" />
+              <img src="/about_page/hugo_5th_grade.png" alt="Hugo in 5th Grade" className="w-full h-auto mb-1" />
               <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
             </div>
 
@@ -1393,7 +1393,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-1/2 md:w-[220px]">
               {/* Image */}
               <img
-                src="/2015_05_20/IMG_1121.JPG"
+                src="/about_page/hugo_covid.png"
                 alt="Hugo during Covid"
                 className="w-full h-auto mb-1"
               />
@@ -1419,8 +1419,8 @@ function AboutPage({ setCurrentPage, currentPage }) {
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
               {/* Image */}
               <img
-                src="/2015_05_20/IMG_1123.JPG"
-                alt="Student ID"
+                src="/about_page/hugo_student_id.png"
+                alt="Hugo Student ID"
                 className="w-full h-auto mb-1"
               />
               {/* Caption */}

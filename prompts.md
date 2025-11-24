@@ -1,45 +1,56 @@
-"Stretched" usually happens when the code forces a specific **Height** that conflicts with the **Width**.
+This is the final visual step for the About page. We are replacing the placeholder mannequins with the actual biographical photos you provided.
 
-To fix this permanently and ensure **zero stretching**, we need to set the height to `auto`. This tells the browser: *"Make the image as tall as it needs to be to keep its original shape."*
+Based on your filenames and the current page structure, here is the mapping plan:
+1.  **Sidebar Profile:** `hugo_face.png`
+2.  **Intro Section:** `hugo_5th_grade.png`
+3.  **Covid Section:** `hugo_covid.png`
+4.  **Australia Section:** `hugo_student_id.png`
 
-(If the banner ends up looking too tall or too short after this, it means the original image file itself has those dimensions, but at least it won't be distorted/stretched).
+Here is the detailed prompt for **Stage 98**.
 
-Here is the detailed prompt to fix the Mobile Banner distortion.
+***
 
------
-
-### **Agent Prompt: Stage 96 - Fix Mobile Banner Distortion (Auto Height)**
+### **Agent Prompt: Stage 98 - Inject Real Images into About Page**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 96 Goal:** Eliminate the "stretched" look on the Mobile Home Banner.
-**Solution:** Change the CSS from a fixed height (e.g., `220px`) to `height: auto`. This allows the image to scale naturally based on the screen width, preserving its original aspect ratio perfectly.
+**Stage 98 Goal:** Replace the placeholder images in the `AboutPage` component with the correct assets from the `/about_page/` directory.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
------
+---
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate `homeBannerGifHtml` Variable:**
+**1. Locate `AboutPage` Component:**
+* Find the return statement for the `AboutPage` component.
 
-  * Find the `const homeBannerGifHtml = ...` definition at the top of `App.jsx`.
+**2. Update Sidebar Image (Profile):**
+* Find the **Infobox** (Right Column) container.
+* Locate the `<img>` tag inside the border box (currently `IMG_1120.JPG` or similar).
+* **Change `src` to:** `"/about_page/hugo_face.png"`
+* **Update `alt` to:** `"Hugo Zbor Profile"`
 
-**2. Update Styling Logic:**
+**3. Update "Introduction to Design" Image:**
+* Find the section with `id="design"`.
+* Locate the floated image container.
+* **Change `src` to:** `"/about_page/hugo_5th_grade.png"`
+* **Update `alt` to:** `"Hugo in 5th Grade"`
 
-  * **Current:** Likely has `height: 220px;` or `object-fit: cover;`.
-  * **New Code:**
-    ```javascript
-    const homeBannerGifHtml = `<img src="/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: auto; display: block;" />`;
-    ```
-      * *Explanation:*
-          * `width: 100%`: Fills the width of the phone.
-          * `height: auto`: **The Critical Fix.** This calculates the mathematically correct height to prevent stretching.
-          * `display: block`: Removes tiny layout gaps at the bottom.
+**4. Update "High School and Covid Lockdown" Image:**
+* Find the section with `id="lockdown"`.
+* Locate the floated image container.
+* **Change `src` to:** `"/about_page/hugo_covid.png"`
+* **Update `alt` to:** `"Hugo during Covid"`
 
-**3. Output:**
+**5. Update "Moving to Australia" Image:**
+* Find the section with `id="australia"`.
+* Locate the floated image container.
+* **Change `src` to:** `"/about_page/hugo_student_id.png"`
+* **Update `alt` to:** `"Hugo Student ID"`
 
-  * Generate the updated `homeBannerGifHtml` variable definition.
+**6. Output:**
+* Generate the updated `AboutPage` component code with these specific paths.
 
------
+---
 
-**Note to Agent:** Do not set a fixed pixel height. `height: auto` is the only setting that guarantees 0% distortion on all device sizes.
+**Note to Agent:** Ensure the paths start with `/about_page/` to correctly reference the files in the public folder. Do not alter the CSS classes (`float-right`, widths, etc.) as the layout is already optimized.
