@@ -174,7 +174,8 @@ const videoPortfolio = [
     description: 'Experimental video inspired by early 2000s TV shows',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/trcAZwylfcQ?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    videoEmbedUrl: null,
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926412?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brainwash.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
     instagramLink: 'https://www.instagram.com/p/DRJ2US5D11L/',
   },
   {
@@ -204,8 +205,13 @@ const videoPortfolio = [
     description: 'Photos shot by client, 3D Assets made by in-house 3D artist, everything assembled by Hugo Zbor',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/Qziv5xrXTgc?modestbranding=1&rel=0&iv_load_policy=3&color=white',
     instagramLink: 'https://www.instagram.com/p/DQNWnMBk9Kp/?img_index=1',
+
+    // 1. DISABLE YOUTUBE
+    videoEmbedUrl: null,
+
+    // 2. ENABLE VIMEO (Paste exactly)
+    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139930384?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="CAROUSEL LNA 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
   },
   {
     id: 'video-99clover',
@@ -214,7 +220,8 @@ const videoPortfolio = [
     description: 'Greenscreen video, shot by @99CLOVER and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/GLyH_Vveiik?modestbranding=1&rel=0&iv_load_policy=3&color=white',
+    videoEmbedUrl: null,
+    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139929076?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="USS vid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
     instagramLink: 'https://www.instagram.com/p/DQognlkkkwi/',
   },
   {
@@ -314,7 +321,7 @@ const homeBannerVideoHtml = `
   </video>
 `;
 
-const homeBannerGifHtml = `<img src="/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 105px; object-fit: fill; display: block;" />`;
+const homeBannerGifHtml = `<img src="/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 105px; object-fit: fill; display: block;" fetchpriority="high" loading="eager" />`;
 
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
@@ -344,6 +351,22 @@ const TikTokIcon = ({ className }) => (
     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
   </svg>
 );
+
+// LoadingScreen component
+function LoadingScreen() {
+  return (
+    <div className="fixed inset-0 z-[9999] bg-white flex items-center justify-center">
+      <div className="animate-pulse flex flex-col items-center">
+        {/* Main Logo */}
+        <img
+          src="/logo.png"
+          alt="Loading..."
+          className="w-24 h-auto md:w-32"
+        />
+      </div>
+    </div>
+  );
+}
 
 // GridCarousel component for items with multiple images
 function GridCarousel({ images }) {
@@ -867,7 +890,8 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
           ) : item.embedHtml ? (
             // RENDER HTML EMBED (For Websites/Gyazo)
             <div
-              className="w-full h-full flex items-center justify-center bg-gray-50 p-4 md:p-8 pointer-events-none"
+              className={`w-full h-auto bg-gray-50 p-4 md:p-8 ${item.category.includes('videos') ? '' : 'pointer-events-none'
+                }`}
               dangerouslySetInnerHTML={{ __html: item.embedHtml }}
             />
           ) : (
@@ -2354,6 +2378,7 @@ function App() {
   const [currentPage, _setCurrentPage] = useState(initialUrlState.page)
   const [currentCategory, _setCurrentCategory] = useState(initialUrlState.category)
   const [currentItemId, _setCurrentItemId] = useState(initialUrlState.itemId)
+  const [isLoading, setIsLoading] = useState(true)
 
   const setCurrentPage = (page, category = null, itemId = null) => {
     _setCurrentPage(page)
@@ -2419,46 +2444,82 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
 
+  // Preload heavy assets
+  useEffect(() => {
+    const handleLoad = () => setIsLoading(false);
+
+    // 1. Define the heavy asset URL (The Mobile Banner)
+    const heavyAssetUrl = "https://t.gyazo.com/teams/hugozbor/d191e5f334046b8099e6174ed727adf6.gif";
+
+    // 2. Create an image instance to force download
+    const img = new Image();
+    img.src = heavyAssetUrl;
+
+    // 3. Listen for load completion
+    if (img.complete) {
+      handleLoad();
+    } else {
+      img.onload = handleLoad;
+      img.onerror = handleLoad; // Fail safe: load app anyway if image breaks
+    }
+
+    // 4. Safety Timeout: Force load after 4 seconds if network is too slow
+    const timer = setTimeout(handleLoad, 4000);
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+      clearTimeout(timer);
+    };
+  }, [])
+
+
   return (
-    <div className="bg-white min-h-screen flex flex-col">
-      {/* Header is now Global and Sticky */}
-      <Header currentPage={currentPage} currentCategory={currentCategory} setCurrentPage={setCurrentPage} />
+    <>
+      {/* Conditionally Render Loader */}
+      {isLoading && <LoadingScreen />}
 
-      <main className="flex-grow">
-        {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
-        {currentPage === 'my-work' && currentCategory === 'graphics' && (
-          <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
-        )}
-        {currentPage === 'my-work' && currentCategory === 'videos' && (
-          <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
-        )}
-        {currentPage === 'my-work' && currentCategory === 'websites' && (
-          <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
-        )}
-        {currentPage === 'my-work' && currentCategory === 'view-all' && (
-          <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
-        )}
-        {currentPage === 'my-work' && currentCategory === 'landing' && (
-          <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
-        )}
-        {currentPage === 'commissions' && (
-          <CommissionsPage
-            activeSection={currentCategory}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          />
-        )}
-        {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
-        {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
-        {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
-        {currentPage === 'info' && <InfoPage setCurrentPage={setCurrentPage} />}
-      </main>
-      <Footer setCurrentPage={setCurrentPage} />
+      {/* Main App Content (Hidden or rendered behind loader) */}
+      <div className={`bg-white min-h-screen flex flex-col ${isLoading ? 'hidden' : ''}`}>
+        {/* Header is now Global and Sticky */}
+        <Header currentPage={currentPage} currentCategory={currentCategory} setCurrentPage={setCurrentPage} />
 
-      {/* Vercel Tracking Components */}
-      <Analytics />
-      <SpeedInsights />
-    </div>
+        <main className="flex-grow">
+          {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+          {currentPage === 'my-work' && currentCategory === 'graphics' && (
+            <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+          )}
+          {currentPage === 'my-work' && currentCategory === 'videos' && (
+            <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+          )}
+          {currentPage === 'my-work' && currentCategory === 'websites' && (
+            <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+          )}
+          {currentPage === 'my-work' && currentCategory === 'view-all' && (
+            <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+          )}
+          {currentPage === 'my-work' && currentCategory === 'landing' && (
+            <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
+          )}
+          {currentPage === 'commissions' && (
+            <CommissionsPage
+              activeSection={currentCategory}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
+          )}
+          {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+          {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+          {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
+          {currentPage === 'info' && <InfoPage setCurrentPage={setCurrentPage} />}
+        </main>
+        <Footer setCurrentPage={setCurrentPage} />
+
+        {/* Vercel Tracking Components */}
+        <Analytics />
+        <SpeedInsights />
+      </div>
+    </>
   )
 }
 
