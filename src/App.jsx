@@ -283,7 +283,7 @@ const shuffleArray = (array) => {
   const newArray = [...array]
   for (let i = newArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
-    ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
   }
   return newArray
 }
@@ -314,7 +314,7 @@ const homeBannerVideoHtml = `
   </video>
 `;
 
-const homeBannerGifHtml = `<img src="https://t.gyazo.com/teams/hugozbor/7e3c4b75f021c68f45bf75a2b1c99960.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 220px; object-fit: cover; display: block;" />`;
+const homeBannerGifHtml = `<img src="/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 140px; object-fit: fill; display: block;" />`;
 
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
@@ -331,14 +331,14 @@ const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePo
 
 // TikTokIcon component
 const TikTokIcon = ({ className }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
@@ -359,8 +359,8 @@ function GridCarousel({ images }) {
 
   return (
     <div className="relative w-full overflow-hidden">
-      <img 
-        src={images[currentIndex]} 
+      <img
+        src={images[currentIndex]}
         alt="Carousel Slide"
         className="w-full h-auto object-contain rounded-lg select-none"
       />
@@ -369,9 +369,8 @@ function GridCarousel({ images }) {
           {images.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                index === currentIndex ? 'bg-white' : 'bg-white/50'
-              }`}
+              className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-white' : 'bg-white/50'
+                }`}
             />
           ))}
         </div>
@@ -412,16 +411,16 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
         </button>
 
         {/* Logo */}
-        <button 
+        <button
           onClick={() => {
             setCurrentPage('home');
             setIsMobileMenuOpen(false);
           }}
           className="flex flex-col items-center cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <img 
-            src="/logo.png" 
-            alt="Hugo Zbor Logo" 
+          <img
+            src="/logo.png"
+            alt="Hugo Zbor Logo"
             className="h-10 w-auto md:h-16"
           />
         </button>
@@ -464,11 +463,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                     setCurrentPage('my-work', 'graphics')
                     setShowMyWorkDropdown(false)
                   }}
-                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work' && currentCategory === 'graphics'
-                      ? 'text-[#c13333]'
-                      : 'text-brandBlack'
-                  }`}
+                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${currentPage === 'my-work' && currentCategory === 'graphics'
+                    ? 'text-[#c13333]'
+                    : 'text-brandBlack'
+                    }`}
                 >
                   Graphics
                 </button>
@@ -477,11 +475,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                     setCurrentPage('my-work', 'videos')
                     setShowMyWorkDropdown(false)
                   }}
-                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work' && currentCategory === 'videos'
-                      ? 'text-[#c13333]'
-                      : 'text-brandBlack'
-                  }`}
+                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${currentPage === 'my-work' && currentCategory === 'videos'
+                    ? 'text-[#c13333]'
+                    : 'text-brandBlack'
+                    }`}
                 >
                   Videos
                 </button>
@@ -490,11 +487,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                     setCurrentPage('my-work', 'websites')
                     setShowMyWorkDropdown(false)
                   }}
-                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work' && currentCategory === 'websites'
-                      ? 'text-[#c13333]'
-                      : 'text-brandBlack'
-                  }`}
+                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${currentPage === 'my-work' && currentCategory === 'websites'
+                    ? 'text-[#c13333]'
+                    : 'text-brandBlack'
+                    }`}
                 >
                   Websites
                 </button>
@@ -503,11 +499,10 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                     setCurrentPage('my-work', 'view-all')
                     setShowMyWorkDropdown(false)
                   }}
-                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${
-                    currentPage === 'my-work' && currentCategory === 'view-all'
-                      ? 'text-[#c13333]'
-                      : 'text-brandBlack'
-                  }`}
+                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${currentPage === 'my-work' && currentCategory === 'view-all'
+                    ? 'text-[#c13333]'
+                    : 'text-brandBlack'
+                    }`}
                 >
                   View all
                 </button>
@@ -660,22 +655,22 @@ function HomePage({ setCurrentPage, currentPage }) {
     <div className="w-full mb-20">
       {/* Mobile-only Page Title */}
       <PageHeader title="HOME" isActive={currentPage === 'home'} />
-      
+
       {/* --- 1. HERO BANNER --- */}
       <div className="w-full mb-16 md:mb-24">
-        
+
         {/* A. MOBILE VERSION (GIF) - Visible only on mobile */}
-        <div 
+        <div
           className="block md:hidden w-full pointer-events-none"
           dangerouslySetInnerHTML={{ __html: homeBannerGifHtml }}
         />
 
         {/* B. DESKTOP VERSION (VIDEO) - Hidden on mobile */}
-        <div 
+        <div
           className="hidden md:block w-full pointer-events-none"
           dangerouslySetInnerHTML={{ __html: homeBannerVideoHtml }}
         />
-        
+
       </div>
 
       <div className="max-w-6xl mx-auto px-4 md:px-8">
@@ -685,16 +680,16 @@ function HomePage({ setCurrentPage, currentPage }) {
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-center mb-12 leading-tight">
             Creating High-Impact Visual Experiences
           </h1>
-          
+
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
             {/* Image Left */}
             <div className="w-full md:w-1/2">
-               <div 
-                 className="w-full pointer-events-none"
-                 dangerouslySetInnerHTML={{ __html: homeHeroVisual }} // iPod Image
-               />
+              <div
+                className="w-full pointer-events-none"
+                dangerouslySetInnerHTML={{ __html: homeHeroVisual }} // iPod Image
+              />
             </div>
-            
+
             {/* Text Right */}
             <div className="w-full md:w-1/2">
               <h3 className="text-sm font-bold uppercase tracking-widest mb-4">The Foundation of Hugo Zbor</h3>
@@ -716,13 +711,13 @@ function HomePage({ setCurrentPage, currentPage }) {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase mb-8 text-left">
             Upgrade Your Creatives
           </h2>
-          
+
           {/* Full Width Image */}
-          <div 
+          <div
             className="w-full mb-8 pointer-events-none"
             dangerouslySetInnerHTML={{ __html: homeHeroVisualMiddle }} // 3-Panel Image
           />
-          
+
           {/* Text Below */}
           <div className="max-w-3xl">
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Creative Trajectory</h3>
@@ -743,13 +738,13 @@ function HomePage({ setCurrentPage, currentPage }) {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 uppercase mb-8 text-left">
             Latest Projects
           </h2>
-          
+
           {/* Full Width Image */}
-          <div 
+          <div
             className="w-full mb-8 pointer-events-none"
             dangerouslySetInnerHTML={{ __html: homeHeroVisual2 }} // Crane Image
           />
-          
+
           {/* Text Below */}
           <div className="max-w-3xl">
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Creative Trajectory</h3>
@@ -776,46 +771,46 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
     <>
       <PageHeader title="My work" isActive={currentPage === 'my-work'} />
       <div className="max-w-7xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-      <div className="flex flex-col items-center gap-8 md:gap-12">
-        {/* Top Row: Graphics and Videos */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full">
-          {/* Graphics Box - Left */}
-          <div className="flex flex-col items-center">
-            <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              Graphics
-            </p>
-            <button
-              onClick={() => setCurrentPage('my-work', 'graphics')}
-              className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
-            >
-            </button>
+        <div className="flex flex-col items-center gap-8 md:gap-12">
+          {/* Top Row: Graphics and Videos */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full">
+            {/* Graphics Box - Left */}
+            <div className="flex flex-col items-center">
+              <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                Graphics
+              </p>
+              <button
+                onClick={() => setCurrentPage('my-work', 'graphics')}
+                className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
+              >
+              </button>
+            </div>
+
+            {/* Videos Box - Right */}
+            <div className="flex flex-col items-center">
+              <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                Videos
+              </p>
+              <button
+                onClick={() => setCurrentPage('my-work', 'videos')}
+                className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
+              >
+              </button>
+            </div>
           </div>
-          
-          {/* Videos Box - Right */}
+
+          {/* Bottom Row: Websites - Centered */}
           <div className="flex flex-col items-center">
             <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              Videos
+              Websites
             </p>
             <button
-              onClick={() => setCurrentPage('my-work', 'videos')}
+              onClick={() => setCurrentPage('my-work', 'websites')}
               className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
             >
             </button>
           </div>
         </div>
-        
-        {/* Bottom Row: Websites - Centered */}
-        <div className="flex flex-col items-center">
-          <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Websites
-          </p>
-          <button
-            onClick={() => setCurrentPage('my-work', 'websites')}
-            className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
-          >
-          </button>
-        </div>
-      </div>
       </div>
     </>
   )
@@ -838,23 +833,23 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-white/30 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
       {/* Main Modal Box */}
-      <div 
+      <div
         className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
-        <button 
+        <button
           onClick={onClose}
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-800 z-10"
         >
           <X className="size-6" />
         </button>
-        
+
         {/* LEFT SIDE: Image or Video */}
         <div className="w-full md:w-1/2 bg-gray-100">
           {item.videoEmbedUrl ? (
@@ -871,15 +866,15 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
             </div>
           ) : item.embedHtml ? (
             // RENDER HTML EMBED (For Websites/Gyazo)
-            <div 
+            <div
               className="w-full h-full flex items-center justify-center bg-gray-50 p-4 md:p-8 pointer-events-none"
               dangerouslySetInnerHTML={{ __html: item.embedHtml }}
             />
           ) : (
             // RENDER IMAGE (with carousel support)
             <div className="relative w-full h-64 md:h-full">
-              <img 
-                src={item.slides ? item.slides[currentSlideIndex] : item.fullImageUrl} 
+              <img
+                src={item.slides ? item.slides[currentSlideIndex] : item.fullImageUrl}
                 alt={item.title}
                 className="w-full h-full object-contain"
               />
@@ -903,9 +898,8 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                     {item.slides.map((_, index) => (
                       <div
                         key={index}
-                        className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                          index === currentSlideIndex ? 'bg-white' : 'bg-white/50'
-                        }`}
+                        className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentSlideIndex ? 'bg-white' : 'bg-white/50'
+                          }`}
                       />
                     ))}
                   </div>
@@ -914,30 +908,30 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
             </div>
           )}
         </div>
-        
+
         {/* RIGHT SIDE: Text Content */}
         <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-center">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
-            
+
             {/* Date */}
             <p className="text-sm text-gray-500 mt-1 mb-4">{item.date}</p>
-            
+
             {/* Description */}
             <div className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</div>
-            
+
             {/* Action Bar - Stacked Layout */}
             <div className="flex flex-col gap-3 mt-6">
-              
+
               {/* LEFT: External Link (Instagram OR Website) */}
               <div className="flex gap-4">
-                
+
                 {/* A. Instagram Button with Share (for Graphics/Videos) */}
                 {item.instagramLink && (
                   <div className="flex gap-2 w-full">
-                    <a 
-                      href={item.instagramLink} 
-                      target="_blank" 
+                    <a
+                      href={item.instagramLink}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex-grow flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
                     >
@@ -955,9 +949,9 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                         {isCopied ? (
                           <Check className="size-5 text-green-600" />
                         ) : (
-                          <img 
-                            src="/copy_favicon.jpeg" 
-                            alt="Copy" 
+                          <img
+                            src="/copy_favicon.jpeg"
+                            alt="Copy"
                             className="w-5 h-5 object-contain"
                           />
                         )}
@@ -970,9 +964,9 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                 {item.websiteUrl && (
                   <div className="flex gap-2 w-full">
                     {/* View Website Button */}
-                    <a 
-                      href={item.websiteUrl} 
-                      target="_blank" 
+                    <a
+                      href={item.websiteUrl}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex-grow flex items-center justify-center gap-2 px-4 py-3 md:py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
                     >
@@ -989,9 +983,9 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                       {isCopied ? (
                         <Check className="size-5 text-green-600" />
                       ) : (
-                        <img 
-                          src="/copy_favicon.jpeg" 
-                          alt="Copy" 
+                        <img
+                          src="/copy_favicon.jpeg"
+                          alt="Copy"
                           className="w-5 h-5 object-contain"
                         />
                       )}
@@ -1009,9 +1003,9 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
                     {isCopied ? (
                       <Check className="size-5 text-green-600" />
                     ) : (
-                      <img 
-                        src="/copy_favicon.jpeg" 
-                        alt="Copy" 
+                      <img
+                        src="/copy_favicon.jpeg"
+                        alt="Copy"
                         className="w-5 h-5 object-contain"
                       />
                     )}
@@ -1020,10 +1014,10 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
               </div>
 
               {/* RIGHT: CTA */}
-              <button 
+              <button
                 onClick={() => {
-                  onClose(); 
-                  setCurrentPage('contact'); 
+                  onClose();
+                  setCurrentPage('contact');
                 }}
                 className="px-6 py-3 md:py-2 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors w-full"
               >
@@ -1053,14 +1047,14 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
   // Render masonry grid with specified column count
   const renderMasonryGrid = (columnCount) => {
     const columns = distributeItems(displayedItems, columnCount);
-    
+
     return (
       <div className="flex gap-4 md:gap-6">
         {columns.map((columnItems, columnIndex) => (
           <div key={columnIndex} className="flex-1 flex flex-col gap-4 md:gap-6">
             {columnItems.map(item => {
               const isWebsite = item.category.includes('websites')
-              
+
               // Conditional padding: Websites get more breathing room (p-5), Graphics/Videos get smaller padding on mobile (p-2)
               const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6"
               const cardClasses = `break-inside-avoid mb-6 group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 rounded-lg w-full text-left ${paddingClass}`
@@ -1083,9 +1077,9 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   {item.slides && item.slides.length > 1 ? (
                     <GridCarousel images={item.slides} />
                   ) : (
-                    <img 
-                      src={item.thumbnailUrl} 
-                      alt={item.title} 
+                    <img
+                      src={item.thumbnailUrl}
+                      alt={item.title}
                       className={imageStyles}
                     />
                   )}
@@ -1139,119 +1133,119 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
     <>
       <PageHeader title="My work" isActive={currentPage === 'my-work'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0">
-      {/* Sub-navigation */}
-      <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
-        <button
-          onClick={() => setCurrentPage('my-work', 'graphics')}
-          className={
-            category === 'graphics'
-              ? 'font-bold text-sm md:text-lg text-[#c13333]'
-              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-          }
-          style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-        >
-          GRAPHICS
-        </button>
-        <button
-          onClick={() => setCurrentPage('my-work', 'videos')}
-          className={
-            category === 'videos'
-              ? 'font-bold text-sm md:text-lg text-[#c13333]'
-              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-          }
-          style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-        >
-          VIDEOS
-        </button>
-        <button
-          onClick={() => setCurrentPage('my-work', 'websites')}
-          className={
-            category === 'websites'
-              ? 'font-bold text-sm md:text-lg text-[#c13333]'
-              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-          }
-          style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-        >
-          WEBSITES
-        </button>
-        <button
-          onClick={() => setCurrentPage('my-work', 'view-all')}
-          className={
-            category === 'view-all'
-              ? 'font-bold text-sm md:text-lg text-[#c13333]'
-              : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-          }
-          style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-        >
-          VIEW ALL
-        </button>
-      </nav>
+        {/* Sub-navigation */}
+        <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
+          <button
+            onClick={() => setCurrentPage('my-work', 'graphics')}
+            className={
+              category === 'graphics'
+                ? 'font-bold text-sm md:text-lg text-[#c13333]'
+                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            GRAPHICS
+          </button>
+          <button
+            onClick={() => setCurrentPage('my-work', 'videos')}
+            className={
+              category === 'videos'
+                ? 'font-bold text-sm md:text-lg text-[#c13333]'
+                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            VIDEOS
+          </button>
+          <button
+            onClick={() => setCurrentPage('my-work', 'websites')}
+            className={
+              category === 'websites'
+                ? 'font-bold text-sm md:text-lg text-[#c13333]'
+                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            WEBSITES
+          </button>
+          <button
+            onClick={() => setCurrentPage('my-work', 'view-all')}
+            className={
+              category === 'view-all'
+                ? 'font-bold text-sm md:text-lg text-[#c13333]'
+                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            VIEW ALL
+          </button>
+        </nav>
 
-      {/* Gallery */}
-      {/* CASE A: WEBSITES (Now using Overlay instead of direct links) */}
-      {category === 'websites' ? (
-        <div className="flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8">
-          {displayedItems.map(item => {
-            const wrapperClass = "group w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 block p-4"
+        {/* Gallery */}
+        {/* CASE A: WEBSITES (Now using Overlay instead of direct links) */}
+        {category === 'websites' ? (
+          <div className="flex flex-wrap justify-center gap-8 px-4 md:px-0 mt-8">
+            {displayedItems.map(item => {
+              const wrapperClass = "group w-full max-w-2xl bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 block p-4"
 
-            return (
-              <button
-                key={item.id}
-                onClick={() => setCurrentPage('my-work', category, item.id)}
-                className={wrapperClass}
-              >
-                <img 
-                  src={item.thumbnailUrl} 
-                  alt={item.title} 
-                  className="w-full h-auto shadow-sm rounded-md"
-                />
-                <div className="p-4">
-                  <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight truncate">
-                    {item.title}
-                  </h3>
-                  <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
-                    {item.date}
-                  </p>
-                </div>
-              </button>
-            )
-          })}
-          {/* Show a message if no items match the filter */}
-          {displayedItems.length === 0 && (
-            <p className="text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              No projects found in this category.
-            </p>
-          )}
-        </div>
-      ) : (
-        /* CASE B: GRAPHICS/VIDEOS (New L-R Masonry) */
-        <>
-          {/* Mobile View (2 Columns) */}
-          <div className="block md:hidden mt-4 px-2">
-            {renderMasonryGrid(2)}
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setCurrentPage('my-work', category, item.id)}
+                  className={wrapperClass}
+                >
+                  <img
+                    src={item.thumbnailUrl}
+                    alt={item.title}
+                    className="w-full h-auto shadow-sm rounded-md"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight truncate">
+                      {item.title}
+                    </h3>
+                    <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
+                      {item.date}
+                    </p>
+                  </div>
+                </button>
+              )
+            })}
+            {/* Show a message if no items match the filter */}
+            {displayedItems.length === 0 && (
+              <p className="text-center text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                No projects found in this category.
+              </p>
+            )}
           </div>
+        ) : (
+          /* CASE B: GRAPHICS/VIDEOS (New L-R Masonry) */
+          <>
+            {/* Mobile View (2 Columns) */}
+            <div className="block md:hidden mt-4 px-2">
+              {renderMasonryGrid(2)}
+            </div>
 
-          {/* Desktop View (3 Columns) */}
-          <div className="hidden md:block mt-8 px-0">
-            {renderMasonryGrid(3)}
-          </div>
+            {/* Desktop View (3 Columns) */}
+            <div className="hidden md:block mt-8 px-0">
+              {renderMasonryGrid(3)}
+            </div>
 
-          {/* Show a message if no items match the filter */}
-          {displayedItems.length === 0 && (
-            <p className="text-center text-gray-500 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-              No projects found in this category.
-            </p>
-          )}
-        </>
-      )}
+            {/* Show a message if no items match the filter */}
+            {displayedItems.length === 0 && (
+              <p className="text-center text-gray-500 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                No projects found in this category.
+              </p>
+            )}
+          </>
+        )}
       </div>
 
       {/* Overlay */}
       {selectedItem && (
-        <WorkOverlay 
-          item={selectedItem} 
+        <WorkOverlay
+          item={selectedItem}
           onClose={() => setCurrentPage('my-work', category, null)}
-          setCurrentPage={setCurrentPage} 
+          setCurrentPage={setCurrentPage}
         />
       )}
     </>
@@ -1263,7 +1257,7 @@ function SectionHeader({ title, setCurrentPage }) {
   return (
     <div className="flex justify-between items-center border-b border-gray-300 mt-8 pb-1">
       <h2 className="!text-2xl !font-normal !mb-0" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{title}</h2>
-      <button 
+      <button
         onClick={() => setCurrentPage('contact')}
         className="text-sm text-blue-600 hover:underline"
         style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
@@ -1278,10 +1272,10 @@ function SectionHeader({ title, setCurrentPage }) {
 function InfoBox({ imageUrl, caption, altText }) {
   return (
     <div className="border border-gray-300 bg-gray-50 rounded-lg p-3 mt-6 text-center">
-      <img 
-        src={imageUrl} 
-        alt={altText} 
-        className="w-full h-auto" 
+      <img
+        src={imageUrl}
+        alt={altText}
+        className="w-full h-auto"
       />
       <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{caption}</p>
     </div>
@@ -1304,7 +1298,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
       <PageHeader title="About" isActive={currentPage === 'about'} />
 
       <div className="max-w-6xl mx-auto px-4 md:px-6 mt-6">
-        
+
         {/* 2. Page Title */}
         <h1 className="font-sans font-bold uppercase tracking-wide text-3xl md:text-4xl border-b border-[#a2a9b1] pb-1 mb-4">
           Hugo Zbor
@@ -1317,15 +1311,15 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
         {/* 3. Main Layout Container (Flex Column on Mobile, Row on Desktop) */}
         <div className="flex flex-col md:flex-row md:gap-8 items-start">
-          
+
           {/* --- COLUMN A: INFOBOX (Profile) --- */}
           {/* ORDER-1: Shows first on mobile. ORDER-2: Shows second (right) on desktop */}
           <div className="w-full md:w-72 shrink-0 order-1 md:order-2 mb-6 md:mb-0">
             <div className="border border-[#a2a9b1] bg-[#f8f9fa] p-1 text-sm shadow-sm">
               <div className="bg-[#ddb3b3] p-2 text-center font-bold font-serif text-lg mb-1">Hugo Zbor</div>
-              
+
               <img src="/2015_05_20/IMG_1120.JPG" alt="Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
-              
+
               <table className="w-full text-left border-collapse">
                 <tbody>
                   <tr>
@@ -1355,9 +1349,9 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
           {/* --- COLUMN B: MAIN ARTICLE --- */}
           {/* ORDER-2: Shows second on mobile. ORDER-1: Shows first (left) on desktop */}
-          <div className="w-full md:flex-1 order-2 md:order-1 min-w-0"> 
+          <div className="w-full md:flex-1 order-2 md:order-1 min-w-0">
             {/* min-w-0 prevents flex items from overflowing container */}
-            
+
             {/* Intro Text - Desktop Only */}
             <p className="mb-4 hidden md:block font-normal">
               Hugo Zbor (born Jakarta, Indonesia) is a 21-year-old <span className={styles.link}>artist</span>, <span className={styles.link}>editor</span>, and <span className={styles.link}>web designer</span> based in <span className={styles.link}>Melbourne, Australia</span>.
@@ -1378,15 +1372,15 @@ function AboutPage({ setCurrentPage, currentPage }) {
               <h2>Introduction to Design</h2>
               <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
-            
+
             {/* Image: Floated right on all screens, smaller on mobile */}
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 float-right ml-3 w-24 md:w-48">
-               <img src="/2015_05_20/IMG_1118.JPG" alt="Fifth Grade" className="w-full h-auto mb-1"/>
-               <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
+              <img src="/2015_05_20/IMG_1118.JPG" alt="Fifth Grade" className="w-full h-auto mb-1" />
+              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
             </div>
-            
+
             <p className="mb-4 font-normal">Around the fifth grade, I was borrowing my mum's laptop and I stumbled across a video of someone editing photos with <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> on <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className={styles.link}>YouTube</a>. At the time, you were able to do 30-day free trials, so I secretly downloaded it and kept making new emails to keep using it. I was really bad at watching tutorials, so I started learning by trying out every single tool and then just testing random things.</p>
-            
+
             <p className="mb-4 font-normal">For the next 5 years I would continue to learn and use <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> as a hobby for fun (making memes and silly images).</p>
 
             {/* SECTION 2 */}
@@ -1397,22 +1391,22 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
             {/* FLOATED IMAGE CONTAINER */}
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-1/2 md:w-[220px]">
-               {/* Image */}
-               <img 
-                 src="/2015_05_20/IMG_1121.JPG"
-                 alt="Hugo during Covid" 
-                 className="w-full h-auto mb-1"
-               />
-               {/* Caption */}
-               <div className="p-1 text-[11px] md:text-xs text-gray-600 leading-tight">
-                 Hugo during <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" target="_blank" rel="noopener noreferrer" className={styles.link}>Covid Lockdown</a>
-               </div>
+              {/* Image */}
+              <img
+                src="/2015_05_20/IMG_1121.JPG"
+                alt="Hugo during Covid"
+                className="w-full h-auto mb-1"
+              />
+              {/* Caption */}
+              <div className="p-1 text-[11px] md:text-xs text-gray-600 leading-tight">
+                Hugo during <a href="https://en.wikipedia.org/wiki/COVID-19_pandemic" target="_blank" rel="noopener noreferrer" className={styles.link}>Covid Lockdown</a>
+              </div>
             </div>
-            
+
             <p className="mb-4 font-normal">Mid-Highschool, after COVID lockdown began, I started venturing into <a href="https://en.wikipedia.org/wiki/Screen_printing" target="_blank" rel="noopener noreferrer" className={styles.link}>screen-printing</a>. After many failures, I actually made a few graphic t-shirts. My first "order" was printing 50 tote bags for my sister's graduation year.</p>
-            
+
             <p className="mb-4 font-normal">After COVID lockdown, two friends and I decided to start a <a href="https://www.instagram.com/99clover" target="_blank" rel="noopener noreferrer" className={styles.link}>99Clover</a>, a clothing brand. It was initially just for our friends, but blew up locally.</p>
-            
+
             <p className="mb-4 font-normal">This was when I first started taking <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> seriously.</p>
 
             {/* SECTION 3 */}
@@ -1423,24 +1417,24 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
             {/* FLOATED IMAGE CONTAINER */}
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
-               {/* Image */}
-               <img 
-                 src="/2015_05_20/IMG_1123.JPG"
-                 alt="Student ID" 
-                 className="w-full h-auto mb-1"
-               />
-               {/* Caption */}
-               <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-                 Hugo's student ID in 2023
-               </div>
+              {/* Image */}
+              <img
+                src="/2015_05_20/IMG_1123.JPG"
+                alt="Student ID"
+                className="w-full h-auto mb-1"
+              />
+              {/* Caption */}
+              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                Hugo's student ID in 2023
+              </div>
             </div>
 
             <p className="mb-4 font-normal">I moved to <a href="https://en.wikipedia.org/wiki/Australia" target="_blank" rel="noopener noreferrer" className={styles.link}>Australia</a>, in 2022, to study <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a> and I kept running the brand (remotely) while attempting to balance it with studying. I noticed my love for design was fading and feeling like a chore. I would always rush and design quickly, because I wanted to get it out of the way.</p>
-            
+
             <p className="mb-4 font-normal">Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className={styles.link}>music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
-            
+
             <p className="mb-4 font-normal">In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className={styles.link}>@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. I am extremely grateful and I believe I am now growing - as an artist - faster than ever before.</p>
-            
+
             <p className="mb-4 font-normal">In November 2025, I decided to actually get a <span className={styles.link}>manager</span> to help scale and grow my account and brand as an artist to new heights. His name is <b>Shei</b> (<a href="https://www.instagram.com/sheivault" target="_blank" rel="noopener noreferrer" className={styles.link}>@sheivault</a> on Instagram) and he was the first person I met at uni 3 years ago, on the very first day.</p>
 
           </div>
@@ -1524,8 +1518,8 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
                 <p className="mt-3" style={{ fontWeight: 400 }}>Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.</p>
               </div>
               <div className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
-                <img 
-                  src={visualArtImg} 
+                <img
+                  src={visualArtImg}
                   alt="Visual Art Example"
                   className="w-full h-auto"
                 />
@@ -1553,9 +1547,9 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
                 <p className="mt-3" style={{ fontWeight: 400 }}>Designed for music promotion, product launches, and brand campaigns.</p>
               </div>
               <div className="w-full md:w-80 flex-shrink-0">
-                <div 
+                <div
                   className="rounded-lg overflow-hidden"
-                  dangerouslySetInnerHTML={{ __html: videoVisualsHtml }} 
+                  dangerouslySetInnerHTML={{ __html: videoVisualsHtml }}
                 />
               </div>
             </div>
@@ -1581,7 +1575,7 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
                 <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
               </div>
               <div className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
-                <img 
+                <img
                   src={creativeDirectionImg}
                   alt="Creative Direction Example"
                   className="w-full h-auto"
@@ -1609,9 +1603,9 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
                 </ul>
                 <p className="mt-3" style={{ fontWeight: 400 }}>Built from scratch to match your brand identity and creative direction.</p>
               </div>
-              <div 
+              <div
                 className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md"
-                dangerouslySetInnerHTML={{ __html: webDesignHtml }} 
+                dangerouslySetInnerHTML={{ __html: webDesignHtml }}
               />
             </div>
           </AccordionItem>
@@ -1710,7 +1704,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
   useEffect(() => {
     // 1. Get all keys that are 'true' (checked)
     const checkedServices = Object.keys(services).filter(key => services[key])
-    
+
     // 2. Apply logic
     if (checkedServices.length === 1) {
       // If exactly ONE is checked, show its specific prompt
@@ -1724,7 +1718,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
 
   const handleServiceChange = (e) => {
     const { name, checked } = e.target
-    
+
     // We map the Formspree 'name' attribute to our state key
     const stateKeyMap = {
       'service_graphics': 'graphics',
@@ -1734,7 +1728,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
       'service_full_project': 'fullService',
       'service_not_sure': 'notSure'
     }
-    
+
     const stateKey = stateKeyMap[name]
     if (stateKey) {
       setServices(prev => ({
@@ -1746,7 +1740,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     const form = e.target
     const data = new FormData(form)
     const formspreeEndpoint = 'https://formspree.io/f/xldawqyy'
@@ -1806,224 +1800,224 @@ function ContactPage({ setCurrentPage, currentPage }) {
     <>
       <PageHeader title="Contact" isActive={currentPage === 'contact'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
-      {/* Header Text */}
-      <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-        Have a project in mind or just want to say hi? I'd love to hear about it. Fill out the form below and I'll get back to you within 1-2 business days.
-      </p>
+        {/* Header Text */}
+        <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          Have a project in mind or just want to say hi? I'd love to hear about it. Fill out the form below and I'll get back to you within 1-2 business days.
+        </p>
 
-      {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-        {/* Row 0: Preferred Communication Method */}
-        <div className="mb-6">
-          <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            Preferred Communication Method? *
-          </label>
-          <div className="flex flex-wrap gap-4">
-            {['email', 'instagram', 'messages'].map((method) => (
-              <label key={method} className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="radio"
-                  name="contact_method_selection"
-                  value={method}
-                  checked={contactMethod === method}
-                  onChange={() => setContactMethod(method)}
-                  className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
-                />
-                <span className="text-brandBlack capitalize" style={{ fontWeight: 400 }}>
-                  {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
-                </span>
-              </label>
-            ))}
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          {/* Row 0: Preferred Communication Method */}
+          <div className="mb-6">
+            <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              Preferred Communication Method? *
+            </label>
+            <div className="flex flex-wrap gap-4">
+              {['email', 'instagram', 'messages'].map((method) => (
+                <label key={method} className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                  <input
+                    type="radio"
+                    name="contact_method_selection"
+                    value={method}
+                    checked={contactMethod === method}
+                    onChange={() => setContactMethod(method)}
+                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                  />
+                  <span className="text-brandBlack capitalize" style={{ fontWeight: 400 }}>
+                    {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
+                  </span>
+                </label>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Row 1: Name & Contact */}
-        <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-          <div className="flex-1">
+          {/* Row 1: Name & Contact */}
+          <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+            <div className="flex-1">
+              <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                Full Name *
+              </label>
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+              />
+            </div>
+            <div className="flex-1">
+              {(() => {
+                let contactLabel = "Email Address *";
+                let contactType = "email";
+                let contactName = "email";
+                let contactPlaceholder = "example@email.com";
+
+                if (contactMethod === 'instagram') {
+                  contactLabel = "Instagram Handle *";
+                  contactType = "text";
+                  contactName = "instagram_handle";
+                  contactPlaceholder = "@yourusername";
+                } else if (contactMethod === 'messages') {
+                  contactLabel = "Phone Number *";
+                  contactType = "tel";
+                  contactName = "phone_number";
+                  contactPlaceholder = "+61 400 000 000";
+                }
+
+                return (
+                  <>
+                    <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                      {contactLabel}
+                    </label>
+                    <input
+                      type={contactType}
+                      name={contactName}
+                      placeholder={contactPlaceholder}
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                      style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+                    />
+                  </>
+                );
+              })()}
+            </div>
+          </div>
+
+          {/* Row 2: Service Checkboxes */}
+          <div>
+            <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              What service(s) are you looking for?*
+            </label>
+            <div className="flex flex-col space-y-2">
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="checkbox"
+                  name="service_graphics"
+                  value="true"
+                  checked={services.graphics}
+                  onChange={handleServiceChange}
+                  className="mr-2"
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Graphics (Poster, Cover Art, Flyer, etc)</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="checkbox"
+                  name="service_video"
+                  value="true"
+                  checked={services.video}
+                  onChange={handleServiceChange}
+                  className="mr-2"
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video Editing / Motion Graphics</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="checkbox"
+                  name="service_webdesign"
+                  value="true"
+                  checked={services.webdesign}
+                  onChange={handleServiceChange}
+                  className="mr-2"
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Webdesign</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="checkbox"
+                  name="service_creative_direction"
+                  value="true"
+                  checked={services.creativeDirection}
+                  onChange={handleServiceChange}
+                  className="mr-2"
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Strategy</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="checkbox"
+                  name="service_full_project"
+                  value="true"
+                  checked={services.fullService}
+                  onChange={handleServiceChange}
+                  className="mr-2"
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Bit of Everything (Full-Service Project)</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="checkbox"
+                  name="service_not_sure"
+                  value="true"
+                  checked={services.notSure}
+                  onChange={handleServiceChange}
+                  className="mr-2"
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not Sure Yet</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Row 3: Text Area */}
+          <div>
             <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Full Name *
+              Tell me more about your project*
+            </label>
+            <textarea
+              name="project_details"
+              required
+              rows={6}
+              placeholder={detailsPlaceholder}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-vertical"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+            />
+          </div>
+
+          {/* Row 4: Budget */}
+          <div>
+            <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              What's your estimated budget?*
             </label>
             <input
               type="text"
-              name="name"
+              name="budget"
               required
+              placeholder="e.g. $750 - $1500 USD etc"
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
             />
           </div>
-          <div className="flex-1">
-            {(() => {
-              let contactLabel = "Email Address *";
-              let contactType = "email";
-              let contactName = "email";
-              let contactPlaceholder = "example@email.com";
 
-              if (contactMethod === 'instagram') {
-                contactLabel = "Instagram Handle *";
-                contactType = "text";
-                contactName = "instagram_handle";
-                contactPlaceholder = "@yourusername";
-              } else if (contactMethod === 'messages') {
-                contactLabel = "Phone Number *";
-                contactType = "tel";
-                contactName = "phone_number";
-                contactPlaceholder = "+61 400 000 000";
-              }
-
-              return (
-                <>
-                  <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                    {contactLabel}
-                  </label>
-                  <input
-                    type={contactType}
-                    name={contactName}
-                    placeholder={contactPlaceholder}
-                    required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-                    style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-                  />
-                </>
-              );
-            })()}
+          {/* Row 5: Timeline */}
+          <div>
+            <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              Ideal Project Timeline?*
+            </label>
+            <div className="flex flex-col space-y-2">
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="Urgent (< 2 weeks)" className="mr-2" />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Urgent (&lt; 2 weeks)</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="Standard (2-3 weeks)" className="mr-2" />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Standard (2-3 weeks)</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="Flexible (1-2 months)" className="mr-2" />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Flexible (1-2 months)</span>
+              </label>
+            </div>
           </div>
-        </div>
 
-        {/* Row 2: Service Checkboxes */}
-        <div>
-          <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            What service(s) are you looking for?*
-          </label>
-          <div className="flex flex-col space-y-2">
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input 
-                type="checkbox" 
-                name="service_graphics" 
-                value="true" 
-                checked={services.graphics}
-                onChange={handleServiceChange}
-                className="mr-2" 
-              />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Graphics (Poster, Cover Art, Flyer, etc)</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input 
-                type="checkbox" 
-                name="service_video" 
-                value="true" 
-                checked={services.video}
-                onChange={handleServiceChange}
-                className="mr-2" 
-              />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video Editing / Motion Graphics</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input 
-                type="checkbox" 
-                name="service_webdesign" 
-                value="true" 
-                checked={services.webdesign}
-                onChange={handleServiceChange}
-                className="mr-2" 
-              />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Webdesign</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input 
-                type="checkbox" 
-                name="service_creative_direction" 
-                value="true" 
-                checked={services.creativeDirection}
-                onChange={handleServiceChange}
-                className="mr-2" 
-              />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Strategy</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input 
-                type="checkbox" 
-                name="service_full_project" 
-                value="true" 
-                checked={services.fullService}
-                onChange={handleServiceChange}
-                className="mr-2" 
-              />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Bit of Everything (Full-Service Project)</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input 
-                type="checkbox" 
-                name="service_not_sure" 
-                value="true" 
-                checked={services.notSure}
-                onChange={handleServiceChange}
-                className="mr-2" 
-              />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not Sure Yet</span>
-            </label>
-          </div>
-        </div>
-
-        {/* Row 3: Text Area */}
-        <div>
-          <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            Tell me more about your project*
-          </label>
-          <textarea
-            name="project_details"
-            required
-            rows={6}
-            placeholder={detailsPlaceholder}
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-vertical"
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full md:w-auto px-8 py-3 bg-white border border-gray-300 rounded-lg text-brandBlack hover:bg-[#c13333] hover:text-white transition-colors"
             style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-          />
-        </div>
-
-        {/* Row 4: Budget */}
-        <div>
-          <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            What's your estimated budget?*
-          </label>
-          <input
-            type="text"
-            name="budget"
-            required
-            placeholder="e.g. $750 - $1500 USD etc"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-            style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-          />
-        </div>
-
-        {/* Row 5: Timeline */}
-        <div>
-          <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            Ideal Project Timeline?*
-          </label>
-          <div className="flex flex-col space-y-2">
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input type="checkbox" name="timeline" value="Urgent (< 2 weeks)" className="mr-2" />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Urgent (&lt; 2 weeks)</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input type="checkbox" name="timeline" value="Standard (2-3 weeks)" className="mr-2" />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Standard (2-3 weeks)</span>
-            </label>
-            <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              <input type="checkbox" name="timeline" value="Flexible (1-2 months)" className="mr-2" />
-              <span className="text-brandBlack" style={{ fontWeight: 400 }}>Flexible (1-2 months)</span>
-            </label>
-          </div>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full md:w-auto px-8 py-3 bg-white border border-gray-300 rounded-lg text-brandBlack hover:bg-[#c13333] hover:text-white transition-colors"
-          style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-        >
-          Submit Project Inquiry
-        </button>
-      </form>
+          >
+            Submit Project Inquiry
+          </button>
+        </form>
       </div>
     </>
   )
@@ -2045,18 +2039,18 @@ function Footer({ setCurrentPage }) {
           >
             <Instagram className="size-6" />
           </a>
-          
+
           {/* TikTok Link */}
-          <a 
-            href="https://www.tiktok.com/@hugozbor" 
-            target="_blank" 
+          <a
+            href="https://www.tiktok.com/@hugozbor"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-gray-900 transition-colors"
             aria-label="Visit Hugo Zbor on TikTok"
           >
             <TikTokIcon className="size-6" />
           </a>
-          
+
           {/* Email Link */}
           <a
             href="mailto:contact@hugozbor.com"
@@ -2065,12 +2059,12 @@ function Footer({ setCurrentPage }) {
             <Mail className="size-6" />
           </a>
         </div>
-        
+
         {/* Copyright Text */}
         <p className="text-sm text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
           © HUGOZBOR 2025
         </p>
-        
+
         {/* Terms & Conditions Link */}
         <button
           onClick={() => setCurrentPage('terms')}
@@ -2093,141 +2087,141 @@ function TermsPage({ setCurrentPage, currentPage }) {
         <div className="bg-gray-100 rounded-lg p-8 md:p-12">
           <div className="prose max-w-none font-normal text-gray-700" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
             <h1 className="text-3xl font-bold text-brandBlack mb-2">Terms & Conditions — HUGOZBOR</h1>
-            
+
             <p className="text-sm text-gray-600 mb-6">Last updated: 16th November 2025</p>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               Welcome to the official website of HUGOZBOR ("Hugo", "we", "our", "the Artist").
               By accessing or using this website, you agree to the following Terms & Conditions.
               If you do not agree, please discontinue use of the site.
             </p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">1. Intellectual Property & Ownership</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               All artwork, designs, visuals, graphics, videos, animations, website content, branding, logos, and all related creative material displayed on this website (collectively, the "Content") are the exclusive property of HUGOZBOR.
             </p>
-            
+
             <p className="font-normal text-gray-700 mb-4">Unless explicitly stated otherwise:</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">All Content is owned, created, and copyrighted by HUGOZBOR.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">All rights are reserved.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               No Content may be copied, reproduced, edited, redistributed, resold, showcased commercially, or used for training datasets, AI models, or promotional material without written permission from Hugo.
             </p>
-            
+
             <p className="font-normal text-gray-700 mb-6">Unauthorized use may result in legal action.</p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">2. Usage Rights for Commissioned Work</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">When a client commissions Hugo for a project:</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               The client receives a license to use the final delivered artwork only for the agreed purpose (e.g., social media promotion, album artwork, brand visuals, website usage).
             </p>
-            
+
             <p className="font-normal text-gray-700 mb-4">Ownership is not transferred unless explicitly negotiated in writing.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               Raw project files (PSD, Blender files, project files, layers, etc.) are not included unless separately purchased.
             </p>
-            
+
             <p className="font-normal text-gray-700 mb-2">Hugo retains:</p>
-            
+
             <ul className="list-disc list-inside font-normal text-gray-700 mb-4 ml-4">
               <li>Artistic copyright</li>
               <li>Portfolio rights</li>
               <li>Rights to showcase the project publicly</li>
             </ul>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               No client may resell, redistribute, mint NFTs, or sublicense the artwork unless paid and approved in writing.
             </p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">3. Pricing, Payments & Deposits</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               All project quotes are provided based on project complexity, timeline, and deliverables.
             </p>
-            
+
             <p className="font-normal text-gray-700 mb-4">A deposit may be required before work begins. Deposits are non-refundable.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">Work will not begin until payment terms are agreed on.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">Projects requiring urgent turnaround may incur a rush fee.</p>
-            
+
             <p className="font-normal text-gray-700 mb-6">Final files are delivered only after full payment is completed.</p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">4. Revisions</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">Unless otherwise stated:</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               Projects include a set number of revisions defined in the project agreement.
             </p>
-            
+
             <p className="font-normal text-gray-700 mb-4">Additional revisions or scope changes may incur extra charges.</p>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               Once a project is approved and delivered, further modifications are treated as a new project.
             </p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">5. Refund Policy</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">Due to the nature of creative work:</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">All payments are final.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">No refunds are provided once work has begun.</p>
-            
+
             <p className="font-normal text-gray-700 mb-4">Deposits are non-refundable.</p>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               If Hugo is unable to complete a project for any reason, a partial refund may be considered at Hugo's discretion.
             </p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">6. Website Usage</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">You agree not to:</p>
-            
+
             <ul className="list-disc list-inside font-normal text-gray-700 mb-6 ml-4">
               <li>Copy or scrape any Content</li>
               <li>Reproduce or modify the site or its assets</li>
               <li>Use the website for illegal purposes</li>
               <li>Attempt to breach security or access restricted parts of the site</li>
             </ul>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">7. Privacy</h2>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               Any information provided via contact forms, emails, or inquiries will be used solely for communication and project-related purposes.
               We do not sell or share personal information with third parties.
             </p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">8. External Links</h2>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               This website may include links to external websites.
               We are not responsible for the content, policies, or security of third-party sites.
             </p>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">9. Liability</h2>
-            
+
             <p className="font-normal text-gray-700 mb-4">
               All Content on this site is provided for general informational/portfolio purposes.
             </p>
             <p className="font-normal text-gray-700 mb-2">Hugo is not liable for:</p>
-            
+
             <ul className="list-disc list-inside font-normal text-gray-700 mb-6 ml-4">
               <li>Damages from website access</li>
               <li>Client misuse of artwork</li>
               <li>Losses stemming from external platforms or third-party tools</li>
             </ul>
-            
+
             <h2 className="text-2xl font-bold text-brandBlack mb-4 mt-8">10. Modifications to Terms</h2>
-            
+
             <p className="font-normal text-gray-700 mb-6">
               Hugo may update these Terms & Conditions at any time. Updated terms will be posted on this page with a revised "Last Updated" date.
             </p>
@@ -2241,7 +2235,7 @@ function TermsPage({ setCurrentPage, currentPage }) {
 function InfoPage({ setCurrentPage }) {
   const phoneNumber = "+61 483 879 841"
   const email = "contact@hugozbor.com"
-  
+
   const copyToClipboard = (text) => {
     if (navigator?.clipboard) {
       navigator.clipboard.writeText(text)
@@ -2253,14 +2247,14 @@ function InfoPage({ setCurrentPage }) {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       {/* CARD CONTAINER */}
       <div className="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-        
+
         {/* 1. PROFILE IMAGE (Full width top or large circle) */}
         <div className="w-full aspect-square relative overflow-hidden">
-           <img 
-             src="/Pictures/info_page_2.png" 
-             alt="Shei" 
-             className="w-full h-full object-cover object-left"
-           />
+          <img
+            src="/Pictures/info_page_2.png"
+            alt="Shei"
+            className="w-full h-full object-cover object-left"
+          />
         </div>
 
         {/* 2. DETAILS SECTION */}
@@ -2272,9 +2266,9 @@ function InfoPage({ setCurrentPage }) {
 
           {/* 3. ACTION BUTTONS (Stacked & Aligned) */}
           <div className="w-full space-y-3 mt-6">
-            
+
             {/* PHONE ROW (Display + Call Action) */}
-            <a 
+            <a
               href="tel:+61483879841"
               className="flex items-center justify-start w-full p-3 bg-white border border-gray-200 rounded-xl shadow-sm hover:bg-gray-50 transition-colors group"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
@@ -2284,9 +2278,9 @@ function InfoPage({ setCurrentPage }) {
               </div>
               <span className="ml-3 font-medium text-gray-900">{phoneNumber}</span>
             </a>
-            
+
             {/* WHATSAPP BUTTON (Green) */}
-            <a 
+            <a
               href="https://wa.me/61483879841"
               target="_blank"
               rel="noopener noreferrer"
@@ -2296,9 +2290,9 @@ function InfoPage({ setCurrentPage }) {
               <MessageCircle className="size-6" />
               <span className="ml-3 font-bold">WhatsApp</span>
             </a>
-            
+
             {/* EMAIL BUTTON (Copy Action) */}
-            <button 
+            <button
               onClick={() => copyToClipboard(email)}
               className="flex items-center justify-start w-full p-3 bg-gray-100 border border-gray-200 rounded-xl hover:bg-gray-200 transition-colors"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
@@ -2310,10 +2304,10 @@ function InfoPage({ setCurrentPage }) {
             </button>
 
           </div>
-          
+
           {/* Footer Note */}
           <p className="text-xs text-gray-400 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            Melbourne, Australia<br/>
+            Melbourne, Australia<br />
             © Hugozbor 2025
           </p>
         </div>
@@ -2429,7 +2423,7 @@ function App() {
     <div className="bg-white min-h-screen flex flex-col">
       {/* Header is now Global and Sticky */}
       <Header currentPage={currentPage} currentCategory={currentCategory} setCurrentPage={setCurrentPage} />
-      
+
       <main className="flex-grow">
         {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
         {currentPage === 'my-work' && currentCategory === 'graphics' && (
@@ -2448,10 +2442,10 @@ function App() {
           <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
         )}
         {currentPage === 'commissions' && (
-          <CommissionsPage 
-            activeSection={currentCategory} 
-            setCurrentPage={setCurrentPage} 
-            currentPage={currentPage} 
+          <CommissionsPage
+            activeSection={currentCategory}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
           />
         )}
         {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
@@ -2460,7 +2454,7 @@ function App() {
         {currentPage === 'info' && <InfoPage setCurrentPage={setCurrentPage} />}
       </main>
       <Footer setCurrentPage={setCurrentPage} />
-      
+
       {/* Vercel Tracking Components */}
       <Analytics />
       <SpeedInsights />
