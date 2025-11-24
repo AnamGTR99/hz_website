@@ -1505,10 +1505,6 @@ function AboutPage({ setCurrentPage, currentPage }) {
                     <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/Indonesians" target="_blank" rel="noopener noreferrer" className={styles.link}>Indonesian</a></td>
                   </tr>
                   <tr>
-                    <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Education</td>
-                    <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/University_of_Melbourne" target="_blank" rel="noopener noreferrer" className={styles.link}>University of Melbourne</a></td>
-                  </tr>
-                  <tr>
                     <td className={styles.infoboxCell + " " + styles.infoboxLabel}>Known for</td>
                     <td className={styles.infoboxCell}><a href="https://en.wikipedia.org/wiki/Graphic_design" target="_blank" rel="noopener noreferrer" className={styles.link}>Graphic Design</a>, <a href="https://en.wikipedia.org/wiki/Web_design" target="_blank" rel="noopener noreferrer" className={styles.link}>Web Design</a></td>
                   </tr>
@@ -1547,10 +1543,16 @@ function AboutPage({ setCurrentPage, currentPage }) {
               <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
 
-            {/* Image: Floated right on all screens, smaller on mobile */}
+            {/* Image 1: Floated right on all screens, smaller on mobile */}
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 float-right ml-3 w-24 md:w-48">
               <img src="/about_page/hugo_5th_grade.png" alt="Hugo in 5th Grade" className="w-full h-auto mb-1" />
-              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo in the fifth grade discovering <span className={styles.link}>Photoshop</span>.</div>
+              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo in the fifth grade</div>
+            </div>
+
+            {/* Image 2: Floated right on all screens, smaller on mobile */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 float-right ml-3 w-24 md:w-48">
+              <img src="/about_page/hugo_photoshop.png" alt="Hugo using Photoshop" className="w-full h-auto mb-1" />
+              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">Hugo using <a href="https://en.wikipedia.org/wiki/Adobe_Photoshop" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> in 2016</div>
             </div>
 
             <p className="mb-4 font-normal">Around the fifth grade, I was borrowing my mum's laptop and I stumbled across a video of someone editing photos with <a href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer" className={styles.link}>Photoshop</a> on <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className={styles.link}>YouTube</a>. At the time, you were able to do 30-day free trials, so I secretly downloaded it and kept making new emails to keep using it. I was really bad at watching tutorials, so I started learning by trying out every single tool and then just testing random things.</p>
@@ -1589,15 +1591,15 @@ function AboutPage({ setCurrentPage, currentPage }) {
               <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
 
-            {/* FLOATED IMAGE CONTAINER */}
+            {/* FLOATED IMAGE CONTAINER 1 */}
             <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
-              {/* Image */}
+              {/* Image 1 */}
               <img
                 src="/about_page/hugo_student_id.png"
                 alt="Hugo Student ID"
                 className="w-full h-auto mb-1"
               />
-              {/* Caption */}
+              {/* Caption 1 */}
               <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
                 Hugo's student ID in 2023
               </div>
@@ -1607,14 +1609,42 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
             <p className="mb-4 font-normal">Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className={styles.link}>music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
 
-            <p className="mb-4 font-normal">In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className={styles.link}>@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. I am extremely grateful and I believe I am now growing - as an artist - faster than ever before.</p>
+            {/* FLOATED IMAGE CONTAINER 2 */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
+              {/* Image 2 */}
+              <img
+                src="/about_page/hugoxlaptop.jpg"
+                alt="Hugo in Melbourne"
+                className="w-full h-auto mb-1"
+              />
+              {/* Caption 2 */}
+              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                Hugo in Melbourne, Oct 2025
+              </div>
+            </div>
 
-            <p className="mb-4 font-normal">In November 2025, I decided to actually get a <span className={styles.link}>manager</span> to help scale and grow my account and brand as an artist to new heights. His name is <b>Shei</b> (<a href="https://www.instagram.com/sheivault" target="_blank" rel="noopener noreferrer" className={styles.link}>@sheivault</a> on Instagram) and he was the first person I met at uni 3 years ago, on the very first day.</p>
+            {/* FLOATED IMAGE CONTAINER 3 */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
+              {/* Image 3 */}
+              <img
+                src="/about_page/shei.jpg"
+                alt="Hugo and Shei"
+                className="w-full h-auto mb-1"
+              />
+              {/* Caption 3 */}
+              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                Hugo and Shei, Nov 2025
+              </div>
+            </div>
+
+            <p className="mb-4 font-normal">In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className={styles.link}>@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. A few months after this I decided to get a <span className={styles.link}>manager</span> to help organise and push my output to a different level. His name is <b>Shei</b> (<a href="https://www.instagram.com/sheivault" target="_blank" rel="noopener noreferrer" className={styles.link}>@sheivault</a>) and he was actually the first person I met at uni, years ago, on the very first day.</p>
+
+            <p className="mb-4 font-normal">I am endlessly grateful for everything that lead me to where im at today. I believe I am now growing, as an artist, faster than ever before.</p>
 
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

@@ -1,45 +1,57 @@
-This is a crucial UI fix for mobile usability. Currently, the "Close" (X) button floats directly over the video content on mobile, making it look messy and potentially interfering with video controls.
+This is a content and layout update for the `AboutPage`. We need to add more images to the "sidebar" areas of the text and clean up the Infobox data.
 
-The fix is to add **Top Padding** (`pt-12`) to the modal container **only on mobile**. This pushes the video down, creating a white "header bar" area where the X button can sit cleanly without overlapping the content. On desktop, we reset this padding (`md:pt-0`) because the X button naturally sits over the text column on the right, so it's not an issue there.
+To keep the layout unbreakable on mobile, the best strategy is to **stack the images vertically** inside the existing "Floated Right" containers. This creates a vertical column of images that the text flows around, exactly like a Wikipedia article with multiple photos in one section.
 
-Here is the detailed prompt for **Stage 116**.
+Here is the detailed prompt for **Stage 117**.
 
------
+***
 
-### **Agent Prompt: Stage 116 - Fix Mobile Overlay Padding (Clear the "X")**
+### **Agent Prompt: Stage 117 - Update About Page Images & Infobox**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 116 Goal:** Fix the `WorkOverlay` layout on **Mobile**.
-**Problem:** The "Close" (X) button overlaps the video player on mobile devices because the content sits at the very top of the modal.
-**Solution:** Add top padding (`pt-12`) to the main modal container on mobile only. This pushes the video down, leaving a clean white space at the top for the X button to sit in.
+**Stage 117 Goal:** Add specific images to the `AboutPage` sections and update the Infobox data.
+**Design Strategy:** Stack the new images inside the existing right-floated containers to ensure they fit perfectly on both mobile and web without overlapping text.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
------
+---
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate `WorkOverlay` Component:**
+**1. Update "Introduction to Design" Images:**
+* Locate the **floated image container** in the "Introduction to Design" section (`id="design"`).
+* **Current:** Contains 1 image (`hugo_5th_grade.png`).
+* **Action:** Update the container to hold **2 Images** stacked vertically (add `mb-4` between them if needed).
+    1.  **Top Image:**
+        * **Source:** `/about_page/hugo_5th_grade.png`
+        * **Caption:** "Hugo in the fifth grade"
+    2.  **Bottom Image:**
+        * **Source:** `/about_page/hugo_photoshop.png`
+        * **Caption:** "Hugo using Photoshop in 2016"
 
-  * Find the `return` statement inside `WorkOverlay`.
-  * Locate the **Main Modal Box** `div`.
-  * **Current Classes:** Likely starts with `relative bg-white w-full max-w-4xl ...`
+**2. Update "Moving to Australia" Images:**
+* Locate the **floated image container** in the "Moving to Australia" section (`id="australia"`).
+* **Current:** Contains 1 image (`hugo_student_id.png`).
+* **Action:** Update the container to hold **3 Images** stacked vertically.
+    1.  **Top Image:**
+        * **Source:** `/about_page/hugo_student_id.png`
+        * **Caption:** "Hugo's student ID in 2023"
+    2.  **Middle Image:**
+        * **Source:** `/about_page/hugoxlaptop.png`
+        * **Caption:** "Hugo in Melbourne, Oct 2025"
+    3.  **Bottom Image:**
+        * **Source:** `/about_page/shei.png`
+        * **Caption:** "Hugo and Shei, Nov 2025"
 
-**2. Add Conditional Top Padding:**
+**3. Update Infobox (Education):**
+* Locate the **Infobox** (Right Column profile card).
+* Find the row for **"Education"**.
+* **Action:** Remove the text "University of Melbourne". Leave the cell empty or remove the row entirely if preferred (user said "remove... in that bubble").
+    * *Recommendation:* `<td className={styles.infoboxCell}></td>` (Empty cell to keep alignment).
 
-  * **Add Class:** `pt-12 md:pt-0`
-  * **Full Class String Logic:**
-    ```jsx
-    className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row pt-12 md:pt-0"
-    ```
-      * *Explanation:*
-          * `pt-12`: Adds \~48px of white space at the top on Mobile. The X button (positioned at `top-3`) will sit perfectly in this empty space.
-          * `md:pt-0`: Removes this padding on Desktop (where the layout is side-by-side and the X sits over the text column, so no padding is needed).
+**4. Output:**
+* Generate the updated `AboutPage` component code.
 
-**3. Output:**
+---
 
-  * Generate the updated `WorkOverlay` component code.
-
------
-
-**Note to Agent:** Do not move the X button code itself; just pushing the content down via the parent container's padding is the cleanest way to solve this.
+**Note to Agent:** Ensure all new images use the same responsive classes (`w-full h-auto`) inside the parent float container (`w-32 md:w-48`). This ensures they resize perfectly on mobile. Add a small margin (`mb-4`) between stacked images/captions so they don't touch.
