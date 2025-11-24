@@ -1,20 +1,17 @@
-This is the final video addition for this batch. We will add the **"VISUALISER FOR FUCKBARRETTA"** project to your portfolio.
+This is a crucial UI fix for mobile usability. Currently, the "Close" (X) button floats directly over the video content on mobile, making it look messy and potentially interfering with video controls.
 
-**Important:** You did not provide a thumbnail filename, so the code will look for **`/barretta.png`**. Please take a screenshot of the video, name it exactly `barretta.png`, and drop it in your `public` folder.
+The fix is to add **Top Padding** (`pt-12`) to the modal container **only on mobile**. This pushes the video down, creating a white "header bar" area where the X button can sit cleanly without overlapping the content. On desktop, we reset this padding (`md:pt-0`) because the X button naturally sits over the text column on the right, so it's not an issue there.
 
-Here is the detailed prompt for **Stage 115**.
+Here is the detailed prompt for **Stage 116**.
 
 -----
 
-### **Agent Prompt: Stage 115 - Add "Fuckbarretta" Video**
+### **Agent Prompt: Stage 116 - Fix Mobile Overlay Padding (Clear the "X")**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 115 Goal:** Add the **"VISUALISER FOR FUCKBARRETTA"** video to the `videoPortfolio` array.
-**Assets:**
-
-  * **Thumbnail:** `/barretta.png` (User must upload this file to the public root).
-  * **Embed:** Vimeo (Clean parameters injected).
-  * **Link:** Instagram Post.
+**Stage 116 Goal:** Fix the `WorkOverlay` layout on **Mobile**.
+**Problem:** The "Close" (X) button overlaps the video player on mobile devices because the content sits at the very top of the modal.
+**Solution:** Add top padding (`pt-12`) to the main modal container on mobile only. This pushes the video down, leaving a clean white space at the top for the X button to sit in.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -22,38 +19,27 @@ Here is the detailed prompt for **Stage 115**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Update `videoPortfolio` Data:**
+**1. Locate `WorkOverlay` Component:**
 
-  * Locate the `videoPortfolio` array.
-  * **Add** the following object to the array:
+  * Find the `return` statement inside `WorkOverlay`.
+  * Locate the **Main Modal Box** `div`.
+  * **Current Classes:** Likely starts with `relative bg-white w-full max-w-4xl ...`
 
-<!-- end list -->
+**2. Add Conditional Top Padding:**
 
-```javascript
-{
-  id: 'video-barretta',
-  title: 'VISUALISER FOR FUCKBARRETTA',
-  date: '22 JUN 2025',
-  description: 'Visualiser for artist, shot by client, assembled and produced by Hugo Zbor.',
-  category: ['videos', 'view-all'],
-  
-  // Thumbnail path (User needs to upload this file)
-  thumbnailUrl: '/barretta.png',
-  
-  // Instagram Link
-  instagramLink: 'https://www.instagram.com/p/DLLI7Unx11r/',
-  
-  videoEmbedUrl: null,
+  * **Add Class:** `pt-12 md:pt-0`
+  * **Full Class String Logic:**
+    ```jsx
+    className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row pt-12 md:pt-0"
+    ```
+      * *Explanation:*
+          * `pt-12`: Adds \~48px of white space at the top on Mobile. The X button (positioned at `top-3`) will sit perfectly in this empty space.
+          * `md:pt-0`: Removes this padding on Desktop (where the layout is side-by-side and the X sits over the text column, so no padding is needed).
 
-  // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-  embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140203885?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="newvid #1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
-},
-```
+**3. Output:**
 
-**2. Output:**
-
-  * Generate the updated `videoPortfolio` array code.
+  * Generate the updated `WorkOverlay` component code.
 
 -----
 
-**Note to Agent:** Ensure the `thumbnailUrl` points to `/barretta.png`. Ensure the `padding:80%` is preserved in the embed string.
+**Note to Agent:** Do not move the X button code itself; just pushing the content down via the parent container's padding is the cleanest way to solve this.

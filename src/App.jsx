@@ -1012,7 +1012,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
     >
       {/* Main Modal Box */}
       <div
-        className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row"
+        className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row pt-12 md:pt-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
