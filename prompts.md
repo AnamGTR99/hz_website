@@ -1,21 +1,20 @@
-This is a classic solution for "Asset Heavy" portfolios. A branded loading screen turns a slow load time into a professional "moment" rather than a glitchy experience.
+This is the final video addition for this batch. We will add the **"VISUALISER FOR FUCKBARRETTA"** project to your portfolio.
 
-We will implement a **Global Loading State**. The site will remain white with a pulsating logo until the browser confirms that the heavy Mobile Banner GIF has fully downloaded and is ready to play.
+**Important:** You did not provide a thumbnail filename, so the code will look for **`/barretta.png`**. Please take a screenshot of the video, name it exactly `barretta.png`, and drop it in your `public` folder.
 
-Here is the highly detailed prompt for **Stage 103**.
+Here is the detailed prompt for **Stage 115**.
 
 -----
 
-### **Agent Prompt: Stage 103 - Implement Pulsating Logo Loading Screen**
+### **Agent Prompt: Stage 115 - Add "Fuckbarretta" Video**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 103 Goal:** Add a global **Loading Screen** that blocks the view until the heavy assets (specifically the Mobile Home Banner) are fully loaded.
-**Visuals:** A solid white full-screen overlay with the **Main Logo** centered and pulsating (`animate-pulse`).
-**Logic:**
+**Stage 115 Goal:** Add the **"VISUALISER FOR FUCKBARRETTA"** video to the `videoPortfolio` array.
+**Assets:**
 
-1.  App starts in `isLoading = true`.
-2.  A `useEffect` triggers the pre-loading of the heavy GIF image.
-3.  Once the image reports "Loaded" (or a minimum safety timer of 1.5s passes), fade out the loader and reveal the site.
+  * **Thumbnail:** `/barretta.png` (User must upload this file to the public root).
+  * **Embed:** Vimeo (Clean parameters injected).
+  * **Link:** Instagram Post.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -23,85 +22,38 @@ Here is the highly detailed prompt for **Stage 103**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Create `LoadingScreen` Component:**
+**1. Update `videoPortfolio` Data:**
 
-  * Define this helper component at the top of the file.
-    ```jsx
-    function LoadingScreen() {
-      return (
-        <div className="fixed inset-0 z-[9999] bg-white flex items-center justify-center">
-          <div className="animate-pulse flex flex-col items-center">
-            {/* Main Logo */}
-            <img 
-              src="/Logo/logo.png" 
-              alt="Loading..." 
-              className="w-24 h-auto md:w-32" 
-            />
-          </div>
-        </div>
-      );
-    }
-    ```
+  * Locate the `videoPortfolio` array.
+  * **Add** the following object to the array:
 
-**2. Update `App` Component State:**
+<!-- end list -->
 
-  * inside `App()`, add state: `const [isLoading, setIsLoading] = useState(true);`
+```javascript
+{
+  id: 'video-barretta',
+  title: 'VISUALISER FOR FUCKBARRETTA',
+  date: '22 JUN 2025',
+  description: 'Visualiser for artist, shot by client, assembled and produced by Hugo Zbor.',
+  category: ['videos', 'view-all'],
+  
+  // Thumbnail path (User needs to upload this file)
+  thumbnailUrl: '/barretta.png',
+  
+  // Instagram Link
+  instagramLink: 'https://www.instagram.com/p/DLLI7Unx11r/',
+  
+  videoEmbedUrl: null,
 
-**3. Implement Preload Logic (`useEffect`):**
+  // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+  embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140203885?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="newvid #1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+},
+```
 
-  * Add a `useEffect` to handle the asset loading.
-    ```javascript
-    useEffect(() => {
-      const handleLoad = () => setIsLoading(false);
+**2. Output:**
 
-      // 1. Define the heavy asset URL (The Mobile Banner)
-      const heavyAssetUrl = "https://t.gyazo.com/teams/hugozbor/d191e5f334046b8099e6174ed727adf6.gif";
-
-      // 2. Create an image instance to force download
-      const img = new Image();
-      img.src = heavyAssetUrl;
-
-      // 3. Listen for load completion
-      if (img.complete) {
-        handleLoad();
-      } else {
-        img.onload = handleLoad;
-        img.onerror = handleLoad; // Fail safe: load app anyway if image breaks
-      }
-
-      // 4. Safety Timeout: Force load after 4 seconds if network is too slow
-      const timer = setTimeout(handleLoad, 4000);
-
-      return () => {
-        img.onload = null;
-        img.onerror = null;
-        clearTimeout(timer);
-      };
-    }, []);
-    ```
-
-**4. Update Render Return:**
-
-  * Wrap the main App JSX in a conditional or overlay logic.
-    ```jsx
-    return (
-      <>
-        {/* Conditionally Render Loader */}
-        {isLoading && <LoadingScreen />}
-
-        {/* Main App Content (Hidden or rendered behind loader) */}
-        {/* Use 'hidden' class if loading to prevent scrollbars, or just render standard DOM */}
-        <div className={`bg-white min-h-screen flex flex-col ${isLoading ? 'hidden' : ''}`}>
-           {/* ... Header, Main, Footer ... */}
-        </div>
-      </>
-    );
-    ```
-
-**5. Output:**
-
-  * Generate the updated `App` component including the `LoadingScreen` definition and the preloading logic.
+  * Generate the updated `videoPortfolio` array code.
 
 -----
 
-**Note to Agent:** Use the specific Gyazo URL provided in the prompt code for preloading. This ensures the user only sees the site once that specific large GIF is ready to display.
+**Note to Agent:** Ensure the `thumbnailUrl` points to `/barretta.png`. Ensure the `padding:80%` is preserved in the embed string.

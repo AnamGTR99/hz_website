@@ -175,7 +175,7 @@ const videoPortfolio = [
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
     videoEmbedUrl: null,
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926412?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brainwash.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926412?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brainwash"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
     instagramLink: 'https://www.instagram.com/p/DRJ2US5D11L/',
   },
   {
@@ -185,8 +185,14 @@ const videoPortfolio = [
     description: 'Character customisation video Inspired by Tony Hawk\'s Underground',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/7uS8SP67Exg?modestbranding=1&rel=0&iv_load_policy=3&color=white',
     instagramLink: 'https://www.instagram.com/p/DNdOXwlPiFE/',
+
+    // 1. DISABLE YOUTUBE
+    videoEmbedUrl: null,
+
+    // 2. ENABLE VIMEO (Clean Mode)
+    // Note: Added title=0&byline=0&portrait=0 to the src URL
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926403?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="final v2.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
   },
   {
     id: 'video-omnee',
@@ -195,8 +201,14 @@ const videoPortfolio = [
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/eTzvPmUzJ6E?modestbranding=1&rel=0&iv_load_policy=3&color=white',
     instagramLink: 'https://www.instagram.com/p/DQKmaH9kvvZ/',
+
+    // 1. DISABLE YOUTUBE
+    videoEmbedUrl: null,
+
+    // 2. ENABLE VIMEO (Clean Mode)
+    // Note: Added title=0&byline=0&portrait=0 to the src URL
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926548?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Omnee #1.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
   },
   {
     id: 'video-lovenangels',
@@ -211,7 +223,7 @@ const videoPortfolio = [
     videoEmbedUrl: null,
 
     // 2. ENABLE VIMEO (Paste exactly)
-    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139930384?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="CAROUSEL LNA 1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139930384?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Lovenangels Visuals"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
   },
   {
     id: 'video-99clover',
@@ -221,7 +233,7 @@ const videoPortfolio = [
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
     videoEmbedUrl: null,
-    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139929076?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="USS vid"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139929076?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Commercial 99Clover"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
     instagramLink: 'https://www.instagram.com/p/DQognlkkkwi/',
   },
   {
@@ -231,8 +243,14 @@ const videoPortfolio = [
     description: 'Intro Inspired by Nintendo DS, made from scratch',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/dJgwioZ2I4E/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/dJgwioZ2I4E?modestbranding=1&rel=0&iv_load_policy=3&color=white',
     instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
+
+    // 1. DISABLE YOUTUBE
+    videoEmbedUrl: null,
+
+    // 2. ENABLE VIMEO (Clean Mode)
+    // Note: Added title=0&byline=0&portrait=0 to the src URL
+    embedHtml: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140196791?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="DS"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
   },
   {
     id: 'video-runway',
@@ -241,8 +259,140 @@ const videoPortfolio = [
     description: 'Looping visuals for @99CLOVER \'s Runway',
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
-    videoEmbedUrl: 'https://www.youtube.com/embed/yeudVooMwSM?modestbranding=1&rel=0&iv_load_policy=3&color=white',
     instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
+
+    // 1. DISABLE YOUTUBE
+    videoEmbedUrl: null,
+
+    // 2. ENABLE VIMEO (Clean Mode)
+    // Note: Added title=0&byline=0&portrait=0 to the src URL
+    embedHtml: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926579?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="99CLOVER VIDEO LOOP.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-omnee-2',
+    title: 'COMMERCIAL FOR OMNEE WORLD #2',
+    date: '24 OCT 2025',
+    description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
+    category: ['videos', 'view-all'],
+
+    // Updated Thumbnail Path
+    thumbnailUrl: '/omnee_thumbnail.png',
+
+    // No Instagram link provided
+    instagramLink: 'https://www.instagram.com/p/DQDBfk7E1QZ/',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (title=0, etc.)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926559?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Omnee #2.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-piecebyp',
+    title: 'COMMERCIAL FOR PIECE BY P',
+    date: '10 OCT 2025', // Estimated date
+    description: 'Greenscreen video, shot, assembled and edited by Hugo Zbor',
+    category: ['videos', 'view-all'],
+
+    // Thumbnail from public root
+    thumbnailUrl: '/piecebyp.png',
+
+    // Instagram Link
+    instagramLink: 'https://www.instagram.com/reel/DPcxw5lj-nk/',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926567?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Piece By P Commercial"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-airlines',
+    title: 'HUGOZBOR AIRLINES',
+    date: '12 NOV 2025',
+    description: 'In-flight entertaintment, everything done by Hugo Zbor.',
+    category: ['videos', 'view-all'],
+
+    // Thumbnail from public root
+    thumbnailUrl: '/in-flight.png',
+
+    // Instagram Link
+    instagramLink: 'https://www.instagram.com/reel/DQ7DIMHD3FP/',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140200272?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Hugozbor Airlines"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-minu',
+    title: 'COMMERCIAL FOR MINU ARCHIVE',
+    date: '13 NOV 2025', // Placeholder date based on recent uploads
+    description: 'Hugo Zbor curated video, shot by client and assembled and edited by Hugo Zbor',
+    category: ['videos', 'view-all'],
+
+    // Thumbnail path (User needs to upload this file)
+    thumbnailUrl: '/minu_archive.png',
+
+    // Instagram Link
+    instagramLink: 'https://www.instagram.com/reel/DQ94G8Sk8zb/',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926446?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hz.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-gta',
+    title: 'GTA ONLINE CLOTHING STORE',
+    date: '15 SEP 2025',
+    description: 'Filmed, Shot and editted by Hugo Zbor',
+    category: ['videos', 'view-all'],
+
+    // Thumbnail path (User needs to upload this file)
+    thumbnailUrl: '/gta_clothing.png',
+
+    // Instagram Link
+    instagramLink: 'https://www.instagram.com/reel/DOnuzl3j33e/',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926390?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gta.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-minu-2',
+    title: 'COMMERCIAL FOR MINU ARCHIVE #2',
+    date: '19 NOV 2025',
+    description: 'Greenscreen video, Raw footage provided by client, assembled and editted by Hugo Zbor.',
+    category: ['videos', 'view-all'],
+
+    // Thumbnail path (User needs to upload this file)
+    thumbnailUrl: '/baddie_thumbnail.png',
+
+    // Instagram Link
+    instagramLink: 'https://www.instagram.com/hugozbor',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926491?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hz copy.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+  },
+  {
+    id: 'video-barretta',
+    title: 'VISUALISER FOR FUCKBARRETTA',
+    date: '22 JUN 2025',
+    description: 'Visualiser for artist, shot by client, assembled and produced by Hugo Zbor.',
+    category: ['videos', 'view-all'],
+
+    // Thumbnail path (User needs to upload this file)
+    thumbnailUrl: '/baretta.png',
+
+    // Instagram Link
+    instagramLink: 'https://www.instagram.com/p/DLLI7Unx11r/',
+
+    videoEmbedUrl: null,
+
+    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
+    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140203885?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="newvid #1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
   },
 ]
 
