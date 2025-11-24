@@ -314,7 +314,7 @@ const homeBannerVideoHtml = `
   </video>
 `;
 
-const homeBannerGifHtml = `<img src="/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 140px; object-fit: fill; display: block;" />`;
+const homeBannerGifHtml = `<img src="/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 105px; object-fit: fill; display: block;" />`;
 
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
