@@ -1750,7 +1750,7 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
           >
             <div className="flex flex-col md:flex-row gap-6">
               <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>High-level creative video work, including:</p>
+                <p className="mb-3" style={{ fontWeight: 400 }}>Creative video work, including:</p>
                 <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
                   <li>Visual loops (10–30s)</li>
                   <li>Green screen edits</li>
