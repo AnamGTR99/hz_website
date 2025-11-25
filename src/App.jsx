@@ -1084,7 +1084,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
         </div>
 
         {/* RIGHT SIDE: Text Content */}
-        <div className="w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-center">
+        <div className="w-full md:w-1/2 p-4 md:p-8 pb-6 md:pb-8 flex flex-col justify-center">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 uppercase" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{item.title}</h2>
 
@@ -1534,6 +1534,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
                 <li><a href="#design" className="hover:underline">Introduction to Design</a></li>
                 <li><a href="#lockdown" className="hover:underline">High School and Covid Lockdown</a></li>
                 <li><a href="#australia" className="hover:underline">Moving to Australia</a></li>
+                <li><a href="#renaissance" className="hover:underline">Personal Renaissance</a></li>
               </ul>
             </div>
 
@@ -1609,31 +1610,42 @@ function AboutPage({ setCurrentPage, currentPage }) {
 
             <p className="mb-4 font-normal">Mid-2024, I stumbled across a <a href="https://en.wikipedia.org/wiki/Music_video" target="_blank" rel="noopener noreferrer" className={styles.link}>music video</a> that was so refreshingly creative, it inspired me to start designing again. I started pushing myself out of my comfort zone and trying new things, finally learning again after such a long time. Around this time, I finally started to enjoy studying <a href="https://en.wikipedia.org/wiki/Unemployment" target="_blank" rel="noopener noreferrer" className={styles.link}>computer science</a>, and I began incorporating my graphic design skills into coding projects.</p>
 
-            {/* FLOATED IMAGE CONTAINER 2 */}
-            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
-              {/* Image 2 */}
-              <img
-                src="/about_page/hugoxlaptop.jpg"
-                alt="Hugo in Melbourne"
-                className="w-full h-auto mb-1"
-              />
-              {/* Caption 2 */}
-              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-                Hugo in Melbourne, Oct 2025
-              </div>
+            {/* SECTION 4: Personal Renaissance */}
+            <div id="renaissance" className={`${styles.header} clear-both pt-4`}>
+              <h2>Personal Renaissance</h2>
+              <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
 
-            {/* FLOATED IMAGE CONTAINER 3 */}
-            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-2 ml-4 float-right w-32 md:w-48">
-              {/* Image 3 */}
-              <img
-                src="/about_page/shei.jpg"
-                alt="Hugo and Shei"
-                className="w-full h-auto mb-1"
-              />
-              {/* Caption 3 */}
-              <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-                Hugo and Shei, Nov 2025
+            {/* FLOATED IMAGE CONTAINER 2 */}
+            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-32 md:w-[420px]">
+
+              {/* FLEX WRAPPER: Stack on Mobile, Row on Desktop */}
+              <div className="flex flex-col md:flex-row gap-2">
+
+                {/* IMAGE 1 (Left) */}
+                <div className="w-full">
+                  <img
+                    src="/about_page/hugoxlaptop.jpg"
+                    alt="Hugo in Melbourne"
+                    className="w-full h-auto mb-1"
+                  />
+                  <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                    Hugo in Melbourne, Oct 2025
+                  </div>
+                </div>
+
+                {/* IMAGE 2 (Right) */}
+                <div className="w-full">
+                  <img
+                    src="/about_page/shei.jpg"
+                    alt="Hugo and Shei"
+                    className="w-full h-auto mb-1"
+                  />
+                  <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                    Hugo and Shei, Nov 2025
+                  </div>
+                </div>
+
               </div>
             </div>
 
