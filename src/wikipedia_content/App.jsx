@@ -19,8 +19,8 @@ const graphicsPortfolio = [
     date: '07 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Personal project and graphic for @99CLOVER\'s "Time Capsule" Collection. All assets for the cards were made from scratch.',
-    thumbnailUrl: '/Pictures/graphic-1.jpg',
-    fullImageUrl: '/Pictures/graphic-1.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/99278e03730352ab96d102f95723b876.jpg',
+    embedHtml: `<a href="https://gyazo.com/99278e03730352ab96d102f95723b876"><img src="https://i.gyazo.com/99278e03730352ab96d102f95723b876.jpg" alt="Image from Gyazo" width="320"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DKj-UbtvXRs/?img_index=1',
   },
   {
@@ -30,8 +30,8 @@ const graphicsPortfolio = [
     date: '09 SEP 2025',
     by: 'Hugo Zbor',
     description: 'Japanese fashion magazine product catalog work for @99CLOVER',
-    thumbnailUrl: '/Pictures/graphic-2.jpeg',
-    fullImageUrl: '/Pictures/graphic-2.jpeg',
+    thumbnailUrl: 'https://i.gyazo.com/dc6f1a1957e07a79cf25e91e3e526769.jpg',
+    embedHtml: `<a href="https://gyazo.com/dc6f1a1957e07a79cf25e91e3e526769"><img src="https://i.gyazo.com/dc6f1a1957e07a79cf25e91e3e526769.jpg" alt="Image from Gyazo" width="640"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DOYcmlRDxsE/?img_index=1',
   },
   {
@@ -41,8 +41,8 @@ const graphicsPortfolio = [
     date: '20 APR 2025',
     by: 'Hugo Zbor',
     description: 'Personal project, remaking classic beyblade packaging from scratch.',
-    thumbnailUrl: '/Pictures/graphic-3.jpg',
-    fullImageUrl: '/Pictures/graphic-3.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/259be76df328300ee08cf84aad0b0a91.jpg',
+    embedHtml: `<a href="https://gyazo.com/259be76df328300ee08cf84aad0b0a91"><img src="https://i.gyazo.com/259be76df328300ee08cf84aad0b0a91.jpg" alt="Image from Gyazo" width="2511"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DIqaE6BvY-X/?img_index=1',
   },
   {
@@ -53,10 +53,10 @@ const graphicsPortfolio = [
     by: 'Hugo Zbor',
     description: 'Custom, ready to print (300 DPI) flyers for @AFORMUNSEEN \'s Amsterdam Fashion Week 2025 Booth',
     slides: [
-      '/Pictures/graphic-aformunseen-combined-slide-1.jpg', // passport flyer
-      '/Pictures/graphic-aformunseen-combined-slide-2.jpg'  // wallet flyer
+      'https://i.gyazo.com/46939a78ea4f03c3947e227d62bd6ccf.jpg', // passport flyer
+      'https://i.gyazo.com/151e6aba017ac02929427581684fdf95.jpg'  // wallet flyer
     ],
-    thumbnailUrl: '/Pictures/graphic-aformunseen-combined-slide-1.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/46939a78ea4f03c3947e227d62bd6ccf.jpg',
     instagramLink: 'https://www.instagram.com/p/DOlVYFWD8mU/?img_index=1',
   },
   {
@@ -66,8 +66,8 @@ const graphicsPortfolio = [
     date: '14 MAY 2025',
     by: 'Hugo Zbor',
     description: '1 month personal side project. 264 layers in photoshop',
-    thumbnailUrl: '/Pictures/graphic-5.jpg',
-    fullImageUrl: '/Pictures/graphic-5.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/5b11300b1372618d7c0b7d132ff7e4df.jpg',
+    embedHtml: `<a href="https://gyazo.com/5b11300b1372618d7c0b7d132ff7e4df"><img src="https://i.gyazo.com/5b11300b1372618d7c0b7d132ff7e4df.jpg" alt="Image from Gyazo" width="6000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DJoZGzYPjXQ/?img_index=1',
   },
   {
@@ -77,8 +77,8 @@ const graphicsPortfolio = [
     date: '12 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Nintendo Mii Poster / Album Cover Concept',
-    thumbnailUrl: '/Pictures/graphic-6.jpg',
-    fullImageUrl: '/Pictures/graphic-6.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/a3e46e1a3c71d79c42689a3836be3c19.jpg',
+    embedHtml: `<a href="https://gyazo.com/a3e46e1a3c71d79c42689a3836be3c19"><img src="https://i.gyazo.com/a3e46e1a3c71d79c42689a3836be3c19.jpg" alt="Image from Gyazo" width="3512"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DKzMRiaPc9E/?img_index=1',
   },
   {
@@ -88,8 +88,8 @@ const graphicsPortfolio = [
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Japanese Magazine inspired cover page for @99CLOVER Lookbook',
-    thumbnailUrl: '/Pictures/graphic-7.jpg',
-    fullImageUrl: '/Pictures/graphic-7.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/1abf8ea18b8fa94850cd26ca528cfb7d.jpg',
+    embedHtml: `<a href="https://gyazo.com/1abf8ea18b8fa94850cd26ca528cfb7d"><img src="https://i.gyazo.com/1abf8ea18b8fa94850cd26ca528cfb7d.jpg" alt="Image from Gyazo" width="2000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=1',
   },
   {
@@ -99,8 +99,8 @@ const graphicsPortfolio = [
     date: '03 JUL 2025',
     by: 'Hugo Zbor',
     description: 'Tekken Inspired graphic for @99CLOVER \'s "Time Capsule" Collection',
-    thumbnailUrl: '/Pictures/graphic-8.jpg',
-    fullImageUrl: '/Pictures/graphic-8.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/a18a3f456b68e9592cb6686216453596.jpg',
+    embedHtml: `<a href="https://gyazo.com/a18a3f456b68e9592cb6686216453596"><img src="https://i.gyazo.com/a18a3f456b68e9592cb6686216453596.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DLpJzJDys0D/?img_index=1',
   },
   {
@@ -110,8 +110,8 @@ const graphicsPortfolio = [
     date: '07 JUL 2025',
     by: 'Hugo Zbor',
     description: 'Japanese fashion magazine product catalog work for @CASHMIIERHABITS',
-    thumbnailUrl: '/Pictures/graphic-9.jpg',
-    fullImageUrl: '/Pictures/graphic-9.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/eecc292274c9cce937c22f6070956da4.jpg',
+    embedHtml: `<a href="https://gyazo.com/eecc292274c9cce937c22f6070956da4"><img src="https://i.gyazo.com/eecc292274c9cce937c22f6070956da4.jpg" alt="Image from Gyazo" width="2818"/></a>`,
     instagramLink: 'https://www.instagram.com/hugozbor/',
   },
   {
@@ -121,8 +121,8 @@ const graphicsPortfolio = [
     date: '11 JUL 2025',
     by: 'Hugo Zbor',
     description: <>Graphic for my personal project <a href="https://www.instagram.com/brutalimagery" target="_blank" rel="noopener noreferrer" className="font-bold hover:underline">@brutalimagery</a></>,
-    thumbnailUrl: '/Pictures/graphic-10.jpg',
-    fullImageUrl: '/Pictures/graphic-10.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/99960e186bb5cdbbf731f4af34042995.jpg',
+    embedHtml: `<a href="https://gyazo.com/99960e186bb5cdbbf731f4af34042995"><img src="https://i.gyazo.com/99960e186bb5cdbbf731f4af34042995.jpg" alt="Image from Gyazo" width="1500"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DL7o7ADvyvs/?img_index=1',
   },
   {
@@ -132,8 +132,8 @@ const graphicsPortfolio = [
     date: '04 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Remake of the iconic world record book in the style of @brutalimagery',
-    thumbnailUrl: '/Pictures/graphic-11.jpg',
-    fullImageUrl: '/Pictures/graphic-11.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/4cd6c7e474e485e886eb51acfe70a07b.jpg',
+    embedHtml: `<a href="https://gyazo.com/4cd6c7e474e485e886eb51acfe70a07b"><img src="https://i.gyazo.com/4cd6c7e474e485e886eb51acfe70a07b.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DKeiNEWP1cG/?img_index=1',
   },
   {
@@ -143,8 +143,8 @@ const graphicsPortfolio = [
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
     description: 'In-game clothing selection screen for @99CLOVER',
-    thumbnailUrl: '/Pictures/graphic-13.jpg',
-    fullImageUrl: '/Pictures/graphic-13.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/841a3c816f0da4ec95a07d5172a7f6ef.jpg',
+    embedHtml: `<a href="https://gyazo.com/841a3c816f0da4ec95a07d5172a7f6ef"><img src="https://i.gyazo.com/841a3c816f0da4ec95a07d5172a7f6ef.jpg" alt="Image from Gyazo" width="7400"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=5',
   },
   {
@@ -154,8 +154,8 @@ const graphicsPortfolio = [
     date: '27 MAY 2025',
     by: 'Hugo Zbor',
     description: 'Inspired by PS2 CD Covers',
-    thumbnailUrl: '/Pictures/graphic-14.jpg',
-    fullImageUrl: '/Pictures/graphic-14.jpg',
+    thumbnailUrl: 'https://i.gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7.jpg',
+    embedHtml: `<a href="https://gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7"><img src="https://i.gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DHs6JdzvYLm/?img_index=1',
   },
 ]
@@ -461,7 +461,7 @@ const shuffleArray = (array) => {
 
 // --- Asset Variables for Commissions Page ---
 // 1. IMAGE PATHS
-const visualArtImg = "/Pictures/graphic-8.jpg"
+const visualArtImg = "https://i.gyazo.com/a18a3f456b68e9592cb6686216453596.jpg"
 const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
 
 // 2. VIDEO HTML (from video_visuals.txt)
@@ -485,7 +485,7 @@ const homeBannerVideoHtml = `
   </video>
 `;
 
-const homeBannerGifHtml = `<img src="/extra_assets/mobile_banner.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 105px; object-fit: fill; display: block;" fetchpriority="high" loading="eager" />`;
+const homeBannerGifHtml = `<a href="https://gyazo.com/1c95e37e4ccc3e66234262b1741f4e22" style="display: block;"><img src="https://i.gyazo.com/1c95e37e4ccc3e66234262b1741f4e22.gif" alt="Hugo Zbor Mobile Banner" style="width: 100%; height: 105px; object-fit: fill; display: block;" fetchpriority="high" loading="eager" /></a>`;
 
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
@@ -2485,7 +2485,7 @@ function InfoPage({ setCurrentPage }) {
         {/* 1. PROFILE IMAGE (Full width top or large circle) */}
         <div className="w-full aspect-square relative overflow-hidden">
           <img
-            src="/Pictures/info_page_2.png"
+            src="https://i.gyazo.com/a3f484e264aaddca81e4ea3482e16ad2.png"
             alt="Shei"
             className="w-full h-full object-cover object-left"
           />
@@ -2660,7 +2660,7 @@ function App() {
     const handleLoad = () => setIsLoading(false);
 
     // 1. Define the heavy asset URL (The Mobile Banner)
-    const heavyAssetUrl = "https://t.gyazo.com/teams/hugozbor/d191e5f334046b8099e6174ed727adf6.gif";
+    const heavyAssetUrl = "https://i.gyazo.com/1c95e37e4ccc3e66234262b1741f4e22.gif";
 
     // 2. Create an image instance to force download
     const img = new Image();
