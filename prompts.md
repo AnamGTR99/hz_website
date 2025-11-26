@@ -1,19 +1,23 @@
-This is a layout refinement. Currently, the two images share **one big border**, making them look like a single merged figure. You want them to look like **two separate, distinct polaroids** sitting next to each other.
+This sets up the "Switching Engine" in your website.
 
-To do this, we will move the `border` and `background` styling from the *parent* container to the *individual* image containers.
+We will teach the **Overlay** to look at that `isRestrictedRegion` variable we created in Part 1.
 
-Here is the detailed prompt for **Stage 121**.
+  * **If `true` (Indonesia):** It will look for a new property called `fallbackAsset` (where we will put the Gyazo GIF).
+  * **If `false` (Rest of World):** It continues showing the high-quality Vimeo embed.
+
+We will also update your data structure to include this new `fallbackAsset` slot for every video, leaving it empty for now so we can fill it in one by one in the next steps.
+
+Here is the detailed prompt for **Stage 122 (Part 2)**.
 
 -----
 
-### **Agent Prompt: Stage 121 - Separate "Personal Renaissance" Image Boxes**
+### **Agent Prompt: Stage 122 (Part 2) - Implement Region-Based Content Switching**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 121 Goal:** Refactor the images in the "Personal Renaissance" section (`AboutPage`) so they appear as **two separate bordered boxes** instead of one merged box.
-**Layout:**
+**Stage 122 (Part 2) Goal:**
 
-  * **Desktop:** Side-by-side (Horizontal row), but visually distinct.
-  * **Mobile:** Stacked vertically, visually distinct.
+1.  **Update Overlay Logic:** Modify `WorkOverlay` to conditionally render a "Safe Fallback" asset (Gyazo GIF) if `isRestrictedRegion` is true.
+2.  **Update Data Structure:** Add the `fallbackAsset` property (initially `null`) to all items in the `videoPortfolio` array to prepare for data entry.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -21,61 +25,48 @@ Here is the detailed prompt for **Stage 121**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate "Personal Renaissance" Image Wrapper:**
+**1. Refactor `WorkOverlay` Media Rendering:**
 
-  * Find the container in the `AboutPage` section with `id="renaissance"`.
-  * **Current Structure:** A single `div` with `border ... bg-[#f8f9fa]` wrapping a Flex container.
+  * Locate the "Left Side" media rendering block (where it checks for `videoUrl`, `embedHtml`, etc.).
+  * **Insert a New Top-Level Check:**
+    ```jsx
+    {/* 1. CHECK RESTRICTED REGION (Indonesia Fix) */}
+    {isRestrictedRegion && item.fallbackAsset ? (
+       <div 
+         className="w-full h-auto bg-gray-50 flex items-center justify-center p-4 md:p-8 pointer-events-none"
+         dangerouslySetInnerHTML={{ __html: item.fallbackAsset }}
+       />
+    ) : item.videoUrl ? (
+       /* 2. DIRECT MP4 ... existing code ... */
+    ) : item.embedHtml ? (
+       /* 3. VIMEO EMBED ... existing code ... */
+    ) : (
+       /* 4. STATIC IMAGE ... existing code ... */
+    )}
+    ```
+      * *Note:* `pointer-events-none` is added to the fallback container to prevent clicking the Gyazo link, ensuring the user stays on the portfolio.
 
-**2. Refactor Styling (Move Borders Inward):**
+**2. Prepare `videoPortfolio` Data:**
 
-  * **Step A (Parent):** Remove the border and background from the **Parent** container. Keep the positioning classes.
+  * Locate the `videoPortfolio` array.
+  * **Action:** Add `fallbackAsset: null,` to **EVERY** video object in the array.
+      * *Example:*
+    <!-- end list -->
+    ```javascript
+    {
+      id: 'video-brainwash',
+      title: 'MORNING ROUTINE',
+      // ... existing props ...
+      embedHtml: `...`,
+      fallbackAsset: null, // <--- ADD THIS LINE TO ALL VIDEOS
+    },
+    ```
 
-      * **Old Parent:** `className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-32 md:w-[420px]"`
-      * **New Parent:** `className="float-right ml-4 w-32 md:w-[420px] mb-4 flex flex-col md:flex-row gap-2"`
-      * *Note:* We moved the `flex` logic directly to this wrapper to simplify.
+**3. Output:**
 
-  * **Step B (Children):** Add the border and background classes to the **Individual** image wrappers.
-
-      * **Child Class:** `className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full"`
-
-**3. New Code Structure:**
-\`\`\`jsx
-{/\* Parent Wrapper (Positioning Only - No Border) \*/}
-\<div className="float-right ml-4 w-32 md:w-[420px] mb-4 flex flex-col md:flex-row gap-2"\>
-
-````
-  {/* IMAGE 1: Hugo in Melbourne (Own Box) */}
-  <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full">
-     <img 
-       src="/about_page/hugoxlaptop.png" 
-       alt="Hugo in Melbourne" 
-       className="w-full h-auto mb-1"
-     />
-     <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-       Hugo in Melbourne, Oct 2025
-     </div>
-  </div>
-
-  {/* IMAGE 2: Hugo and Shei (Own Box) */}
-  <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full">
-     <img 
-       src="/about_page/shei.png" 
-       alt="Hugo and Shei" 
-       className="w-full h-auto mb-1"
-     />
-     <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-       Hugo and Shei, Nov 2025
-     </div>
-  </div>
-
-</div>
-```
-````
-
-**4. Output:**
-
-  * Generate the updated `AboutPage` component code.
+  * Generate the updated `WorkOverlay` component.
+  * Generate the updated `videoPortfolio` array structure (you don't need to print every single video if they are all the same update, just show the pattern or update the whole list if feasible).
 
 -----
 
-**Note to Agent:** By applying the border classes (`border border-[#c8ccd1] bg-[#f8f9fa] p-1`) to the children instead of the parent, they will render as two distinct "cards" separated by the `gap-2` space.
+**Note to Agent:** This is a structural update. We are not adding the actual GIF links yet; we are just creating the logic and the data slot to hold them.

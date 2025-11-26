@@ -176,6 +176,7 @@ const videoPortfolio = [
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
     videoEmbedUrl: null,
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926412?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brainwash"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
     instagramLink: 'https://www.instagram.com/p/DRJ2US5D11L/',
   },
   {
@@ -193,6 +194,7 @@ const videoPortfolio = [
     // 2. ENABLE VIMEO (Clean Mode)
     // Note: Added title=0&byline=0&portrait=0 to the src URL
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926403?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="final v2.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-omnee',
@@ -209,6 +211,7 @@ const videoPortfolio = [
     // 2. ENABLE VIMEO (Clean Mode)
     // Note: Added title=0&byline=0&portrait=0 to the src URL
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926548?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Omnee #1.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-lovenangels',
@@ -224,6 +227,7 @@ const videoPortfolio = [
 
     // 2. ENABLE VIMEO (Paste exactly)
     embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139930384?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Lovenangels Visuals"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-99clover',
@@ -234,6 +238,7 @@ const videoPortfolio = [
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
     videoEmbedUrl: null,
     embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139929076?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Commercial 99Clover"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
     instagramLink: 'https://www.instagram.com/p/DQognlkkkwi/',
   },
   {
@@ -251,6 +256,7 @@ const videoPortfolio = [
     // 2. ENABLE VIMEO (Clean Mode)
     // Note: Added title=0&byline=0&portrait=0 to the src URL
     embedHtml: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140196791?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="DS"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-runway',
@@ -267,6 +273,7 @@ const videoPortfolio = [
     // 2. ENABLE VIMEO (Clean Mode)
     // Note: Added title=0&byline=0&portrait=0 to the src URL
     embedHtml: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926579?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="99CLOVER VIDEO LOOP.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-omnee-2',
@@ -285,6 +292,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (title=0, etc.)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926559?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Omnee #2.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-piecebyp',
@@ -303,6 +311,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926567?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Piece By P Commercial"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-airlines',
@@ -321,6 +330,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140200272?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Hugozbor Airlines"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-minu',
@@ -339,6 +349,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926446?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hz.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-gta',
@@ -357,6 +368,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926390?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gta.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-minu-2',
@@ -375,6 +387,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926491?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hz copy.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
   {
     id: 'video-barretta',
@@ -393,6 +406,7 @@ const videoPortfolio = [
 
     // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
     embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140203885?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="newvid #1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    fallbackAsset: null,
   },
 ]
 
@@ -990,7 +1004,7 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
 }
 
 // WorkOverlay Component (Modal)
-function WorkOverlay({ item, onClose, setCurrentPage }) {
+function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [isCopied, setIsCopied] = useState(false)
 
@@ -1025,8 +1039,14 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
 
         {/* LEFT SIDE: Image or Video */}
         <div className="w-full md:w-1/2 bg-gray-100">
-          {item.videoEmbedUrl ? (
-            // RENDER VIDEO
+          {/* 1. CHECK RESTRICTED REGION (Indonesia Fix) */}
+          {isRestrictedRegion && item.fallbackAsset ? (
+            <div
+              className="w-full h-auto bg-gray-50 flex items-center justify-center p-4 md:p-8 pointer-events-none"
+              dangerouslySetInnerHTML={{ __html: item.fallbackAsset }}
+            />
+          ) : item.videoEmbedUrl ? (
+            // 2. RENDER VIDEO (YouTube/Direct Embed)
             <div className="w-full h-full p-4 md:p-8 flex items-center justify-center">
               <iframe
                 src={item.videoEmbedUrl}
@@ -1038,14 +1058,14 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
               ></iframe>
             </div>
           ) : item.embedHtml ? (
-            // RENDER HTML EMBED (For Websites/Gyazo)
+            // 3. RENDER HTML EMBED (Vimeo/Gyazo)
             <div
               className={`w-full h-auto bg-gray-50 p-4 md:p-8 ${item.category.includes('videos') ? '' : 'pointer-events-none'
                 }`}
               dangerouslySetInnerHTML={{ __html: item.embedHtml }}
             />
           ) : (
-            // RENDER IMAGE (with carousel support)
+            // 4. RENDER IMAGE (with carousel support)
             <div className="relative w-full h-64 md:h-full">
               <img
                 src={item.slides ? item.slides[currentSlideIndex] : item.fullImageUrl}
@@ -1206,7 +1226,7 @@ function WorkOverlay({ item, onClose, setCurrentPage }) {
 }
 
 // Category pages with sub-navigation
-function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItemId }) {
+function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItemId, isRestrictedRegion }) {
   const [selectedItem, setSelectedItem] = useState(null)
 
   // Helper function to distribute items into columns for left-to-right flow
@@ -1420,6 +1440,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           item={selectedItem}
           onClose={() => setCurrentPage('my-work', category, null)}
           setCurrentPage={setCurrentPage}
+          isRestrictedRegion={isRestrictedRegion}
         />
       )}
     </>
@@ -1492,7 +1513,7 @@ function AboutPage({ setCurrentPage, currentPage }) {
             <div className="border border-[#a2a9b1] bg-[#f8f9fa] p-1 text-sm shadow-sm">
               <div className="bg-[#ddb3b3] p-2 text-center font-bold font-serif text-lg mb-1">Hugo Zbor</div>
 
-              <img src="/about_page/hugo_face.png" alt="Hugo Zbor Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
+              <img src="/about_page/me.jpg" alt="Hugo Zbor Profile" className="w-full h-auto border border-[#a2a9b1] mb-2" />
 
               <table className="w-full text-left border-collapse">
                 <tbody>
@@ -2567,6 +2588,7 @@ function App() {
   const [currentCategory, _setCurrentCategory] = useState(initialUrlState.category)
   const [currentItemId, _setCurrentItemId] = useState(initialUrlState.itemId)
   const [isLoading, setIsLoading] = useState(true)
+  const [isRestrictedRegion, setIsRestrictedRegion] = useState(false)
 
   const setCurrentPage = (page, category = null, itemId = null) => {
     _setCurrentPage(page)
@@ -2661,6 +2683,24 @@ function App() {
     };
   }, [])
 
+  // Check user's location for region-specific content
+  useEffect(() => {
+    // Check user's location via our Vercel API
+    fetch('/api/geo')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('User Location:', data.country); // For debugging
+
+        // If user is in Indonesia (ID), mark as restricted
+        if (data.country === 'ID') {
+          setIsRestrictedRegion(true);
+        }
+      })
+      .catch((err) => {
+        console.error('Geo check failed, defaulting to global version.', err);
+      });
+  }, []);
+
 
   return (
     <>
@@ -2675,16 +2715,16 @@ function App() {
         <main className="flex-grow">
           {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'my-work' && currentCategory === 'graphics' && (
-            <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+            <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
           )}
           {currentPage === 'my-work' && currentCategory === 'videos' && (
-            <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+            <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
           )}
           {currentPage === 'my-work' && currentCategory === 'websites' && (
-            <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+            <MyWorkCategoryPage category="websites" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
           )}
           {currentPage === 'my-work' && currentCategory === 'view-all' && (
-            <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} />
+            <MyWorkCategoryPage category="view-all" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
           )}
           {currentPage === 'my-work' && currentCategory === 'landing' && (
             <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
