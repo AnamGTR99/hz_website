@@ -1,72 +1,52 @@
-This sets up the "Switching Engine" in your website.
+This is the critical "Cleanup" phase. Since we just standardized all the filenames in Stage 123, any file sitting in your folders that **doesn't** match those clean IDs is likely garbage (old versions, duplicates, unused screenshots).
 
-We will teach the **Overlay** to look at that `isRestrictedRegion` variable we created in Part 1.
+Here is the highly detailed prompt for **Stage 124** to automate this purge safely.
 
-  * **If `true` (Indonesia):** It will look for a new property called `fallbackAsset` (where we will put the Gyazo GIF).
-  * **If `false` (Rest of World):** It continues showing the high-quality Vimeo embed.
+***
 
-We will also update your data structure to include this new `fallbackAsset` slot for every video, leaving it empty for now so we can fill it in one by one in the next steps.
-
-Here is the detailed prompt for **Stage 122 (Part 2)**.
-
------
-
-### **Agent Prompt: Stage 122 (Part 2) - Implement Region-Based Content Switching**
+### **Agent Prompt: Stage 124 - Purge Unused Assets (Garbage Collection)**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 122 (Part 2) Goal:**
+**Stage 124 Goal:** Delete all files in the `public/` directory (and subdirectories) that are **NOT** referenced in the codebase.
+**Reason:** To reduce repository size and remove unused/duplicate assets.
 
-1.  **Update Overlay Logic:** Modify `WorkOverlay` to conditionally render a "Safe Fallback" asset (Gyazo GIF) if `isRestrictedRegion` is true.
-2.  **Update Data Structure:** Add the `fallbackAsset` property (initially `null`) to all items in the `videoPortfolio` array to prepare for data entry.
+**Task:**
+1.  **Scan Codebase:** Read `src/App.jsx` and `index.html`. Extract every string that looks like a file path (e.g., `/Pictures/graphic-1.jpeg`, `/videos/brainwash.mp4`, `/logo.png`, `/mobile_banner.gif`). This is your **"Keep List"**.
+2.  **Scan File System:** List every file inside `public/`, `public/Pictures/`, `public/videos/`, `public/Logo/`, and `public/about_page/`.
+3.  **Compare & Delete:** If a file exists in the system but is **NOT** found in your "Keep List", **delete it**.
 
-**File to Modify:** `react:Hugozbor Portfolio:App.jsx`
+**⚠️ CRITICAL SAFETY EXCEPTIONS (Do Not Delete):**
+* `favicon.ico`
+* `robots.txt`
+* `manifest.json`
+* `sitemap.xml` (if exists)
+* `_redirects` (if exists)
 
------
+---
 
-### **Detailed Implementation Requirements:**
+### **Execution Steps for Agent:**
 
-**1. Refactor `WorkOverlay` Media Rendering:**
+**1. Build "Keep List":**
+* Parse `src/App.jsx`. Look for `src="..."`, `href="..."`, `thumbnailUrl: "..."`, `fullImageUrl: "..."`, and `videoFile: "..."`.
+* *Example Match:* If code contains `/Pictures/graphic-1.jpeg`, add `graphic-1.jpeg` to the Keep List.
 
-  * Locate the "Left Side" media rendering block (where it checks for `videoUrl`, `embedHtml`, etc.).
-  * **Insert a New Top-Level Check:**
-    ```jsx
-    {/* 1. CHECK RESTRICTED REGION (Indonesia Fix) */}
-    {isRestrictedRegion && item.fallbackAsset ? (
-       <div 
-         className="w-full h-auto bg-gray-50 flex items-center justify-center p-4 md:p-8 pointer-events-none"
-         dangerouslySetInnerHTML={{ __html: item.fallbackAsset }}
-       />
-    ) : item.videoUrl ? (
-       /* 2. DIRECT MP4 ... existing code ... */
-    ) : item.embedHtml ? (
-       /* 3. VIMEO EMBED ... existing code ... */
-    ) : (
-       /* 4. STATIC IMAGE ... existing code ... */
-    )}
-    ```
-      * *Note:* `pointer-events-none` is added to the fallback container to prevent clicking the Gyazo link, ensuring the user stays on the portfolio.
+**2. Audit `public/Pictures`:**
+* Iterate through all files.
+* If `old_messy_name.jpg` is NOT in the Keep List -> **DELETE**.
+* If `graphic-1.jpeg` IS in the Keep List -> **KEEP**.
 
-**2. Prepare `videoPortfolio` Data:**
+**3. Audit `public/videos`:**
+* Remove any `.mp4` files not referenced in `videoPortfolio`.
 
-  * Locate the `videoPortfolio` array.
-  * **Action:** Add `fallbackAsset: null,` to **EVERY** video object in the array.
-      * *Example:*
-    <!-- end list -->
-    ```javascript
-    {
-      id: 'video-brainwash',
-      title: 'MORNING ROUTINE',
-      // ... existing props ...
-      embedHtml: `...`,
-      fallbackAsset: null, // <--- ADD THIS LINE TO ALL VIDEOS
-    },
-    ```
+**4. Audit `public/about_page`:**
+* Remove any images not referenced in the `AboutPage` component.
 
-**3. Output:**
+**5. Audit Root `public/`:**
+* Remove unused banner GIFs or temp screenshots.
 
-  * Generate the updated `WorkOverlay` component.
-  * Generate the updated `videoPortfolio` array structure (you don't need to print every single video if they are all the same update, just show the pattern or update the whole list if feasible).
+**6. Report:**
+* List the filenames that were deleted so the user can verify.
 
------
+---
 
-**Note to Agent:** This is a structural update. We are not adding the actual GIF links yet; we are just creating the logic and the data slot to hold them.
+**Note to Agent:** Be aggressive but precise. We only want the files that are actively being used by the live website. All others must go to save space.
