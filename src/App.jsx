@@ -306,7 +306,7 @@ const videoPortfolio = [
   },
   {
     id: 'video-airlines',
-    title: 'HUGOZBOR AIRLINES',
+    title: 'IN-FLIGHT ENTERTAINMENT',
     date: '12 NOV 2025',
     description: 'In-flight entertaintment, everything done by Hugo Zbor.',
     category: ['videos', 'view-all'],
@@ -342,7 +342,7 @@ const videoPortfolio = [
   },
   {
     id: 'video-gta',
-    title: 'GTA ONLINE CLOTHING STORE',
+    title: 'GTA VIDEO FOR 99CLOVER',
     date: '15 SEP 2025',
     description: 'Filmed, Shot and editted by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -415,7 +415,7 @@ const websitePortfolio = [
   },
   {
     id: 'web-2',
-    title: 'HUGOZBOR (OLD) PORTFOLIO WEBSITE',
+    title: 'HUGO ZBOR PORTFOLIO SITE (OLD)',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '2025',
@@ -425,7 +425,7 @@ const websitePortfolio = [
   },
   {
     id: 'web-hugo-current',
-    title: 'HUGOZBOR CURRENT WEBSITE',
+    title: 'HUGO ZBOR WEBSITE',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '20 NOV 2025',
@@ -1616,37 +1616,33 @@ function AboutPage({ setCurrentPage, currentPage }) {
               <span className="text-xs text-[#c13333] font-sans font-normal hidden sm:inline">[<button onClick={() => setCurrentPage('contact')} className="hover:underline">edit</button>]</span>
             </div>
 
-            {/* FLOATED IMAGE CONTAINER 2 */}
-            <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-32 md:w-[420px]">
+            {/* Parent Wrapper (Positioning Only - No Border) */}
+            <div className="float-right ml-4 w-32 md:w-[420px] mb-4 flex flex-col md:flex-row gap-2">
 
-              {/* FLEX WRAPPER: Stack on Mobile, Row on Desktop */}
-              <div className="flex flex-col md:flex-row gap-2">
-
-                {/* IMAGE 1 (Left) */}
-                <div className="w-full">
-                  <img
-                    src="/about_page/hugoxlaptop.jpg"
-                    alt="Hugo in Melbourne"
-                    className="w-full h-auto mb-1"
-                  />
-                  <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-                    Hugo in Melbourne, Oct 2025
-                  </div>
+              {/* IMAGE 1: Hugo in Melbourne (Own Box) */}
+              <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full">
+                <img
+                  src="/about_page/hugoxlaptop.jpg"
+                  alt="Hugo in Melbourne"
+                  className="w-full h-auto mb-1"
+                />
+                <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                  Hugo in Melbourne, Oct 2025
                 </div>
-
-                {/* IMAGE 2 (Right) */}
-                <div className="w-full">
-                  <img
-                    src="/about_page/shei.jpg"
-                    alt="Hugo and Shei"
-                    className="w-full h-auto mb-1"
-                  />
-                  <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-                    Hugo and Shei, Nov 2025
-                  </div>
-                </div>
-
               </div>
+
+              {/* IMAGE 2: Hugo and Shei (Own Box) */}
+              <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full">
+                <img
+                  src="/about_page/shei.jpg"
+                  alt="Hugo and Shei"
+                  className="w-full h-auto mb-1"
+                />
+                <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+                  Hugo and Shei, Nov 2025
+                </div>
+              </div>
+
             </div>
 
             <p className="mb-4 font-normal">In February, 2025, I started posting more on a new design account I made (<a href="https://www.instagram.com/hugozbor" target="_blank" rel="noopener noreferrer" className={styles.link}>@hugozbor</a> on <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.link}>Instagram</a>). My art was met with overwhelming support and I've even been contacted by designers that inspired me in the past. A few months after this I decided to get a <span className={styles.link}>manager</span> to help organise and push my output to a different level. His name is <b>Shei</b> (<a href="https://www.instagram.com/sheivault" target="_blank" rel="noopener noreferrer" className={styles.link}>@sheivault</a>) and he was actually the first person I met at uni, years ago, on the very first day.</p>

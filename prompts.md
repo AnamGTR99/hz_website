@@ -1,19 +1,19 @@
-You are referring to the fact that they are sitting **one on top of the other** (vertical), and you want them **side-by-side** (horizontal) like a gallery row.
+This is a layout refinement. Currently, the two images share **one big border**, making them look like a single merged figure. You want them to look like **two separate, distinct polaroids** sitting next to each other.
 
-To fix this, we need to:
+To do this, we will move the `border` and `background` styling from the *parent* container to the *individual* image containers.
 
-1.  **Widen the Container:** The current box (`w-48`) is too narrow to fit two images side-by-side. We need to double its width on desktop.
-2.  **Use Flexbox:** Tell the images to sit in a `row` instead of a `column`.
-
-Here is the detailed prompt for **Stage 120**.
+Here is the detailed prompt for **Stage 121**.
 
 -----
 
-### **Agent Prompt: Stage 120 - Fix Image Stacking (Side-by-Side Layout)**
+### **Agent Prompt: Stage 121 - Separate "Personal Renaissance" Image Boxes**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 120 Goal:** Change the layout of the two images in the **"Personal Renaissance"** section from a vertical stack to a **Side-by-Side (Horizontal)** row on desktop.
-**Mobile Behavior:** Keep them stacked (vertical) on mobile to maintain readability.
+**Stage 121 Goal:** Refactor the images in the "Personal Renaissance" section (`AboutPage`) so they appear as **two separate bordered boxes** instead of one merged box.
+**Layout:**
+
+  * **Desktop:** Side-by-side (Horizontal row), but visually distinct.
+  * **Mobile:** Stacked vertically, visually distinct.
 
 **File to Modify:** `react:Hugozbor Portfolio:App.jsx`
 
@@ -21,59 +21,61 @@ Here is the detailed prompt for **Stage 120**.
 
 ### **Detailed Implementation Requirements:**
 
-**1. Locate "Personal Renaissance" Images:**
+**1. Locate "Personal Renaissance" Image Wrapper:**
 
-  * Find the section with `id="renaissance"`.
-  * Locate the `div` container holding the images (`hugoxlaptop.png` and `shei.png`).
+  * Find the container in the `AboutPage` section with `id="renaissance"`.
+  * **Current Structure:** A single `div` with `border ... bg-[#f8f9fa]` wrapping a Flex container.
 
-**2. Update Container Classes (Make it Wider):**
+**2. Refactor Styling (Move Borders Inward):**
 
-  * **Current:** `... float-right ml-4 w-32 md:w-48`
-  * **Change to:** `... float-right ml-4 w-32 md:w-[420px]`
-      * *Reason:* `md:w-[420px]` gives enough horizontal space for two images to sit next to each other on desktop.
+  * **Step A (Parent):** Remove the border and background from the **Parent** container. Keep the positioning classes.
 
-**3. Update Internal Layout (Flex Row):**
+      * **Old Parent:** `className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-32 md:w-[420px]"`
+      * **New Parent:** `className="float-right ml-4 w-32 md:w-[420px] mb-4 flex flex-col md:flex-row gap-2"`
+      * *Note:* We moved the `flex` logic directly to this wrapper to simplify.
 
-  * Wrap the two image/caption blocks inside a new Flex `div`.
-  * **Code Structure:**
-    ```jsx
-    <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 mb-4 ml-4 float-right w-32 md:w-[420px]">
-      
-      {/* FLEX WRAPPER: Stack on Mobile, Row on Desktop */}
-      <div className="flex flex-col md:flex-row gap-2">
-        
-        {/* IMAGE 1 (Left) */}
-        <div className="w-full">
-           <img 
-             src="/about_page/hugoxlaptop.png" 
-             alt="Hugo in Melbourne" 
-             className="w-full h-auto mb-1"
-           />
-           <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-             Hugo in Melbourne, Oct 2025
-           </div>
-        </div>
+  * **Step B (Children):** Add the border and background classes to the **Individual** image wrappers.
 
-        {/* IMAGE 2 (Right) */}
-        <div className="w-full">
-           <img 
-             src="/about_page/shei.png" 
-             alt="Hugo and Shei" 
-             className="w-full h-auto mb-1"
-           />
-           <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
-             Hugo and Shei, Nov 2025
-           </div>
-        </div>
+      * **Child Class:** `className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full"`
 
-      </div>
-    </div>
-    ```
+**3. New Code Structure:**
+\`\`\`jsx
+{/\* Parent Wrapper (Positioning Only - No Border) \*/}
+\<div className="float-right ml-4 w-32 md:w-[420px] mb-4 flex flex-col md:flex-row gap-2"\>
+
+````
+  {/* IMAGE 1: Hugo in Melbourne (Own Box) */}
+  <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full">
+     <img 
+       src="/about_page/hugoxlaptop.png" 
+       alt="Hugo in Melbourne" 
+       className="w-full h-auto mb-1"
+     />
+     <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+       Hugo in Melbourne, Oct 2025
+     </div>
+  </div>
+
+  {/* IMAGE 2: Hugo and Shei (Own Box) */}
+  <div className="border border-[#c8ccd1] bg-[#f8f9fa] p-1 w-full">
+     <img 
+       src="/about_page/shei.png" 
+       alt="Hugo and Shei" 
+       className="w-full h-auto mb-1"
+     />
+     <div className="p-1 text-[10px] md:text-xs text-gray-600 leading-tight">
+       Hugo and Shei, Nov 2025
+     </div>
+  </div>
+
+</div>
+```
+````
 
 **4. Output:**
 
-  * Generate the updated `AboutPage` component (specifically the "Personal Renaissance" image block).
+  * Generate the updated `AboutPage` component code.
 
 -----
 
-**Note to Agent:** Use `flex-col md:flex-row` to ensure the layout adapts perfectly between phone screens (stacked) and computer screens (side-by-side).
+**Note to Agent:** By applying the border classes (`border border-[#c8ccd1] bg-[#f8f9fa] p-1`) to the children instead of the parent, they will render as two distinct "cards" separated by the `gap-2` space.
