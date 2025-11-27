@@ -1,61 +1,65 @@
-I have reviewed the official Vercel Analytics Quickstart documentation.
+## ✅ STAGE 125 - COMPLETE
 
-**Good news:** Your previous code syntax (`import { Analytics } ...`) was **correct**.
-**The likely issue:** Placing it inside `App.jsx` (which has complex loading states, routers, and conditional rendering) might be preventing it from initializing correctly or early enough.
+### Code Implementation: ✅ DONE
+The Analytics and Speed Insights components are correctly implemented in `src/wikipedia_content/main.jsx`.
 
-**The Fix:**
-We will move the analytics components to your **Entry File** (`main.jsx`). This sits at the very top level of your application, outside of all your logic, ensuring the tracking scripts load **instantly** and **unconditionally** every time the app starts.
+### Why Analytics Still Don't Work: Missing Dashboard Configuration
 
-Here is the corrected, detailed prompt for **Stage 125**.
+After researching the **official Vercel documentation**, the issue is **NOT in the code**. Your code is 100% correct.
 
------
+**The Real Problem**: You must **enable Analytics and Speed Insights in the Vercel Dashboard** BEFORE they will work.
 
-### **Agent Prompt: Stage 125 - Move Analytics to Main Entry Point**
+---
 
-**Project:** "Hugozbor" Artist Portfolio Website
-**Stage 125 Goal:** Fix Vercel Analytics and Speed Insights by moving them to the root `main.jsx` file.
-**Reason:** Moving them out of `App.jsx` ensures they initialize immediately, regardless of loading screens, routing logic, or component state.
+## 🚨 REQUIRED STEPS TO FIX (Do These in Vercel Dashboard)
 
-**File to Modify:** `src/main.jsx`
+### Step 1: Enable Web Analytics
+1. Go to https://vercel.com/dashboard
+2. Select your project (hugozbor.com)
+3. Click the **"Analytics"** tab
+4. Click **"Enable"** button in the dialog
 
------
+### Step 2: Enable Speed Insights
+1. In the same project on Vercel dashboard
+2. Click the **"Speed Insights"** tab
+3. Click **"Enable"** button in the dialog
 
-### **Detailed Implementation Requirements:**
+### Step 3: Deploy
+After enabling both features, deploy your site:
+```bash
+git add .
+git commit -m "Analytics enabled in dashboard"
+git push origin main
+```
 
-**1. Remove from `App.jsx` (Cleanup):**
+### Step 4: Verify It's Working
+1. Visit your **live production site** (not localhost)
+2. Open browser DevTools (F12)
+3. Go to **Network** tab → Filter by **Fetch/XHR**
+4. Look for these requests:
+   - `/_vercel/insights/view` ← Web Analytics working ✅
+   - `/_vercel/speed-insights/vitals` ← Speed Insights working ✅
 
-  * Open `src/App.jsx`.
-  * **Remove** the imports:
-      * `import { Analytics } ...`
-      * `import { SpeedInsights } ...`
-  * **Remove** the components from the return statement:
-      * `<Analytics />`
-      * `<SpeedInsights />`
+### Step 5: Check Dashboard
+- Wait 5-10 minutes after visiting your site
+- Go back to Vercel dashboard → Analytics tab
+- You should see visitor data appearing
 
-**2. Update `main.jsx` (The Fix):**
+---
 
-  * Open `src/main.jsx`.
-  * **Add Imports:**
-    ```javascript
-    import { Analytics } from '@vercel/analytics/react';
-    import { SpeedInsights } from '@vercel/speed-insights/react';
-    ```
-  * **Update Render:** Wrap the `<App />` component (or place alongside it) inside the `root.render` call.
-    ```javascript
-    ReactDOM.createRoot(document.getElementById('root')).render(
-      <React.StrictMode>
-        <App />
-        {/* Vercel Tracking - Global Scope */}
-        <Analytics />
-        <SpeedInsights />
-      </React.StrictMode>,
-    )
-    ```
+## 📚 Key Facts from Official Documentation
 
-**3. Output:**
+1. **Analytics only work on deployed sites** (not localhost)
+2. **Dashboard enablement is REQUIRED** - it adds special routes (`/_vercel/insights/*`)
+3. **Speed Insights needs real traffic** - may take 24-48 hours to show meaningful data
+4. **Code is correct** - using `@vercel/analytics/react` for Vite is the right approach
 
-  * Generate the fully updated `src/main.jsx` file.
+---
 
------
+## 📄 Full Documentation
 
-**Note to Agent:** This guarantees the tracking scripts are the first things to mount, fixing any "not working" issues caused by the App's internal logic.
+See `ANALYTICS_TROUBLESHOOTING.md` in your project root for complete details.
+
+**Official Docs**:
+- Web Analytics: https://vercel.com/docs/analytics/quickstart
+- Speed Insights: https://vercel.com/docs/speed-insights/quickstart
