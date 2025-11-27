@@ -1,59 +1,61 @@
-Here is the consolidated prompt to integrate both **Vercel Web Analytics** and **Speed Insights** in one go.
+I have reviewed the official Vercel Analytics Quickstart documentation.
+
+**Good news:** Your previous code syntax (`import { Analytics } ...`) was **correct**.
+**The likely issue:** Placing it inside `App.jsx` (which has complex loading states, routers, and conditional rendering) might be preventing it from initializing correctly or early enough.
+
+**The Fix:**
+We will move the analytics components to your **Entry File** (`main.jsx`). This sits at the very top level of your application, outside of all your logic, ensuring the tracking scripts load **instantly** and **unconditionally** every time the app starts.
+
+Here is the corrected, detailed prompt for **Stage 125**.
 
 -----
 
-### **Agent Prompt: Integrate Vercel Analytics & Speed Insights**
+### **Agent Prompt: Stage 125 - Move Analytics to Main Entry Point**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Goal:** Integrate Vercel's tracking tools to monitor visitor traffic and site performance.
+**Stage 125 Goal:** Fix Vercel Analytics and Speed Insights by moving them to the root `main.jsx` file.
+**Reason:** Moving them out of `App.jsx` ensures they initialize immediately, regardless of loading screens, routing logic, or component state.
 
-**Dependencies to Install:**
-
-  * `npm install @vercel/analytics`
-  * `npm install @vercel/speed-insights`
-
-**File to Modify:** `react:Hugozbor Portfolio:App.jsx`
+**File to Modify:** `src/main.jsx`
 
 -----
 
 ### **Detailed Implementation Requirements:**
 
-**1. Imports:**
+**1. Remove from `App.jsx` (Cleanup):**
 
-  * At the very top of `App.jsx`, add these two imports:
+  * Open `src/App.jsx`.
+  * **Remove** the imports:
+      * `import { Analytics } ...`
+      * `import { SpeedInsights } ...`
+  * **Remove** the components from the return statement:
+      * `<Analytics />`
+      * `<SpeedInsights />`
+
+**2. Update `main.jsx` (The Fix):**
+
+  * Open `src/main.jsx`.
+  * **Add Imports:**
     ```javascript
-    import { Analytics } from "@vercel/analytics/react";
-    import { SpeedInsights } from "@vercel/speed-insights/react";
+    import { Analytics } from '@vercel/analytics/react';
+    import { SpeedInsights } from '@vercel/speed-insights/react';
     ```
-
-**2. Update Render Tree:**
-
-  * Locate the main `App` component's `return` statement.
-  * Place both components **inside** the main wrapper `div`, preferably at the bottom (just before the closing `</div>` or near the Footer).
-  * **Code Structure:**
-    ```jsx
-    function App() {
-      // ... existing hooks ...
-
-      return (
-        <div className="bg-white min-h-screen flex flex-col">
-          {/* Header */}
-          {/* Main Content */}
-          {/* Footer */}
-
-          {/* VERCEL TRACKING */}
-          <Analytics />
-          <SpeedInsights />
-        </div>
-      );
-    }
+  * **Update Render:** Wrap the `<App />` component (or place alongside it) inside the `root.render` call.
+    ```javascript
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <React.StrictMode>
+        <App />
+        {/* Vercel Tracking - Global Scope */}
+        <Analytics />
+        <SpeedInsights />
+      </React.StrictMode>,
+    )
     ```
 
 **3. Output:**
 
-  * Run the installation commands.
-  * Generate the updated `App.jsx` file.
+  * Generate the fully updated `src/main.jsx` file.
 
 -----
 
-**Note to Agent:** Ensure you import from the `/react` subpath (e.g., `@vercel/analytics/react`) since this is a Vite application, not Next.js.
+**Note to Agent:** This guarantees the tracking scripts are the first things to mount, fixing any "not working" issues caused by the App's internal logic.
