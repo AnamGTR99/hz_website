@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check } from 'lucide-react'
 import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
 // Date parsing helper function
