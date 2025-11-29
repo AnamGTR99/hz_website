@@ -1143,7 +1143,7 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion }) {
                           <Check className="size-5 text-green-600" />
                         ) : (
                           <img
-                            src="/extra_assets/copy_favicon.jpeg"
+                            src="/extra_assets/copy_favicon.png"
                             alt="Copy"
                             className="w-5 h-5 object-contain"
                           />
@@ -1177,7 +1177,7 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion }) {
                         <Check className="size-5 text-green-600" />
                       ) : (
                         <img
-                          src="/extra_assets/copy_favicon.jpeg"
+                          src="/extra_assets/copy_favicon.png"
                           alt="Copy"
                           className="w-5 h-5 object-contain"
                         />
@@ -1197,7 +1197,7 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion }) {
                       <Check className="size-5 text-green-600" />
                     ) : (
                       <img
-                        src="/extra_assets/copy_favicon.jpeg"
+                        src="/extra_assets/copy_favicon.png"
                         alt="Copy"
                         className="w-5 h-5 object-contain"
                       />
@@ -2465,84 +2465,124 @@ function TermsPage({ setCurrentPage, currentPage }) {
 }
 
 function InfoPage({ setCurrentPage }) {
-  const phoneNumber = "+61 483 879 841"
-  const email = "contact@hugozbor.com"
+  // Custom SVG Icons
+  const iMessageIcon = () => (
+    <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12c0 1.54.36 3 .97 4.29L2 22l5.71-.97C9 21.64 10.46 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+    </svg>
+  )
 
-  const copyToClipboard = (text) => {
-    if (navigator?.clipboard) {
-      navigator.clipboard.writeText(text)
-      alert("Copied to clipboard!")
-    }
-  }
+  const WhatsAppIcon = () => (
+    <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  )
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      {/* CARD CONTAINER */}
-      <div className="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      {/* MAIN SITE LOGO (Red Bug) - Outside Card */}
+      <div className="mb-6">
+        <img
+          src="/extra_assets/logo.png"
+          alt="Hugozbor Logo"
+          className="h-12 w-auto"
+        />
+      </div>
 
-        {/* 1. PROFILE IMAGE (Full width top or large circle) */}
-        <div className="w-full aspect-square relative overflow-hidden">
+      {/* MAIN CARD */}
+      <div className="bg-white w-full max-w-[360px] rounded-3xl shadow-xl overflow-hidden p-6 border border-gray-100">
+
+        {/* PROFILE SECTION */}
+        <div className="text-center">
           <img
-            src="https://i.gyazo.com/a3f484e264aaddca81e4ea3482e16ad2.png"
+            src="/extra_assets/anam_pfp.JPG"
             alt="Shei"
-            className="w-full h-full object-cover object-left"
+            className="w-24 h-24 rounded-full object-cover mx-auto mb-4 grayscale"
           />
+          <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 700 }}>
+            Shei
+          </h1>
+          <p className="text-xs text-gray-500 uppercase tracking-widest mt-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            TALENT MANAGER
+          </p>
         </div>
 
-        {/* 2. DETAILS SECTION */}
-        <div className="p-8 text-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          <h1 className="text-2xl font-bold text-gray-900" style={{ fontWeight: 700 }}>Shei</h1>
-          <p className="text-sm text-gray-500 uppercase tracking-widest mt-1 mb-6" style={{ fontWeight: 400 }}>
-            Talent Manager
-          </p>
+        {/* ACTION BUTTONS GRID */}
+        <div className="w-full space-y-3 mt-6">
 
-          {/* 3. ACTION BUTTONS (Stacked & Aligned) */}
-          <div className="w-full space-y-3 mt-6">
+          {/* ROW 1: PHONE (Full Width) */}
+          <a
+            href="tel:+61483879841"
+            className="flex items-center justify-start w-full h-14 px-4 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            <Phone className="size-5 text-gray-700 mr-3" />
+            <span className="font-medium text-gray-900">+61 483 879 841</span>
+          </a>
 
-            {/* PHONE ROW (Display + Call Action) */}
+          {/* ROW 2: SPLIT (iMessage + WhatsApp) */}
+          <div className="flex flex-row gap-3">
+            {/* LEFT: iMessage */}
             <a
-              href="tel:+61483879841"
-              className="flex items-center justify-start w-full p-3 bg-white border border-gray-200 rounded-xl shadow-sm hover:bg-gray-50 transition-colors group"
+              href="sms:+61483879841"
+              className="flex-1 flex flex-col items-center justify-center h-14 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
             >
-              <div className="bg-gray-900 text-white p-2 rounded-md group-hover:scale-105 transition-transform">
-                <Phone className="size-5" />
+              <div className="text-gray-700">
+                {iMessageIcon()}
               </div>
-              <span className="ml-3 font-medium text-gray-900">{phoneNumber}</span>
+              <span className="text-xs font-medium text-gray-900 mt-1">iMessage</span>
             </a>
 
-            {/* WHATSAPP BUTTON (Green) */}
+            {/* RIGHT: WhatsApp */}
             <a
               href="https://wa.me/61483879841"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-start w-full p-3 bg-[#25D366] text-white rounded-xl shadow-sm hover:opacity-90 transition-opacity"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 500 }}
-            >
-              <MessageCircle className="size-6" />
-              <span className="ml-3 font-bold">WhatsApp</span>
-            </a>
-
-            {/* EMAIL BUTTON (Copy Action) */}
-            <button
-              onClick={() => copyToClipboard(email)}
-              className="flex items-center justify-start w-full p-3 bg-gray-100 border border-gray-200 rounded-xl hover:bg-gray-200 transition-colors"
+              className="flex-1 flex flex-col items-center justify-center h-14 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
             >
-              <div className="text-gray-600">
-                <Mail className="size-6" />
+              <div className="text-gray-700">
+                {WhatsAppIcon()}
               </div>
-              <span className="ml-3 font-medium text-gray-700">{email}</span>
-            </button>
-
+              <span className="text-xs font-medium text-gray-900 mt-1">WhatsApp</span>
+            </a>
           </div>
 
-          {/* Footer Note */}
-          <p className="text-xs text-gray-400 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            Melbourne, Australia<br />
+          {/* ROW 3: INSTAGRAM (Full Width) */}
+          <a
+            href="https://www.instagram.com/hugozbor"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-start w-full h-14 px-4 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            <Instagram className="size-5 text-gray-700 mr-3" />
+            <span className="font-medium text-gray-900">Instagram</span>
+          </a>
+
+          {/* ROW 4: EMAIL (Full Width - Red Background) */}
+          <a
+            href="mailto:contact@hugozbor.com"
+            className="flex items-center justify-start w-full h-14 px-4 bg-[#c13333] rounded-xl hover:opacity-90 transition-opacity"
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            <Mail className="size-5 text-white mr-3" />
+            <span className="font-medium text-white">contact@hugozbor.com</span>
+          </a>
+
+        </div>
+
+        {/* FOOTER */}
+        <div className="text-center mt-6">
+          <p className="text-xs text-gray-400" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Melbourne, Australia
+          </p>
+          <p className="text-xs text-gray-400 mt-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             © Hugozbor 2025
           </p>
         </div>
+
       </div>
     </div>
   )
