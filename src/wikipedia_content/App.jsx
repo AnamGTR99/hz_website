@@ -863,7 +863,7 @@ function HomePage({ setCurrentPage, currentPage }) {
         {/* --- 2. HIGH-IMPACT SECTION (Split Layout) --- */}
         <div className="mb-24 md:mb-32">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-left mb-12 leading-tight">
-            Creating High-Impact Visual Experiences
+            Open for Commissions
           </h1>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
