@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check } from 'lucide-react'
+import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check, Search } from 'lucide-react'
+import { COUNTRY_CODES } from './countries'
 
 // Date parsing helper function
 const parseDateString = (dateStr) => {
@@ -1909,10 +1910,96 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
   )
 }
 
+// CountrySelect Component
+function CountrySelect({ selected, onChange }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [search, setSearch] = useState('')
+
+  // Filter countries based on search
+  const filteredCountries = COUNTRY_CODES.filter(country =>
+    country.label.toLowerCase().includes(search.toLowerCase()) ||
+    country.dial.includes(search)
+  )
+
+  return (
+    <div className="relative">
+      {/* Trigger Button */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 transition-colors"
+        style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+      >
+        <span className="text-lg">{selected.flag}</span>
+        <span className="text-brandBlack">{selected.dial}</span>
+        <ChevronDown className="w-4 h-4 text-gray-500" />
+      </button>
+
+      {/* Dropdown */}
+      {isOpen && (
+        <>
+          {/* Backdrop to close dropdown */}
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsOpen(false)}
+          />
+
+          {/* Dropdown Content */}
+          <div className="absolute top-full left-0 mt-1 w-72 bg-white border border-gray-300 rounded-lg shadow-lg z-20 overflow-hidden">
+            {/* Search Bar */}
+            <div className="sticky top-0 bg-white p-2 border-b border-gray-200">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  autoFocus
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search country..."
+                  className="w-full pl-9 pr-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:border-[#c13333]"
+                  style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+                />
+              </div>
+            </div>
+
+            {/* Country List */}
+            <div className="max-h-64 overflow-y-auto">
+              {filteredCountries.map((country) => (
+                <button
+                  key={country.code}
+                  type="button"
+                  onClick={() => {
+                    onChange(country)
+                    setIsOpen(false)
+                    setSearch('')
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors text-left"
+                  style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+                >
+                  <span className="text-lg">{country.flag}</span>
+                  <span className="flex-1 text-brandBlack text-sm">{country.label}</span>
+                  <span className="text-gray-500 text-sm">{country.dial}</span>
+                </button>
+              ))}
+              {filteredCountries.length === 0 && (
+                <div className="px-4 py-8 text-center text-gray-500 text-sm">
+                  No countries found
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
+
 // Contact Page Component
+
 function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [contactMethod, setContactMethod] = useState('email')
+  const [countryCode, setCountryCode] = useState(COUNTRY_CODES.find(c => c.code === 'AU') || COUNTRY_CODES[0])
   const [services, setServices] = useState({
     graphics: false,
     video: false,
@@ -2093,9 +2180,37 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   contactLabel = "Phone Number *";
                   contactType = "tel";
                   contactName = "phone_number";
-                  contactPlaceholder = "+61 400 000 000";
+                  contactPlaceholder = "400 000 000";
                 }
 
+                // Special layout for phone number with country code picker
+                if (contactMethod === 'messages') {
+                  return (
+                    <>
+                      <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                        {contactLabel}
+                      </label>
+                      <div className="flex gap-2">
+                        {/* Country Code Picker */}
+                        <CountrySelect selected={countryCode} onChange={setCountryCode} />
+
+                        {/* Phone Number Input */}
+                        <input
+                          type={contactType}
+                          name={contactName}
+                          placeholder={contactPlaceholder}
+                          required
+                          className="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                          style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+                        />
+                      </div>
+                      {/* Hidden input to send country dial code to Formspree */}
+                      <input type="hidden" name="country_dial_code" value={countryCode.dial} />
+                    </>
+                  );
+                }
+
+                // Default layout for email and instagram
                 return (
                   <>
                     <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
@@ -2480,15 +2595,6 @@ function InfoPage({ setCurrentPage }) {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-      {/* MAIN SITE LOGO (Red Bug) - Outside Card */}
-      <div className="mb-6">
-        <img
-          src="/extra_assets/logo.png"
-          alt="Hugozbor Logo"
-          className="h-12 w-auto"
-        />
-      </div>
-
       {/* MAIN CARD */}
       <div className="bg-white w-full max-w-[360px] rounded-3xl shadow-xl overflow-hidden p-6 border border-gray-100">
 

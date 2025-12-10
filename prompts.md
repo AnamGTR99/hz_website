@@ -1,59 +1,82 @@
-This is a complete visual overhaul of the Info Page to match the reference "Linktree-style" card exactly.
+This is a smart request. Hardcoding 195+ countries directly into your main `App.jsx` file will make it huge and messy.
 
-We will rebuild the `InfoPage` component with a **specific grid layout** for the buttons (1 Full, 2 Split, 1 Full, 1 Full) and apply the correct styling (Rounded borders, grayscale profile picture, Red email button).
+To do this cleanly, we will tell the agent to:
 
-Here is the highly detailed prompt for **Stage 126**.
+1.  **Create a separate file** called `src/countries.js` to hold the massive list of data.
+2.  **Import** that list into your App.
+3.  **Build the Searchable Dropdown** so users can type "United K..." and find it instantly among the 190+ options.
 
-***
+Here is the updated, highly detailed prompt for **Stage 127 (Full World Version)**.
 
-### **Agent Prompt: Stage 126 - Redesign Info Page (Manager Card)**
+-----
+
+### **Agent Prompt: Stage 127 - Add Full World Country Code Picker**
 
 **Project:** "Hugozbor" Artist Portfolio Website
-**Stage 126 Goal:** Completely redesign the `InfoPage` component to match the provided reference image (f223fa10...).
-**New Asset:** Profile picture path is `/Pictures/anam_pfp.JPG` (or `/anam_pfp.JPG` - check standard path).
+**Stage 127 Goal:** Enhance the Contact Page with a **Searchable Country Code Dropdown** containing **ALL \~195 world countries**.
+**Strategy:** Move the data to a separate file (`src/countries.js`) to keep the main code clean, then implement a searchable split-input for the phone field.
 
-**File to Modify:** `react:Hugozbor Portfolio:App.jsx`
+**Files to Create/Modify:**
 
-**Icons to Import:**
-* From `lucide-react`, ensure you have: `Phone`, `Instagram`, `Mail`.
-* *Note:* For **iMessage** and **WhatsApp**, use the custom SVGs provided in the instructions below to ensure brand accuracy.
+1.  **Create:** `src/countries.js` (Holds the data).
+2.  **Modify:** `src/App.jsx` (Imports data and updates UI).
 
----
+**Icons to Import (`App.jsx`):** `ChevronDown`, `Search`.
+
+-----
 
 ### **Detailed Implementation Requirements:**
 
-**1. Define Custom Icons (Inside `InfoPage` or as helpers):**
-* **iMessage Bubble:** Simple speech bubble SVG.
-* **WhatsApp:** Standard WhatsApp SVG path.
+**1. Create Data File (`src/countries.js`):**
 
-**2. Rebuild `InfoPage` Component Structure:**
-* **Background:** Keep the light gray/white page background.
-* **Header:** Render the **Main Site Logo** (Red Bug) at the very top, *outside* the card.
-* **Main Card:**
-    * `bg-white w-full max-w-[360px] rounded-3xl shadow-xl overflow-hidden p-6 border border-gray-100` (Rounded corners are key).
-* **Profile Section:**
-    * Image: `/Pictures/anam_pfp.JPG`
-    * Style: `w-24 h-24 rounded-full object-cover mx-auto mb-4 grayscale` (Black & white filter as per image).
-    * Text: "Shei" (Bold, Large) and "TALENT MANAGER" (Small, Uppercase, Gray).
+  * Create a new file in the `src` folder.
+  * **Content:** Export a constant array named `COUNTRY_CODES`.
+  * **Task for Agent:** Populate this array with **ALL** standard ISO country codes (Afghanistan to Zimbabwe).
+  * **Format:**
+    ```javascript
+    export const COUNTRY_CODES = [
+      { code: 'AF', label: 'Afghanistan', dial: '+93', flag: '🇦🇫' },
+      { code: 'AL', label: 'Albania', dial: '+355', flag: '🇦🇱' },
+      // ... INSERT ALL 190+ COUNTRIES HERE ...
+      { code: 'AU', label: 'Australia', dial: '+61', flag: '🇦🇺' },
+      // ...
+      { code: 'US', label: 'United States', dial: '+1', flag: '🇺🇸' },
+      // ...
+      { code: 'ZW', label: 'Zimbabwe', dial: '+263', flag: '🇿🇼' }
+    ];
+    ```
 
-**3. Action Buttons Layout (The Grid):**
-* **Row 1 (Phone):** Full width. White bg, Gray border. Icon + "+61 483 879 841".
-* **Row 2 (Split):** Flex row with `gap-3`.
-    * **Left (iMessage):** 50% width. White bg, Gray border. Icon + "iMessage". Link: `sms:+61483879841`.
-    * **Right (WhatsApp):** 50% width. White bg, Gray border. Icon + "WhatsApp". Link: `https://wa.me/61483879841`.
-* **Row 3 (Instagram):** Full width. White bg, Gray border. Icon + "Instagram".
-* **Row 4 (Email):** Full width. **Red Background (`bg-[#c13333]`)**, White Text. Icon + "contact@hugozbor.com".
+**2. Create `CountrySelect` Component (in `App.jsx`):**
 
-**4. Styling Specifics:**
-* All buttons should have `rounded-xl` (extra rounded) and `h-14` (tall touch target).
-* Use `flex items-center justify-start px-4` for button content alignment (Icon left, text centered or left).
+  * Import the data: `import { COUNTRY_CODES } from './countries';`
+  * Build a component that manages:
+      * **State:** `isOpen` (dropdown visibility), `search` (filter text).
+      * **Filtering:** Filter the `COUNTRY_CODES` list based on the `search` state (match Label or Dial code).
+      * **UI:**
+          * **Trigger:** A button showing `{selected.flag} {selected.dial}` and a Chevron.
+          * **Dropdown:** An absolute `div` containing a sticky **Search Bar** input and a scrollable list of countries.
+  * **Selection:** Clicking a country should call `onChange(country)` and close the dropdown.
 
-**5. Footer:**
-* "Melbourne, Australia" and Copyright text centered at the bottom of the card.
+**3. Update `ContactForm` Component:**
 
-**6. Output:**
-* Generate the fully replaced `InfoPage` component code.
+  * **State:** Add `const [countryCode, setCountryCode] = useState(COUNTRY_CODES.find(c => c.code === 'AU') || COUNTRY_CODES[0]);` (Default to Australia).
+  * **Logic:** Locate the "Phone Number" input area (visible only when `contactMethod === 'messages'`).
+  * **Layout:** Replace the single input with a **Flex Row**:
+      * **Left:** `<CountrySelect selected={countryCode} onChange={setCountryCode} />`
+      * **Right:** `<input type="tel" ... />` (The phone number field).
+  * **Formspree Integration:** Add a hidden input to ensure the dial code is sent:
+    `<input type="hidden" name="country_dial_code" value={countryCode.dial} />`
 
----
+**4. Styling Details:**
 
-**Note to Agent:** The "Split Row" for iMessage and WhatsApp is the most important structural change. Ensure they sit side-by-side perfectly.
+  * Ensure the Dropdown list has `max-h-64` and `overflow-y-auto` so the user can scroll through the long list of countries.
+  * The Search Input inside the dropdown should have `autoFocus` so the user can type immediately.
+
+**5. Output:**
+
+  * Generate the full `src/countries.js` file content.
+  * Generate the updated `App.jsx` file with the imports and refactored Contact Form.
+
+-----
+
+**Note to Agent:** Please ensure the `COUNTRY_CODES` array is complete. You can generate the standard list of countries with their ISO codes, Dial codes, and Emoji flags.
