@@ -1999,6 +1999,7 @@ function CountrySelect({ selected, onChange }) {
 function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [contactMethod, setContactMethod] = useState('email')
+  const [messagingPlatform, setMessagingPlatform] = useState('both') // 'whatsapp', 'imessage', or 'both'
   const [countryCode, setCountryCode] = useState(COUNTRY_CODES.find(c => c.code === 'AU') || COUNTRY_CODES[0])
   const [services, setServices] = useState({
     graphics: false,
@@ -2149,6 +2150,52 @@ function ContactPage({ setCurrentPage, currentPage }) {
               ))}
             </div>
           </div>
+
+          {/* Conditional: Messaging Platform Selection (only if Messages is selected) */}
+          {contactMethod === 'messages' && (
+            <div className="mb-6 pl-4 border-l-2 border-gray-300">
+              <label className="block text-brandBlack text-sm mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                Preferred platform: *
+              </label>
+              <div className="flex flex-wrap gap-4">
+                <label className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                  <input
+                    type="radio"
+                    name="messaging_platform"
+                    value="whatsapp"
+                    checked={messagingPlatform === 'whatsapp'}
+                    onChange={() => setMessagingPlatform('whatsapp')}
+                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                  />
+                  <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>WhatsApp</span>
+                </label>
+                <label className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                  <input
+                    type="radio"
+                    name="messaging_platform"
+                    value="imessage"
+                    checked={messagingPlatform === 'imessage'}
+                    onChange={() => setMessagingPlatform('imessage')}
+                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                  />
+                  <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>iMessage</span>
+                </label>
+                <label className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                  <input
+                    type="radio"
+                    name="messaging_platform"
+                    value="both"
+                    checked={messagingPlatform === 'both'}
+                    onChange={() => setMessagingPlatform('both')}
+                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                  />
+                  <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>Either</span>
+                </label>
+              </div>
+              {/* Hidden input to send messaging platform preference to Formspree */}
+              <input type="hidden" name="messaging_platform_preference" value={messagingPlatform} />
+            </div>
+          )}
 
           {/* Row 1: Name & Contact */}
           <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
