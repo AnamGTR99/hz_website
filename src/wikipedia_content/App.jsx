@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check, Search } from 'lucide-react'
 import { COUNTRY_CODES } from './countries'
+import { selectedClients, clientsCopy } from '../data/clients'
 
 // Date parsing helper function
 const parseDateString = (dateStr) => {
@@ -716,6 +717,16 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             ABOUT
           </button>
           <button
+            onClick={() => setCurrentPage('clients')}
+            className={
+              currentPage === 'clients'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            CLIENTS
+          </button>
+          <button
             onClick={() => setCurrentPage('contact')}
             className={
               currentPage === 'contact'
@@ -782,6 +793,19 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             }
           >
             ABOUT
+          </button>
+          <button
+            onClick={() => {
+              setCurrentPage('clients')
+              setIsMobileMenuOpen(false)
+            }}
+            className={
+              currentPage === 'clients'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            CLIENTS
           </button>
           <button
             onClick={() => {
@@ -880,7 +904,7 @@ function HomePage({ setCurrentPage, currentPage }) {
             <div className="w-full md:w-1/2">
               <h3 className="text-sm font-bold uppercase tracking-widest mb-4">The Foundation of Hugo Zbor</h3>
               <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6">
-                Hugo's process is built on a decade of dedication to digital creation. What began as self-taught experimentation in digital arts, evolved into managing the design, creative direction, and visual branding for many campaigns and brands. I design with both creative instinct and a practical understanding of visual strategy and application.
+                Hugo's process is built on a decade of dedication to digital creation. What began as self-taught experimentation in digital arts, evolved into managing the design, creative direction, and visual branding for many campaigns and brands. Hugo's design with both creative instinct and a practical understanding of visual strategy and application.
               </p>
               <button
                 onClick={() => setCurrentPage('about')}
@@ -908,7 +932,7 @@ function HomePage({ setCurrentPage, currentPage }) {
           <div className="max-w-3xl">
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Creative Trajectory</h3>
             <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6">
-              Whether you have rough raw footage or Hollywood greenscreen studio, I can help build the world you're envisioning. My focus is on transforming your initial concept into a seamless and professionally executed final digital asset.
+              Whether you have rough raw footage or Hollywood greenscreen studio, Hugo can help build the world you're envisioning. Hugo's focus is on transforming your initial concept into a seamless and professionally executed final digital asset.
             </p>
             <button
               onClick={() => setCurrentPage('commissions')}
@@ -935,7 +959,7 @@ function HomePage({ setCurrentPage, currentPage }) {
           <div className="max-w-3xl">
             <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Creative Trajectory</h3>
             <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6">
-              Since launching the Instagram account @hugozbor in early 2025, work has been met with incredible support, connecting me with influential designers. I am currently in a phase of rapid growth, where I focus on maintaining a high standard of output.
+              Since launching the Instagram account @hugozbor in early 2025, work has been met with incredible support, connecting Hugo with influential designers. Hugo is currently in a phase of rapid growth, where Hugo focus on maintaining a high standard of output.
             </p>
             <button
               onClick={() => setCurrentPage('my-work', 'view-all')}
@@ -1473,6 +1497,82 @@ function InfoBox({ imageUrl, caption, altText }) {
         className="w-full h-auto"
       />
       <p className="text-sm text-gray-700 mt-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>{caption}</p>
+    </div>
+  )
+}
+
+function ClientsPage({ setCurrentPage, currentPage }) {
+  return (
+    <div className="w-full pb-20">
+      {/* Mobile-only Page Title (consistent with other pages) */}
+      {typeof PageHeader === 'function' ? (
+        <PageHeader title="Clients" isActive={currentPage === 'clients'} />
+      ) : null}
+
+      <div className="max-w-4xl mx-auto px-4 md:px-0 mt-6 md:mt-10">
+        {/* Header */}
+        <div className="mb-8 md:mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-brandBlack uppercase tracking-wide">
+            {clientsCopy.title}
+          </h1>
+          <p
+            className="mt-3 text-sm md:text-base text-gray-600 leading-relaxed"
+            style={{ fontWeight: 400 }}
+          >
+            {clientsCopy.subline}
+          </p>
+        </div>
+
+        {/* Option A: Text-first index */}
+        <div className="border-t border-gray-200 pt-6">
+          <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500 mb-4">
+            Selected collaborations
+          </h2>
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+            {selectedClients.map((c, idx) => (
+              <li
+                key={c.name}
+                className={`flex items-baseline justify-between pb-2 ${idx >= 4 ? 'border-b border-gray-100' : ''} ${idx % 2 === 1 ? 'md:translate-y-1' : ''}`}
+              >
+                <span className={idx < 4
+                  ? 'text-base md:text-xl font-bold text-gray-900 uppercase tracking-wide'
+                  : 'text-sm md:text-base font-bold text-gray-800 uppercase tracking-wide'}
+                >
+                  {c.name}
+                </span>
+
+                {c.note ? (
+                  <span
+                    className="text-xs md:text-sm text-gray-400 ml-3"
+                    style={{ fontWeight: 400 }}
+                  >
+                    {c.note}
+                  </span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+
+          {/* Micro-mark placeholder (future enhancement; not a CTA) */}
+          <p className="mt-6 text-xs text-gray-400" style={{ fontWeight: 400 }}>
+            Logotypes available upon request.
+          </p>
+        </div>
+
+        {/* CTA (only CTA) */}
+        <div className="mt-12 md:mt-16">
+          <p className="mb-3 text-sm text-gray-500" style={{ fontWeight: 400 }}>
+            For new collaborations and commissions.
+          </p>
+          <button
+            onClick={() => setCurrentPage('contact')}
+            className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+          >
+            Work With Hugo
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
@@ -2767,7 +2867,7 @@ function App() {
       return { page: 'commissions', category: subCategory, itemId: null }
     }
 
-    const allowedPages = new Set(['home', 'about', 'contact', 'terms', 'info'])
+    const allowedPages = new Set(['home', 'about', 'clients', 'contact', 'terms', 'info'])
     if (allowedPages.has(root)) {
       return { page: root, category: 'landing', itemId: null }
     }
@@ -2928,6 +3028,7 @@ function App() {
               currentPage={currentPage}
             />
           )}
+          {currentPage === 'clients' && <ClientsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
@@ -2940,4 +3041,3 @@ function App() {
 }
 
 export default App
-
