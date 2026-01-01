@@ -1562,15 +1562,20 @@ function ClientsPage({ setCurrentPage, currentPage }) {
 
         {/* CTA (only CTA) */}
         <div className="mt-12 md:mt-16">
-          <p className="mb-3 text-sm text-gray-500" style={{ fontWeight: 400 }}>
+          <h3 className="text-base md:text-lg font-bold text-gray-900 uppercase tracking-wide mb-2 text-center">
+            Work With Hugo
+          </h3>
+          <p className="mb-3 text-sm text-gray-500 text-center" style={{ fontWeight: 400 }}>
             For new collaborations and commissions.
           </p>
-          <button
-            onClick={() => setCurrentPage('contact')}
-            className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-          >
-            Work With Hugo
-          </button>
+          <div className="flex justify-center">
+            <button
+              onClick={() => setCurrentPage('contact')}
+              className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            >
+              Work With Hugo
+            </button>
+          </div>
         </div>
       </div>
     </div>
