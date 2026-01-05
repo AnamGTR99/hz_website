@@ -717,16 +717,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             ABOUT
           </button>
           <button
-            onClick={() => setCurrentPage('clients')}
-            className={
-              currentPage === 'clients'
-                ? 'font-bold text-lg text-[#c13333]'
-                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-            }
-          >
-            CLIENTS
-          </button>
-          <button
             onClick={() => setCurrentPage('contact')}
             className={
               currentPage === 'contact'
@@ -793,19 +783,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             }
           >
             ABOUT
-          </button>
-          <button
-            onClick={() => {
-              setCurrentPage('clients')
-              setIsMobileMenuOpen(false)
-            }}
-            className={
-              currentPage === 'clients'
-                ? 'font-bold text-lg text-[#c13333]'
-                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-            }
-          >
-            CLIENTS
           </button>
           <button
             onClick={() => {
@@ -2872,7 +2849,7 @@ function App() {
       return { page: 'commissions', category: subCategory, itemId: null }
     }
 
-    const allowedPages = new Set(['home', 'about', 'clients', 'contact', 'terms', 'info'])
+    const allowedPages = new Set(['home', 'about', 'contact', 'terms', 'info'])
     if (allowedPages.has(root)) {
       return { page: root, category: 'landing', itemId: null }
     }
@@ -3033,7 +3010,6 @@ function App() {
               currentPage={currentPage}
             />
           )}
-          {currentPage === 'clients' && <ClientsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
