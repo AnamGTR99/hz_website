@@ -10,11 +10,24 @@ const parseDateString = (dateStr) => {
   return new Date(dateStr);
 };
 
+const normalizeClientSlug = (name) => {
+  if (!name) return '';
+  const base = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_')
+    .replace(/^_+|_+$/g, '');
+  const overrides = {
+    omneeworld: 'omnee_world',
+  };
+  return overrides[base] || base;
+};
+
 // Portfolio Data Structure
 const graphicsPortfolio = [
   {
     id: 'graphic-1',
     title: '"COLLECTOR" GRAPHIC FOR 99CLOVER',
+    client: '99clover',
     category: ['graphics', 'view-all'],
     date: '07 JUN 2025',
     by: 'Hugo Zbor',
@@ -26,6 +39,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-2',
     title: 'MAGAZINE PAGE SPREAD FOR 99CLOVER',
+    client: '99clover',
     category: ['graphics', 'view-all'],
     date: '09 SEP 2025',
     by: 'Hugo Zbor',
@@ -37,6 +51,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-3',
     title: '"LET IT RIP"',
+    client: 'hugozbor',
     category: ['graphics', 'view-all'],
     date: '20 APR 2025',
     by: 'Hugo Zbor',
@@ -48,6 +63,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-aformunseen-combined',
     title: 'PASSPORT FLYER FOR AFORMUNSEEN',
+    client: 'aformunseen',
     category: ['graphics', 'view-all'],
     date: '14 SEP 2025',
     by: 'Hugo Zbor',
@@ -62,6 +78,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-5',
     title: '"INSIDER"',
+    client: 'hugozbor',
     category: ['graphics', 'view-all'],
     date: '14 MAY 2025',
     by: 'Hugo Zbor',
@@ -73,6 +90,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-6',
     title: 'NINTENDO INSPIRED COVER ART',
+    client: 'hugozbor',
     category: ['graphics', 'view-all'],
     date: '12 JUN 2025',
     by: 'Hugo Zbor',
@@ -84,6 +102,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-7',
     title: 'MAGAZINE COVER',
+    client: '99clover',
     category: ['graphics', 'view-all'],
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
@@ -95,6 +114,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-8',
     title: 'POSTER FOR 99CLOVER',
+    client: '99clover',
     category: ['graphics', 'view-all'],
     date: '03 JUL 2025',
     by: 'Hugo Zbor',
@@ -106,6 +126,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-9',
     title: 'MAGAZINE PAGE SPREAD FOR CASHMIIER HABITS',
+    client: 'cashmiier_habits',
     category: ['graphics', 'view-all'],
     date: '07 JUL 2025',
     by: 'Hugo Zbor',
@@ -117,6 +138,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-10',
     title: '"HARDWARE"',
+    client: 'brutalimagery',
     category: ['graphics', 'view-all'],
     date: '11 JUL 2025',
     by: 'Hugo Zbor',
@@ -128,6 +150,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-11',
     title: '"BRUTAL WORLD RECORDS"',
+    client: 'brutalimagery',
     category: ['graphics', 'view-all'],
     date: '04 JUN 2025',
     by: 'Hugo Zbor',
@@ -139,6 +162,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-13',
     title: 'GRAPHIC FOR 99CLOVER',
+    client: '99clover',
     category: ['graphics', 'view-all'],
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
@@ -150,6 +174,7 @@ const graphicsPortfolio = [
   {
     id: 'graphic-14',
     title: 'VIDEO GAME CD COVER ART CONCEPT',
+    client: 'hugozbor',
     category: ['graphics', 'view-all'],
     date: '27 MAY 2025',
     by: 'Hugo Zbor',
@@ -170,6 +195,7 @@ const videoPortfolio = [
   {
     id: 'video-brainwash',
     title: 'MORNING ROUTINE',
+    client: 'hugozbor',
     date: '18 NOV 2025',
     description: 'Experimental video inspired by early 2000s TV shows',
     category: ['videos', 'view-all'],
@@ -182,6 +208,7 @@ const videoPortfolio = [
   {
     id: 'video-character',
     title: 'HUGO ZBOR\'S UNDERGROUND',
+    client: 'hugozbor',
     date: '17 AUG 2025',
     description: 'Character customisation video Inspired by Tony Hawk\'s Underground',
     category: ['videos', 'view-all'],
@@ -199,6 +226,7 @@ const videoPortfolio = [
   {
     id: 'video-omnee',
     title: 'COMMERCIAL FOR OMNEEWORLD',
+    client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -216,6 +244,7 @@ const videoPortfolio = [
   {
     id: 'video-lovenangels',
     title: 'VISUALS FOR LOVENANGELS',
+    client: 'lovenangels',
     date: '25 OCT 2025',
     description: 'Photos shot by client, 3D Assets made by in-house 3D artist, everything assembled by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -232,6 +261,7 @@ const videoPortfolio = [
   {
     id: 'video-99clover',
     title: 'COMMERCIAL FOR 99CLOVER',
+    client: '99clover',
     date: '04 NOV 2025',
     description: 'Greenscreen video, shot by @99CLOVER and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -244,6 +274,7 @@ const videoPortfolio = [
   {
     id: 'video-ds',
     title: 'INTRO VISUALS FOR 99CLOVER',
+    client: '99clover',
     date: '03 DEC 2024',
     description: 'Intro Inspired by Nintendo DS, made from scratch',
     category: ['videos', 'view-all'],
@@ -261,6 +292,7 @@ const videoPortfolio = [
   {
     id: 'video-runway',
     title: 'STAGE VISUALS FOR 99CLOVER',
+    client: '99clover',
     date: '12 SEP 2025',
     description: 'Looping visuals for @99CLOVER \'s Runway',
     category: ['videos', 'view-all'],
@@ -278,6 +310,7 @@ const videoPortfolio = [
   {
     id: 'video-omnee-2',
     title: 'COMMERCIAL FOR OMNEE WORLD #2',
+    client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -297,6 +330,7 @@ const videoPortfolio = [
   {
     id: 'video-piecebyp',
     title: 'COMMERCIAL FOR PIECE BY P',
+    client: 'piece_by_p',
     date: '10 OCT 2025', // Estimated date
     description: 'Greenscreen video, shot, assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -316,6 +350,7 @@ const videoPortfolio = [
   {
     id: 'video-airlines',
     title: 'IN-FLIGHT ENTERTAINMENT',
+    client: 'hugozbor',
     date: '12 NOV 2025',
     description: 'In-flight entertaintment, everything done by Hugo Zbor.',
     category: ['videos', 'view-all'],
@@ -335,6 +370,7 @@ const videoPortfolio = [
   {
     id: 'video-minu',
     title: 'COMMERCIAL FOR MINU ARCHIVE',
+    client: 'minu_archive',
     date: '13 NOV 2025', // Placeholder date based on recent uploads
     description: 'Hugo Zbor curated video, shot by client and assembled and edited by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -354,6 +390,7 @@ const videoPortfolio = [
   {
     id: 'video-gta',
     title: 'GTA VIDEO FOR 99CLOVER',
+    client: '99clover',
     date: '15 SEP 2025',
     description: 'Filmed, Shot and editted by Hugo Zbor',
     category: ['videos', 'view-all'],
@@ -373,6 +410,7 @@ const videoPortfolio = [
   {
     id: 'video-minu-2',
     title: 'COMMERCIAL FOR MINU ARCHIVE #2',
+    client: 'minu_archive',
     date: '19 NOV 2025',
     description: 'Greenscreen video, Raw footage provided by client, assembled and editted by Hugo Zbor.',
     category: ['videos', 'view-all'],
@@ -392,6 +430,7 @@ const videoPortfolio = [
   {
     id: 'video-barretta',
     title: 'VISUALISER FOR FUCKBARRETTA',
+    client: 'fuckbarretta',
     date: '22 JUN 2025',
     description: 'Visualiser for artist, shot by client, assembled and produced by Hugo Zbor.',
     category: ['videos', 'view-all'],
@@ -420,6 +459,7 @@ const websitePortfolio = [
   {
     id: 'web-1',
     title: 'ryansimarchive.com',
+    client: 'ryansimarchive.com',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '2025',
@@ -430,6 +470,7 @@ const websitePortfolio = [
   {
     id: 'web-2',
     title: 'HUGO ZBOR PORTFOLIO SITE (OLD)',
+    client: 'hugozbor',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '2025',
@@ -440,6 +481,7 @@ const websitePortfolio = [
   {
     id: 'web-hugo-current',
     title: 'HUGO ZBOR WEBSITE',
+    client: 'hugozbor',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '20 NOV 2025',
@@ -1294,6 +1336,56 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
       </div>
     );
   };
+
+  const renderGrid = (columnCount) => {
+    const gridClass = columnCount === 3 ? 'grid-cols-3' : 'grid-cols-2'
+
+    return (
+      <div className={`grid ${gridClass} gap-4 md:gap-6`}>
+        {displayedItems.map(item => {
+          const isWebsite = item.category.includes('websites')
+
+          const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6"
+          const cardClasses = `group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 rounded-lg w-full text-left ${paddingClass}`
+
+          let imageStyles = "w-full rounded-lg shadow-sm block"
+          if (item.category.includes('graphics')) {
+            imageStyles += " h-auto object-contain"
+          } else if (item.category.includes('videos')) {
+            imageStyles += " aspect-[5/4] object-cover"
+          } else if (item.category.includes('websites')) {
+            imageStyles += " aspect-video object-cover"
+          }
+
+          return (
+            <button
+              key={item.id}
+              onClick={() => setCurrentPage('my-work', category, item.id)}
+              className={cardClasses}
+            >
+              {item.slides && item.slides.length > 1 ? (
+                <GridCarousel images={item.slides} />
+              ) : (
+                <img
+                  src={item.thumbnailUrl}
+                  alt={item.title}
+                  className={imageStyles}
+                />
+              )}
+              <div className="mt-3 text-left">
+                <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
+                  {item.date}
+                </p>
+              </div>
+            </button>
+          )
+        })}
+      </div>
+    )
+  }
   const categoryNames = {
     'graphics': 'Graphics',
     'videos': 'Videos',
@@ -1417,12 +1509,12 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           <>
             {/* Mobile View (2 Columns) */}
             <div className="block md:hidden mt-4 px-2">
-              {renderMasonryGrid(2)}
+              {category === 'videos' || category === 'graphics' ? renderGrid(2) : renderMasonryGrid(2)}
             </div>
 
             {/* Desktop View (3 Columns) */}
             <div className="hidden md:block mt-8 px-0">
-              {renderMasonryGrid(3)}
+              {category === 'videos' || category === 'graphics' ? renderGrid(3) : renderMasonryGrid(3)}
             </div>
 
             {/* Show a message if no items match the filter */}
@@ -1512,12 +1604,15 @@ function ClientsPage({ setCurrentPage, currentPage }) {
                 key={c.name}
                 className={`flex items-baseline justify-between pb-2 ${idx >= 4 ? 'border-b border-gray-100' : ''} ${idx % 2 === 1 ? 'md:translate-y-1' : ''}`}
               >
-                <span className={idx < 4
-                  ? 'text-base md:text-xl font-bold text-gray-900 uppercase tracking-wide'
-                  : 'text-sm md:text-base font-bold text-gray-800 uppercase tracking-wide'}
+                <button
+                  onClick={() => setCurrentPage('clients', normalizeClientSlug(c.name))}
+                  className={`group text-left transition-transform duration-200 hover:scale-105 ${idx < 4
+                    ? 'text-base md:text-xl font-bold text-gray-900 uppercase tracking-wide'
+                    : 'text-sm md:text-base font-bold text-gray-800 uppercase tracking-wide'
+                    }`}
                 >
-                  {c.name}
-                </span>
+                  <span className="inline-block">{c.name}</span>
+                </button>
 
                 {c.note ? (
                   <span
@@ -1556,6 +1651,137 @@ function ClientsPage({ setCurrentPage, currentPage }) {
         </div>
       </div>
     </div>
+  )
+}
+
+function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId, isRestrictedRegion }) {
+  const [selectedItem, setSelectedItem] = useState(null)
+
+  const clientName = useMemo(() => {
+    const match = selectedClients.find((client) => normalizeClientSlug(client.name) === clientSlug)
+    return match ? match.name : clientSlug.replace(/_/g, ' ')
+  }, [clientSlug])
+
+  const clientItems = useMemo(() => {
+    return allPortfolioItems
+      .filter((item) => item.client === clientSlug)
+      .sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+  }, [clientSlug])
+
+  useEffect(() => {
+    if (currentItemId) {
+      const targetItem = clientItems.find((item) => item.id === currentItemId)
+      if (targetItem) {
+        setSelectedItem(targetItem)
+      }
+    } else {
+      setSelectedItem(null)
+    }
+  }, [currentItemId, clientItems])
+
+  const distributeItems = (items, columnCount) => {
+    const columns = Array.from({ length: columnCount }, () => [])
+    items.forEach((item, index) => {
+      columns[index % columnCount].push(item)
+    })
+    return columns
+  }
+
+  const renderMasonryGrid = (columnCount) => {
+    const columns = distributeItems(clientItems, columnCount)
+
+    return (
+      <div className="flex gap-4 md:gap-6">
+        {columns.map((columnItems, columnIndex) => (
+          <div key={columnIndex} className="flex-1 flex flex-col gap-4 md:gap-6">
+            {columnItems.map((item) => {
+              const isWebsite = item.category.includes('websites')
+              const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6"
+              const cardClasses = `break-inside-avoid mb-6 group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 rounded-lg w-full text-left ${paddingClass}`
+
+              let imageStyles = "w-full rounded-lg shadow-sm block"
+              if (item.category.includes('graphics')) {
+                imageStyles += " h-auto object-contain"
+              } else if (item.category.includes('videos')) {
+                imageStyles += " aspect-[5/4] object-cover"
+              } else if (item.category.includes('websites')) {
+                imageStyles += " aspect-video object-cover"
+              }
+
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setCurrentPage('clients', clientSlug, item.id)}
+                  className={cardClasses}
+                >
+                  {item.slides && item.slides.length > 1 ? (
+                    <GridCarousel images={item.slides} />
+                  ) : (
+                    <img
+                      src={item.thumbnailUrl}
+                      alt={item.title}
+                      className={imageStyles}
+                    />
+                  )}
+                  <div className="mt-3 text-left">
+                    <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
+                      {item.date}
+                    </p>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <>
+      <PageHeader title="Clients" isActive={currentPage === 'clients'} />
+      <div className="max-w-4xl mx-auto px-4 md:px-0 mt-6 md:mt-10">
+        <div className="flex flex-col items-center text-center gap-2 mb-6">
+          <button
+            onClick={() => setCurrentPage('clients', 'landing')}
+            className="text-xs text-gray-500 uppercase tracking-widest hover:text-[#c13333] transition-colors"
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            Back to Clients
+          </button>
+          <h1 className="text-3xl md:text-4xl font-bold text-brandBlack uppercase tracking-wide">
+            {clientName}
+          </h1>
+        </div>
+
+        {clientItems.length === 0 ? (
+          <p className="text-center text-gray-500 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            No projects found for this client yet.
+          </p>
+        ) : (
+          <>
+            <div className="block md:hidden mt-4 px-2">
+              {renderMasonryGrid(2)}
+            </div>
+            <div className="hidden md:block mt-8 px-0">
+              {renderMasonryGrid(3)}
+            </div>
+          </>
+        )}
+      </div>
+
+      {selectedItem && (
+        <WorkOverlay
+          item={selectedItem}
+          onClose={() => setCurrentPage('clients', clientSlug, null)}
+          setCurrentPage={setCurrentPage}
+          isRestrictedRegion={isRestrictedRegion}
+        />
+      )}
+    </>
   )
 }
 
@@ -2854,12 +3080,21 @@ function App() {
       return { page: 'my-work', category: subCategory, itemId }
     }
 
+    if (root === 'clients') {
+      const subClient = (parts[1] || 'landing').toLowerCase()
+      const itemId = parts[2] || null
+      if (subClient === 'hugozbor') {
+        return { page: 'clients', category: 'landing', itemId: null }
+      }
+      return { page: 'clients', category: subClient, itemId }
+    }
+
     if (root === 'commissions') {
       const subCategory = parts[1] || null // For commissions, null means all sections closed
       return { page: 'commissions', category: subCategory, itemId: null }
     }
 
-    const allowedPages = new Set(['home', 'about', 'contact', 'terms', 'info'])
+    const allowedPages = new Set(['home', 'about', 'clients', 'contact', 'terms', 'info'])
     if (allowedPages.has(root)) {
       return { page: root, category: 'landing', itemId: null }
     }
@@ -2900,6 +3135,22 @@ function App() {
       if (nextItemId) {
         url += `/${nextItemId}`
       }
+    } else if (page === 'clients') {
+      nextCategory = (category || 'landing').toLowerCase()
+      if (nextCategory === 'hugozbor') {
+        nextCategory = 'landing'
+      }
+      _setCurrentCategory(nextCategory)
+      nextItemId = itemId || null
+      _setCurrentItemId(nextItemId)
+      if (nextCategory === 'landing') {
+        url = '/clients'
+      } else {
+        url = `/clients/${nextCategory}`
+      }
+      if (nextItemId) {
+        url += `/${nextItemId}`
+      }
     } else if (page === 'commissions') {
       nextCategory = category // For commissions, category can be null (all closed) or a section ID
       _setCurrentCategory(nextCategory)
@@ -2930,8 +3181,8 @@ function App() {
     const handlePopState = () => {
       const { page, category, itemId } = parseUrl()
       _setCurrentPage(page)
-      _setCurrentCategory(page === 'my-work' ? category : 'landing')
-      _setCurrentItemId(page === 'my-work' ? itemId : null)
+      _setCurrentCategory(page === 'my-work' || page === 'clients' ? category : 'landing')
+      _setCurrentItemId(page === 'my-work' || page === 'clients' ? itemId : null)
     }
 
     window.addEventListener('popstate', handlePopState)
@@ -3018,6 +3269,18 @@ function App() {
               activeSection={currentCategory}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
+            />
+          )}
+          {currentPage === 'clients' && currentCategory === 'landing' && (
+            <ClientsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
+          )}
+          {currentPage === 'clients' && currentCategory !== 'landing' && currentCategory !== 'hugozbor' && (
+            <ClientWorkPage
+              clientSlug={currentCategory}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+              currentItemId={currentItemId}
+              isRestrictedRegion={isRestrictedRegion}
             />
           )}
           {currentPage === 'about' && <AboutPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
