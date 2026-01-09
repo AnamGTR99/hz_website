@@ -633,7 +633,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             onMouseLeave={() => setShowMyWorkDropdown(false)}
           >
             <button
-              onClick={() => setCurrentPage('my-work', 'graphics')}
+              onClick={() => setCurrentPage('my-work', 'videos')}
               className={
                 isMyWorkActive
                   ? 'font-bold text-lg text-[#c13333]'
@@ -647,18 +647,6 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
               <div className="absolute top-full left-0 pt-4 -mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[150px] z-50">
                 <button
                   onClick={() => {
-                    setCurrentPage('my-work', 'graphics')
-                    setShowMyWorkDropdown(false)
-                  }}
-                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${currentPage === 'my-work' && currentCategory === 'graphics'
-                    ? 'text-[#c13333]'
-                    : 'text-brandBlack'
-                    }`}
-                >
-                  Graphics
-                </button>
-                <button
-                  onClick={() => {
                     setCurrentPage('my-work', 'videos')
                     setShowMyWorkDropdown(false)
                   }}
@@ -668,6 +656,18 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                     }`}
                 >
                   Videos
+                </button>
+                <button
+                  onClick={() => {
+                    setCurrentPage('my-work', 'graphics')
+                    setShowMyWorkDropdown(false)
+                  }}
+                  className={`w-full text-left px-4 py-2 font-medium text-lg hover:bg-gray-50 ${currentPage === 'my-work' && currentCategory === 'graphics'
+                    ? 'text-[#c13333]'
+                    : 'text-brandBlack'
+                    }`}
+                >
+                  Graphics
                 </button>
                 <button
                   onClick={() => {
@@ -747,7 +747,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
           </button>
           <button
             onClick={() => {
-              setCurrentPage('my-work', 'graphics')
+              setCurrentPage('my-work', 'videos')
               setIsMobileMenuOpen(false)
             }}
             className={
@@ -959,27 +959,27 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
       <PageHeader title="My work" isActive={currentPage === 'my-work'} />
       <div className="max-w-7xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         <div className="flex flex-col items-center gap-8 md:gap-12">
-          {/* Top Row: Graphics and Videos */}
+          {/* Top Row: Videos and Graphics */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full">
-            {/* Graphics Box - Left */}
-            <div className="flex flex-col items-center">
-              <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-                Graphics
-              </p>
-              <button
-                onClick={() => setCurrentPage('my-work', 'graphics')}
-                className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
-              >
-              </button>
-            </div>
-
-            {/* Videos Box - Right */}
+            {/* Videos Box - Left */}
             <div className="flex flex-col items-center">
               <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
                 Videos
               </p>
               <button
                 onClick={() => setCurrentPage('my-work', 'videos')}
+                className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
+              >
+              </button>
+            </div>
+
+            {/* Graphics Box - Right */}
+            <div className="flex flex-col items-center">
+              <p className="text-base md:text-lg text-brandBlack font-medium mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+                Graphics
+              </p>
+              <button
+                onClick={() => setCurrentPage('my-work', 'graphics')}
                 className="bg-gray-200 rounded-lg p-12 md:p-20 aspect-[4/3] w-56 md:w-72 flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors"
               >
               </button>
@@ -1331,17 +1331,6 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
         {/* Sub-navigation */}
         <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
           <button
-            onClick={() => setCurrentPage('my-work', 'graphics')}
-            className={
-              category === 'graphics'
-                ? 'font-bold text-sm md:text-lg text-[#c13333]'
-                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-            }
-            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-          >
-            GRAPHICS
-          </button>
-          <button
             onClick={() => setCurrentPage('my-work', 'videos')}
             className={
               category === 'videos'
@@ -1351,6 +1340,17 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
             style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
           >
             VIDEOS
+          </button>
+          <button
+            onClick={() => setCurrentPage('my-work', 'graphics')}
+            className={
+              category === 'graphics'
+                ? 'font-bold text-sm md:text-lg text-[#c13333]'
+                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            GRAPHICS
           </button>
           <button
             onClick={() => setCurrentPage('my-work', 'websites')}
@@ -2224,6 +2224,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                     checked={contactMethod === method}
                     onChange={() => setContactMethod(method)}
                     className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                    style={{ accentColor: '#c13333' }}
                   />
                   <span className="text-brandBlack capitalize" style={{ fontWeight: 400 }}>
                     {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
@@ -2248,6 +2249,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                     checked={messagingPlatform === 'whatsapp'}
                     onChange={() => setMessagingPlatform('whatsapp')}
                     className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                    style={{ accentColor: '#c13333' }}
                   />
                   <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>WhatsApp</span>
                 </label>
@@ -2259,6 +2261,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                     checked={messagingPlatform === 'imessage'}
                     onChange={() => setMessagingPlatform('imessage')}
                     className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                    style={{ accentColor: '#c13333' }}
                   />
                   <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>iMessage</span>
                 </label>
@@ -2270,6 +2273,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                     checked={messagingPlatform === 'both'}
                     onChange={() => setMessagingPlatform('both')}
                     className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
+                    style={{ accentColor: '#c13333' }}
                   />
                   <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>Either</span>
                 </label>
@@ -2373,6 +2377,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   checked={services.graphics}
                   onChange={handleServiceChange}
                   className="mr-2"
+                  style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Graphics (Poster, Cover Art, Flyer, etc)</span>
               </label>
@@ -2384,6 +2389,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   checked={services.video}
                   onChange={handleServiceChange}
                   className="mr-2"
+                  style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video Editing / Motion Graphics</span>
               </label>
@@ -2395,6 +2401,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   checked={services.webdesign}
                   onChange={handleServiceChange}
                   className="mr-2"
+                  style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Webdesign</span>
               </label>
@@ -2406,6 +2413,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   checked={services.creativeDirection}
                   onChange={handleServiceChange}
                   className="mr-2"
+                  style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Strategy</span>
               </label>
@@ -2417,6 +2425,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   checked={services.fullService}
                   onChange={handleServiceChange}
                   className="mr-2"
+                  style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Bit of Everything (Full-Service Project)</span>
               </label>
@@ -2428,6 +2437,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
                   checked={services.notSure}
                   onChange={handleServiceChange}
                   className="mr-2"
+                  style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not Sure Yet</span>
               </label>
@@ -2471,15 +2481,15 @@ function ContactPage({ setCurrentPage, currentPage }) {
             </label>
             <div className="flex flex-col space-y-2">
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input type="checkbox" name="timeline" value="Urgent (< 2 weeks)" className="mr-2" />
+                <input type="checkbox" name="timeline" value="Urgent (< 2 weeks)" className="mr-2" style={{ accentColor: '#c13333' }} />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Urgent (&lt; 2 weeks)</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input type="checkbox" name="timeline" value="Standard (2-3 weeks)" className="mr-2" />
+                <input type="checkbox" name="timeline" value="Standard (2-3 weeks)" className="mr-2" style={{ accentColor: '#c13333' }} />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Standard (2-3 weeks)</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input type="checkbox" name="timeline" value="Flexible (1-2 months)" className="mr-2" />
+                <input type="checkbox" name="timeline" value="Flexible (1-2 months)" className="mr-2" style={{ accentColor: '#c13333' }} />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Flexible (1-2 months)</span>
               </label>
             </div>
@@ -2723,7 +2733,7 @@ function InfoPage({ setCurrentPage }) {
   )
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start px-4 pt-6 pb-8">
       {/* MAIN CARD */}
       <div className="bg-white w-full max-w-[360px] rounded-3xl shadow-xl overflow-hidden p-6 border border-gray-100">
 
@@ -2814,7 +2824,7 @@ function InfoPage({ setCurrentPage }) {
             Melbourne, Australia
           </p>
           <p className="text-xs text-gray-400 mt-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            © Hugozbor 2025
+            © HUGO ZBOR 2026
           </p>
         </div>
 
