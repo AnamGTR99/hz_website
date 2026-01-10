@@ -1395,7 +1395,11 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
 
   const displayedItems = useMemo(() => {
     if (category !== 'view-all') {
-      return allPortfolioItems.filter(item => item.category.includes(category))
+      const filteredItems = allPortfolioItems.filter(item => item.category.includes(category))
+      if (category === 'websites') {
+        return [...filteredItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+      }
+      return filteredItems
     }
     return [...allPortfolioItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
   }, [category])
@@ -2417,7 +2421,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
       <PageHeader title="Contact" isActive={currentPage === 'contact'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         {/* Header Text */}
-        <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+        <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6 text-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
           You can email{' '}
           <a href="mailto:contact@hugozbor.com" className="text-[#c13333] hover:underline" style={{ fontWeight: 400 }}>
             contact@hugozbor.com
