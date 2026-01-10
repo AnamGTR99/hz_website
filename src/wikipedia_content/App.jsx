@@ -462,7 +462,7 @@ const websitePortfolio = [
     client: 'ryansimarchive.com',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
-    date: '2025',
+    date: 'AUG 2025',
     thumbnailUrl: 'https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif',
     websiteUrl: 'https://ryansimarchive.com',
     embedHtml: `<img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Ryan Sim Archive" style="width:100%; height:auto;" />`,
@@ -473,7 +473,7 @@ const websitePortfolio = [
     client: 'hugozbor',
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
-    date: '2025',
+    date: 'JUN 2025',
     thumbnailUrl: 'https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif',
     websiteUrl: 'https://hz-archive.vercel.app/',
     embedHtml: `<img src="https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif" alt="HZ Archive" style="width:100%; height:auto;" />`,
@@ -1397,7 +1397,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
     if (category !== 'view-all') {
       return allPortfolioItems.filter(item => item.category.includes(category))
     }
-    return shuffleArray(allPortfolioItems)
+    return [...allPortfolioItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
   }, [category])
 
   useEffect(() => {
@@ -1509,12 +1509,12 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           <>
             {/* Mobile View (2 Columns) */}
             <div className="block md:hidden mt-4 px-2">
-              {category === 'videos' || category === 'graphics' ? renderGrid(2) : renderMasonryGrid(2)}
+              {category === 'videos' || category === 'graphics' || category === 'view-all' ? renderGrid(2) : renderMasonryGrid(2)}
             </div>
 
             {/* Desktop View (3 Columns) */}
             <div className="hidden md:block mt-8 px-0">
-              {category === 'videos' || category === 'graphics' ? renderGrid(3) : renderMasonryGrid(3)}
+              {category === 'videos' || category === 'graphics' || category === 'view-all' ? renderGrid(3) : renderMasonryGrid(3)}
             </div>
 
             {/* Show a message if no items match the filter */}
@@ -1679,63 +1679,51 @@ function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId
     }
   }, [currentItemId, clientItems])
 
-  const distributeItems = (items, columnCount) => {
-    const columns = Array.from({ length: columnCount }, () => [])
-    items.forEach((item, index) => {
-      columns[index % columnCount].push(item)
-    })
-    return columns
-  }
-
-  const renderMasonryGrid = (columnCount) => {
-    const columns = distributeItems(clientItems, columnCount)
+  const renderGrid = (columnCount) => {
+    const gridClass = columnCount === 3 ? 'grid-cols-3' : 'grid-cols-2'
 
     return (
-      <div className="flex gap-4 md:gap-6">
-        {columns.map((columnItems, columnIndex) => (
-          <div key={columnIndex} className="flex-1 flex flex-col gap-4 md:gap-6">
-            {columnItems.map((item) => {
-              const isWebsite = item.category.includes('websites')
-              const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6"
-              const cardClasses = `break-inside-avoid mb-6 group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 rounded-lg w-full text-left ${paddingClass}`
+      <div className={`grid ${gridClass} gap-4 md:gap-6`}>
+        {clientItems.map((item) => {
+          const isWebsite = item.category.includes('websites')
+          const paddingClass = isWebsite ? "p-5 md:p-6" : "p-2 md:p-6"
+          const cardClasses = `group bg-white overflow-hidden shadow-sm transition-all duration-300 hover:shadow-xl hover:scale-105 rounded-lg w-full text-left ${paddingClass}`
 
-              let imageStyles = "w-full rounded-lg shadow-sm block"
-              if (item.category.includes('graphics')) {
-                imageStyles += " h-auto object-contain"
-              } else if (item.category.includes('videos')) {
-                imageStyles += " aspect-[5/4] object-cover"
-              } else if (item.category.includes('websites')) {
-                imageStyles += " aspect-video object-cover"
-              }
+          let imageStyles = "w-full rounded-lg shadow-sm block"
+          if (item.category.includes('graphics')) {
+            imageStyles += " h-auto object-contain"
+          } else if (item.category.includes('videos')) {
+            imageStyles += " aspect-[5/4] object-cover"
+          } else if (item.category.includes('websites')) {
+            imageStyles += " aspect-video object-cover"
+          }
 
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => setCurrentPage('clients', clientSlug, item.id)}
-                  className={cardClasses}
-                >
-                  {item.slides && item.slides.length > 1 ? (
-                    <GridCarousel images={item.slides} />
-                  ) : (
-                    <img
-                      src={item.thumbnailUrl}
-                      alt={item.title}
-                      className={imageStyles}
-                    />
-                  )}
-                  <div className="mt-3 text-left">
-                    <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
-                      {item.title}
-                    </h3>
-                    <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
-                      {item.date}
-                    </p>
-                  </div>
-                </button>
-              )
-            })}
-          </div>
-        ))}
+          return (
+            <button
+              key={item.id}
+              onClick={() => setCurrentPage('clients', clientSlug, item.id)}
+              className={cardClasses}
+            >
+              {item.slides && item.slides.length > 1 ? (
+                <GridCarousel images={item.slides} />
+              ) : (
+                <img
+                  src={item.thumbnailUrl}
+                  alt={item.title}
+                  className={imageStyles}
+                />
+              )}
+              <div className="mt-3 text-left">
+                <h3 className="text-[10px] md:text-sm font-bold text-gray-900 uppercase tracking-wide leading-tight">
+                  {item.title}
+                </h3>
+                <p className="text-[9px] md:text-xs text-gray-500 mt-1 font-medium">
+                  {item.date}
+                </p>
+              </div>
+            </button>
+          )
+        })}
       </div>
     )
   }
@@ -1764,10 +1752,10 @@ function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId
         ) : (
           <>
             <div className="block md:hidden mt-4 px-2">
-              {renderMasonryGrid(2)}
+              {renderGrid(2)}
             </div>
             <div className="hidden md:block mt-8 px-0">
-              {renderMasonryGrid(3)}
+              {renderGrid(3)}
             </div>
           </>
         )}
@@ -2430,7 +2418,11 @@ function ContactPage({ setCurrentPage, currentPage }) {
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         {/* Header Text */}
         <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-          Have a project in mind or just want to say hi? I'd love to hear about it. Fill out the form below and I'll get back to you within 1-2 business days.
+          You can email{' '}
+          <a href="mailto:contact@hugozbor.com" className="text-[#c13333] hover:underline" style={{ fontWeight: 400 }}>
+            contact@hugozbor.com
+          </a>
+          {' '}or fill out the form below! We will get back to you within 1-2 business days.
         </p>
 
         {/* Form */}
