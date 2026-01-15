@@ -2321,65 +2321,6 @@ function CountrySelect({ selected, onChange }) {
 
 function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [contactMethod, setContactMethod] = useState('email')
-  const [messagingPlatform, setMessagingPlatform] = useState('both') // 'whatsapp', 'imessage', or 'both'
-  const [countryCode, setCountryCode] = useState(COUNTRY_CODES.find(c => c.code === 'AU') || COUNTRY_CODES[0])
-  const [services, setServices] = useState({
-    graphics: false,
-    video: false,
-    webdesign: false,
-    creativeDirection: false,
-    fullService: false,
-    notSure: false
-  })
-  const [detailsPlaceholder, setDetailsPlaceholder] = useState("What's the goal? Who's the audience? Any links to references?")
-
-  const placeholderPrompts = {
-    default: "What's the goal? Who's the audience? Any links to references?",
-    graphics: "What kind of graphics (e.g., poster, cover art)? What's the style or mood? Any specific text to include?",
-    video: "How long is the final video? What's the style (e.g., cinematic, vlog, promo)? Do you have the raw footage?",
-    webdesign: "What's the purpose of the site (e.g., portfolio, e-commerce)? Do you have a brand guide? Any example sites you like?",
-    creativeDirection: "What's the overall project? What's the main message or feeling you want to convey? What are the key deliverables?",
-    fullService: "This is a full project! Please describe the overall vision, goals, and any known components (e.g., branding, video, web).",
-    notSure: "No problem! Please describe your idea or problem, and we can figure out the best approach together."
-  }
-
-  useEffect(() => {
-    // 1. Get all keys that are 'true' (checked)
-    const checkedServices = Object.keys(services).filter(key => services[key])
-
-    // 2. Apply logic
-    if (checkedServices.length === 1) {
-      // If exactly ONE is checked, show its specific prompt
-      const selectedKey = checkedServices[0]
-      setDetailsPlaceholder(placeholderPrompts[selectedKey])
-    } else {
-      // If ZERO or MULTIPLE are checked, show the default
-      setDetailsPlaceholder(placeholderPrompts.default)
-    }
-  }, [services])
-
-  const handleServiceChange = (e) => {
-    const { name, checked } = e.target
-
-    // We map the Formspree 'name' attribute to our state key
-    const stateKeyMap = {
-      'service_graphics': 'graphics',
-      'service_video': 'video',
-      'service_webdesign': 'webdesign',
-      'service_creative_direction': 'creativeDirection',
-      'service_full_project': 'fullService',
-      'service_not_sure': 'notSure'
-    }
-
-    const stateKey = stateKeyMap[name]
-    if (stateKey) {
-      setServices(prev => ({
-        ...prev,
-        [stateKey]: checked
-      }))
-    }
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -2454,80 +2395,6 @@ function ContactPage({ setCurrentPage, currentPage }) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-          {/* Row 0: Preferred Communication Method */}
-          <div className="mb-6">
-            <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Preferred Communication Method? *
-            </label>
-            <div className="flex flex-wrap gap-4">
-              {['email', 'instagram', 'messages'].map((method) => (
-                <label key={method} className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                  <input
-                    type="radio"
-                    name="contact_method_selection"
-                    value={method}
-                    checked={contactMethod === method}
-                    onChange={() => setContactMethod(method)}
-                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
-                    style={{ accentColor: '#c13333' }}
-                  />
-                  <span className="text-brandBlack capitalize" style={{ fontWeight: 400 }}>
-                    {method === 'messages' ? 'Messages (WhatsApp/iMessage)' : method}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Conditional: Messaging Platform Selection (only if Messages is selected) */}
-          {contactMethod === 'messages' && (
-            <div className="mb-6 pl-4 border-l-2 border-gray-300">
-              <label className="block text-brandBlack text-sm mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                Preferred platform: *
-              </label>
-              <div className="flex flex-wrap gap-4">
-                <label className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                  <input
-                    type="radio"
-                    name="messaging_platform"
-                    value="whatsapp"
-                    checked={messagingPlatform === 'whatsapp'}
-                    onChange={() => setMessagingPlatform('whatsapp')}
-                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
-                    style={{ accentColor: '#c13333' }}
-                  />
-                  <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>WhatsApp</span>
-                </label>
-                <label className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                  <input
-                    type="radio"
-                    name="messaging_platform"
-                    value="imessage"
-                    checked={messagingPlatform === 'imessage'}
-                    onChange={() => setMessagingPlatform('imessage')}
-                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
-                    style={{ accentColor: '#c13333' }}
-                  />
-                  <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>iMessage</span>
-                </label>
-                <label className="flex items-center cursor-pointer" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                  <input
-                    type="radio"
-                    name="messaging_platform"
-                    value="both"
-                    checked={messagingPlatform === 'both'}
-                    onChange={() => setMessagingPlatform('both')}
-                    className="w-4 h-4 text-[#c13333] focus:ring-[#c13333] border-gray-300 mr-2"
-                    style={{ accentColor: '#c13333' }}
-                  />
-                  <span className="text-brandBlack text-sm" style={{ fontWeight: 400 }}>Either</span>
-                </label>
-              </div>
-              {/* Hidden input to send messaging platform preference to Formspree */}
-              <input type="hidden" name="messaging_platform_preference" value={messagingPlatform} />
-            </div>
-          )}
-
           {/* Row 1: Name & Contact */}
           <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
             <div className="flex-1">
@@ -2543,72 +2410,21 @@ function ContactPage({ setCurrentPage, currentPage }) {
               />
             </div>
             <div className="flex-1">
-              {(() => {
-                let contactLabel = "Email Address *";
-                let contactType = "email";
-                let contactName = "email";
-                let contactPlaceholder = "example@email.com";
-
-                if (contactMethod === 'instagram') {
-                  contactLabel = "Instagram Handle *";
-                  contactType = "text";
-                  contactName = "instagram_handle";
-                  contactPlaceholder = "@yourusername";
-                } else if (contactMethod === 'messages') {
-                  contactLabel = "Phone Number *";
-                  contactType = "tel";
-                  contactName = "phone_number";
-                  contactPlaceholder = "400 000 000";
-                }
-
-                // Special layout for phone number with country code picker
-                if (contactMethod === 'messages') {
-                  return (
-                    <>
-                      <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                        {contactLabel}
-                      </label>
-                      <div className="flex gap-2">
-                        {/* Country Code Picker */}
-                        <CountrySelect selected={countryCode} onChange={setCountryCode} />
-
-                        {/* Phone Number Input */}
-                        <input
-                          type={contactType}
-                          name={contactName}
-                          placeholder={contactPlaceholder}
-                          required
-                          className="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-                          style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-                        />
-                      </div>
-                      {/* Hidden input to send country dial code to Formspree */}
-                      <input type="hidden" name="country_dial_code" value={countryCode.dial} />
-                    </>
-                  );
-                }
-
-                // Default layout for email and instagram
-                return (
-                  <>
-                    <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                      {contactLabel}
-                    </label>
-                    <input
-                      type={contactType}
-                      name={contactName}
-                      placeholder={contactPlaceholder}
-                      required
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-                      style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-                    />
-                  </>
-                );
-              })()}
+              <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                Email Address *
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="example@email.com"
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+              />
             </div>
           </div>
 
-          {/* Row 2: Service Checkboxes */}
+          {/* Row 2: Service Selection */}
           <div>
             <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               What service(s) are you looking for?*
@@ -2616,127 +2432,188 @@ function ContactPage({ setCurrentPage, currentPage }) {
             <div className="flex flex-col space-y-2">
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="checkbox"
-                  name="service_graphics"
-                  value="true"
-                  checked={services.graphics}
-                  onChange={handleServiceChange}
+                  type="radio"
+                  name="service_type"
+                  value="Campaign / Launch Creative System"
+                  required
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Graphics (Poster, Cover Art, Flyer, etc)</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Campaign / Launch Creative System</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="checkbox"
-                  name="service_video"
-                  value="true"
-                  checked={services.video}
-                  onChange={handleServiceChange}
+                  type="radio"
+                  name="service_type"
+                  value="Website / Digital Experience"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video Editing / Motion Graphics</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Website / Digital Experience</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="checkbox"
-                  name="service_webdesign"
-                  value="true"
-                  checked={services.webdesign}
-                  onChange={handleServiceChange}
+                  type="radio"
+                  name="service_type"
+                  value="Short-Form Video (as part of a rollout)"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Webdesign</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Short-Form Video (as part of a rollout)</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="checkbox"
-                  name="service_creative_direction"
-                  value="true"
-                  checked={services.creativeDirection}
-                  onChange={handleServiceChange}
+                  type="radio"
+                  name="service_type"
+                  value="Creative Direction / Ongoing Support"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Strategy</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Ongoing Support</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="checkbox"
-                  name="service_full_project"
-                  value="true"
-                  checked={services.fullService}
-                  onChange={handleServiceChange}
+                  type="radio"
+                  name="service_type"
+                  value="Not sure — need guidance"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Bit of Everything (Full-Service Project)</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_not_sure"
-                  value="true"
-                  checked={services.notSure}
-                  onChange={handleServiceChange}
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not Sure Yet</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not sure — need guidance</span>
               </label>
             </div>
           </div>
 
-          {/* Row 3: Text Area */}
+          {/* Row 3: Launch/Rollout */}
           <div>
-            <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Tell me more about your project*
+            <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              Is this part of a larger launch or rollout?*
             </label>
-            <textarea
-              name="project_details"
-              required
-              rows={6}
-              placeholder={detailsPlaceholder}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-vertical"
-              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-            />
+            <div className="flex flex-col space-y-2">
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="radio" name="launch_rollout" value="Yes" required className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Yes</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="radio" name="launch_rollout" value="Not sure yet" required className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not sure yet</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="radio" name="launch_rollout" value="No" required className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>No</span>
+              </label>
+            </div>
           </div>
 
           {/* Row 4: Budget */}
           <div>
             <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              What's your estimated budget?*
+              Estimated Budget Range*
             </label>
-            <input
-              type="text"
-              name="budget"
+            <select
+              name="budget_range"
               required
-              placeholder="e.g. $750 - $1500 USD etc"
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-            />
+              defaultValue=""
+            >
+              <option value="" disabled>Select a range</option>
+              <option value="$2,500 – $5,000">$2,500 – $5,000</option>
+              <option value="$5,000 – $10,000">$5,000 – $10,000</option>
+              <option value="$10,000 – $20,000 (campaign scope)">$10,000 – $20,000 (campaign scope)</option>
+              <option value="$20,000+">$20,000+</option>
+              <option value="Not sure — need a recommendation">Not sure — need a recommendation</option>
+            </select>
+            <p className="mt-1 text-xs text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              Most campaign engagements start at $5,000+
+            </p>
           </div>
 
-          {/* Row 5: Timeline */}
+          {/* Row 5: Decision Maker */}
           <div>
             <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Ideal Project Timeline?*
+              Are you the primary decision maker?*
             </label>
             <div className="flex flex-col space-y-2">
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input type="checkbox" name="timeline" value="Urgent (< 2 weeks)" className="mr-2" style={{ accentColor: '#c13333' }} />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Urgent (&lt; 2 weeks)</span>
+                <input type="radio" name="decision_maker" value="Yes" required className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Yes</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input type="checkbox" name="timeline" value="Standard (2-3 weeks)" className="mr-2" style={{ accentColor: '#c13333' }} />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Standard (2-3 weeks)</span>
+                <input type="radio" name="decision_maker" value="Shared decision" required className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Shared decision</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input type="checkbox" name="timeline" value="Flexible (1-2 months)" className="mr-2" style={{ accentColor: '#c13333' }} />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Flexible (1-2 months)</span>
+                <input type="radio" name="decision_maker" value="No (collecting information)" required className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>No (collecting information)</span>
               </label>
+            </div>
+          </div>
+
+          {/* Row 6: Timeline */}
+          <div>
+            <label className="block text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              Ideal Timeline*
+            </label>
+            <div className="flex flex-col space-y-2">
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="2–4 weeks" className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>2–4 weeks</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="1–2 months" className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>1–2 months</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="2–3 months" className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>2–3 months</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="Flexible / planning stage" className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Flexible / planning stage</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Row 7: Guided Questions */}
+          <div className="space-y-4">
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                What are you launching or promoting?*
+              </label>
+              <input
+                type="text"
+                name="project_launch"
+                required
+                placeholder="e.g album rollout, clothing brand launch, music video / visualiser"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                What does success look like for this project?*
+              </label>
+              <input
+                type="text"
+                name="project_success"
+                required
+                placeholder="e.g. launch visibility, brand positioning, conversion, cohesion across a rollout"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                Reference links (optional)
+              </label>
+              <input
+                type="url"
+                name="project_reference_links"
+                placeholder="https://"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+              />
             </div>
           </div>
 
