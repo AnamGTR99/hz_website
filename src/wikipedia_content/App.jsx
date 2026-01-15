@@ -2522,6 +2522,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
               defaultValue=""
             >
               <option value="" disabled>Select a range</option>
+              <option value="$750 – $1,500 (Limited availability)">$750 – $1,500 (Limited availability)</option>
               <option value="$2,500 – $5,000">$2,500 – $5,000</option>
               <option value="$5,000 – $10,000">$5,000 – $10,000</option>
               <option value="$10,000 – $20,000 (campaign scope)">$10,000 – $20,000 (campaign scope)</option>
