@@ -749,6 +749,16 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             COMMISSIONS
           </button>
           <button
+            onClick={() => setCurrentPage('clients')}
+            className={
+              currentPage === 'clients'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            CLIENTS
+          </button>
+          <button
             onClick={() => setCurrentPage('about')}
             className={
               currentPage === 'about'
@@ -812,6 +822,19 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
             }
           >
             COMMISSIONS
+          </button>
+          <button
+            onClick={() => {
+              setCurrentPage('clients')
+              setIsMobileMenuOpen(false)
+            }}
+            className={
+              currentPage === 'clients'
+                ? 'font-bold text-lg text-[#c13333]'
+                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+          >
+            CLIENTS
           </button>
           <button
             onClick={() => {
