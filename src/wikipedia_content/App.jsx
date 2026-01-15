@@ -621,6 +621,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
   const [showMyWorkDropdown, setShowMyWorkDropdown] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const isMyWorkActive = currentPage === 'my-work'
+  const showClientsNav = false
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 w-full transition-all duration-300">
@@ -746,18 +747,20 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            COMMISSIONS
+            CAMPAIGNS
           </button>
-          <button
-            onClick={() => setCurrentPage('clients')}
-            className={
-              currentPage === 'clients'
-                ? 'font-bold text-lg text-[#c13333]'
-                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-            }
-          >
-            CLIENTS
-          </button>
+          {showClientsNav && (
+            <button
+              onClick={() => setCurrentPage('clients')}
+              className={
+                currentPage === 'clients'
+                  ? 'font-bold text-lg text-[#c13333]'
+                  : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+              }
+            >
+              CLIENTS
+            </button>
+          )}
           <button
             onClick={() => setCurrentPage('about')}
             className={
@@ -823,19 +826,21 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
           >
             COMMISSIONS
           </button>
-          <button
-            onClick={() => {
-              setCurrentPage('clients')
-              setIsMobileMenuOpen(false)
-            }}
-            className={
-              currentPage === 'clients'
-                ? 'font-bold text-lg text-[#c13333]'
-                : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
-            }
-          >
-            CLIENTS
-          </button>
+          {showClientsNav && (
+            <button
+              onClick={() => {
+                setCurrentPage('clients')
+                setIsMobileMenuOpen(false)
+              }}
+              className={
+                currentPage === 'clients'
+                  ? 'font-bold text-lg text-[#c13333]'
+                  : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+              }
+            >
+              CLIENTS
+            </button>
+          )}
           <button
             onClick={() => {
               setCurrentPage('about')
@@ -930,7 +935,7 @@ function HomePage({ setCurrentPage, currentPage }) {
         {/* --- 2. HIGH-IMPACT SECTION (Split Layout) --- */}
         <div className="mb-24 md:mb-32">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-left mb-12 leading-tight">
-            Open for Commissions
+            Open for Work
           </h1>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
@@ -980,7 +985,7 @@ function HomePage({ setCurrentPage, currentPage }) {
               onClick={() => setCurrentPage('commissions')}
               className="text-xs font-bold uppercase border-b border-black pb-1 hover:text-gray-600 transition-colors"
             >
-              Explore Commission Options
+              Explore Project Options
             </button>
           </div>
         </div>
@@ -2044,11 +2049,10 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Commissions
+            Campaigns & Creative Direction
           </h1>
           <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Explore the full range of creative services offered by Hugo Zbor. Each project is custom-built to your vision.
-          </p>
+            Hugo Zbor collaborates with artists, brands, and creative teams on visual projects ranging from campaign work to select commissions.          </p>
         </div>
 
         {/* Accordion Sections */}
@@ -2213,7 +2217,7 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
         {/* Call-to-Action Section */}
         <div className="mt-16 mb-20 text-center">
           <h2 className="text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Start a Commission
+            Start a Campaign
           </h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.
