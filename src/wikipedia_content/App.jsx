@@ -747,7 +747,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            CAMPAIGNS
+            COMISSIONS
           </button>
           {showClientsNav && (
             <button
