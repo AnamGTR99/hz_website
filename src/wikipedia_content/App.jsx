@@ -22,6 +22,12 @@ const normalizeClientSlug = (name) => {
   return overrides[base] || base;
 };
 
+const isPersonalClient = (client) => {
+  if (!client) return false;
+  const normalized = client.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return normalized === 'hugozbor';
+};
+
 // Portfolio Data Structure
 const graphicsPortfolio = [
   {
@@ -1017,6 +1023,25 @@ function HomePage({ setCurrentPage, currentPage }) {
           </div>
         </div>
 
+        {/* --- 5. CALL TO ACTION --- */}
+        <div className="mt-16 mb-20 text-center">
+          <h2 className="text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            Contact Us
+          </h2>
+          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.
+          </p>
+          <div className="flex justify-center">
+            <button
+              onClick={() => setCurrentPage('contact')}
+              className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            >
+              Submit Inquiry
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   )
@@ -1074,12 +1099,13 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
 }
 
 // WorkOverlay Component (Modal)
-function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion }) {
+function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, currentCategory }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [isCopied, setIsCopied] = useState(false)
 
   // Generate deep link for sharing Graphics and Videos
-  const shareableLink = `${window.location.origin}/my-work/${item.category[0]}/${item.id}`;
+  const shareCategory = currentCategory === 'personal-work' ? 'personal-work' : item.category[0];
+  const shareableLink = `${window.location.origin}/my-work/${shareCategory}/${item.id}`;
 
   const handleCopyUrl = (url) => {
     if (!url) return;
@@ -1418,18 +1444,42 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
     'graphics': 'Graphics',
     'videos': 'Videos',
     'websites': 'Websites',
-    'view-all': 'View all'
+    'view-all': 'View all',
+    'personal-work': 'Personal work'
+  }
+
+  const categorySubheadings = {
+    'graphics': 'Featuring client-only work ranging from editorial graphics and campaign assets to branded visuals.',
+    'videos': 'Featuring client-only work ranging from commercials and music videos to campaign content.',
+    'websites': 'Featuring client-only work ranging from portfolio sites and brand pages to campaign microsites.',
+    'view-all': 'Featuring client-only work ranging from commercials and editorial graphics to web and campaign assets.',
+    'personal-work': 'A curated selection of HUGO ZBOR\'s independent work created without client attachment.'
   }
 
   const displayedItems = useMemo(() => {
-    if (category !== 'view-all') {
-      const filteredItems = allPortfolioItems.filter(item => item.category.includes(category))
-      if (category === 'websites') {
-        return [...filteredItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
-      }
-      return filteredItems
+    const isPersonalItem = (item) => isPersonalClient(item.client) && item.id !== 'web-hugo-current'
+
+    if (category === 'personal-work') {
+      return [...allPortfolioItems]
+        .filter(isPersonalItem)
+        .sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
     }
-    return [...allPortfolioItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+
+    const baseItems = category !== 'view-all'
+      ? allPortfolioItems.filter(item => item.category.includes(category))
+      : allPortfolioItems
+
+    const filteredItems = baseItems.filter(item => !isPersonalItem(item))
+
+    if (category === 'websites') {
+      return [...filteredItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+    }
+
+    if (category === 'view-all') {
+      return [...filteredItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+    }
+
+    return filteredItems
   }, [category])
 
   useEffect(() => {
@@ -1454,6 +1504,17 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
       <div className="max-w-4xl mx-auto px-4 md:px-0">
         {/* Sub-navigation */}
         <nav className="flex flex-row flex-wrap justify-center items-center gap-4 md:gap-8 mt-4 md:mt-8">
+          <button
+            onClick={() => setCurrentPage('my-work', 'personal-work')}
+            className={
+              category === 'personal-work'
+                ? 'font-bold text-sm md:text-lg text-[#c13333]'
+                : 'font-medium text-sm md:text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
+            }
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            PERSONAL WORK
+          </button>
           <button
             onClick={() => setCurrentPage('my-work', 'videos')}
             className={
@@ -1499,6 +1560,9 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
             VIEW ALL
           </button>
         </nav>
+        <p className="text-center text-sm md:text-base text-gray-500 mt-3 font-normal" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          {categorySubheadings[category] || categorySubheadings['view-all']}
+        </p>
 
         {/* Gallery */}
         {/* CASE A: WEBSITES (Now using Overlay instead of direct links) */}
@@ -1541,12 +1605,12 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           <>
             {/* Mobile View (2 Columns) */}
             <div className="block md:hidden mt-4 px-2">
-              {category === 'videos' || category === 'graphics' || category === 'view-all' ? renderGrid(2) : renderMasonryGrid(2)}
+              {category === 'videos' || category === 'graphics' || category === 'view-all' || category === 'personal-work' ? renderGrid(2) : renderMasonryGrid(2)}
             </div>
 
             {/* Desktop View (3 Columns) */}
             <div className="hidden md:block mt-8 px-0">
-              {category === 'videos' || category === 'graphics' || category === 'view-all' ? renderGrid(3) : renderMasonryGrid(3)}
+              {category === 'videos' || category === 'graphics' || category === 'view-all' || category === 'personal-work' ? renderGrid(3) : renderMasonryGrid(3)}
             </div>
 
             {/* Show a message if no items match the filter */}
@@ -1566,6 +1630,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           onClose={() => setCurrentPage('my-work', category, null)}
           setCurrentPage={setCurrentPage}
           isRestrictedRegion={isRestrictedRegion}
+          currentCategory={category}
         />
       )}
     </>
@@ -2217,7 +2282,7 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
         {/* Call-to-Action Section */}
         <div className="mt-16 mb-20 text-center">
           <h2 className="text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Start a Campaign
+            Contact Us
           </h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
             Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.
@@ -2526,7 +2591,8 @@ function ContactPage({ setCurrentPage, currentPage }) {
               <option value="$2,500 – $5,000">$2,500 – $5,000</option>
               <option value="$5,000 – $10,000">$5,000 – $10,000</option>
               <option value="$10,000 – $20,000 (campaign scope)">$10,000 – $20,000 (campaign scope)</option>
-              <option value="$20,000+">$20,000+</option>
+              <option value="$20,000 – $40,000">$20,000 – $40,000</option>
+              <option value="$60,000+">$60,000+</option>
               <option value="Not sure — need a recommendation">Not sure — need a recommendation</option>
             </select>
             <p className="mt-1 text-xs text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
@@ -3152,6 +3218,9 @@ function App() {
           {currentPage === 'home' && <HomePage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'my-work' && currentCategory === 'graphics' && (
             <MyWorkCategoryPage category="graphics" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
+          )}
+          {currentPage === 'my-work' && currentCategory === 'personal-work' && (
+            <MyWorkCategoryPage category="personal-work" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
           )}
           {currentPage === 'my-work' && currentCategory === 'videos' && (
             <MyWorkCategoryPage category="videos" setCurrentPage={setCurrentPage} currentPage={currentPage} currentItemId={currentItemId} isRestrictedRegion={isRestrictedRegion} />
