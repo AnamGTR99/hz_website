@@ -199,6 +199,19 @@ graphicsPortfolio.sort((a, b) => {
 // Video Portfolio Data Structure
 const videoPortfolio = [
   {
+    id: 'video-hz-mag-2026',
+    title: 'HZ MAG [2026]',
+    client: 'hugozbor',
+    date: '03 JAN 2026',
+    description: 'HZ MAG video.',
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/csJ2lQ7k0No/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/csJ2lQ7k0No?si=JYO36JlOEe91bdjr',
+    instagramLink: 'https://www.youtube.com/watch?v=csJ2lQ7k0No',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
     id: 'video-99clover-restock-2026',
     title: '99CLOVER - Restock Campaign Video [2026]',
     client: '99clover',
@@ -2638,7 +2651,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
             <div className="flex flex-col space-y-2">
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Visual Art & Graphic Design"
                   required
@@ -2649,7 +2662,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Video & Motion Visuals"
                   className="mr-2"
@@ -2659,7 +2672,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Creative Direction & Consulting"
                   className="mr-2"
@@ -2669,7 +2682,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Web Design & Digital Experience"
                   className="mr-2"
@@ -2679,7 +2692,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Content Creation (Artists & Influencers)"
                   className="mr-2"
@@ -2689,7 +2702,7 @@ function ContactPage({ setCurrentPage, currentPage }) {
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Collaboration Projects"
                   className="mr-2"
@@ -2699,23 +2712,13 @@ function ContactPage({ setCurrentPage, currentPage }) {
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
-                  type="radio"
+                  type="checkbox"
                   name="service_type"
                   value="Custom Requests"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>Custom Requests</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="radio"
-                  name="service_type"
-                  value="Multiple / All of the above"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Multiple / All of the above</span>
               </label>
             </div>
           </div>
