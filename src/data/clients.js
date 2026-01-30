@@ -8,6 +8,7 @@ export const selectedClients = [
   { name: "DAYSINSHELL", tier: 1, logo: "/extra_assets/LOGOS/daysinshell.png" },
   { name: "CONROY.US", tier: 1, logo: "/extra_assets/LOGOS/CONROY US.webp" },
   { name: "tokyomilkshop", tier: 1, logo: "/extra_assets/LOGOS/tokyomilkshop.png" },
+  { name: "AFORMUNSEEN", tier: 1, logo: "/extra_assets/LOGOS/aformunseen.png" },
 ];
 
 export const clientsCopy = {
