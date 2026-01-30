@@ -2640,52 +2640,82 @@ function ContactPage({ setCurrentPage, currentPage }) {
                 <input
                   type="radio"
                   name="service_type"
-                  value="Campaign / Launch Creative System"
+                  value="Visual Art & Graphic Design"
                   required
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Campaign / Launch Creative System</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Visual Art & Graphic Design</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
                   type="radio"
                   name="service_type"
-                  value="Website / Digital Experience"
+                  value="Video & Motion Visuals"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Website / Digital Experience</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video & Motion Visuals</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
                   type="radio"
                   name="service_type"
-                  value="Short-Form Video (as part of a rollout)"
+                  value="Creative Direction & Consulting"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Short-Form Video (as part of a rollout)</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction & Consulting</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
                   type="radio"
                   name="service_type"
-                  value="Creative Direction / Ongoing Support"
+                  value="Web Design & Digital Experience"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction / Ongoing Support</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Web Design & Digital Experience</span>
               </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input
                   type="radio"
                   name="service_type"
-                  value="Not sure — need guidance"
+                  value="Content Creation (Artists & Influencers)"
                   className="mr-2"
                   style={{ accentColor: '#c13333' }}
                 />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Not sure — need guidance</span>
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Content Creation (Artists & Influencers)</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="radio"
+                  name="service_type"
+                  value="Collaboration Projects"
+                  className="mr-2"
+                  style={{ accentColor: '#c13333' }}
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Collaboration Projects</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="radio"
+                  name="service_type"
+                  value="Custom Requests"
+                  className="mr-2"
+                  style={{ accentColor: '#c13333' }}
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Custom Requests</span>
+              </label>
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input
+                  type="radio"
+                  name="service_type"
+                  value="Multiple / All of the above"
+                  className="mr-2"
+                  style={{ accentColor: '#c13333' }}
+                />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Multiple / All of the above</span>
               </label>
             </div>
           </div>
@@ -2719,14 +2749,11 @@ function ContactPage({ setCurrentPage, currentPage }) {
             <input
               type="text"
               name="budget"
-              placeholder="e.g. $5,000 or $5k–$10k"
+              placeholder="e.g. $1,000 or $5k–$10k"
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
             />
-            <p className="mt-1 text-xs text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Most campaign engagements start at $5,000+
-            </p>
           </div>
 
           {/* Row 5: Decision Maker */}
@@ -2756,6 +2783,10 @@ function ContactPage({ setCurrentPage, currentPage }) {
               Ideal Timeline*
             </label>
             <div className="flex flex-col space-y-2">
+              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+                <input type="checkbox" name="timeline" value="Less than 2 weeks" className="mr-2" style={{ accentColor: '#c13333' }} />
+                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Less than 2 weeks</span>
+              </label>
               <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 <input type="checkbox" name="timeline" value="2–4 weeks" className="mr-2" style={{ accentColor: '#c13333' }} />
                 <span className="text-brandBlack" style={{ fontWeight: 400 }}>2–4 weeks</span>
@@ -2808,9 +2839,9 @@ function ContactPage({ setCurrentPage, currentPage }) {
                 Reference links (optional)
               </label>
               <input
-                type="url"
+                type="text"
                 name="project_reference_links"
-                placeholder="https://"
+                placeholder="Paste links here"
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
                 style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
               />
