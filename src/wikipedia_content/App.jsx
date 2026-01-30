@@ -257,7 +257,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '05 JAN 2026',
     description: 'Campaign video for 99CLOVER.',
-    tags: ['Edit', 'Shot by HUGO'],
+    tags: ['Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/YOz-Xyaj5VY/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/YOz-Xyaj5VY?si=lpAoA5e3Sil6NoRM',
@@ -299,7 +299,7 @@ const videoPortfolio = [
     client: 'saga_fightwear',
     date: '08 DEC 2025',
     description: 'Campaign video for SAGA Fightwear rashguard.',
-    tags: ['Edit', 'Shot by HUGO'],
+    tags: ['Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/R5HMJK971O8/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/R5HMJK971O8?si=w0XryMbrwSH3pf11',
@@ -313,7 +313,7 @@ const videoPortfolio = [
     client: 'saga_fightwear',
     date: '01 DEC 2025',
     description: 'Campaign video for SAGA Fightwear rashguard.',
-    tags: ['Edit', 'Shot by HUGO'],
+    tags: ['Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/4YbKXj-EXXs/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/4YbKXj-EXXs?si=na250lVkmdxrf9I5',
@@ -327,7 +327,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '02 OCT 2025',
     description: 'Campaign video for 99CLOVER.',
-    tags: ['Edit', 'Shot by HUGO'],
+    tags: ['Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/FEsSSO3yRv8/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/FEsSSO3yRv8?si=6XDLMx69oJfZl-1Q',
@@ -341,7 +341,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '25 JUL 2025',
     description: 'Campaign video for 99CLOVER.',
-    tags: ['Edit', 'Shot by HUGO'],
+    tags: ['Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Iz03ffd8PXw/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/Iz03ffd8PXw?si=ra-SzWDVPyxpQDzW',
@@ -441,7 +441,7 @@ const videoPortfolio = [
     client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
-    tags: ['VFX', 'Edit', 'Footage from client'],
+    tags: ['VFX', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DQKmaH9kvvZ/',
@@ -460,7 +460,7 @@ const videoPortfolio = [
     client: 'lovenangels',
     date: '25 OCT 2025',
     description: 'Photos shot by client, 3D Assets made by in-house 3D artist, everything assembled by Hugo Zbor',
-    tags: ['3D', 'Edit', 'Footage from client'],
+    tags: ['3D', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DQNWnMBk9Kp/?img_index=1',
@@ -478,7 +478,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '04 NOV 2025',
     description: 'Greenscreen video, shot by @99CLOVER and assembled and edited by Hugo Zbor',
-    tags: ['VFX', 'Edit', 'Footage from client'],
+    tags: ['VFX', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
     videoEmbedUrl: null,
@@ -511,7 +511,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '12 SEP 2025',
     description: 'Looping visuals for @99CLOVER \'s Runway',
-    tags: ['Loop', 'Edit', 'Animation'],
+    tags: ['Loop', 'Animation'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
@@ -530,7 +530,7 @@ const videoPortfolio = [
     client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
-    tags: ['VFX', 'Edit', 'Footage from client'],
+    tags: ['VFX', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Updated Thumbnail Path
@@ -551,7 +551,7 @@ const videoPortfolio = [
     client: 'piece_by_p',
     date: '10 OCT 2025', // Estimated date
     description: 'Greenscreen video, shot, assembled and edited by Hugo Zbor',
-    tags: ['VFX', 'Edit', 'Shot by HUGO ZBOR'],
+    tags: ['VFX', 'Shot by HUGO ZBOR'],
     category: ['videos', 'view-all'],
 
     // Thumbnail from public root
@@ -593,7 +593,7 @@ const videoPortfolio = [
     client: 'minu_archive',
     date: '13 NOV 2025', // Placeholder date based on recent uploads
     description: 'Hugo Zbor curated video, shot by client and assembled and edited by Hugo Zbor',
-    tags: ['Edit', 'Footage from client'],
+    tags: ['Footage from client'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -614,7 +614,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '15 SEP 2025',
     description: 'Filmed, Shot and editted by Hugo Zbor',
-    tags: ['Edit', 'Shot by HUGO ZBOR'],
+    tags: ['Shot by HUGO ZBOR'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -635,7 +635,7 @@ const videoPortfolio = [
     client: 'minu_archive',
     date: '19 NOV 2025',
     description: 'Greenscreen video, Raw footage provided by client, assembled and editted by Hugo Zbor.',
-    tags: ['VFX', 'Edit', 'Footage from client'],
+    tags: ['VFX', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -653,10 +653,10 @@ const videoPortfolio = [
   {
     id: 'video-barretta',
     title: 'VISUALISER FOR FUCKBARRETTA',
-    client: 'fuckbarretta',
+    client: 'baretta',
     date: '22 JUN 2025',
     description: 'Visualiser for artist, shot by client, assembled and produced by Hugo Zbor.',
-    tags: ['Visualiser', 'Edit', 'Footage from client'],
+    tags: ['Visualiser', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -1912,44 +1912,33 @@ function ClientsPage({ setCurrentPage, currentPage }) {
           </p>
         </div>
 
-        {/* Option A: Text-first index */}
+        {/* Client grid */}
         <div className="border-t border-gray-200 pt-6">
-          <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500 mb-4">
+          <h2 className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">
             Selected collaborations
           </h2>
 
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
-            {selectedClients.map((c, idx) => (
-              <li
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {selectedClients.map((c) => (
+              <button
                 key={c.name}
-                className={`flex items-baseline justify-between pb-2 ${idx >= 4 ? 'border-b border-gray-100' : ''} ${idx % 2 === 1 ? 'md:translate-y-1' : ''}`}
+                onClick={() => setCurrentPage('clients', normalizeClientSlug(c.name))}
+                className="group rounded-xl border border-gray-200 bg-white p-4 md:p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               >
-                <button
-                  onClick={() => setCurrentPage('clients', normalizeClientSlug(c.name))}
-                  className={`group text-left transition-transform duration-200 hover:scale-105 ${idx < 4
-                    ? 'text-base md:text-xl font-bold text-gray-900 uppercase tracking-wide'
-                    : 'text-sm md:text-base font-bold text-gray-800 uppercase tracking-wide'
-                    }`}
-                >
-                  <span className="inline-block">{c.name}</span>
-                </button>
-
-                {c.note ? (
-                  <span
-                    className="text-xs md:text-sm text-gray-400 ml-3"
-                    style={{ fontWeight: 400 }}
-                  >
-                    {c.note}
-                  </span>
-                ) : null}
-              </li>
+                <div className="flex items-center justify-center h-20 md:h-24">
+                  <img
+                    src={c.logo}
+                    alt={`${c.name} logo`}
+                    className="max-h-full max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="mt-3 text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-wide">
+                  {c.name}
+                </div>
+              </button>
             ))}
-          </ul>
-
-          {/* Micro-mark placeholder (future enhancement; not a CTA) */}
-          <p className="mt-6 text-xs text-gray-400" style={{ fontWeight: 400 }}>
-            Logotypes available upon request.
-          </p>
+          </div>
         </div>
 
         {/* CTA (only CTA) */}

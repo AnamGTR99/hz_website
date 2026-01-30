@@ -1,15 +1,13 @@
 export const selectedClients = [
-  { name: "LOVENANGELS", tier: 1 },
-  { name: "99CLOVER", tier: 1 },
-  { name: "OMNEEWORLD", tier: 1 },
-  { name: "SAGA FIGHTWEAR", tier: 1 },
-  { name: "Baretta", tier: 1 },
-  { name: "CONROY.US", tier: 1 },
-  { name: "DAYSINSHELL", tier: 1 },
-  { name: "BENECULTURE", tier: 1 },
-  { name: "UN:COMMON", tier: 1, note: "(@pcmkr.art)" },
-  { name: "theyhatesayso", tier: 1 },
-  { name: "tokyomilkshop", tier: 1 },
+  { name: "CONVERSE", tier: 1, logo: "/extra_assets/LOGOS/Converse-Logo.png" },
+  { name: "99CLOVER", tier: 1, logo: "/extra_assets/LOGOS/BLACK (CLEAR).png" },
+  { name: "OMNEEWORLD", tier: 1, logo: "/extra_assets/LOGOS/omnee.png" },
+  { name: "SAGA FIGHTWEAR", tier: 1, logo: "/extra_assets/LOGOS/LOGO BLACK.png" },
+  { name: "BENECULTURE", tier: 1, logo: "/extra_assets/LOGOS/BENECULTURE.webp" },
+  { name: "LOVENANGELS", tier: 1, logo: "/extra_assets/LOGOS/LOVENANGELS.png" },
+  { name: "DAYSINSHELL", tier: 1, logo: "/extra_assets/LOGOS/daysinshell.png" },
+  { name: "CONROY.US", tier: 1, logo: "/extra_assets/LOGOS/CONROY US.webp" },
+  { name: "tokyomilkshop", tier: 1, logo: "/extra_assets/LOGOS/tokyomilkshop.png" },
 ];
 
 export const clientsCopy = {
