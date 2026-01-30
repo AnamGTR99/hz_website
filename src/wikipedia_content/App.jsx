@@ -199,6 +199,45 @@ graphicsPortfolio.sort((a, b) => {
 // Video Portfolio Data Structure
 const videoPortfolio = [
   {
+    id: 'video-99clover-restock-2026',
+    title: '99CLOVER - Restock Campaign Video [2026]',
+    client: '99clover',
+    date: '05 JAN 2026',
+    description: 'Campaign video for 99CLOVER.',
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/YOz-Xyaj5VY/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/YOz-Xyaj5VY?si=lpAoA5e3Sil6NoRM',
+    instagramLink: 'https://www.youtube.com/watch?v=YOz-Xyaj5VY&list=PLmj9gUUkopg1ZJAh-hfB1dtpTzqaFd2vu',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
+    id: 'video-saga-fightwear-rashguard-3-2025',
+    title: 'SAGA FIGHTWEAR - Rashguard Campaign Video #3 [2025]',
+    client: 'saga_fightwear',
+    date: '28 DEC 2025',
+    description: 'Campaign video for SAGA Fightwear rashguard.',
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/TNW-hxnGtGw/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/TNW-hxnGtGw?si=0bC5dUs9iy63p-g2',
+    instagramLink: 'https://www.youtube.com/watch?v=TNW-hxnGtGw&list=PLmj9gUUkopg1ZJAh-hfB1dtpTzqaFd2vu&index=2',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
+    id: 'video-beneculture-christmas-2025',
+    title: 'BENECULTURE - Christmas Campaign Video [2025]',
+    client: 'beneculture',
+    date: '23 DEC 2025',
+    description: 'Christmas campaign video for BENECULTURE.',
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/ahOF73fKxS0/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/ahOF73fKxS0?si=j37pfd-bJp7_YeNP',
+    instagramLink: 'https://www.instagram.com/p/DSkrpN8CKmH/',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
     id: 'video-saga-fightwear-rashguard',
     title: 'SAGA FIGHTWEAR - Rashguard Campaign Video',
     client: 'saga_fightwear',
@@ -612,12 +651,6 @@ const shuffleArray = (array) => {
 }
 
 // --- Asset Variables for Commissions Page ---
-// 1. IMAGE PATHS
-const visualArtImg = "https://i.gyazo.com/a18a3f456b68e9592cb6686216453596.jpg"
-const creativeDirectionImg = "/assets_comission_page/creative_direction.png"
-
-// 2. VIDEO HTML (from video_visuals.txt)
-const videoVisualsHtml = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 // --- RAW HTML VIDEO FOR iOS AUTOPLAY (Critical) ---
 const homeBannerVideoHtml = `
   <video 
@@ -642,9 +675,6 @@ const homeBannerGifHtml = `<a href="https://gyazo.com/1c95e37e4ccc3e66234262b174
 const homeHeroVisual = `<a href="https://gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7"><img src="https://i.gyazo.com/22e0b339f1a8815b6c8e1fb42eecd2c7.gif" alt="Image from Gyazo" width="596"/></a>`
 const homeHeroVisualMiddle = `<a href="https://gyazo.com/75685a544745afa2a314cf0c78ab4532"><img src="https://i.gyazo.com/75685a544745afa2a314cf0c78ab4532.gif" alt="Raw Footage to Real Life" style="width: 100%; height: auto;" /></a>`
 const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b07284262632"><img src="https://i.gyazo.com/db5a51e28dcee28c3827b07284262632.gif" alt="Image from Gyazo" style="width: 100%; height: auto;" /></a>`
-
-// 3. WEB DESIGN HTML (from web_design.txt)
-const webDesignHtml = `<a href="https://gyazo.com/8bdac84d59e63c4ccadb28bde0df117d"><img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Image from Gyazo" width="600"/></a><a href="https://gyazo.com/e660702e8f799446cf3f52cbd75e7835"><img src="https://i.gyazo.com/e660702e8f799446cf3f52cbd75e7835.gif" alt="Image from Gyazo" width="600"/></a>`
 
 // --- End Asset Variables ---
 
@@ -1045,7 +1075,7 @@ function HomePage({ setCurrentPage, currentPage }) {
         {/* --- 2. HIGH-IMPACT SECTION (Split Layout) --- */}
         <div className="mb-24 md:mb-32">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-left mb-12 leading-tight">
-            Open for Work
+            Creating Visual Landscapes
           </h1>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
@@ -1553,15 +1583,16 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
   }
 
   const categorySubheadings = {
-    'graphics': 'Featuring client-only work ranging from editorial graphics and campaign assets to branded visuals.',
-    'videos': 'Featuring client-only work ranging from commercials and music videos to campaign content.',
-    'websites': 'Featuring client-only work ranging from portfolio sites and brand pages to campaign microsites.',
-    'view-all': 'Featuring client-only work ranging from commercials and editorial graphics to web and campaign assets.',
+    'graphics': 'Featuring work ranging from editorial graphics and campaign assets to branded visuals.',
+    'videos': 'Featuring work ranging from commercials and music videos to campaign content.',
+    'websites': 'Featuring work ranging from portfolio sites and brand pages to campaign microsites.',
+    'view-all': 'Featuring work ranging from commercials and editorial graphics to web and campaign assets.',
     'personal-work': 'A curated selection of HUGO ZBOR\'s independent work created without client attachment.'
   }
 
   const displayedItems = useMemo(() => {
-    const isPersonalItem = (item) => isPersonalClient(item.client) && item.id !== 'web-hugo-current'
+    const excludedPersonalIds = new Set(['web-hugo-current', 'graphic-6'])
+    const isPersonalItem = (item) => isPersonalClient(item.client) && !excludedPersonalIds.has(item.id)
 
     if (category === 'personal-work') {
       return [...allPortfolioItems]
@@ -1573,17 +1604,15 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
       ? allPortfolioItems.filter(item => item.category.includes(category))
       : allPortfolioItems
 
-    const filteredItems = baseItems.filter(item => !isPersonalItem(item))
-
     if (category === 'websites') {
-      return [...filteredItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+      return [...baseItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
     }
 
     if (category === 'view-all') {
-      return [...filteredItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
+      return [...baseItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
     }
 
-    return filteredItems
+    return baseItems
   }, [category])
 
   useEffect(() => {
@@ -2231,28 +2260,26 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
             isOpen={activeSection === 'visual-art'}
             onToggle={() => handleToggle('visual-art')}
           >
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals in Hugo's signature style, including:</p>
-                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-                  <li>Digital artworks</li>
-                  <li>Character-based visuals</li>
-                  <li>Graphic posters</li>
-                  <li>Album/EP artwork</li>
-                  <li>Single covers</li>
-                  <li>Merch mockups</li>
-                  <li>Campaign visuals</li>
-                  <li>Editorial graphics</li>
-                </ul>
-                <p className="mt-3" style={{ fontWeight: 400 }}>Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.</p>
-              </div>
-              <div className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
-                <img
-                  src={visualArtImg}
-                  alt="Visual Art Example"
-                  className="w-full h-auto"
-                />
-              </div>
+            <div>
+              <p className="mb-3" style={{ fontWeight: 400 }}>Custom visuals in Hugo's signature style, including:</p>
+              <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                <li>Digital artworks</li>
+                <li>Character-based visuals</li>
+                <li>Graphic posters</li>
+                <li>Album/EP artwork</li>
+                <li>Single covers</li>
+                <li>Merch mockups</li>
+                <li>Campaign visuals</li>
+                <li>Editorial graphics</li>
+              </ul>
+              <p className="mt-3" style={{ fontWeight: 400 }}>Designed for artists, brands, and creative campaigns needing distinct, high-quality visuals.</p>
+              <a
+                href="/my-work/graphics"
+                className="inline-block mt-6 text-sm text-gray-400 underline hover:text-[#c13333] transition-colors"
+                style={{ fontWeight: 400 }}
+              >
+                view previous graphic work
+              </a>
             </div>
           </AccordionItem>
 
@@ -2261,26 +2288,26 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
             isOpen={activeSection === 'video-motion'}
             onToggle={() => handleToggle('video-motion')}
           >
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>Creative video work, including:</p>
-                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-                  <li>Visual loops (10–30s)</li>
-                  <li>Green screen edits</li>
-                  <li>3D/Blender-enhanced motion visuals</li>
-                  <li>Music promo visuals</li>
-                  <li>Video composites and FX</li>
-                  <li>Motion graphics</li>
-                  <li>Animated assets</li>
-                </ul>
-                <p className="mt-3" style={{ fontWeight: 400 }}>Designed for music promotion, product launches, and brand campaigns.</p>
-              </div>
-              <div className="w-full md:w-80 flex-shrink-0">
-                <div
-                  className="rounded-lg overflow-hidden"
-                  dangerouslySetInnerHTML={{ __html: videoVisualsHtml }}
-                />
-              </div>
+            <div>
+              <p className="mb-3" style={{ fontWeight: 400 }}>Creative video work, including:</p>
+              <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                <li>Visual loops (10–30s)</li>
+                <li>Green screen compositing</li>
+                <li>Rotoscoping and matte work</li>
+                <li>3D/Blender-enhanced motion visuals</li>
+                <li>Music promo visuals</li>
+                <li>Video composites and FX</li>
+                <li>Motion graphics</li>
+                <li>Animated assets</li>
+              </ul>
+              <p className="mt-3" style={{ fontWeight: 400 }}>Designed for music promotion, product launches, and brand campaigns.</p>
+              <a
+                href="/my-work/videos"
+                className="inline-block mt-6 text-sm text-gray-400 underline hover:text-[#c13333] transition-colors"
+                style={{ fontWeight: 400 }}
+              >
+                view previous video work
+              </a>
             </div>
           </AccordionItem>
 
@@ -2289,27 +2316,18 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
             isOpen={activeSection === 'creative-direction'}
             onToggle={() => handleToggle('creative-direction')}
           >
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and leadership, including:</p>
-                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-                  <li>Creative strategy</li>
-                  <li>Aesthetic development</li>
-                  <li>Brand identity direction</li>
-                  <li>Moodboards & visual planning</li>
-                  <li>Campaign concepting</li>
-                  <li>Asset review & feedback</li>
-                  <li>On-call creative consulting</li>
-                </ul>
-                <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
-              </div>
-              <div className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md">
-                <img
-                  src={creativeDirectionImg}
-                  alt="Creative Direction Example"
-                  className="w-full h-auto"
-                />
-              </div>
+            <div>
+              <p className="mb-3" style={{ fontWeight: 400 }}>Vision-level involvement and leadership, including:</p>
+              <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                <li>Creative strategy</li>
+                <li>Aesthetic development</li>
+                <li>Brand identity direction</li>
+                <li>Moodboards & visual planning</li>
+                <li>Campaign concepting</li>
+                <li>Asset review & feedback</li>
+                <li>On-call creative consulting</li>
+              </ul>
+              <p className="mt-3" style={{ fontWeight: 400 }}>Ideal for clients wanting direction beyond simple asset creation.</p>
             </div>
           </AccordionItem>
 
@@ -2318,24 +2336,25 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
             isOpen={activeSection === 'web-design'}
             onToggle={() => handleToggle('web-design')}
           >
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1">
-                <p className="mb-3" style={{ fontWeight: 400 }}>Custom website design & digital experiences:</p>
-                <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
-                  <li>Portfolio websites</li>
-                  <li>Artist sites</li>
-                  <li>Brand landing pages</li>
-                  <li>Shopify storefronts</li>
-                  <li>E-commerce design</li>
-                  <li>Custom-coded visuals</li>
-                  <li>Advanced layouts</li>
-                </ul>
-                <p className="mt-3" style={{ fontWeight: 400 }}>Built from scratch to match your brand identity and creative direction.</p>
-              </div>
-              <div
-                className="w-full md:w-80 flex-shrink-0 rounded-lg overflow-hidden shadow-md"
-                dangerouslySetInnerHTML={{ __html: webDesignHtml }}
-              />
+            <div>
+              <p className="mb-3" style={{ fontWeight: 400 }}>Custom website design & digital experiences:</p>
+              <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
+                <li>Portfolio websites</li>
+                <li>Artist sites</li>
+                <li>Brand landing pages</li>
+                <li>Shopify storefronts</li>
+                <li>E-commerce design</li>
+                <li>Custom-coded visuals</li>
+                <li>Advanced layouts</li>
+              </ul>
+              <p className="mt-3" style={{ fontWeight: 400 }}>Built from scratch to match your brand identity and creative direction.</p>
+              <a
+                href="/my-work/websites"
+                className="inline-block mt-6 text-sm text-gray-400 underline hover:text-[#c13333] transition-colors"
+                style={{ fontWeight: 400 }}
+              >
+                view previous web design work
+              </a>
             </div>
           </AccordionItem>
 
@@ -2347,12 +2366,19 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
             <p className="mb-3" style={{ fontWeight: 400 }}>Ongoing content for talent and creators:</p>
             <ul className="list-disc list-inside space-y-1 ml-4" style={{ fontWeight: 400 }}>
               <li>Short-form visuals</li>
-              <li>TikTok / Reels edits</li>
+              <li>TikTok / Reels production</li>
               <li>Promo materials</li>
               <li>Mixed-media posts</li>
               <li>Creative storytelling assets</li>
             </ul>
             <p className="mt-3" style={{ fontWeight: 400 }}>Made for building strong and consistent online presence.</p>
+            <a
+              href="/my-work/personal-work"
+              className="inline-block mt-6 text-sm text-gray-400 underline hover:text-[#c13333] transition-colors"
+              style={{ fontWeight: 400 }}
+            >
+              view previous content
+            </a>
           </AccordionItem>
 
           <AccordionItem
@@ -2369,6 +2395,13 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
               <li>Visuals for events or exhibitions</li>
             </ul>
             <p className="mt-3" style={{ fontWeight: 400 }}>Open to select clients depending on creative fit.</p>
+            <a
+              href="/clients"
+              className="inline-block mt-6 text-sm text-gray-400 underline hover:text-[#c13333] transition-colors"
+              style={{ fontWeight: 400 }}
+            >
+              view my collaborated work
+            </a>
           </AccordionItem>
 
           <AccordionItem
@@ -2681,24 +2714,16 @@ function ContactPage({ setCurrentPage, currentPage }) {
           {/* Row 4: Budget */}
           <div>
             <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-              Estimated Budget Range*
+              Estimated Budget*
             </label>
-            <select
-              name="budget_range"
+            <input
+              type="text"
+              name="budget"
+              placeholder="e.g. $5,000 or $5k–$10k"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
-              defaultValue=""
-            >
-              <option value="" disabled>Select a range</option>
-              <option value="$750 – $1,500 (Limited availability)">$750 – $1,500 (Limited availability)</option>
-              <option value="$2,500 – $5,000">$2,500 – $5,000</option>
-              <option value="$5,000 – $10,000">$5,000 – $10,000</option>
-              <option value="$10,000 – $20,000 (campaign scope)">$10,000 – $20,000 (campaign scope)</option>
-              <option value="$20,000 – $40,000">$20,000 – $40,000</option>
-              <option value="$60,000+">$60,000+</option>
-              <option value="Not sure — need a recommendation">Not sure — need a recommendation</option>
-            </select>
+            />
             <p className="mt-1 text-xs text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
               Most campaign engagements start at $5,000+
             </p>
