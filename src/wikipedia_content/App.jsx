@@ -212,6 +212,32 @@ graphicsPortfolio.sort((a, b) => {
 // Video Portfolio Data Structure
 const videoPortfolio = [
   {
+    id: 'video-pigeon-factory-2026',
+    title: 'The Pigeon Factory [2026]',
+    client: 'hugozbor',
+    date: '09 JAN 2026',
+    tags: ['Animation'],
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/mYaXF3qKmtQ/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/mYaXF3qKmtQ?si=-gN7kd0BQl2UbaP9',
+    instagramLink: 'https://www.youtube.com/watch?v=mYaXF3qKmtQ',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
+    id: 'video-directors-reel-2025',
+    title: 'HUGO ZBOR Director\'s Reel [2025]',
+    client: 'hugozbor',
+    date: '29 DEC 2025',
+    tags: ['Animation', '3D', 'VFX', 'Rotoscoping', 'Shot by HUGO ZBOR'],
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/geQcLv-wbG0/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/geQcLv-wbG0?si=bJ0rlI6c5eyxrQv4',
+    instagramLink: 'https://www.youtube.com/watch?v=geQcLv-wbG0',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
     id: 'video-hz-mag-2026',
     title: 'HZ MAG [2026]',
     client: 'hugozbor',
