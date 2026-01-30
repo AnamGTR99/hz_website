@@ -38,6 +38,7 @@ const graphicsPortfolio = [
     date: '07 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Personal project and graphic for @99CLOVER\'s "Time Capsule" Collection. All assets for the cards were made from scratch.',
+    tags: ['Poster'],
     thumbnailUrl: 'https://i.gyazo.com/99278e03730352ab96d102f95723b876.jpg',
     embedHtml: `<a href="https://gyazo.com/99278e03730352ab96d102f95723b876"><img src="https://i.gyazo.com/99278e03730352ab96d102f95723b876.jpg" alt="Image from Gyazo" width="320"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DKj-UbtvXRs/?img_index=1',
@@ -50,6 +51,7 @@ const graphicsPortfolio = [
     date: '09 SEP 2025',
     by: 'Hugo Zbor',
     description: 'Japanese fashion magazine product catalog work for @99CLOVER',
+    tags: ['Magazine', 'Poster'],
     thumbnailUrl: 'https://i.gyazo.com/dc6f1a1957e07a79cf25e91e3e526769.jpg',
     embedHtml: `<a href="https://gyazo.com/dc6f1a1957e07a79cf25e91e3e526769"><img src="https://i.gyazo.com/dc6f1a1957e07a79cf25e91e3e526769.jpg" alt="Image from Gyazo" width="640"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DOYcmlRDxsE/?img_index=1',
@@ -62,6 +64,7 @@ const graphicsPortfolio = [
     date: '20 APR 2025',
     by: 'Hugo Zbor',
     description: 'Personal project, remaking classic beyblade packaging from scratch.',
+    tags: ['Cover Art', 'Merch'],
     thumbnailUrl: 'https://i.gyazo.com/259be76df328300ee08cf84aad0b0a91.jpg',
     embedHtml: `<a href="https://gyazo.com/259be76df328300ee08cf84aad0b0a91"><img src="https://i.gyazo.com/259be76df328300ee08cf84aad0b0a91.jpg" alt="Image from Gyazo" width="2511"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DIqaE6BvY-X/?img_index=1',
@@ -74,6 +77,7 @@ const graphicsPortfolio = [
     date: '14 SEP 2025',
     by: 'Hugo Zbor',
     description: 'Custom, ready to print (300 DPI) flyers for @AFORMUNSEEN \'s Amsterdam Fashion Week 2025 Booth',
+    tags: ['Flyer'],
     slides: [
       'https://i.gyazo.com/46939a78ea4f03c3947e227d62bd6ccf.jpg', // passport flyer
       'https://i.gyazo.com/151e6aba017ac02929427581684fdf95.jpg'  // wallet flyer
@@ -89,6 +93,7 @@ const graphicsPortfolio = [
     date: '14 MAY 2025',
     by: 'Hugo Zbor',
     description: '1 month personal side project. 264 layers in photoshop',
+    tags: ['Poster',],
     thumbnailUrl: 'https://i.gyazo.com/5b11300b1372618d7c0b7d132ff7e4df.jpg',
     embedHtml: `<a href="https://gyazo.com/5b11300b1372618d7c0b7d132ff7e4df"><img src="https://i.gyazo.com/5b11300b1372618d7c0b7d132ff7e4df.jpg" alt="Image from Gyazo" width="6000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DJoZGzYPjXQ/?img_index=1',
@@ -101,6 +106,7 @@ const graphicsPortfolio = [
     date: '12 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Nintendo Mii Poster / Album Cover Concept',
+    tags: ['Cover Art'],
     thumbnailUrl: 'https://i.gyazo.com/a3e46e1a3c71d79c42689a3836be3c19.jpg',
     embedHtml: `<a href="https://gyazo.com/a3e46e1a3c71d79c42689a3836be3c19"><img src="https://i.gyazo.com/a3e46e1a3c71d79c42689a3836be3c19.jpg" alt="Image from Gyazo" width="3512"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DKzMRiaPc9E/?img_index=1',
@@ -113,6 +119,7 @@ const graphicsPortfolio = [
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Japanese Magazine inspired cover page for @99CLOVER Lookbook',
+    tags: ['Magazine', 'Lookbook'],
     thumbnailUrl: 'https://i.gyazo.com/1abf8ea18b8fa94850cd26ca528cfb7d.jpg',
     embedHtml: `<a href="https://gyazo.com/1abf8ea18b8fa94850cd26ca528cfb7d"><img src="https://i.gyazo.com/1abf8ea18b8fa94850cd26ca528cfb7d.jpg" alt="Image from Gyazo" width="2000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=1',
@@ -125,6 +132,7 @@ const graphicsPortfolio = [
     date: '03 JUL 2025',
     by: 'Hugo Zbor',
     description: 'Tekken Inspired graphic for @99CLOVER \'s "Time Capsule" Collection',
+    tags: ['Poster'],
     thumbnailUrl: 'https://i.gyazo.com/a18a3f456b68e9592cb6686216453596.jpg',
     embedHtml: `<a href="https://gyazo.com/a18a3f456b68e9592cb6686216453596"><img src="https://i.gyazo.com/a18a3f456b68e9592cb6686216453596.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DLpJzJDys0D/?img_index=1',
@@ -137,6 +145,7 @@ const graphicsPortfolio = [
     date: '07 JUL 2025',
     by: 'Hugo Zbor',
     description: 'Japanese fashion magazine product catalog work for @CASHMIIERHABITS',
+    tags: ['Magazine', 'Poster'],
     thumbnailUrl: 'https://i.gyazo.com/eecc292274c9cce937c22f6070956da4.jpg',
     embedHtml: `<a href="https://gyazo.com/eecc292274c9cce937c22f6070956da4"><img src="https://i.gyazo.com/eecc292274c9cce937c22f6070956da4.jpg" alt="Image from Gyazo" width="2818"/></a>`,
     instagramLink: 'https://www.instagram.com/hugozbor/',
@@ -149,6 +158,7 @@ const graphicsPortfolio = [
     date: '11 JUL 2025',
     by: 'Hugo Zbor',
     description: <>Graphic for my personal project <a href="https://www.instagram.com/brutalimagery" target="_blank" rel="noopener noreferrer" className="font-bold hover:underline">@brutalimagery</a></>,
+    tags: ['Poster'],
     thumbnailUrl: 'https://i.gyazo.com/99960e186bb5cdbbf731f4af34042995.jpg',
     embedHtml: `<a href="https://gyazo.com/99960e186bb5cdbbf731f4af34042995"><img src="https://i.gyazo.com/99960e186bb5cdbbf731f4af34042995.jpg" alt="Image from Gyazo" width="1500"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DL7o7ADvyvs/?img_index=1',
@@ -161,6 +171,7 @@ const graphicsPortfolio = [
     date: '04 JUN 2025',
     by: 'Hugo Zbor',
     description: 'Remake of the iconic world record book in the style of @brutalimagery',
+    tags: ['Poster'],
     thumbnailUrl: 'https://i.gyazo.com/4cd6c7e474e485e886eb51acfe70a07b.jpg',
     embedHtml: `<a href="https://gyazo.com/4cd6c7e474e485e886eb51acfe70a07b"><img src="https://i.gyazo.com/4cd6c7e474e485e886eb51acfe70a07b.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DKeiNEWP1cG/?img_index=1',
@@ -173,6 +184,7 @@ const graphicsPortfolio = [
     date: '21 JUN 2025',
     by: 'Hugo Zbor',
     description: 'In-game clothing selection screen for @99CLOVER',
+    tags: ['Poster'],
     thumbnailUrl: 'https://i.gyazo.com/841a3c816f0da4ec95a07d5172a7f6ef.jpg',
     embedHtml: `<a href="https://gyazo.com/841a3c816f0da4ec95a07d5172a7f6ef"><img src="https://i.gyazo.com/841a3c816f0da4ec95a07d5172a7f6ef.jpg" alt="Image from Gyazo" width="7400"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DLKhaWVPlaw/?img_index=5',
@@ -185,6 +197,7 @@ const graphicsPortfolio = [
     date: '27 MAY 2025',
     by: 'Hugo Zbor',
     description: 'Inspired by PS2 CD Covers',
+    tags: ['Cover Art'],
     thumbnailUrl: 'https://i.gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7.jpg',
     embedHtml: `<a href="https://gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7"><img src="https://i.gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DHs6JdzvYLm/?img_index=1',
@@ -204,6 +217,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '03 JAN 2026',
     description: 'HZ MAG video.',
+    tags: ['Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/csJ2lQ7k0No/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/csJ2lQ7k0No?si=JYO36JlOEe91bdjr',
@@ -217,6 +231,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '05 JAN 2026',
     description: 'Campaign video for 99CLOVER.',
+    tags: ['Edit', 'Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/YOz-Xyaj5VY/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/YOz-Xyaj5VY?si=lpAoA5e3Sil6NoRM',
@@ -230,6 +245,7 @@ const videoPortfolio = [
     client: 'saga_fightwear',
     date: '28 DEC 2025',
     description: 'Campaign video for SAGA Fightwear rashguard.',
+    tags: ['Rotoscoping', 'Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/TNW-hxnGtGw/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/TNW-hxnGtGw?si=0bC5dUs9iy63p-g2',
@@ -243,6 +259,7 @@ const videoPortfolio = [
     client: 'beneculture',
     date: '23 DEC 2025',
     description: 'Christmas campaign video for BENECULTURE.',
+    tags: ['Footage shot by client', 'Rotoscoping'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/ahOF73fKxS0/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/ahOF73fKxS0?si=j37pfd-bJp7_YeNP',
@@ -256,6 +273,7 @@ const videoPortfolio = [
     client: 'saga_fightwear',
     date: '08 DEC 2025',
     description: 'Campaign video for SAGA Fightwear rashguard.',
+    tags: ['Edit', 'Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/R5HMJK971O8/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/R5HMJK971O8?si=w0XryMbrwSH3pf11',
@@ -269,6 +287,7 @@ const videoPortfolio = [
     client: 'saga_fightwear',
     date: '01 DEC 2025',
     description: 'Campaign video for SAGA Fightwear rashguard.',
+    tags: ['Edit', 'Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/4YbKXj-EXXs/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/4YbKXj-EXXs?si=na250lVkmdxrf9I5',
@@ -282,6 +301,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '02 OCT 2025',
     description: 'Campaign video for 99CLOVER.',
+    tags: ['Edit', 'Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/FEsSSO3yRv8/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/FEsSSO3yRv8?si=6XDLMx69oJfZl-1Q',
@@ -295,6 +315,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '25 JUL 2025',
     description: 'Campaign video for 99CLOVER.',
+    tags: ['Edit', 'Shot by HUGO'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Iz03ffd8PXw/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/Iz03ffd8PXw?si=ra-SzWDVPyxpQDzW',
@@ -307,7 +328,8 @@ const videoPortfolio = [
     title: 'Were Decaying - Birth [2025]',
     client: 'weredecaying',
     date: '11 DEC 2025',
-    description: 'Music video for Were Decaying.',
+    description: 'Animation for Were Decaying.',
+    tags: ['Animation'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/lOVRHCVHBrM/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/lOVRHCVHBrM?si=hAuXru-iy0I4r_A4',
@@ -320,7 +342,7 @@ const videoPortfolio = [
     title: 'The Short Ending [2025]',
     client: 'hugozbor',
     date: '29 NOV 2025',
-    description: 'Personal short video.',
+    tags: ['Full Production'],
     category: ['videos', 'view-all', 'personal-work'],
     thumbnailUrl: 'https://img.youtube.com/vi/tffTQTnR2vo/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/tffTQTnR2vo?si=w-g7sOdZPZjNJzd-',
@@ -333,7 +355,7 @@ const videoPortfolio = [
     title: 'Sometimes things have to broken into pieces before they can come back together and make sense [2025]',
     client: 'hugozbor',
     date: '16 NOV 2025',
-    description: 'Personal short video.',
+    tags: ['Full Production'],
     category: ['videos', 'view-all', 'personal-work'],
     thumbnailUrl: 'https://img.youtube.com/vi/WaD_S5jAXBM/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/WaD_S5jAXBM?si=Hzq1re3c2MsaqTM8',
@@ -346,7 +368,7 @@ const videoPortfolio = [
     title: '"Three Dumb Mice", an animation by Hugo Zbor [2026]',
     client: 'hugozbor',
     date: '14 JAN 2026',
-    description: 'Personal animation by Hugo Zbor.',
+    tags: ['Animation'],
     category: ['videos', 'view-all', 'personal-work'],
     thumbnailUrl: 'https://img.youtube.com/vi/SY3_CrzkW20/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/SY3_CrzkW20?si=C4VXXn_1AlqYreeU',
@@ -360,6 +382,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '18 NOV 2025',
     description: 'Experimental video inspired by early 2000s TV shows',
+    tags: ['Full Production'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
     videoEmbedUrl: null,
@@ -373,6 +396,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '17 AUG 2025',
     description: 'Character customisation video Inspired by Tony Hawk\'s Underground',
+    tags: ['Full Production'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DNdOXwlPiFE/',
@@ -391,6 +415,7 @@ const videoPortfolio = [
     client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
+    tags: ['VFX', 'Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DQKmaH9kvvZ/',
@@ -409,6 +434,7 @@ const videoPortfolio = [
     client: 'lovenangels',
     date: '25 OCT 2025',
     description: 'Photos shot by client, 3D Assets made by in-house 3D artist, everything assembled by Hugo Zbor',
+    tags: ['3D', 'Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DQNWnMBk9Kp/?img_index=1',
@@ -426,6 +452,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '04 NOV 2025',
     description: 'Greenscreen video, shot by @99CLOVER and assembled and edited by Hugo Zbor',
+    tags: ['VFX', 'Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
     videoEmbedUrl: null,
@@ -439,6 +466,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '03 DEC 2024',
     description: 'Intro Inspired by Nintendo DS, made from scratch',
+    tags: ['Full Production', 'Animation'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/dJgwioZ2I4E/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
@@ -457,6 +485,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '12 SEP 2025',
     description: 'Looping visuals for @99CLOVER \'s Runway',
+    tags: ['Loop', 'Edit', 'Animation'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/yeudVooMwSM/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
@@ -475,6 +504,7 @@ const videoPortfolio = [
     client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
+    tags: ['VFX', 'Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Updated Thumbnail Path
@@ -495,6 +525,7 @@ const videoPortfolio = [
     client: 'piece_by_p',
     date: '10 OCT 2025', // Estimated date
     description: 'Greenscreen video, shot, assembled and edited by Hugo Zbor',
+    tags: ['VFX', 'Edit', 'Shot by HUGO ZBOR'],
     category: ['videos', 'view-all'],
 
     // Thumbnail from public root
@@ -515,6 +546,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '12 NOV 2025',
     description: 'In-flight entertaintment, everything done by Hugo Zbor.',
+    tags: ['Full Production', 'Shot by HUGO ZBOR'],
     category: ['videos', 'view-all'],
 
     // Thumbnail from public root
@@ -535,6 +567,7 @@ const videoPortfolio = [
     client: 'minu_archive',
     date: '13 NOV 2025', // Placeholder date based on recent uploads
     description: 'Hugo Zbor curated video, shot by client and assembled and edited by Hugo Zbor',
+    tags: ['Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -555,6 +588,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '15 SEP 2025',
     description: 'Filmed, Shot and editted by Hugo Zbor',
+    tags: ['Edit', 'Shot by HUGO ZBOR'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -575,6 +609,7 @@ const videoPortfolio = [
     client: 'minu_archive',
     date: '19 NOV 2025',
     description: 'Greenscreen video, Raw footage provided by client, assembled and editted by Hugo Zbor.',
+    tags: ['VFX', 'Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -595,6 +630,7 @@ const videoPortfolio = [
     client: 'fuckbarretta',
     date: '22 JUN 2025',
     description: 'Visualiser for artist, shot by client, assembled and produced by Hugo Zbor.',
+    tags: ['Visualiser', 'Edit', 'Footage from client'],
     category: ['videos', 'view-all'],
 
     // Thumbnail path (User needs to upload this file)
@@ -625,6 +661,7 @@ const websitePortfolio = [
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '6 NOV 2025',
+    tags: ['Portfolio'],
     thumbnailUrl: 'https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif',
     websiteUrl: 'https://ryansimarchive.com',
     embedHtml: `<img src="https://i.gyazo.com/8bdac84d59e63c4ccadb28bde0df117d.gif" alt="Ryan Sim Archive" style="width:100%; height:auto;" />`,
@@ -636,6 +673,7 @@ const websitePortfolio = [
     category: ['websites', 'view-all'],
     by: 'Hugo Zbor',
     date: '6 AUG 2025',
+    tags: ['Portfolio'],
     thumbnailUrl: 'https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif',
     websiteUrl: 'https://hz-archive.vercel.app/',
     embedHtml: `<img src="https://i.gyazo.com/73873edb9b88b05a28964c7b3c288566.gif" alt="HZ Archive" style="width:100%; height:auto;" />`,
@@ -648,6 +686,7 @@ const websitePortfolio = [
     by: 'Hugo Zbor',
     date: '20 NOV 2025',
     description: 'Yup i made this website from scratch as well',
+    tags: ['Portfolio'],
     thumbnailUrl: 'https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif',
     websiteUrl: 'https://hugozbor.com',
     embedHtml: `<img src="https://i.gyazo.com/4adf6a6ce1449314c0d5c0400a237867.gif" alt="Hugozbor Current Website" style="width:100%; height:auto;" />`,
@@ -1088,7 +1127,7 @@ function HomePage({ setCurrentPage, currentPage }) {
         {/* --- 2. HIGH-IMPACT SECTION (Split Layout) --- */}
         <div className="mb-24 md:mb-32">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 uppercase text-left mb-12 leading-tight">
-            Creating Visual Landscapes
+            Creating Visual Experiences
           </h1>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
@@ -1355,8 +1394,20 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
             {/* Date */}
             <p className="text-sm text-gray-500 mt-1 mb-4">{item.date}</p>
 
-            {/* Description */}
-            <div className="text-base font-normal text-gray-800 leading-relaxed mb-6">{item.description}</div>
+            {/* Tags */}
+            {item.tags && item.tags.length > 0 ? (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs text-gray-600 bg-gray-100 px-3 py-1 rounded-full"
+                    style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 500 }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
 
             {/* Action Bar - Stacked Layout */}
             <div className="flex flex-col gap-3 mt-6">
