@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check, Search } from 'lucide-react'
 import { COUNTRY_CODES } from './countries'
 import { selectedClients, clientsCopy } from '../data/clients'
+import adminSubmissions from '../data/admin-submissions.json'
 
 // Date parsing helper function
 const parseDateString = (dateStr) => {
@@ -238,6 +239,19 @@ const videoPortfolio = [
     fallbackAsset: null,
   },
   {
+    id: 'video-converse-campaign-video-2026',
+    title: 'CONVERSE - Campaign Video [2026]',
+    client: 'converse',
+    date: '30 JAN 2026',
+    tags: ['Animation', 'Full Production', 'Shot by HUGO ZBOR', 'Rotoscoping'],
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/m43UDjFE_vA/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/m43UDjFE_vA?si=eWPFHwE8UQENH1nC',
+    instagramLink: 'https://www.youtube.com/watch?v=m43UDjFE_vA',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
     id: 'video-hz-mag-2026',
     title: 'HZ MAG [2026]',
     client: 'hugozbor',
@@ -411,8 +425,8 @@ const videoPortfolio = [
     tags: ['Full Production'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
-    videoEmbedUrl: null,
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926412?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Brainwash"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/pmPiKDC4ZWg?si=eNYG4XZleP31C19m',
+    embedHtml: null,
     fallbackAsset: null,
     instagramLink: 'https://www.instagram.com/p/DRJ2US5D11L/',
   },
@@ -426,18 +440,13 @@ const videoPortfolio = [
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DNdOXwlPiFE/',
-
-    // 1. DISABLE YOUTUBE
-    videoEmbedUrl: null,
-
-    // 2. ENABLE VIMEO (Clean Mode)
-    // Note: Added title=0&byline=0&portrait=0 to the src URL
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926403?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="final v2.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/kUdCAVFH8Hw?si=zsRqQZqmIIMT1jpb',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
     id: 'video-omnee',
-    title: 'COMMERCIAL FOR OMNEEWORLD',
+    title: 'OMNEEWORLD - PS2 Chain Campaign Video #2 [2025]',
     client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
@@ -446,12 +455,8 @@ const videoPortfolio = [
     thumbnailUrl: 'https://img.youtube.com/vi/eTzvPmUzJ6E/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DQKmaH9kvvZ/',
 
-    // 1. DISABLE YOUTUBE
-    videoEmbedUrl: null,
-
-    // 2. ENABLE VIMEO (Clean Mode)
-    // Note: Added title=0&byline=0&portrait=0 to the src URL
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926548?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Omnee #1.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/c_748vWaow8?si=vngPuLYFvXWhbx3x',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
@@ -465,24 +470,21 @@ const videoPortfolio = [
     thumbnailUrl: 'https://img.youtube.com/vi/Qziv5xrXTgc/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DQNWnMBk9Kp/?img_index=1',
 
-    // 1. DISABLE YOUTUBE
-    videoEmbedUrl: null,
-
-    // 2. ENABLE VIMEO (Paste exactly)
-    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139930384?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Lovenangels Visuals"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/LMiUh2yyU3c?si=TtTFHX3VWDJyMiOw',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
     id: 'video-99clover',
-    title: 'COMMERCIAL FOR 99CLOVER',
+    title: '99CLOVER - USS Pop-Up Campaign Video [2025]',
     client: '99clover',
     date: '04 NOV 2025',
     description: 'Greenscreen video, shot by @99CLOVER and assembled and edited by Hugo Zbor',
     tags: ['VFX', 'Footage from client'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/GLyH_Vveiik/maxresdefault.jpg',
-    videoEmbedUrl: null,
-    embedHtml: `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139929076?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Commercial 99Clover"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/lgggbGeV1Jw?si=ZSfogsk3EFRKmybK',
+    embedHtml: null,
     fallbackAsset: null,
     instagramLink: 'https://www.instagram.com/p/DQognlkkkwi/',
   },
@@ -526,7 +528,7 @@ const videoPortfolio = [
   },
   {
     id: 'video-omnee-2',
-    title: 'COMMERCIAL FOR OMNEE WORLD #2',
+    title: 'OMNEE WORLD - iPod Wallet Campaign Video [2025]',
     client: 'omnee_world',
     date: '24 OCT 2025',
     description: 'Greenscreen video, shot by client and assembled and edited by Hugo Zbor',
@@ -539,16 +541,14 @@ const videoPortfolio = [
     // No Instagram link provided
     instagramLink: 'https://www.instagram.com/p/DQDBfk7E1QZ/',
 
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (title=0, etc.)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926559?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Omnee #2.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/fAhJ3dL7xP4?si=OBpXQeqaNgQyAnHC',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
     id: 'video-piecebyp',
-    title: 'COMMERCIAL FOR PIECE BY P',
-    client: 'piece_by_p',
+    title: 'COMMERCIAL FOR PIECEBYP',
+    client: 'piecebyp',
     date: '10 OCT 2025', // Estimated date
     description: 'Greenscreen video, shot, assembled and edited by Hugo Zbor',
     tags: ['VFX', 'Shot by HUGO ZBOR'],
@@ -560,10 +560,8 @@ const videoPortfolio = [
     // Instagram Link
     instagramLink: 'https://www.instagram.com/reel/DPcxw5lj-nk/',
 
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926567?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Piece By P Commercial"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/LeGmbvK9m8E?si=zLVfbf99GHfAIHOl',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
@@ -581,31 +579,8 @@ const videoPortfolio = [
     // Instagram Link
     instagramLink: 'https://www.instagram.com/reel/DQ7DIMHD3FP/',
 
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140200272?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Hugozbor Airlines"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
-    fallbackAsset: null,
-  },
-  {
-    id: 'video-minu',
-    title: 'COMMERCIAL FOR MINU ARCHIVE',
-    client: 'minu_archive',
-    date: '13 NOV 2025', // Placeholder date based on recent uploads
-    description: 'Hugo Zbor curated video, shot by client and assembled and edited by Hugo Zbor',
-    tags: ['Footage from client'],
-    category: ['videos', 'view-all'],
-
-    // Thumbnail path (User needs to upload this file)
-    thumbnailUrl: '/thumbnails/video-minu Small.png',
-
-    // Instagram Link
-    instagramLink: 'https://www.instagram.com/reel/DQ94G8Sk8zb/',
-
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926446?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hz.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/WP61s4dXqp8?si=arX-fAcWOJE4Cwbb',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
@@ -623,31 +598,8 @@ const videoPortfolio = [
     // Instagram Link
     instagramLink: 'https://www.instagram.com/reel/DOnuzl3j33e/',
 
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926390?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gta.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
-    fallbackAsset: null,
-  },
-  {
-    id: 'video-minu-2',
-    title: 'COMMERCIAL FOR MINU ARCHIVE #2',
-    client: 'minu_archive',
-    date: '19 NOV 2025',
-    description: 'Greenscreen video, Raw footage provided by client, assembled and editted by Hugo Zbor.',
-    tags: ['VFX', 'Footage from client'],
-    category: ['videos', 'view-all'],
-
-    // Thumbnail path (User needs to upload this file)
-    thumbnailUrl: '/thumbnails/video-minu-2 Small.png',
-
-    // Instagram Link
-    instagramLink: 'https://www.instagram.com/hugozbor',
-
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1139926491?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="hz copy.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/_hE-eVnkcNg?si=GO7LvbZTRpyM6xZM',
+    embedHtml: null,
     fallbackAsset: null,
   },
   {
@@ -665,10 +617,8 @@ const videoPortfolio = [
     // Instagram Link
     instagramLink: 'https://www.instagram.com/p/DLLI7Unx11r/',
 
-    videoEmbedUrl: null,
-
-    // Cleaned Vimeo Embed (Added title=0, byline=0, portrait=0)
-    embedHtml: `<div style="padding:80% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1140203885?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="newvid #1"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`,
+    videoEmbedUrl: 'https://www.youtube.com/embed/rurdSpi9NhA?si=t6zd-w0eHbEqjVXW',
+    embedHtml: null,
     fallbackAsset: null,
   },
 ]
@@ -756,9 +706,102 @@ const homeHeroVisual2 = `<a href="https://gyazo.com/db5a51e28dcee28c3827b0728426
 
 // --- End Asset Variables ---
 
+const TAG_OPTIONS = [
+  'Animation',
+  '3D',
+  'VFX',
+  'Compositing',
+  'Rotoscoping',
+  'Loop',
+  'Video',
+  'Sound Design',
+  'Poster',
+  'Cover Art',
+  'Merch',
+  'Flyer',
+  'Magazine',
+  'Lookbook',
+  'Visualiser',
+  'Landing Page',
+  'Portfolio',
+  'E-commerce',
+  'Footage from client',
+  'Edit',
+  'Direction',
+  'Full Production',
+  'Shot by HUGO ZBOR',
+]
+
+const extractYouTubeId = (value) => {
+  if (!value) return '';
+  const match = value.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{6,})/);
+  return match ? match[1] : '';
+};
+
+const extractIframeSrc = (value) => {
+  if (!value) return '';
+  const match = value.match(/src=["']([^"']+)["']/i);
+  return match ? match[1] : '';
+};
+
+const buildAdminItem = (entry) => {
+  const base = {
+    id: entry.id || `admin-${entry.createdAt || Date.now()}`,
+    title: entry.title || 'Untitled',
+    client: entry.client || '',
+    date: entry.date || '',
+    description: entry.description || '',
+    tags: entry.tags || [],
+  };
+
+  if (entry.mediaType === 'video') {
+    const iframeSrc = extractIframeSrc(entry.embedLink);
+    const youtubeId = extractYouTubeId(iframeSrc || entry.embedLink || entry.shareLink);
+    const videoEmbedUrl = iframeSrc || (youtubeId ? `https://www.youtube.com/embed/${youtubeId}` : null);
+    const thumbnailUrl = youtubeId ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg` : null;
+
+    return {
+      ...base,
+      category: ['videos', 'view-all'],
+      thumbnailUrl,
+      videoEmbedUrl,
+      instagramLink: entry.shareLink || null,
+      embedHtml: null,
+      fallbackAsset: null,
+    };
+  }
+
+  if (entry.mediaType === 'graphic') {
+    const imageUrl = entry.embedLink || entry.shareLink || '';
+    return {
+      ...base,
+      category: ['graphics', 'view-all'],
+      thumbnailUrl: imageUrl,
+      embedHtml: imageUrl ? `<img src="${imageUrl}" alt="${base.title}" style="width:100%; height:auto;" />` : null,
+    };
+  }
+
+  if (entry.mediaType === 'website') {
+    const previewUrl = entry.embedLink || entry.shareLink || '';
+    return {
+      ...base,
+      category: ['websites', 'view-all'],
+      thumbnailUrl: previewUrl,
+      websiteUrl: entry.shareLink || null,
+      embedHtml: previewUrl ? `<img src="${previewUrl}" alt="${base.title}" style="width:100%; height:auto;" />` : null,
+    };
+  }
+
+  return null;
+};
+
+const adminPortfolioItems = Array.isArray(adminSubmissions)
+  ? adminSubmissions.map(buildAdminItem).filter(Boolean)
+  : [];
+
 // Master Portfolio List (combines graphics, videos, and websites)
 // IMPORTANT: Defined AFTER all portfolio arrays to ensure up-to-date data
-const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio]
+const allPortfolioItems = [...graphicsPortfolio, ...videoPortfolio, ...websitePortfolio, ...adminPortfolioItems]
 
 // TikTokIcon component
 const TikTokIcon = ({ className }) => (
@@ -839,7 +882,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
   const [showMyWorkDropdown, setShowMyWorkDropdown] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const isMyWorkActive = currentPage === 'my-work'
-  const showClientsNav = false
+  const showClientsNav = true
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100 w-full transition-all duration-300">
@@ -1311,13 +1354,17 @@ function MyWorkLandingPage({ setCurrentPage, currentPage }) {
 }
 
 // WorkOverlay Component (Modal)
-function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, currentCategory }) {
+function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, currentCategory, items, onNavigate }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
   const [isCopied, setIsCopied] = useState(false)
 
   // Generate deep link for sharing Graphics and Videos
   const shareCategory = currentCategory === 'personal-work' ? 'personal-work' : item.category[0];
   const shareableLink = `${window.location.origin}/my-work/${shareCategory}/${item.id}`;
+  const currentIndex = items ? items.findIndex((entry) => entry.id === item.id) : -1
+  const hasMultipleItems = items && items.length > 1
+  const previousItem = hasMultipleItems && currentIndex > -1 ? items[(currentIndex - 1 + items.length) % items.length] : null
+  const nextItem = hasMultipleItems && currentIndex > -1 ? items[(currentIndex + 1) % items.length] : null
 
   const handleCopyUrl = (url) => {
     if (!url) return;
@@ -1344,6 +1391,24 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
         >
           <X className="size-6" />
         </button>
+        {previousItem && (
+          <button
+            onClick={() => onNavigate(previousItem.id)}
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-md z-10"
+            aria-label="Previous item"
+          >
+            <ChevronLeft className="size-5" />
+          </button>
+        )}
+        {nextItem && (
+          <button
+            onClick={() => onNavigate(nextItem.id)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-md z-10"
+            aria-label="Next item"
+          >
+            <ChevronRight className="size-5" />
+          </button>
+        )}
 
         {/* LEFT SIDE: Image or Video */}
         <div className="w-full md:w-1/2 bg-gray-100">
@@ -1702,7 +1767,7 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
       return [...baseItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
     }
 
-    return baseItems
+    return [...baseItems].sort((a, b) => parseDateString(b.date) - parseDateString(a.date))
   }, [category])
 
   useEffect(() => {
@@ -1854,6 +1919,8 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
           setCurrentPage={setCurrentPage}
           isRestrictedRegion={isRestrictedRegion}
           currentCategory={category}
+          items={displayedItems}
+          onNavigate={(nextItemId) => setCurrentPage('my-work', category, nextItemId)}
         />
       )}
     </>
@@ -2056,7 +2123,7 @@ function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId
 
         {clientItems.length === 0 ? (
           <p className="text-center text-gray-500 mt-8" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            No projects found for this client yet.
+            No projects publicly availble for this client yet.
           </p>
         ) : (
           <>
@@ -2076,6 +2143,8 @@ function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId
           onClose={() => setCurrentPage('clients', clientSlug, null)}
           setCurrentPage={setCurrentPage}
           isRestrictedRegion={isRestrictedRegion}
+          items={clientItems}
+          onNavigate={(nextItemId) => setCurrentPage('clients', clientSlug, nextItemId)}
         />
       )}
     </>
@@ -3259,6 +3328,251 @@ function InfoPage({ setCurrentPage }) {
   )
 }
 
+function AdminPage() {
+  const [mediaType, setMediaType] = useState('video')
+  const [selectedTags, setSelectedTags] = useState([])
+  const [formState, setFormState] = useState({
+    title: '',
+    date: '',
+    client: '',
+    description: '',
+    shareLink: '',
+    embedLink: '',
+  })
+  const [statusMessage, setStatusMessage] = useState('')
+  const [isSaving, setIsSaving] = useState(false)
+
+  const handleTagToggle = (tag) => {
+    setSelectedTags((prev) => (
+      prev.includes(tag)
+        ? prev.filter((item) => item !== tag)
+        : [...prev, tag]
+    ))
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setFormState((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    setIsSaving(true)
+    setStatusMessage('')
+
+    try {
+      const response = await fetch('/api/admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mediaType,
+          title: formState.title,
+          date: formState.date,
+          client: formState.client,
+          description: formState.description,
+          shareLink: formState.shareLink,
+          embedLink: formState.embedLink,
+          tags: selectedTags,
+        }),
+      })
+
+      if (!response.ok) {
+        const errorMessage = await response.text()
+        throw new Error(errorMessage || 'Failed to save entry.')
+      }
+
+      setStatusMessage('Saved locally.')
+      setFormState({
+        title: '',
+        date: '',
+        client: '',
+        description: '',
+        shareLink: '',
+        embedLink: '',
+      })
+      setSelectedTags([])
+    } catch (error) {
+      setStatusMessage(error.message)
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  return (
+    <div className="w-full pb-20">
+      <PageHeader title="Admin" isActive />
+      <div className="max-w-4xl mx-auto px-4 md:px-0 mt-6 md:mt-10">
+        <div className="mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-brandBlack uppercase tracking-wide">
+            Admin
+          </h1>
+          <p className="mt-3 text-sm md:text-base text-gray-600 leading-relaxed" style={{ fontWeight: 400 }}>
+            Add new work entries locally.
+          </p>
+        </div>
+
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+              Media type
+            </label>
+            <select
+              value={mediaType}
+              onChange={(event) => setMediaType(event.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
+              style={{ fontWeight: 400 }}
+            >
+              <option value="video">Video</option>
+              <option value="graphic">Graphic</option>
+              <option value="website">Website</option>
+            </select>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                Title
+              </label>
+              <input
+                type="text"
+                name="title"
+                value={formState.title}
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontWeight: 400 }}
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={formState.date}
+                onChange={handleInputChange}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontWeight: 400 }}
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+              Client name
+            </label>
+            <input
+              type="text"
+              name="client"
+              list="client-options"
+              value={formState.client}
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              style={{ fontWeight: 400 }}
+            />
+            <datalist id="client-options">
+              {selectedClients.map((client) => (
+                <option key={client.name} value={client.name} />
+              ))}
+            </datalist>
+          </div>
+
+          <div>
+            <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+              Description
+            </label>
+            <textarea
+              name="description"
+              rows={3}
+              value={formState.description}
+              onChange={handleInputChange}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-y"
+              style={{ fontWeight: 400 }}
+            />
+          </div>
+
+          <div>
+            <label className="block text-brandBlack mb-3" style={{ fontWeight: 400 }}>
+              Tags
+            </label>
+            <div className="flex flex-wrap gap-2">
+              {TAG_OPTIONS.map((tag) => (
+                <label
+                  key={tag}
+                  className={`px-3 py-1 rounded-full border text-xs cursor-pointer transition-colors ${selectedTags.includes(tag)
+                    ? 'bg-[#c13333] text-white border-[#c13333]'
+                    : 'bg-white text-gray-600 border-gray-300'
+                    }`}
+                  style={{ fontWeight: 500 }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedTags.includes(tag)}
+                    onChange={() => handleTagToggle(tag)}
+                    className="hidden"
+                  />
+                  {tag}
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {(mediaType === 'video' || mediaType === 'graphic') && (
+            <>
+              <div>
+                <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                  Link to share
+                </label>
+                <input
+                  type="text"
+                  name="shareLink"
+                  value={formState.shareLink}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                  style={{ fontWeight: 400 }}
+                />
+              </div>
+              <div>
+                <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                  Embedded link
+                </label>
+                <input
+                  type="text"
+                  name="embedLink"
+                  value={formState.embedLink}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                  style={{ fontWeight: 400 }}
+                />
+              </div>
+            </>
+          )}
+
+          {mediaType === 'website' && (
+            <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
+              Website entries are not configured yet.
+            </p>
+          )}
+
+          <button
+            type="submit"
+            className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            disabled={isSaving}
+          >
+            {isSaving ? 'Saving...' : 'Save entry'}
+          </button>
+          {statusMessage && (
+            <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
+              {statusMessage}
+            </p>
+          )}
+        </form>
+      </div>
+    </div>
+  )
+}
+
 function App() {
   const parseUrl = () => {
     if (typeof window === 'undefined') {
@@ -3294,7 +3608,7 @@ function App() {
       return { page: 'commissions', category: subCategory, itemId: null }
     }
 
-    const allowedPages = new Set(['home', 'about', 'clients', 'contact', 'terms', 'info'])
+    const allowedPages = new Set(['home', 'about', 'clients', 'contact', 'terms', 'info', 'admin'])
     if (allowedPages.has(root)) {
       return { page: root, category: 'landing', itemId: null }
     }
@@ -3372,7 +3686,8 @@ function App() {
     }
 
     window.history.pushState({ page, category: nextCategory, itemId: nextItemId }, '', url)
-    if (!nextItemId) {
+    const closingOverlay = page === currentPage && currentCategory === nextCategory && currentItemId && !nextItemId
+    if (!nextItemId && !closingOverlay) {
       window.scrollTo(0, 0)
     }
   }
@@ -3490,6 +3805,7 @@ function App() {
           {currentPage === 'contact' && <ContactPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'terms' && <TermsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />}
           {currentPage === 'info' && <InfoPage setCurrentPage={setCurrentPage} />}
+          {currentPage === 'admin' && <AdminPage />}
         </main>
         <Footer setCurrentPage={setCurrentPage} />
       </div>
