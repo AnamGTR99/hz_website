@@ -2907,12 +2907,16 @@ function ContactPage({ setCurrentPage, currentPage }) {
               <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
                 Reference links (optional)
               </label>
-              <input
-                type="text"
+              <textarea
                 name="project_reference_links"
                 placeholder="Paste links here"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                rows={1}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-none overflow-hidden"
                 style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+                onInput={(event) => {
+                  event.target.style.height = 'auto'
+                  event.target.style.height = `${event.target.scrollHeight}px`
+                }}
               />
             </div>
           </div>
