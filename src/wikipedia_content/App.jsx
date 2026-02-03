@@ -3329,6 +3329,11 @@ function InfoPage({ setCurrentPage }) {
 }
 
 function AdminPage() {
+  const adminPassword = 'Anamgtr@99'
+  const [isAuthorized, setIsAuthorized] = useState(
+    () => typeof window !== 'undefined' && sessionStorage.getItem('admin-auth') === 'true'
+  )
+  const [passwordInput, setPasswordInput] = useState('')
   const [mediaType, setMediaType] = useState('video')
   const [selectedTags, setSelectedTags] = useState([])
   const [formState, setFormState] = useState({
@@ -3398,6 +3403,18 @@ function AdminPage() {
     }
   }
 
+  const handleAuthSubmit = (event) => {
+    event.preventDefault()
+    if (passwordInput === adminPassword) {
+      sessionStorage.setItem('admin-auth', 'true')
+      setIsAuthorized(true)
+      setPasswordInput('')
+      setStatusMessage('')
+    } else {
+      setStatusMessage('Incorrect password.')
+    }
+  }
+
   return (
     <div className="w-full pb-20">
       <PageHeader title="Admin" isActive />
@@ -3411,6 +3428,34 @@ function AdminPage() {
           </p>
         </div>
 
+        {!isAuthorized ? (
+          <form className="max-w-md space-y-4" onSubmit={handleAuthSubmit}>
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                Password
+              </label>
+              <input
+                type="password"
+                value={passwordInput}
+                onChange={(event) => setPasswordInput(event.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                style={{ fontWeight: 400 }}
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+            >
+              Enter
+            </button>
+            {statusMessage && (
+              <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
+                {statusMessage}
+              </p>
+            )}
+          </form>
+        ) : (
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
@@ -3568,6 +3613,7 @@ function AdminPage() {
             </p>
           )}
         </form>
+        )}
       </div>
     </div>
   )
