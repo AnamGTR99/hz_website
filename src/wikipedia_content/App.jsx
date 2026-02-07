@@ -1379,11 +1379,21 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
       className="fixed inset-0 bg-white/30 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
-      {/* Main Modal Box */}
-      <div
-        className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row pt-12 md:pt-0"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="flex items-center gap-2 md:gap-3" onClick={(e) => e.stopPropagation()}>
+        {previousItem && (
+          <button
+            onClick={() => onNavigate(previousItem.id)}
+            className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
+            aria-label="Previous item"
+          >
+            <ChevronLeft className="size-5" />
+          </button>
+        )}
+        {/* Main Modal Box */}
+        <div
+          className="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row pt-12 md:pt-0"
+          onClick={(e) => e.stopPropagation()}
+        >
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -1391,24 +1401,6 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
         >
           <X className="size-6" />
         </button>
-        {previousItem && (
-          <button
-            onClick={() => onNavigate(previousItem.id)}
-            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-md z-10"
-            aria-label="Previous item"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-        )}
-        {nextItem && (
-          <button
-            onClick={() => onNavigate(nextItem.id)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full shadow-md z-10"
-            aria-label="Next item"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        )}
 
         {/* LEFT SIDE: Image or Video */}
         <div className="w-full md:w-1/2 bg-gray-100">
@@ -1606,6 +1598,16 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
             </div>
           </div>
         </div>
+        </div>
+        {nextItem && (
+          <button
+            onClick={() => onNavigate(nextItem.id)}
+            className="bg-white/90 hover:bg-white text-gray-700 p-2 rounded-full shadow-md"
+            aria-label="Next item"
+          >
+            <ChevronRight className="size-5" />
+          </button>
+        )}
       </div>
     </div>
   )

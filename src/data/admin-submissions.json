@@ -96,5 +96,23 @@
       "Sound Design"
     ],
     "createdAt": "2026-02-03T01:40:58.785Z"
+  },
+  {
+    "id": "video-ultralightlondon-campaign-video-2026-2026-02-07",
+    "mediaType": "video",
+    "title": "ULTRALIGHTLONDON Campaign Video [2026]",
+    "date": "07 FEB 2026",
+    "clientName": "ULTRALIGHTLONDON",
+    "client": "ultralightlondon",
+    "shareLink": "https://www.youtube.com/watch?v=B9g1DLJPyyY",
+    "embedLink": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/B9g1DLJPyyY?si=XzlOvdMqn9fDY_gW\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "tags": [
+      "Animation",
+      "Rotoscoping",
+      "Shot by HUGO ZBOR",
+      "Footage from client",
+      "VFX"
+    ],
+    "createdAt": "2026-02-07T03:44:34.943Z"
   }
 ]
