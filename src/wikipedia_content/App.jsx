@@ -19,6 +19,8 @@ const normalizeClientSlug = (name) => {
     .replace(/^_+|_+$/g, '');
   const overrides = {
     omneeworld: 'omnee_world',
+    ultralightlondon: 'ultralight',
+    ultralight_london: 'ultralight',
   };
   return overrides[base] || base;
 };
