@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { Instagram, Mail, X, ChevronDown, ChevronUp, Phone, MessageCircle, Copy, Menu, ChevronLeft, ChevronRight, Globe, Check, Search } from 'lucide-react'
 import { COUNTRY_CODES } from './countries'
 import { selectedClients, clientsCopy } from '../data/clients'
@@ -3858,6 +3860,8 @@ function App() {
           {currentPage === 'admin' && <AdminPage />}
         </main>
         <Footer setCurrentPage={setCurrentPage} />
+        <Analytics />
+        <SpeedInsights />
       </div>
     </>
   )
