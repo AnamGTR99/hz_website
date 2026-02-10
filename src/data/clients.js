@@ -4,6 +4,7 @@ export const selectedClients = [
   { name: "OMNEEWORLD", tier: 1, logo: "/extra_assets/LOGOS/omnee.png" },
   { name: "ULTRALIGHT LONDON", tier: 1, logo: "/extra_assets/LOGOS/ULTRALIGHT TEXT LOGO.png" },
   { name: "BENECULTURE", tier: 1, logo: "/extra_assets/LOGOS/BENECULTURE.webp" },
+  { name: "PEACE:MAKER", tier: 1, logo: "/extra_assets/LOGOS/pcmkr.png" },
   { name: "LOVENANGELS", tier: 1, logo: "/extra_assets/LOGOS/LOVENANGELS.png" },
   { name: "DAYSINSHELL", tier: 1, logo: "/extra_assets/LOGOS/daysinshell.png" },
   { name: "CONROY.US", tier: 1, logo: "/extra_assets/LOGOS/CONROY US.webp" },
