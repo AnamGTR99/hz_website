@@ -2403,8 +2403,41 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
             Hugo Zbor collaborates with artists, brands, and creative teams on visual projects ranging from campaign work to select commissions.          </p>
         </div>
 
+        <div
+          id="campaign-call"
+          className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-10 my-8"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            Planning a Launch or Rollout?
+          </h2>
+          <div className="text-sm md:text-base text-gray-600 leading-relaxed space-y-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            <p>For brands, artists, and agencies preparing a defined release moment.</p>
+            <p>We approach campaigns as cohesive creative systems rather than individual assets.</p>
+          </div>
+          <button
+            onClick={() => {
+              setCurrentPage('commissions', 'campaigncall')
+            }}
+            className="mt-6 w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+          >
+            Apply for Campaign Strategy Call
+          </button>
+          <p className="mt-3 text-xs text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Applications are reviewed by management. If aligned, we’ll send available times.
+          </p>
+        </div>
+
         {/* Accordion Sections */}
         <div className="space-y-0">
+          <div className="mb-6">
+            <h2 className="text-lg md:text-xl font-bold text-brandBlack" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+              Standalone Commissions
+            </h2>
+            <p className="mt-2 text-sm md:text-base text-gray-600" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              For single deliverables or smaller-scope projects, browse categories below.
+            </p>
+          </div>
           <AccordionItem
             title="Visual Art & Graphic Design"
             isOpen={activeSection === 'visual-art'}
@@ -2569,14 +2602,16 @@ function CommissionsPage({ activeSection, setCurrentPage, currentPage }) {
         {/* Call-to-Action Section */}
         <div className="mt-16 mb-20 text-center">
           <h2 className="text-3xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
-            Contact Us
+            Commission Inquiry
           </h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-            Tell us about your idea, project, or vision. Hugo and the management team will review your request and get back to you with next steps.
+            For standalone projects or custom requests, submit a commission inquiry below.
           </p>
           <div className="flex justify-center">
             <button
-              onClick={() => setCurrentPage('contact')}
+              onClick={() => {
+                window.location.href = '/contact?type=commission'
+              }}
               className="px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
               style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
             >
@@ -2677,6 +2712,15 @@ function CountrySelect({ selected, onChange }) {
 
 function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const requestType = useMemo(() => {
+    if (typeof window === 'undefined') return ''
+    return new URLSearchParams(window.location.search).get('type') || ''
+  }, [])
+  const defaultRequestType = requestType === 'campaign'
+    ? 'Campaign / Launch / Rollout'
+    : requestType === 'commission'
+      ? 'Standalone Commission'
+      : ''
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -2751,6 +2795,23 @@ function ContactPage({ setCurrentPage, currentPage }) {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          <div>
+            <label className="block text-brandBlack mb-2" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+              What best describes your request?*
+            </label>
+            <select
+              name="request_type"
+              required
+              defaultValue={defaultRequestType}
+              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+            >
+              <option value="" disabled>Select an option</option>
+              <option value="Campaign / Launch / Rollout">Campaign / Launch / Rollout</option>
+              <option value="Standalone Commission">Standalone Commission</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
           {/* Row 1: Name & Contact */}
           <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
             <div className="flex-1">
@@ -3215,6 +3276,233 @@ function TermsPage({ setCurrentPage, currentPage }) {
   )
 }
 
+function CampaignCallPage() {
+  const [availabilityErrors, setAvailabilityErrors] = useState(['', '', ''])
+  const redirectUrl = useMemo(() => {
+    if (typeof window === 'undefined') return '/commissions/thank-you'
+    return `${window.location.origin}/commissions/thank-you`
+  }, [])
+  const formspreeEndpoint = 'https://formspree.io/f/xkovznna'
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const form = event.target
+    const data = new FormData(form)
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json',
+        },
+      })
+
+      if (response.ok) {
+        window.location.href = redirectUrl
+      } else {
+        alert('Error: Could not submit form. Please try again.')
+      }
+    } catch (error) {
+      alert('Error: Network problem. Please check your connection.')
+    }
+  }
+
+  return (
+    <>
+      <PageHeader title="Commissions" isActive />
+      <div className="max-w-2xl mx-auto px-4 md:px-0 mt-6 md:mt-10 pb-20">
+        <div className="mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-brandBlack mb-3" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+            Campaign Strategy Call Application
+          </h1>
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            Use this form for launches, drops, and rollout campaigns. Include your availability and we’ll follow up by email with next steps and a Google Meet link if aligned.
+          </p>
+          <p className="mt-2 text-xs text-gray-500" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+            We review campaign applications before confirming a call.
+          </p>
+        </div>
+
+        <form
+          method="POST"
+          action="https://formspree.io/f/xkovznna"
+          onSubmit={handleSubmit}
+          className="rounded-2xl border border-gray-200 bg-gray-50 p-6 md:p-8 space-y-6"
+          style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}
+        >
+          <input type="hidden" name="_redirect" value={redirectUrl} />
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-brandBlack mb-2">Full Name *</label>
+              <input
+                type="text"
+                name="full_name"
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2">Email *</label>
+              <input
+                type="email"
+                name="email"
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+              <p className="mt-1 text-xs text-gray-500">We’ll send the Google Meet link here.</p>
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2">Brand / Artist / Agency Name *</label>
+              <input
+                type="text"
+                name="brand_name"
+                required
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2">Website / Instagram Link</label>
+              <input
+                type="text"
+                name="link"
+                placeholder="@yourinstagram handle or www.yourbrand.com"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-brandBlack mb-2">What are you launching? *</label>
+              <textarea
+                name="launch_description"
+                required
+                placeholder="Briefly describe the product / release / campaign."
+                rows={3}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2">Target launch date or campaign window *</label>
+              <input
+                type="text"
+                name="launch_window"
+                required
+                placeholder="e.g., Mar 10 -- Mar 24"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+            </div>
+            <div>
+              <label className="block text-brandBlack mb-2">Budget range *</label>
+              <input
+                type="text"
+                name="budget_range"
+                required
+                placeholder="e.g. $750 - $2,000 USD"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1">
+                <label className="block text-brandBlack mb-2">Timezone *</label>
+                <input
+                  type="text"
+                  name="timezone"
+                  required
+                  placeholder="AEDT, GMT+11, EST, PST"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="block text-brandBlack mb-2">City *</label>
+                <input
+                  type="text"
+                  name="city"
+                  required
+                  placeholder="Melbourne"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">Select 3 time windows where you’re available for a 20–30 minute call.</p>
+            {[1, 2, 3].map((index) => (
+              <div key={index} className="border border-gray-200 rounded-xl p-4 bg-white">
+                <p className="text-sm font-medium text-gray-700 mb-3">Preferred Time Window {index}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-brandBlack mb-2 text-sm">Day *</label>
+                    <select
+                      name={`availability_${index}_day`}
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
+                    >
+                      <option value="" disabled>Select</option>
+                      <option value="Monday">Monday</option>
+                      <option value="Tuesday">Tuesday</option>
+                      <option value="Wednesday">Wednesday</option>
+                      <option value="Thursday">Thursday</option>
+                      <option value="Friday">Friday</option>
+                      <option value="Saturday">Saturday</option>
+                      <option value="Sunday">Sunday</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-brandBlack mb-2 text-sm">Time of day *</label>
+                    <select
+                      name={`availability_${index}_time_of_day`}
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
+                    >
+                      <option value="" disabled>Select</option>
+                      <option value="Morning">Morning</option>
+                      <option value="Afternoon">Afternoon</option>
+                      <option value="Evening">Evening</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+          >
+            Submit Application
+          </button>
+          <p className="text-xs text-gray-500">
+            If aligned, management will email you time confirmation and a Google Meet link.
+          </p>
+        </form>
+      </div>
+    </>
+  )
+}
+
+function CampaignThankYouPage() {
+  return (
+    <>
+      <PageHeader title="Commissions" isActive />
+      <div className="max-w-2xl mx-auto px-4 md:px-0 mt-8 pb-20 text-center">
+        <h1 className="text-3xl md:text-4xl font-bold text-brandBlack mb-4" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          Application received
+        </h1>
+        <p className="text-sm md:text-base text-gray-600" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
+          Thanks — we’ll review your details and follow up by email with next steps if aligned.
+        </p>
+      </div>
+    </>
+  )
+}
+
 function InfoPage({ setCurrentPage }) {
   // Custom SVG Icons
   const iMessageIcon = () => (
@@ -3653,6 +3941,9 @@ function App() {
 
     if (root === 'commissions') {
       const subCategory = parts[1] || null // For commissions, null means all sections closed
+      if (subCategory === 'thank-you') {
+        return { page: 'commissions', category: 'campaign-thank-you', itemId: null }
+      }
       return { page: 'commissions', category: subCategory, itemId: null }
     }
 
@@ -3718,7 +4009,9 @@ function App() {
       _setCurrentCategory(nextCategory)
       _setCurrentItemId(null)
       if (nextCategory) {
-        url = `/commissions/${nextCategory}`
+        url = nextCategory === 'campaign-thank-you'
+          ? '/commissions/thank-you'
+          : `/commissions/${nextCategory}`
       } else {
         url = '/commissions'
       }
@@ -3830,13 +4123,15 @@ function App() {
           {currentPage === 'my-work' && currentCategory === 'landing' && (
             <MyWorkLandingPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
           )}
-          {currentPage === 'commissions' && (
+          {currentPage === 'commissions' && currentCategory !== 'campaigncall' && currentCategory !== 'campaign-thank-you' && (
             <CommissionsPage
               activeSection={currentCategory}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
             />
           )}
+          {currentPage === 'commissions' && currentCategory === 'campaigncall' && <CampaignCallPage />}
+          {currentPage === 'commissions' && currentCategory === 'campaign-thank-you' && <CampaignThankYouPage />}
           {currentPage === 'clients' && currentCategory === 'landing' && (
             <ClientsPage setCurrentPage={setCurrentPage} currentPage={currentPage} />
           )}
