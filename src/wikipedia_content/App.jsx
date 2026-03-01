@@ -205,6 +205,20 @@ const graphicsPortfolio = [
     embedHtml: `<a href="https://gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7"><img src="https://i.gyazo.com/92ee85e57fe4da1d2f753fdf69dd1fb7.jpg" alt="Image from Gyazo" width="3000"/></a>`,
     instagramLink: 'https://www.instagram.com/p/DHs6JdzvYLm/?img_index=1',
   },
+  {
+    id: 'graphic-thumbnail-sayso',
+    title: 'THUMBNAIL FOR SAYSO',
+    client: 'sayso',
+    category: ['graphics', 'view-all'],
+    date: '27 FEB 2026',
+    by: 'Hugo Zbor',
+    tags: ['Flyer', 'Thumbnail'],
+    thumbnailUrl: 'https://img.youtube.com/vi/t_FDERai5Bc/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/t_FDERai5Bc?si=psNKRl6E1GNvdEfs',
+    instagramLink: 'https://www.youtube.com/watch?v=t_FDERai5Bc',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
 ]
 
 // Sort Graphics: Newest (b) to Oldest (a)
@@ -732,6 +746,7 @@ const TAG_OPTIONS = [
   'Direction',
   'Full Production',
   'Shot by HUGO ZBOR',
+  'Thumbnail',
 ]
 
 const extractYouTubeId = (value) => {
@@ -2790,7 +2805,18 @@ function ContactPage({ setCurrentPage, currentPage }) {
           <a href="mailto:contact@hugozbor.com" className="text-[#c13333] hover:underline" style={{ fontWeight: 400 }}>
             contact@hugozbor.com
           </a>
-          {' '}or fill out the form below! We will get back to you within 1-2 business days.
+          {', contact Hugo\'s manager '}
+          <a
+            href="https://hugozbor.com/info"
+            className="text-[#c13333] hover:underline"
+            style={{ fontWeight: 400 }}
+          >
+            Shei
+          </a>
+          {', or fill out the form below.'}
+          <span className="block">
+            We'll get back to you within 1-2 business days.
+          </span>
         </p>
 
         {/* Form */}
