@@ -259,7 +259,7 @@ const videoPortfolio = [
     title: 'CONVERSE - Campaign Video [2026]',
     client: 'converse',
     date: '30 JAN 2026',
-    tags: ['Animation', 'Full Production', 'Shot by HUGO ZBOR', 'Rotoscoping'],
+    tags: ['Animation', 'Shot by HUGO ZBOR', 'Rotoscoping'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/m43UDjFE_vA/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/m43UDjFE_vA?si=eWPFHwE8UQENH1nC',
@@ -398,7 +398,7 @@ const videoPortfolio = [
     title: 'The Short Ending [2025]',
     client: 'hugozbor',
     date: '29 NOV 2025',
-    tags: ['Full Production'],
+    tags: [],
     category: ['videos', 'view-all', 'personal-work'],
     thumbnailUrl: 'https://img.youtube.com/vi/tffTQTnR2vo/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/tffTQTnR2vo?si=w-g7sOdZPZjNJzd-',
@@ -411,7 +411,7 @@ const videoPortfolio = [
     title: 'Sometimes things have to broken into pieces before they can come back together and make sense [2025]',
     client: 'hugozbor',
     date: '16 NOV 2025',
-    tags: ['Full Production'],
+    tags: [],
     category: ['videos', 'view-all', 'personal-work'],
     thumbnailUrl: 'https://img.youtube.com/vi/WaD_S5jAXBM/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/WaD_S5jAXBM?si=Hzq1re3c2MsaqTM8',
@@ -438,7 +438,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '18 NOV 2025',
     description: 'Experimental video inspired by early 2000s TV shows',
-    tags: ['Full Production'],
+    tags: [],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/trcAZwylfcQ/maxresdefault.jpg',
     videoEmbedUrl: 'https://www.youtube.com/embed/pmPiKDC4ZWg?si=eNYG4XZleP31C19m',
@@ -452,7 +452,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '17 AUG 2025',
     description: 'Character customisation video Inspired by Tony Hawk\'s Underground',
-    tags: ['Full Production'],
+    tags: [],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/7uS8SP67Exg/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DNdOXwlPiFE/',
@@ -510,7 +510,7 @@ const videoPortfolio = [
     client: '99clover',
     date: '03 DEC 2024',
     description: 'Intro Inspired by Nintendo DS, made from scratch',
-    tags: ['Full Production', 'Animation'],
+    tags: ['Animation'],
     category: ['videos', 'view-all'],
     thumbnailUrl: 'https://img.youtube.com/vi/dJgwioZ2I4E/maxresdefault.jpg',
     instagramLink: 'https://www.instagram.com/p/DOTUFshDyEX/?img_index=1',
@@ -586,7 +586,7 @@ const videoPortfolio = [
     client: 'hugozbor',
     date: '12 NOV 2025',
     description: 'In-flight entertaintment, everything done by Hugo Zbor.',
-    tags: ['Full Production', 'Shot by HUGO ZBOR'],
+    tags: ['Shot by HUGO ZBOR'],
     category: ['videos', 'view-all'],
 
     // Thumbnail from public root
@@ -744,7 +744,6 @@ const TAG_OPTIONS = [
   'Footage from client',
   'Edit',
   'Direction',
-  'Full Production',
   'Shot by HUGO ZBOR',
   'Thumbnail',
 ]
@@ -3772,163 +3771,163 @@ function AdminPage() {
             )}
           </form>
         ) : (
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-              Media type
-            </label>
-            <select
-              value={mediaType}
-              onChange={(event) => setMediaType(event.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
-              style={{ fontWeight: 400 }}
-            >
-              <option value="video">Video</option>
-              <option value="graphic">Graphic</option>
-              <option value="website">Website</option>
-            </select>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-                Title
+                Media type
+              </label>
+              <select
+                value={mediaType}
+                onChange={(event) => setMediaType(event.target.value)}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] bg-white"
+                style={{ fontWeight: 400 }}
+              >
+                <option value="video">Video</option>
+                <option value="graphic">Graphic</option>
+                <option value="website">Website</option>
+              </select>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                  Title
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  value={formState.title}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                  style={{ fontWeight: 400 }}
+                />
+              </div>
+              <div>
+                <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                  Date
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  value={formState.date}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                  style={{ fontWeight: 400 }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                Client name
               </label>
               <input
                 type="text"
-                name="title"
-                value={formState.title}
+                name="client"
+                list="client-options"
+                value={formState.client}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
                 style={{ fontWeight: 400 }}
               />
+              <datalist id="client-options">
+                {selectedClients.map((client) => (
+                  <option key={client.name} value={client.name} />
+                ))}
+              </datalist>
             </div>
+
             <div>
               <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-                Date
+                Description
               </label>
-              <input
-                type="date"
-                name="date"
-                value={formState.date}
+              <textarea
+                name="description"
+                rows={3}
+                value={formState.description}
                 onChange={handleInputChange}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-y"
                 style={{ fontWeight: 400 }}
               />
             </div>
-          </div>
 
-          <div>
-            <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-              Client name
-            </label>
-            <input
-              type="text"
-              name="client"
-              list="client-options"
-              value={formState.client}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-              style={{ fontWeight: 400 }}
-            />
-            <datalist id="client-options">
-              {selectedClients.map((client) => (
-                <option key={client.name} value={client.name} />
-              ))}
-            </datalist>
-          </div>
-
-          <div>
-            <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-              Description
-            </label>
-            <textarea
-              name="description"
-              rows={3}
-              value={formState.description}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333] resize-y"
-              style={{ fontWeight: 400 }}
-            />
-          </div>
-
-          <div>
-            <label className="block text-brandBlack mb-3" style={{ fontWeight: 400 }}>
-              Tags
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {TAG_OPTIONS.map((tag) => (
-                <label
-                  key={tag}
-                  className={`px-3 py-1 rounded-full border text-xs cursor-pointer transition-colors ${selectedTags.includes(tag)
-                    ? 'bg-[#c13333] text-white border-[#c13333]'
-                    : 'bg-white text-gray-600 border-gray-300'
-                    }`}
-                  style={{ fontWeight: 500 }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedTags.includes(tag)}
-                    onChange={() => handleTagToggle(tag)}
-                    className="hidden"
-                  />
-                  {tag}
-                </label>
-              ))}
+            <div>
+              <label className="block text-brandBlack mb-3" style={{ fontWeight: 400 }}>
+                Tags
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {TAG_OPTIONS.map((tag) => (
+                  <label
+                    key={tag}
+                    className={`px-3 py-1 rounded-full border text-xs cursor-pointer transition-colors ${selectedTags.includes(tag)
+                      ? 'bg-[#c13333] text-white border-[#c13333]'
+                      : 'bg-white text-gray-600 border-gray-300'
+                      }`}
+                    style={{ fontWeight: 500 }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedTags.includes(tag)}
+                      onChange={() => handleTagToggle(tag)}
+                      className="hidden"
+                    />
+                    {tag}
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {(mediaType === 'video' || mediaType === 'graphic') && (
-            <>
-              <div>
-                <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-                  Link to share
-                </label>
-                <input
-                  type="text"
-                  name="shareLink"
-                  value={formState.shareLink}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-                  style={{ fontWeight: 400 }}
-                />
-              </div>
-              <div>
-                <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
-                  Embedded link
-                </label>
-                <input
-                  type="text"
-                  name="embedLink"
-                  value={formState.embedLink}
-                  onChange={handleInputChange}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
-                  style={{ fontWeight: 400 }}
-                />
-              </div>
-            </>
-          )}
+            {(mediaType === 'video' || mediaType === 'graphic') && (
+              <>
+                <div>
+                  <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                    Link to share
+                  </label>
+                  <input
+                    type="text"
+                    name="shareLink"
+                    value={formState.shareLink}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                    style={{ fontWeight: 400 }}
+                  />
+                </div>
+                <div>
+                  <label className="block text-brandBlack mb-2" style={{ fontWeight: 400 }}>
+                    Embedded link
+                  </label>
+                  <input
+                    type="text"
+                    name="embedLink"
+                    value={formState.embedLink}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]"
+                    style={{ fontWeight: 400 }}
+                  />
+                </div>
+              </>
+            )}
 
-          {mediaType === 'website' && (
-            <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
-              Website entries are not configured yet.
-            </p>
-          )}
+            {mediaType === 'website' && (
+              <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
+                Website entries are not configured yet.
+              </p>
+            )}
 
-          <button
-            type="submit"
-            className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
-            style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
-            disabled={isSaving}
-          >
-            {isSaving ? 'Saving...' : 'Save entry'}
-          </button>
-          {statusMessage && (
-            <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
-              {statusMessage}
-            </p>
-          )}
-        </form>
+            <button
+              type="submit"
+              className="w-full md:w-auto px-8 py-3 bg-[#c13333] text-white font-medium rounded-md hover:bg-red-700 transition-colors"
+              style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+              disabled={isSaving}
+            >
+              {isSaving ? 'Saving...' : 'Save entry'}
+            </button>
+            {statusMessage && (
+              <p className="text-sm text-gray-500" style={{ fontWeight: 400 }}>
+                {statusMessage}
+              </p>
+            )}
+          </form>
         )}
       </div>
     </div>
