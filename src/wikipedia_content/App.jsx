@@ -35,9 +35,9 @@ const isPersonalClient = (client) => {
 const graphicsPortfolio = [
   {
     id: 'graphic-lowheads-2026',
-    title: 'GRAPHICS FOR LOWHEADS [2026]',
+    title: 'ANIMATED MAGAZINE FOR LOWHEADS [2026]',
     client: 'lowheads',
-    category: ['graphics', 'view-all'],
+    category: ['graphics', 'videos', 'view-all'],
     date: '14 APR 2026',
     by: 'Hugo Zbor',
     description: '',
@@ -1563,7 +1563,7 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
             />
           ) : item.slideVideos && item.slideVideos.length > 0 ? (
             // 4a. RENDER VIDEO CAROUSEL (autoplay looping video slides)
-            <div className="relative w-full h-64 md:h-full flex items-center justify-center bg-black">
+            <div className={`relative w-full h-64 md:h-full flex items-center justify-center bg-black ${item.id === 'graphic-lowheads-2026' ? 'p-[5%]' : ''}`}>
               <video
                 key={currentSlideIndex}
                 src={item.slideVideos[currentSlideIndex]}
