@@ -230,6 +230,32 @@ graphicsPortfolio.sort((a, b) => {
 // Video Portfolio Data Structure
 const videoPortfolio = [
   {
+    id: 'video-hugozbor-social-creatures-2026',
+    title: '"Social Creatures" an animation by Hugo Zbor [2026]',
+    client: 'hugozbor',
+    date: '28 MAR 2026',
+    tags: ['Animation'],
+    category: ['videos', 'view-all', 'personal-work'],
+    thumbnailUrl: 'https://img.youtube.com/vi/9g0eBzoLldA/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/9g0eBzoLldA?si=SrIQEG_GI8XDmN_U',
+    instagramLink: 'https://www.instagram.com/p/DWtoMVhARk-/',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
+    id: 'video-converse-campaign-2-2026',
+    title: 'CONVERSE - Campaign Video #2 [2026]',
+    client: 'converse',
+    date: '13 APR 2026',
+    tags: ['VFX', 'Green Screen', 'Shot by HUGO ZBOR'],
+    category: ['videos', 'view-all'],
+    thumbnailUrl: 'https://img.youtube.com/vi/vcOHz9nbufY/maxresdefault.jpg',
+    videoEmbedUrl: 'https://www.youtube.com/embed/vcOHz9nbufY?si=0u91TzADnYegb5x4',
+    instagramLink: 'https://www.instagram.com/p/DXEzXk1AVUh/',
+    embedHtml: null,
+    fallbackAsset: null,
+  },
+  {
     id: 'video-tokyomilkshop-midnight-hours-2026',
     title: 'TOKYOMILKSHOP - Midnight Hours [2026]',
     client: 'tokyomilkshop',
