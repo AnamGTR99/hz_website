@@ -42,13 +42,13 @@ const graphicsPortfolio = [
     by: 'Hugo Zbor',
     description: '',
     tags: ['Poster', 'Cover Art', 'Magazine Edit'],
-    slideEmbeds: [
-      'https://jumpshare.com/embed/a6mwPLscNTcts0IjPQ7T',
-      'https://jumpshare.com/embed/kJEzErcuw14CfWuNP6xU',
-      'https://jumpshare.com/embed/ndCaS3wcxTdyVkoRjrPA',
-      'https://jumpshare.com/embed/G0IcGJrWLi4BJNw2knc5',
-      'https://jumpshare.com/embed/eGCECThODkCRGl5AxaIQ',
-      'https://jumpshare.com/embed/vYR3vrYvcY7Zh1BI2cxQ',
+    slideVideos: [
+      'https://i.imgur.com/lsBvLPB.mp4',
+      'https://i.imgur.com/T9UHavK.mp4',
+      'https://i.imgur.com/8WSRAHg.mp4',
+      'https://i.imgur.com/zxrgcIi.mp4',
+      'https://i.imgur.com/psyDDsT.mp4',
+      'https://i.imgur.com/g639j2R.mp4',
     ],
     thumbnailUrl: null,
     instagramLink: 'https://www.instagram.com/p/DW65n-fD7eP/?img_index=1',
@@ -1561,34 +1561,34 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
                 }`}
               dangerouslySetInnerHTML={{ __html: item.embedHtml }}
             />
-          ) : item.slideEmbeds && item.slideEmbeds.length > 0 ? (
-            // 4a. RENDER EMBED CAROUSEL (Jumpshare/iframe slides)
-            <div className="relative w-full h-64 md:h-full flex items-center justify-center">
-              <iframe
+          ) : item.slideVideos && item.slideVideos.length > 0 ? (
+            // 4a. RENDER VIDEO CAROUSEL (autoplay looping video slides)
+            <div className="relative w-full h-64 md:h-full flex items-center justify-center bg-black">
+              <video
                 key={currentSlideIndex}
-                src={item.slideEmbeds[currentSlideIndex]}
-                title={`${item.title} - Slide ${currentSlideIndex + 1}`}
-                frameBorder="0"
-                allowFullScreen
-                className="w-full h-full border-0"
-                style={{ objectFit: 'contain' }}
+                src={item.slideVideos[currentSlideIndex]}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-contain"
               />
-              {item.slideEmbeds.length > 1 && (
+              {item.slideVideos.length > 1 && (
                 <>
                   <button
-                    onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + item.slideEmbeds.length) % item.slideEmbeds.length)}
+                    onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + item.slideVideos.length) % item.slideVideos.length)}
                     className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
                   >
                     <ChevronLeft className="size-4" />
                   </button>
                   <button
-                    onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % item.slideEmbeds.length)}
+                    onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % item.slideVideos.length)}
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
                   >
                     <ChevronRight className="size-4" />
                   </button>
                   <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
-                    {item.slideEmbeds.map((_, index) => (
+                    {item.slideVideos.map((_, index) => (
                       <div
                         key={index}
                         className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentSlideIndex ? 'bg-white' : 'bg-white/50'
@@ -1833,12 +1833,14 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   onClick={() => setCurrentPage('my-work', category, item.id)}
                   className={cardClasses}
                 >
-                  {item.slideEmbeds && item.slideEmbeds.length > 0 ? (
-                    <iframe
-                      src={item.slideEmbeds[0]}
-                      title={item.title}
-                      frameBorder="0"
-                      className="w-full aspect-[3/4] border-0 rounded-lg pointer-events-none"
+                  {item.slideVideos && item.slideVideos.length > 0 ? (
+                    <video
+                      src={item.slideVideos[0]}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full aspect-[3/4] object-cover rounded-lg"
                     />
                   ) : item.slides && item.slides.length > 1 ? (
                     <GridCarousel images={item.slides} />
@@ -1892,12 +1894,14 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
               onClick={() => setCurrentPage('my-work', category, item.id)}
               className={cardClasses}
             >
-              {item.slideEmbeds && item.slideEmbeds.length > 0 ? (
-                <iframe
-                  src={item.slideEmbeds[0]}
-                  title={item.title}
-                  frameBorder="0"
-                  className="w-full aspect-[3/4] border-0 rounded-lg pointer-events-none"
+              {item.slideVideos && item.slideVideos.length > 0 ? (
+                <video
+                  src={item.slideVideos[0]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full aspect-[3/4] object-cover rounded-lg"
                 />
               ) : item.slides && item.slides.length > 1 ? (
                 <GridCarousel images={item.slides} />
@@ -2273,12 +2277,14 @@ function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId
               onClick={() => setCurrentPage('clients', clientSlug, item.id)}
               className={cardClasses}
             >
-              {item.slideEmbeds && item.slideEmbeds.length > 0 ? (
-                <iframe
-                  src={item.slideEmbeds[0]}
-                  title={item.title}
-                  frameBorder="0"
-                  className="w-full aspect-[3/4] border-0 rounded-lg pointer-events-none"
+              {item.slideVideos && item.slideVideos.length > 0 ? (
+                <video
+                  src={item.slideVideos[0]}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full aspect-[3/4] object-cover rounded-lg"
                 />
               ) : item.slides && item.slides.length > 1 ? (
                 <GridCarousel images={item.slides} />
