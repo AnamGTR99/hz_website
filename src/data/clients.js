@@ -10,7 +10,8 @@ export const selectedClients = [
   { name: "CONROY.US", tier: 1, logo: "/extra_assets/LOGOS/CONROY US.webp" },
   { name: "tokyomilkshop", tier: 1, logo: "/extra_assets/LOGOS/tokyomilkshop.png" },
   { name: "AFORMUNSEEN", tier: 1, logo: "/extra_assets/LOGOS/aformunseen.png" },
-  { name: "SAGA FIGHTWEAR", tier: 1, logo: "/extra_assets/LOGOS/LOGO BLACK.png" }
+  { name: "SAGA FIGHTWEAR", tier: 1, logo: "/extra_assets/LOGOS/LOGO BLACK.png" },
+  { name: "LOWHEADS", tier: 1, logo: "/extra_assets/LOGOS/Lowheads_Square.webp" }
 ];
 
 export const clientsCopy = {
