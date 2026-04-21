@@ -34,6 +34,26 @@ const isPersonalClient = (client) => {
 // Portfolio Data Structure
 const graphicsPortfolio = [
   {
+    id: 'graphic-lowheads-2026',
+    title: 'GRAPHICS FOR LOWHEADS [2026]',
+    client: 'lowheads',
+    category: ['graphics', 'view-all'],
+    date: '14 APR 2026',
+    by: 'Hugo Zbor',
+    description: '',
+    tags: ['Poster', 'Cover Art', 'Magazine Edit'],
+    slideEmbeds: [
+      'https://jumpshare.com/embed/a6mwPLscNTcts0IjPQ7T',
+      'https://jumpshare.com/embed/kJEzErcuw14CfWuNP6xU',
+      'https://jumpshare.com/embed/ndCaS3wcxTdyVkoRjrPA',
+      'https://jumpshare.com/embed/G0IcGJrWLi4BJNw2knc5',
+      'https://jumpshare.com/embed/eGCECThODkCRGl5AxaIQ',
+      'https://jumpshare.com/embed/vYR3vrYvcY7Zh1BI2cxQ',
+    ],
+    thumbnailUrl: null,
+    instagramLink: 'https://www.instagram.com/p/DW65n-fD7eP/?img_index=1',
+  },
+  {
     id: 'graphic-1',
     title: '"COLLECTOR" GRAPHIC FOR 99CLOVER',
     client: '99clover',
@@ -1541,8 +1561,46 @@ function WorkOverlay({ item, onClose, setCurrentPage, isRestrictedRegion, curren
                 }`}
               dangerouslySetInnerHTML={{ __html: item.embedHtml }}
             />
+          ) : item.slideEmbeds && item.slideEmbeds.length > 0 ? (
+            // 4a. RENDER EMBED CAROUSEL (Jumpshare/iframe slides)
+            <div className="relative w-full h-64 md:h-full flex items-center justify-center">
+              <iframe
+                key={currentSlideIndex}
+                src={item.slideEmbeds[currentSlideIndex]}
+                title={`${item.title} - Slide ${currentSlideIndex + 1}`}
+                frameBorder="0"
+                allowFullScreen
+                className="w-full h-full border-0"
+                style={{ objectFit: 'contain' }}
+              />
+              {item.slideEmbeds.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setCurrentSlideIndex((prev) => (prev - 1 + item.slideEmbeds.length) % item.slideEmbeds.length)}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+                  >
+                    <ChevronLeft className="size-4" />
+                  </button>
+                  <button
+                    onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % item.slideEmbeds.length)}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+                  >
+                    <ChevronRight className="size-4" />
+                  </button>
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 z-10">
+                    {item.slideEmbeds.map((_, index) => (
+                      <div
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentSlideIndex ? 'bg-white' : 'bg-white/50'
+                          }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
           ) : (
-            // 4. RENDER IMAGE (with carousel support)
+            // 4b. RENDER IMAGE (with carousel support)
             <div className="relative w-full h-64 md:h-full">
               <img
                 src={item.slides ? item.slides[currentSlideIndex] : item.fullImageUrl}
@@ -1775,7 +1833,14 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
                   onClick={() => setCurrentPage('my-work', category, item.id)}
                   className={cardClasses}
                 >
-                  {item.slides && item.slides.length > 1 ? (
+                  {item.slideEmbeds && item.slideEmbeds.length > 0 ? (
+                    <iframe
+                      src={item.slideEmbeds[0]}
+                      title={item.title}
+                      frameBorder="0"
+                      className="w-full aspect-[3/4] border-0 rounded-lg pointer-events-none"
+                    />
+                  ) : item.slides && item.slides.length > 1 ? (
                     <GridCarousel images={item.slides} />
                   ) : (
                     <img
@@ -1827,7 +1892,14 @@ function MyWorkCategoryPage({ category, setCurrentPage, currentPage, currentItem
               onClick={() => setCurrentPage('my-work', category, item.id)}
               className={cardClasses}
             >
-              {item.slides && item.slides.length > 1 ? (
+              {item.slideEmbeds && item.slideEmbeds.length > 0 ? (
+                <iframe
+                  src={item.slideEmbeds[0]}
+                  title={item.title}
+                  frameBorder="0"
+                  className="w-full aspect-[3/4] border-0 rounded-lg pointer-events-none"
+                />
+              ) : item.slides && item.slides.length > 1 ? (
                 <GridCarousel images={item.slides} />
               ) : (
                 <img
@@ -2201,7 +2273,14 @@ function ClientWorkPage({ clientSlug, setCurrentPage, currentPage, currentItemId
               onClick={() => setCurrentPage('clients', clientSlug, item.id)}
               className={cardClasses}
             >
-              {item.slides && item.slides.length > 1 ? (
+              {item.slideEmbeds && item.slideEmbeds.length > 0 ? (
+                <iframe
+                  src={item.slideEmbeds[0]}
+                  title={item.title}
+                  frameBorder="0"
+                  className="w-full aspect-[3/4] border-0 rounded-lg pointer-events-none"
+                />
+              ) : item.slides && item.slides.length > 1 ? (
                 <GridCarousel images={item.slides} />
               ) : (
                 <img
