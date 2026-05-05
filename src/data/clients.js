@@ -11,7 +11,8 @@ export const selectedClients = [
   { name: "tokyomilkshop", tier: 1, logo: "/extra_assets/LOGOS/tokyomilkshop.png" },
   { name: "AFORMUNSEEN", tier: 1, logo: "/extra_assets/LOGOS/aformunseen.png" },
   { name: "SAGA FIGHTWEAR", tier: 1, logo: "/extra_assets/LOGOS/LOGO BLACK.png" },
-  { name: "LOWHEADS", tier: 1, logo: "/extra_assets/LOGOS/Lowheads_Square.webp" }
+  { name: "LOWHEADS", tier: 1, logo: "/extra_assets/LOGOS/Lowheads_Square.webp" },
+  { name: "NAMED COLLECTIVE", tier: 1, logo: "/extra_assets/LOGOS/named_collective_logo.webp" }
 ];
 
 export const clientsCopy = {
