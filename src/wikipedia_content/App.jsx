@@ -1233,7 +1233,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            CONTACT
+            WORK WITH ME
           </button>
         </nav>
       </div>
@@ -1319,7 +1319,7 @@ function Header({ currentPage, currentCategory, setCurrentPage }) {
                 : 'font-bold text-lg text-brandBlack hover:text-[#c13333] transition-colors duration-200'
             }
           >
-            CONTACT
+            WORK WITH ME
           </button>
         </div>
       )}
@@ -2968,6 +2968,8 @@ function CountrySelect({ selected, onChange }) {
 
 function ContactPage({ setCurrentPage, currentPage }) {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [selectedServices, setSelectedServices] = useState([])
+  const [validationError, setValidationError] = useState('')
   const requestType = useMemo(() => {
     if (typeof window === 'undefined') return ''
     return new URLSearchParams(window.location.search).get('type') || ''
@@ -2978,11 +2980,28 @@ function ContactPage({ setCurrentPage, currentPage }) {
       ? 'Standalone Commission'
       : ''
 
+  const toggleService = (service) => {
+    setSelectedServices((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
+    )
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const form = e.target
     const data = new FormData(form)
+
+    if (selectedServices.length === 0) {
+      setValidationError('Please select at least one service.')
+      return
+    }
+    if (data.getAll('timeline').length === 0) {
+      setValidationError('Please select at least one timeline option.')
+      return
+    }
+    setValidationError('')
+
     const formspreeEndpoint = 'https://formspree.io/f/xldawqyy'
 
     try {
@@ -3035,10 +3054,137 @@ function ContactPage({ setCurrentPage, currentPage }) {
     )
   }
 
+  const helveticaStyle = { fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }
+  const textInputClass = 'w-full border border-gray-300 rounded-lg px-4 py-2 text-brandBlack focus:outline-none focus:border-[#c13333]'
+
+  const serviceOptions = [
+    'Visual Art & Graphic Design',
+    'Video & Motion Visuals',
+    'Creative Direction & Consulting',
+    'Web Design & Digital Experience',
+    'Content Creation (Artists & Influencers)',
+    'Collaboration Projects',
+    'Custom Requests',
+  ]
+
+  // Extra questions revealed per selected service so quotes can be estimated properly
+  const serviceDetailSections = [
+    {
+      service: 'Video & Motion Visuals',
+      heading: 'Video & Motion Visuals — project details',
+      fields: [
+        {
+          kind: 'text',
+          name: 'video_duration',
+          label: 'Estimated video duration *',
+          placeholder: 'e.g. 30–45 seconds, 2 minutes',
+        },
+        {
+          kind: 'text',
+          name: 'video_scene_count',
+          label: 'Rough number of distinct scenes / shots *',
+          placeholder: 'e.g. 3–5 scenes',
+        },
+        {
+          kind: 'radio',
+          name: 'video_production_style',
+          label: 'Primary production style *',
+          options: [
+            'Green screen / VFX (you provide the footage)',
+            'Footage shot by Hugo',
+            'Full animation (2D/3D)',
+            'Mix / not sure yet',
+          ],
+        },
+      ],
+    },
+    {
+      service: 'Visual Art & Graphic Design',
+      heading: 'Visual Art & Graphic Design — project details',
+      fields: [
+        {
+          kind: 'text',
+          name: 'design_deliverables',
+          label: 'What deliverable(s) do you need? *',
+          placeholder: 'e.g. album cover, poster set, flyer + social crops',
+        },
+        {
+          kind: 'text',
+          name: 'design_quantity',
+          label: 'How many pieces / variations? *',
+          placeholder: 'e.g. 1 cover + 3 resizes',
+        },
+        {
+          kind: 'radio',
+          name: 'design_usage',
+          label: 'Where will it be used? *',
+          options: ['Digital / social', 'Print', 'Both', 'Not sure yet'],
+        },
+      ],
+    },
+    {
+      service: 'Web Design & Digital Experience',
+      heading: 'Web Design & Digital Experience — project details',
+      fields: [
+        {
+          kind: 'radio',
+          name: 'web_project_type',
+          label: 'What kind of web project is this? *',
+          options: [
+            'New website',
+            'Redesign of an existing site',
+            'Landing page / microsite',
+            'Not sure yet',
+          ],
+        },
+        {
+          kind: 'text',
+          name: 'web_scope',
+          label: 'Rough number of pages / sections *',
+          placeholder: 'e.g. 5 pages, single scrolling page',
+        },
+        {
+          kind: 'radio',
+          name: 'web_build',
+          label: 'Design only, or built & launched too? *',
+          options: ['Design + development (built & launched)', 'Design only', 'Not sure yet'],
+        },
+      ],
+    },
+    {
+      service: 'Content Creation (Artists & Influencers)',
+      heading: 'Content Creation — project details',
+      fields: [
+        {
+          kind: 'text',
+          name: 'content_type',
+          label: 'What kind of content? *',
+          placeholder: 'e.g. TikTok edits, visualizers, cover art per single',
+        },
+        {
+          kind: 'text',
+          name: 'content_volume',
+          label: 'How much / how often? *',
+          placeholder: 'e.g. 4 posts per month, one-off batch of 10',
+        },
+        {
+          kind: 'radio',
+          name: 'content_engagement',
+          label: 'One-off or ongoing? *',
+          options: ['One-off project', 'Ongoing / retainer', 'Not sure yet'],
+        },
+      ],
+    },
+  ]
+
+  const activeDetailSections = serviceDetailSections.filter((section) =>
+    selectedServices.includes(section.service)
+  )
+
   // Form View
   return (
     <>
-      <PageHeader title="Contact" isActive={currentPage === 'contact'} />
+      <PageHeader title="Work With Me" isActive={currentPage === 'contact'} />
       <div className="max-w-4xl mx-auto px-4 md:px-0 mt-4 md:mt-8">
         {/* Header Text */}
         <p className="text-sm md:text-base font-normal text-gray-600 leading-relaxed mb-6 text-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
@@ -3114,79 +3260,69 @@ function ContactPage({ setCurrentPage, currentPage }) {
               What service(s) are you looking for?*
             </label>
             <div className="flex flex-col space-y-2">
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Visual Art & Graphic Design"
-                  required
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Visual Art & Graphic Design</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Video & Motion Visuals"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Video & Motion Visuals</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Creative Direction & Consulting"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Creative Direction & Consulting</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Web Design & Digital Experience"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Web Design & Digital Experience</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Content Creation (Artists & Influencers)"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Content Creation (Artists & Influencers)</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Collaboration Projects"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Collaboration Projects</span>
-              </label>
-              <label className="flex items-center" style={{ fontFamily: 'Helvetica, Arial, sans-serif', fontWeight: 400 }}>
-                <input
-                  type="checkbox"
-                  name="service_type"
-                  value="Custom Requests"
-                  className="mr-2"
-                  style={{ accentColor: '#c13333' }}
-                />
-                <span className="text-brandBlack" style={{ fontWeight: 400 }}>Custom Requests</span>
-              </label>
+              {serviceOptions.map((service) => (
+                <label key={service} className="flex items-center" style={helveticaStyle}>
+                  <input
+                    type="checkbox"
+                    name="service_type"
+                    value={service}
+                    checked={selectedServices.includes(service)}
+                    onChange={() => toggleService(service)}
+                    className="mr-2"
+                    style={{ accentColor: '#c13333' }}
+                  />
+                  <span className="text-brandBlack" style={{ fontWeight: 400 }}>{service}</span>
+                </label>
+              ))}
             </div>
           </div>
+
+          {/* Row 2b: Per-service quote details (revealed by service selection) */}
+          {activeDetailSections.map((section) => (
+            <div key={section.service} className="border-l-2 border-[#c13333] pl-4 space-y-4">
+              <p className="text-brandBlack" style={{ ...helveticaStyle, fontWeight: 700 }}>
+                {section.heading}
+              </p>
+              {section.fields.map((field) =>
+                field.kind === 'text' ? (
+                  <div key={field.name}>
+                    <label className="block text-brandBlack mb-2" style={helveticaStyle}>
+                      {field.label}
+                    </label>
+                    <input
+                      type="text"
+                      name={field.name}
+                      required
+                      placeholder={field.placeholder}
+                      className={textInputClass}
+                      style={helveticaStyle}
+                    />
+                  </div>
+                ) : (
+                  <div key={field.name}>
+                    <label className="block text-brandBlack mb-3" style={helveticaStyle}>
+                      {field.label}
+                    </label>
+                    <div className="flex flex-col space-y-2">
+                      {field.options.map((option) => (
+                        <label key={option} className="flex items-center" style={helveticaStyle}>
+                          <input
+                            type="radio"
+                            name={field.name}
+                            value={option}
+                            required
+                            className="mr-2"
+                            style={{ accentColor: '#c13333' }}
+                          />
+                          <span className="text-brandBlack" style={{ fontWeight: 400 }}>{option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          ))}
 
           {/* Row 3: Launch/Rollout */}
           <div>
@@ -3319,6 +3455,13 @@ function ContactPage({ setCurrentPage, currentPage }) {
               />
             </div>
           </div>
+
+          {/* Validation Error */}
+          {validationError && (
+            <p className="text-[#c13333]" style={helveticaStyle}>
+              {validationError}
+            </p>
+          )}
 
           {/* Submit Button */}
           <button
